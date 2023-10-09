@@ -1,8 +1,11 @@
 <template>
+ <div>
   <router-view />
   <footer>footer</footer>
+</div>
 </template>
 
-<script setup>
+<script>
+
   //
 </script>

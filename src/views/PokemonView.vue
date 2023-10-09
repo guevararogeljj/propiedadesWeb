@@ -6,7 +6,7 @@
 <script setup>
 import axios from "axios";
 import { ref, onMounted } from "vue";
-import { dialogSuccess } from "@/core/alerts";
+import { dialogSuccess } from "@/core/utils/alerts";
 const pokemon = ref([]);
 const getPokemon = async () => {
   try {
