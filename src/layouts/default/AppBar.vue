@@ -4,7 +4,9 @@
       @click="drawer = true"
       class="d-flex d-sm-none"
     ></v-app-bar-nav-icon>
-    <v-toolbar-title><div class="logoClass"></div></v-toolbar-title>
+    <v-toolbar-title>
+      <div class="logoClass ms-5"></div>
+    </v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
       <v-btn variant="text">Inicio</v-btn>
@@ -62,13 +64,14 @@ export default {
 .logoClass {
   background-image: url("https://finastrategy.mx/wp-content/themes/finastrategy/assets/img/logo-finastrategy.png");
   background-size: 150px;
+  height: 4em;
   background-repeat: no-repeat;
   background-position: center;
   height: 100px;
   /* Additional styles */
   margin: 0;
   padding: 0;
-  height: 100vh;
+
 }
 @media (max-width: 600px) {
   body {

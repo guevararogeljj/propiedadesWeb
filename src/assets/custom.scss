@@ -1,0 +1,106 @@
+// Base grayscale colors definitions
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
+
+// Base colors definitions
+$blue: #007bff !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #dc3545 !default;
+$orange: #fd7e14 !default;
+$yellow: #ffc107 !default;
+$green: #28a745 !default;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
+
+
+//colores principales 
+$main : #0092BC;
+$nodomain : #FFFFFF;
+
+
+
+
+// Theme color default definitions
+$primary: $main  !default;
+$secondary: $nodomain  !default;
+$success: $green  !default;
+$info: $cyan  !default;
+$warning: $yellow  !default;
+$danger: $red  !default;
+$light: $gray-100  !default;
+$dark: $gray-800  !default;
+
+// This table defines the theme colors (variant names)
+$theme-colors: (
+    ) !default;
+$theme-colors: map-merge(('primary': $primary,
+            'secondary': $secondary,
+            'success': $success,
+            'info': $info,
+            'warning': $warning,
+            'danger': $danger,
+            'light': $light,
+            'dark': $dark,
+
+        ),
+        $theme-colors
+);
+
+
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+.wrapper {
+    background-color: #FFFFFF;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    //styleName: D/Paragraph;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.5px;
+    color: #151A18;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+
+    &:hover {
+        color: #0092BC;
+    }
+}
+
+
+
+.container-avatar {
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+
+    width: 100px;
+    height: 40px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
