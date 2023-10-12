@@ -1,4 +1,6 @@
 <template>
+
+
 <v-select
   label="Select"
   :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']"
@@ -53,18 +55,12 @@ export default {
 };
 </script>
   
-<style scoped lang="scss">
-.form-select {
-  background: #ffffff;
-  border-radius: 7px;
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  background-image: url("@/assets/select_icon.svg");
-  background-repeat: no-repeat;
-  background-position: right 0.75rem center;
-  background-size: 24px 24px;
+<style lang="scss">
+  .v-field, .v-list-item-title  {
+  font-size: 0.875rem !important;
 }
+.v-select-list {
+  width: 100px;
+}
+
 </style>

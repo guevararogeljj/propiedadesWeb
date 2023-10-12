@@ -1,6 +1,7 @@
 <template>
+  <div class="content">
   <v-app-bar app>
-    <v-app-bar-nav-icon
+    <v-app-bar-nav-icon 
       @click="drawer = true"
       class="d-flex d-sm-none"
     ></v-app-bar-nav-icon>
@@ -49,6 +50,7 @@
       </v-list-item-group>
     </v-list>
   </v-navigation-drawer>
+  </div>
 </template>
 <script>
 export default {

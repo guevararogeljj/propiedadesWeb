@@ -31,54 +31,14 @@
 
     <v-col>
       <v-sheet class="pa-2 ma-2">
-        <custom-button-primary class="d-inline button me-1" ImageIcon="mdi-magnify" Text="BUSCAR"
+        <custom-button-primary  ImageIcon="mdi-magnify" Text="BUSCAR"
           :OnClickButton="onClickButtonBuscar" :Icon="search-icon" />
-        <customButtonSeconday class="d-inline button " Text="LIMPIAR" :OnClickButton="onClickButtonLimpiar">
+        <customButtonSeconday  Text="LIMPIAR" :OnClickButton="onClickButtonLimpiar">
         </customButtonSeconday>
       </v-sheet>
     </v-col>
   </v-row>
   </div>
-  <!-- <div class="row wrapper p-3">
-      <div class="col-xs-12 col-lg-4">
-        <customselect
-          class="d-inline"
-          :ItemSource="catalogs.tipoInmueble"
-          ItemIdAttribute="id"
-          ItemNameAttribute="description"
-          DefaultOption="Tipo de inmueble"
-          v-model="params.tipoInmueble"
-        />
-      </div>
-      <div class="col-xs-12 col-lg-4 ">
-        <customselect
-          class=""
-          :ItemSource="catalogs.estados"
-          ItemIdAttribute="id"
-          ItemNameAttribute="description"
-          DefaultOption="Estado"
-          v-model="params.estado"
-        />
-      </div>
-  
-  <div class="col-xs-12 col-lg-3 " >
-        <div class="d-inline">
-          <custom-button-primary
-            class="d-inline button me-1"
-            ImageIcon="mdi-magnify"
-            Text="BUSCAR"
-            :OnClickButton="onClickButtonBuscar"
-          />
-          <customButtonSeconday
-            class="d-inline button "
-            Text="LIMPIAR"
-            :OnClickButton="onClickButtonLimpiar"
-          >
-          </customButtonSeconday>
-        </div>
-      </div>
-      
-    </div> -->
 </template>
   
 <script>
