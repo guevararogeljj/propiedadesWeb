@@ -1,11 +1,21 @@
 <template>
+  <v-app>
   <div>
     <router-view />
-    <footer>footer</footer>
+    <footerComponent />
   </div>
+</v-app>
 </template>
 
 <script>
+import footerComponent from './components/shared/footer.vue';
+export default {
+  name: 'App',
+  components: {
+    footerComponent
+  }
+
+};
 //
 </script>
 <style>
