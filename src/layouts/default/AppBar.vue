@@ -65,7 +65,7 @@ export default {
 <style scoped>
 .logoClass {
   background-image: url("https://finastrategy.mx/wp-content/themes/finastrategy/assets/img/logo-finastrategy.png");
-  background-size: 150px;
+  background-size: 100px;
   height: 4em;
   background-repeat: no-repeat;
   background-position: center;

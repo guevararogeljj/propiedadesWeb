@@ -31,7 +31,7 @@
 
     <v-col>
       <v-sheet class="pa-2 ma-2">
-        <custom-button-primary  ImageIcon="mdi-magnify" Text="BUSCAR"
+        <custom-button-primary  Icon="mdi-magnify" Text="BUSCAR"
           :OnClickButton="onClickButtonBuscar" :Icon="search-icon" />
         <customButtonSeconday  Text="LIMPIAR" :OnClickButton="onClickButtonLimpiar">
         </customButtonSeconday>

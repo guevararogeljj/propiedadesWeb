@@ -1,9 +1,11 @@
 <template>
-    <v-btn type="button"
-    class="btn btn-primary"
+    <v-btn 
+    elevation="1"
+    x-small
+    color="primary"
     @click="onClickButtonInternal">
-    <v-icon class="search-icon"></v-icon>
       <!-- <img v-if="ImageIcon != undefined" :src="ImageIcon" :alt="Text" height="20" class="pb-1" /> --> 
+      <v-icon medium>{{Icon}}</v-icon>
       {{ Text }}
     </v-btn>
   </template>
@@ -12,12 +14,14 @@
   export default {
     name: "buttonComp",
     data() {
-      return {};
+      return {
+        
+      };
     },
     props: {
       Text: { type: String, required: true },
       OnClickButton: { type: Function, default: null },
-      ImageIcon: { type: String, required: false },
+      Icon: { type: String, required: false },
     },
     methods: {
       onClickButtonInternal() {
@@ -30,17 +34,4 @@
   </script>
   
   <style scoped lang="scss">
-  .btn-primary {
-    background-color: #0092bc;
-    border-color: #0092bc;
-  }
-  
-  .btn.btn-primary {
-    color: #ffffff;
-    font-family: "Roboto";
-    font-style: normal;
-    // font-weight: 500;
-    // font-size: 1.22rem;
-    // line-height: 22px;
-  }
   </style>

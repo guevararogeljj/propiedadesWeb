@@ -1,7 +1,6 @@
 <template>
-
-
 <v-select
+density="compact"
   label="Select"
   :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']"
 ></v-select>
@@ -31,6 +30,7 @@ export default {
       itemId: this.ItemIdAttribute,
       itemName: this.ItemNameAttribute,
       cssAttribute: this.Css,
+      selected: this.selected,
     };
   },
   methods: {
@@ -51,6 +51,9 @@ export default {
     ShowDefaultOption: { type: Boolean, default: true },
     DefaultOptionActive: { type: Boolean, default: false },
     ShowControl: { type: Boolean, default: true },
+    data: {
+    selected: ''
+  },
   },
 };
 </script>

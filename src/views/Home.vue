@@ -1,9 +1,9 @@
 <template>
   <v-container>
     <buscador-light
-
       TitleText="Texto ancla"
       :OnClickBuscar="onClickBuscar"
+      Icon="mdi-facebook"
     />
     <find-oportunity/>
     <br />
