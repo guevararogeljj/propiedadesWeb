@@ -3,39 +3,30 @@
     <v-container>
       <v-row>
         <v-col cols="12" sm="6" md="3">
+          <div class="logoClass ms-5"></div>
+        </v-col>
+        <v-col cols="12" sm="6" md="3">
           <v-label> <strong>Legales</strong></v-label>
-          <p>
-            <a
-              class="footer-link mb-2"
-              href="https://www.finastrategy.mx/wp-content/themes/finastrategy/assets/terminos-condiciones.pdf"
-              target="_blank"
-              >Términos y condiciones</a
-            >
-          </p>
-          <p>
-            <a
-              href="https://www.finastrategy.mx/wp-content/themes/finastrategy/assets/aviso-de-privacidad.pdf"
-              class="footer-link mb-2"
-              target="_blank"
-              >Aviso de privacidad</a
-            >
-          </p>
-          <!-- Contenido de la primera columna -->
+  
+            <p><router-link to="/termsAndConditions" class="footer-link mb-2">Términos y condiciones</router-link></p>
+
+            <p><router-link to="/privacyPolicy" class="footer-link mb-2">Aviso de privacidad</router-link></p>
         </v-col>
         <v-col cols="12" sm="6" md="3">
-          <v-label> <strong>Nuestra empresa</strong></v-label>
-          <p>Propiedades</p>
-          <p>Contacto</p>
-          <p>Preguntas frecuentes</p>
+          <v-label> <strong>Navegación</strong></v-label>
+          <p><router-link to="/" class="footer-link mb-2">Inicio</router-link></p>
+          <p><router-link to="/" class="footer-link mb-2">Catálogo</router-link></p>
+          <p><router-link to="/us" class="footer-link mb-2">Nosotros</router-link></p>
+          <p><router-link to="/frequentQuestions" class="footer-link mb-2">Preguntas Frecuentes</router-link></p>
         </v-col>
         <v-col cols="12" sm="6" md="3">
-          <v-label> <strong>Atención a clientes</strong></v-label>
+          <v-label> <strong>Contacto</strong></v-label>
+          <p>Escríbenos</p>
           <p>Inmuebles@finastrategy.mx</p>
-          <p>Teléfonos :</p>
-          <p>55 9990 8800</p>
-          <p>81 2188 8800</p>
-        </v-col>
-        <v-col cols="12" sm="6" md="3">
+          <p></p>
+          <p>Llámanos</p>
+          <p>55 99 90 88 00</p>
+          <p>81 21 88 88 00</p>
           <v-label> <strong>Redes sociales</strong></v-label>
           <p>
             <v-btn icon variant
@@ -45,7 +36,6 @@
                 <v-icon medium>mdi-facebook</v-icon>
               </span>
             </v-btn>
-            <social />
           </p>
         </v-col>
       </v-row>
@@ -60,13 +50,25 @@
   </v-row>
 </template>
 <script>
-import social from "@/components/shared/SocialNetwoks.vue";
 export default {
+
 };
 </script>
 <style scoped>
 .center {
   margin: auto;
   padding: 10px;
+}
+.logoClass {
+  background-image: url("https://finastrategy.mx/wp-content/themes/finastrategy/assets/img/logo-finastrategy.png");
+  background-size: 100px;
+  height: 4em;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100px;
+  /* Additional styles */
+  margin: 0;
+  padding: 0;
+
 }
 </style>

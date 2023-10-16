@@ -1,12 +1,12 @@
 <template>
-<v-select
-density="compact"
-  label="Select"
-  :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']"
-></v-select>
-
-  <!-- <v-select v-if="ShowControl" class="form-select" name="inputInmueble" id="inputInmueble" :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value)" @change="onChangeSelectInner($event.target.value)">
+<select v-if="ShowControl"
+    class="form-select"
+    name="inputInmueble"
+    id="inputInmueble"
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
+    @change="onChangeSelectInner($event.target.value)"
+  >
     <option v-if="ShowDefaultOption && DefaultOptionActive" value="">
       {{ DefaultOption }}
     </option>
@@ -14,10 +14,15 @@ density="compact"
       {{ DefaultOption }}
     </option>
 
-    <option v-for="item in ItemSource" :key="item[itemId]" v-bind:value="item[itemId]" selected>
+    <option
+      v-for="item in ItemSource"
+      :key="item[itemId]"
+      v-bind:value="item[itemId]"
+      selected
+    >
       {{ item[itemName] }}
     </option>
-  </v-select> -->
+  </select>
 </template>
   
 <script>
@@ -59,11 +64,18 @@ export default {
 </script>
   
 <style lang="scss">
-  .v-field, .v-list-item-title  {
-  font-size: 0.875rem !important;
-}
-.v-select-list {
-  width: 100px;
+.form-select {
+  background: #ffffff;
+  border-radius: 7px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  background-image: url("@/assets/select_icon.svg");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 24px 24px;
 }
 
 </style>

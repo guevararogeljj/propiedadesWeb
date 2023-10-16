@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="WordSection1">
   <div>
     <router-view />
     <footerComponent />
@@ -27,5 +27,8 @@ export default {
   background-image: url("@/assets/nodata.png");
   background-size: cover; /* This will make sure the image covers the entire card */
   background-position: center; /* This will center the image in the card */
+}
+.WordSection1{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 </style>

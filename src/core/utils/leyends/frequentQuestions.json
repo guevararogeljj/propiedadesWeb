@@ -1,0 +1,25 @@
+{
+    "preguntas_respuestas": [
+      {
+        "pregunta": "¿Cuál es el animal terrestre más grande?",
+        "respuesta": "El elefante africano es el animal terrestre más grande."
+      },
+      {
+        "pregunta": "¿Qué animal vuela más alto?",
+        "respuesta": "El cóndor andino es conocido por volar a grandes alturas, incluso por encima de los 6,000 metros."
+      },
+      {
+        "pregunta": "¿Cuántos corazones tiene un pulpo?",
+        "respuesta": "Un pulpo tiene tres corazones."
+      },
+      {
+        "pregunta": "¿Cuál es el mamífero más rápido?",
+        "respuesta": "El guepardo es el mamífero más rápido, alcanzando velocidades de hasta 112 km/h."
+      },
+      {
+        "pregunta": "¿Cuántos huesos tiene un ser humano adulto?",
+        "respuesta": "Un adulto humano promedio tiene 206 huesos."
+      }
+    ]
+  }
+  

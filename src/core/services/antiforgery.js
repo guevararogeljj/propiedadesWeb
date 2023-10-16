@@ -3,9 +3,12 @@ import api from "./apiconfig";
 export default {
 
     get() {
-        return api().get('/antiforgery').then(result => {
+        const url = import.meta.env.VITE_APP_ROOT_API + '/antiforgery';
+        return api().get(url).then(result => {
             if (result.status == 200) {
                 if (result.data.success) {
+
+
                     return result.data.result;
                 } else {
                     return null;

@@ -3,7 +3,7 @@ import api from "./apiconfig";
 export default {
 
     Propiedades() {
-        return  api().get('/properties').then(result => {
+        return  api().get(import.meta.env.VITE_APP_ROOT_API + '/properties').then(result => {
             if(result.status == 200)
             {
                 // console.log(result)
@@ -15,7 +15,7 @@ export default {
 
     },
     PropertiesRange(page, items, params,order) {
-        let url = `/properties/range?index=${page}&items=${items}`;
+        let url = import.meta.env.VITE_APP_ROOT_API + `/properties/range?index=${page}&items=${items}`;
         // console.log(order)
         if (order) {
             url = url + `&order=${order}`;
@@ -40,7 +40,7 @@ export default {
     },
     PropertyDetails(id)
     {
-        return  api().get(`/properties/details?id=${id}`).then(result => {
+        return  api().get(import.meta.env.VITE_APP_ROOT_API + `/properties/details?id=${id}`).then(result => {
             if(result.status == 200)
             {
                 // console.log(result)
@@ -53,7 +53,7 @@ export default {
     },
     legaldata(id)
     {
-        return  api().post(`/properties/legaldetails`,id).then(result => {
+        return  api().post(import.meta.env.VITE_APP_ROOT_API + `/properties/legaldetails`,id).then(result => {
             if(result.status == 200)
             {
                 return result.data.result;

@@ -1,6 +1,6 @@
 // Composables
 import { createRouter, createWebHistory } from 'vue-router'
-
+import NotFound from '@/components/shared/pages/404.vue'
 const routes = [
   {
     path: '/',
@@ -20,6 +20,27 @@ const routes = [
         path: 'pokemon',
         name: 'Pokemon',
         component: () => import('@/views/PokemonView.vue'),  
+      },
+      { path: '*', component: NotFound },
+      {
+        path: 'frequentQuestions',
+        name: 'FrequentQuestions',
+        component: () => import('@/components/shared/frequentQuestions.vue'),
+      },
+      {
+        path: 'termsAndConditions',
+        name: 'TermsAndConditions',
+        component: () => import('@/components/shared/termsConditions.vue'),
+      },
+      {
+        path: 'us',
+        name: 'us',
+        component: () => import('@/components/shared/us.vue'),
+      },
+      {
+        path: 'privacyPolicy',
+        name: 'privacyPolicy',
+        component: () => import('@/components/shared/privacy.vue'),
       }
     ],
   },

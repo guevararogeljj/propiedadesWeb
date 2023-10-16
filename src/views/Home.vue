@@ -34,7 +34,6 @@ import contservice from "@/core/services/contservice";
 import oportunity from "@/components/client/oportunity.vue";
 import Support from "@/components/client/support.vue";
 import Contact from "@/components/shared/Contact.vue"
-import findOportunity from "@/components/client/findOportunity.vue";
 import FindOportunity from '@/components/client/findOportunity.vue';
 export default {
   components: {
@@ -91,6 +90,7 @@ export default {
       return this.$route.params.section;
     },
     state() {
+      debugger;
       return this.$store.state;
     },
     isMovil() {

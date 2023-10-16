@@ -21,6 +21,12 @@ export default createVuetify({
           secondary: '#5CBBF6',
         },
       },
+      fonts: {
+        body: 'Roboto, sans-serif',
+      },
+    },
+    fonts: {
+      body: 'Roboto, sans-serif',
     },
   },
 })

@@ -10,8 +10,8 @@
   <v-row class="mb-6" no-gutters>
     <v-col>
       <v-sheet class="pa-2 ma-2">
-        <customselect class="" :ItemSource="catalogs.estados" ItemIdAttribute="id" ItemNameAttribute="description"
-          DefaultOption="Estado" v-model="params.estado" />
+        <customselect class="" :ItemSource="catalogs.tipoInmueble" ItemIdAttribute="id" ItemNameAttribute="description"
+          DefaultOption="Tipo inmueble" v-model="params.tipoInmueble" />
       </v-sheet>
     </v-col>
 
@@ -32,7 +32,7 @@
     <v-col>
       <v-sheet class="pa-2 ma-2">
         <custom-button-primary  Icon="mdi-magnify" Text="BUSCAR"
-          :OnClickButton="onClickButtonBuscar" :Icon="search-icon" />
+          :OnClickButton="onClickButtonBuscar"/>
         <customButtonSeconday  Text="LIMPIAR" :OnClickButton="onClickButtonLimpiar">
         </customButtonSeconday>
       </v-sheet>

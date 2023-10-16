@@ -3,7 +3,7 @@ import api from "./apiconfig";
 export default {
 
     Estados() {
-        return  api().get('/filters/states').then(result => {
+        return  api().get(import.meta.env.VITE_APP_ROOT_API +'/filters/states').then(result => {
             if(result.status == 200){
                 return result.data
             }
@@ -12,14 +12,14 @@ export default {
         });
     },
     Municipios(id){
-        return  api().get('/filters/cities?id=' + id,).then(result => {
+        return  api().get(import.meta.env.VITE_APP_ROOT_API + '/filters/cities?id=' + id,).then(result => {
             return result.data
         }).catch(error=>{
             return error;
         });
     },
     TipoInmuebles(){
-        return   api().get('/filters/propertytype').then(result => {
+        return   api().get(import.meta.env.VITE_APP_ROOT_API + '/filters/propertytype').then(result => {
             if (result.status == 200) {
                 return result.data;
             }
@@ -58,7 +58,7 @@ export default {
         // });
     },
     Habitaciones(){
-        return  api().get('/filters/bedrooms').then(result => {
+        return  api().get(import.meta.env.VITE_APP_ROOT_API + '/filters/bedrooms').then(result => {
             if (result.status == 200) {
                 return result.data;
             }
@@ -70,7 +70,7 @@ export default {
         });
     },
     EtapaProcesal(){
-        return  api().get('/filters/proceduralStage').then(result => {
+        return  api().get(import.meta.env.VITE_APP_ROOT_API + '/filters/proceduralStage').then(result => {
             return result.data
         }).catch(error=>{
             return error;
@@ -89,14 +89,14 @@ export default {
         });
     },
     Occupations(){
-        return  api().get('/filters/occupations').then(result => {
+        return  api().get(import.meta.env.VITE_APP_ROOT_API + '/filters/occupations').then(result => {
             return result.data
         }).catch(error=>{
             return error;
         });
     },
     Maritalstatus(){
-        return  api().get('/filters/maritalstatus').then(result => {
+        return  api().get(import.meta.env.VITE_APP_ROOT_API +  '/filters/maritalstatus').then(result => {
             return result.data
         }).catch(error=>{
             return error;
