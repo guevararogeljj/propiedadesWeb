@@ -15,6 +15,7 @@
       </buscador>
     </div>
     <div class="">
+      <v-skeleton-loader v-if="!ShowProperties" class="mx-auto" type="card, list-item, text@3"></v-skeleton-loader>
       <lista :ItemSource="propiedades" ItemIdAttribute="creditnumber" :NoItemsMessage="!ShowProperties">
         <template v-slot:item="{ item }">
           <property-card :Title="item.title" :OnClick="onClickProperty" :Settlement="item.settlement" :City="item.city"
@@ -29,10 +30,10 @@
               <div>
                 <img v-if="item.favorite" src="@/assets/favorite2_icon.svg" alt="favorite" @click="
                   onClickFavoriteButton(item.favorite, item.creditnumber)
-                " />
+                  " />
                 <img v-else src="@/assets/favorite_icon.svg" alt="favorite" @click="
                   onClickFavoriteButton(item.favorite, item.creditnumber)
-                " />
+                  " />
               </div>
             </template>
           </property-card>
@@ -41,14 +42,10 @@
     </div>
     <div class="d-grid gap-2">
       <div class="row mt-3">
-
         <pagination class="mt-5" :class="{ 'd-none': !ShowProperties }" :propItemSource="ItemSourcePagination.length"
           :propTotalItems="totalItems" :propCurrentPage="currentPage" :propPerPage="perPage" @pagechanged="onPageChange"
           @setCurrentPage="(value) => currentPage = value" @setPerPage="(value) => perPage = value"
           @setTotalItems="(value) => totalItems = value">
-          <!-- <template v-slot:pagesize>
-          <customselect ></customselect>
-        </template> -->
         </pagination>
       </div>
     </div>
@@ -99,7 +96,8 @@ export default {
       outBathrooms: '',
       outProceduraStage: '',
       showModalLoginRequest: false,
-      propexample
+      propexample,
+      isLoading: true,
     };
   },
   methods: {
@@ -119,6 +117,7 @@ export default {
           properties[index].favorite = favorites[i].favorite;
         }
       }
+      this.isLoading = false;
       // console.log('2. loadProperties.properties', properties);
       return properties;
     },
@@ -221,7 +220,7 @@ export default {
   async mounted() {
     let properties = [];
     console.log(this.getRequestsaved)
-    
+
     if (this.getRequestsaved) {
 
       this.outBathrooms = this.state.filterSaved.bathrooms;
@@ -230,7 +229,7 @@ export default {
       this.outPrice = this.state.filterSaved.price;
       this.outProceduraStage = this.state.filterSaved.proceduraStage;
       this.outRooms = this.state.filterSaved.rooms;
-      this.outBathrooms  = this.state.filterSaved.bathrooms;
+      this.outBathrooms = this.state.filterSaved.bathrooms;
       this.outState = this.state.filterSaved.state;
       console.log(this.state);
       this.performSearch(this.getRequestsaved)
