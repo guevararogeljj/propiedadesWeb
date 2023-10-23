@@ -21,7 +21,7 @@ const routes = [
         name: 'Pokemon',
         component: () => import('@/views/PokemonView.vue'),  
       },
-      { path: '*', component: NotFound },
+      { path: '/:notFound', component: NotFound },
       {
         path: 'frequentQuestions',
         name: 'FrequentQuestions',
@@ -41,7 +41,24 @@ const routes = [
         path: 'privacyPolicy',
         name: 'privacyPolicy',
         component: () => import('@/components/shared/privacy.vue'),
-      }
+      },
+      {
+        path: '/propiedades',
+        name: 'properties',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "properties" */ '@/components/client/modulo01-listapropiedades/ListaPropiedades.vue'),
+        meta: { requiredlogin: false }
+      },
+      // {
+      //   path: "/products/:productId",
+      //   name: "Product",
+      //   component: () => import('@/components/client/modulo01-listapropiedades/ProductView.vue'),
+      //   meta:{
+      //   requiresAuth: true
+      //   }
+      // },
     ],
   },
 ]

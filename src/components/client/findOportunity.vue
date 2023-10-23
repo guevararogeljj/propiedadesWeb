@@ -5,22 +5,21 @@
     </v-row>
     <v-row align="center" justify="center">
       <v-col cols="auto">
-        <v-card color="primary" height="200px" width="200px" class="my-card">
+        <v-card  height="200px" width="200px" class="my-card">
           <!-- Card content goes here -->
-          <v-card-title>Card Title</v-card-title>
+          <v-card-title></v-card-title>
           <v-card-text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+ 
             <!-- More card content -->
           </v-card-text>
         </v-card>
         <div align="center" justify="center"><strong>Cesión de derechos</strong></div>
       </v-col>
       <v-col cols="auto">
-        <v-card color="primary" height="200px" width="200px" class="my-card">
+        <v-card  height="200px" width="200px" class="my-card">
           <!-- Card content goes here -->
-          <v-card-title>Card Title</v-card-title>
+          <v-card-title></v-card-title>
           <v-card-text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             <!-- More card content -->
           </v-card-text>
         </v-card>

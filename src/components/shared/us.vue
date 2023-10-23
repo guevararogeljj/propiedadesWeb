@@ -5,6 +5,16 @@
       <h1 class="center">Nosotros</h1>
     </v-row>
     <br>
+    <v-row>
+      <v-col cols="12">
+        <div style="text-align: center;">
+          <video style="width: 100%; height: auto;" controls>
+            <source src="https://finastrategy.mx/wp-content/uploads/2023/09/Capsula%2001_Nosotros.mp4" type="video/mp4">
+          </video>
+        </div>
+      </v-col>
+    </v-row>
+    <br>
     <v-col cols="12">
       <div class=WordSection1>
 
@@ -85,6 +95,7 @@
 </template>
 <script>
 import json from '@/assets/json/preguntas_frecuentes.json'
+import VueVideoPlayer from 'vue-video-player';
 export default {
   data() {
     return {
@@ -93,7 +104,11 @@ export default {
         '#EAECEE',
       ],
       preguntasRespuestas: [],
+      videoUrl: 'https://example.com/video.mp4',
     }
+  },
+  components: {
+    VueVideoPlayer,
   },
   mounted() {
     this.scrollToTop();
@@ -117,7 +132,8 @@ export default {
   margin: auto;
   padding: 10px;
 }
-.WordSection1{
+
+.WordSection1 {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 </style>

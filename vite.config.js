@@ -2,11 +2,11 @@
 import vue from '@vitejs/plugin-vue'
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 import ViteFonts from 'unplugin-fonts/vite'
-
+// import vitePluginRequire from 'vite-plugin-require'
 // Utilities
 import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
-
+import requireTransform from 'vite-plugin-require-transform';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -28,6 +28,8 @@ export default defineConfig({
         }],
       },
     }),
+    requireTransform({}),
+    // vitePluginRequire(),
   ],
   define: { 'process.env': {} },
   resolve: {
@@ -45,6 +47,17 @@ export default defineConfig({
     ],
   },
   server: {
+    middleware: (app) => {
+      app.use((req, res, next) => {
+        // Handle the custom route for 404 error
+        if (req.originalUrl === '@/components/shared/pages/404.vue') {
+          res.statusCode = 404;
+          res.end('Custom 404 Page');
+        } else {
+          next();
+        }
+      });
+    },
     port: 8080,
   },
 })

@@ -1,403 +1,439 @@
 <template>
-    <div class="pb-3 wrapper">
-      <div class="row">
-        <div class="col-12 maintext">{{ MainText }}</div>
-        <div class="col-12 minortext mt-1">{{ MinorText }}</div>
-      </div>
-  
-      <div class="row justify-content-center filters me-3 ms-3">
-        <div class="d-flex select-container">
-          <customselect
-            class="d-inline select w-50"
-            :ItemSource="catalogs.tipoInmuebles"
-            ItemIdAttribute="id"
-            ItemNameAttribute="description"
-            DefaultOption="Tipo de inmueble"
-            v-model="params.propertytype"
-            :DefaultOptionActive="true"
+  <div class="pb-3 wrapper desktop-style">
+    <div class="row">
+      <div class="col-12 maintext">{{ MainText }}</div>
+      <div class="col-12 minortext mt-1">{{ MinorText }}</div>
+    </div>
+
+    <div class="row justify-content-center filters me-3 ms-3">
+      <div class="d-flex select-container">
+        <customselect
+          v-if="isTipoInmueble"
+          class="d-inline select w-50"
+          :ItemSource="catalogs.tipoInmuebles"
+          ItemIdAttribute="id"
+          ItemNameAttribute="description"
+          DefaultOption="Tipo de inmueble"
+          v-model="params.propertytype"
+          :DefaultOptionActive="true"
+        />
+        <div class="divider"></div>
+        <customselect
+          v-if="isEstado"
+          class="d-inline select w-50"
+          :ItemSource="catalogs.estados"
+          ItemIdAttribute="id"
+          ItemNameAttribute="description"
+          DefaultOption="Estado"
+          v-model="params.state"
+          :OnChangeSelect="onChangeEstado"
+          :DefaultOptionActive="true"
+        />
+        <div class="divider"></div>
+        <customselect
+          v-if="isMunicipio"
+          class="d-inline select w-50"
+          :ItemSource="catalogs.municipios"
+          ItemIdAttribute="id"
+          ItemNameAttribute="description"
+          DefaultOption="Municipio"
+          v-model="params.city"
+          :DefaultOptionActive="true"
+        />
+        <div class="divider"></div>
+        <customselect
+          v-if="isPrecio"
+          class="d-inline select w-50"
+          :ItemSource="catalogs.rangoprecios"
+          ItemIdAttribute="key"
+          ItemNameAttribute="description"
+          DefaultOption="Precio"
+          v-model="params.price"
+          :DefaultOptionActive="true"
+        />
+        <div class="divider"></div>
+
+        <div class="button-container">
+          <customButtonSeconday
+           v-if="isRooms && isBatrooms" 
+            Text="Mas"
+            Icon="mdi-plus"
+            :OnClickButton="onClickButtonPlus"
           />
-          <div class="divider"></div>
-          <customselect
-            class="d-inline select w-50"
-            :ItemSource="catalogs.estados"
-            ItemIdAttribute="id"
-            ItemNameAttribute="description"
-            DefaultOption="Estado"
-            v-model="params.state"
-            :OnChangeSelect="onChangeEstado"
-            :DefaultOptionActive="true"
+          <custom-button-primary
+            Text="Buscar"
+            Icon="mdi-magnify"
+            :OnClickButton="onClickButtonBuscar"
           />
-          <div class="divider"></div>
-          <customselect
-            class="d-inline select w-50"
-            :ItemSource="catalogs.municipios"
-            ItemIdAttribute="id"
-            ItemNameAttribute="description"
-            DefaultOption="Municipio"
-            v-model="params.city"
-            :DefaultOptionActive="true"
+          <customButtonSeconday
+            Text="Limpiar"
+            Icon="mdi-filter-remove-outline"
+            :OnClickButton="onClickButtonLimpiar"
           />
-          <div class="divider"></div>
-          <customselect
-            class="d-inline select w-50"
-            :ItemSource="catalogs.rangoprecios"
-            ItemIdAttribute="key"
-            ItemNameAttribute="description"
-            DefaultOption="Precio"
-            v-model="params.price"
-            :DefaultOptionActive="true"
-          />
-          <div class="divider"></div>
-  
-          <div class="button-container">
-            <customButtonSeconday
-              Text="Mas"
-              class="btn button"
-              :ImageIcon="require('@/assets/select_icon.svg')"
-              :OnClickButton="onClickButtonPlus"
-            />
-            <custom-button-primary
-              :ImageIcon="require('@/assets/search_white_icon.svg')"
-              class="btn-lg btn-block button button-search"
-              Text="Buscar"
-              :OnClickButton="onClickButtonBuscar"
-            />
-            <customButtonSeconday
-              Text="Limpiar"
-              class="btn button flex"
-              :OnClickButton="onClickButtonLimpiar"
-            />
-          </div>
         </div>
       </div>
-  
-      <Transition
-        name="accordion"
-        @enter="start"
-        @after-enter="end"
-        @before-leave="start"
-        @after-leave="end">
-        <div class="accordion-collapse collapsed show" v-show="show">
-          <div class="row justify-content-center filters"> 
-            <!-- :class="{ 'd-none': hideFilters }" -->
-            <div class="d-flex w-75 select-container">
-              <customselect
-                class="d-inline select w-50"
-                :ItemSource="catalogs.habitaciones"
-                ItemIdAttribute="id"
-                ItemNameAttribute="description"
-                DefaultOption="Habitaciones"
-                v-model="params.rooms"
-                :DefaultOptionActive="true"
-              />
-              <div class="divider"></div>
-              <customselect
-                class="d-inline select w-50"
-                :ItemSource="catalogs.banios"
-                ItemIdAttribute="id"
-                ItemNameAttribute="description"
-                DefaultOption="Baño"
-                v-model="params.bathrooms"
-                :DefaultOptionActive="true"
-              />
-              <div class="divider"></div>
-              <customselect
-                class="d-inline select w-50"
-                :ShowControl="isLogin"
-                :ItemSource="catalogs.etapaprocesal"
-                ItemIdAttribute="id"
-                ItemNameAttribute="description"
-                DefaultOption="Etapa"
-                v-model="params.proceduralStage"
-                :DefaultOptionActive="true"
-              />
-            </div>
-          </div>
-        </div>
-      </Transition>
-  
-      <div class="row"></div>
     </div>
-    <div class="cotainer-flex container-mobile">
-      <customButtonSeconday
-        class="btn btn-lg w-25 mt-3 ms-1"
-        Text="Orden"
-        :ImageIcon="require('@/assets/order_icon.svg')"
-        :OnClickButton="onOrderButtonClick"
-      />
-      <customButtonSeconday
-        class="btn btn-lg w-25 mt-3 ms-1"
-        Text="Filtros"
-        :ImageIcon="require('@/assets/filter_icon.svg')"
-        :OnClickButton="onClickButtonFiltersMobile"
-      />
-    </div>
-  
-    <modal
-      :visible="!hideMobileFilters"
-      :OnCloseTittleButton="onCloseModal"
-      Title="Filtros"
+
+    <Transition
+      name="accordion"
+      @enter="start"
+      @after-enter="end"
+      @before-leave="start"
+      @after-leave="end"
     >
-      <customselect
-        class="d-inline select w-100 mt-3"
-        :ItemSource="catalogs.tipoInmuebles"
-        ItemIdAttribute="id"
-        ItemNameAttribute="description"
-        DefaultOption="Tipo de inmueble"
-        v-model="params.propertytype"
-        :DefaultOptionActive="true"
-      />
-  
-      <customselect
-        class="d-inline select w-100 mt-3"
-        :ItemSource="catalogs.estados"
-        ItemIdAttribute="id"
-        ItemNameAttribute="description"
-        DefaultOption="Estado"
-        v-model="params.state"
-        :OnChangeSelect="onChangeEstado"
-        :DefaultOptionActive="true"
-      />
-  
-      <customselect
-        class="d-inline select w-100 mt-3"
-        :ItemSource="catalogs.municipios"
-        ItemIdAttribute="id"
-        ItemNameAttribute="description"
-        DefaultOption="Municipio"
-        v-model="params.city"
-        :DefaultOptionActive="true"
-      />
-  
-      <customselect
-        class="d-inline select w-100 mt-3"
-        :ItemSource="catalogs.rangoprecios"
-        ItemIdAttribute="key"
-        ItemNameAttribute="description"
-        DefaultOption="Precio"
-        v-model="params.price"
-        :DefaultOptionActive="true"
-      />
-  
-      <customselect
-        class="d-inline select w-100 mt-3"
-        :ItemSource="catalogs.habitaciones"
-        ItemIdAttribute="id"
-        ItemNameAttribute="cuartos"
-        DefaultOption="Habitaciones"
-        v-model="params.rooms"
-        :DefaultOptionActive="true"
-      />
-  
-      <customselect
-        class="d-inline select w-100 mt-3"
-        :ItemSource="catalogs.banios"
-        ItemIdAttribute="id"
-        ItemNameAttribute="description"
-        DefaultOption="Baño"
-        v-model="params.bathrooms"
-        :DefaultOptionActive="true"
-      />
-  
-      <customselect
-        class="d-inline select w-100 mt-3"
-        :ShowControl="isLogin"
-        :ItemSource="catalogs.etapaprocesal"
-        ItemIdAttribute="id"
-        ItemNameAttribute="description"
-        DefaultOption="Etapa"
-        v-model="params.proceduralStage"
-        :DefaultOptionActive="true"
-      />
-      <customselect
-        class="d-inline select w-100 mt-3"
-        :ShowControl="isLogin"
-        :ItemSource="catalogs.occupations"
-        ItemIdAttribute="id"
-        ItemNameAttribute="description"
-        DefaultOption="Etapa"
-        v-model="params.proceduralStage"
-        :DefaultOptionActive="true"
-      />
-      <customselect
-        class="d-inline select w-100 mt-3"
-        :ShowControl="isLogin"
-        :ItemSource="catalogs.maritalstatus"
-        ItemIdAttribute="id"
-        ItemNameAttribute="description"
-        DefaultOption="Etapa"
-        v-model="params.proceduralStage"
-        :DefaultOptionActive="true"
-      />
-  
-  
-      <custom-button-primary
-        :ImageIcon="require('@/assets/search_white_icon.svg')"
-        class="d-inline w-50 mt-3"
-        Text="Buscar"
-        :OnClickButton="onClickButtonBuscar"
-      />
-  
-      <customButtonSeconday
-        Text="Limpiar"
-        class="d-inline w-50 mt-3"
-        :OnClickButton="onClickButtonLimpiar"
-      />
-    </modal>
+      <div class="accordion-collapse collapsed show" v-show="show">
+        <div class="row justify-content-center filters">
+          <!-- :class="{ 'd-none': hideFilters }" -->
+          <div class="d-flex w-75 select-container">
+            <customselect
+            v-if="isRooms"
+              class="d-inline select w-50"
+              :ItemSource="catalogs.habitaciones"
+              ItemIdAttribute="id"
+              ItemNameAttribute="description"
+              DefaultOption="Habitaciones"
+              v-model="params.rooms"
+              :DefaultOptionActive="true"
+            />
+            <div class="divider"></div>
+            <customselect
+              v-if="isBatrooms"
+              class="d-inline select w-50"
+              :ItemSource="catalogs.banios"
+              ItemIdAttribute="id"
+              ItemNameAttribute="description"
+              DefaultOption="Baño"
+              v-model="params.bathrooms"
+              :DefaultOptionActive="true"
+            />
+            <div class="divider"></div>
+            <customselect
+              class="d-inline select w-50"
+              :ShowControl="isLogin"
+              :ItemSource="catalogs.etapaprocesal"
+              ItemIdAttribute="id"
+              ItemNameAttribute="description"
+              DefaultOption="Etapa"
+              v-model="params.proceduralStage"
+              :DefaultOptionActive="true"
+            />
+          </div>
+        </div>
+      </div>
+    </Transition>
+
+    <div class="row"></div>
+  </div>
+  <div class="mobile-style">
+
+    <customButtonSeconday
+      class="btn btn-lg w-25 mt-3 ms-1"
+      Text="Orden"
+      Icon="mdi-sort"
+      :OnClickButton="onOrderButtonClick"
+    />
+    <customButtonSeconday
+      class="btn btn-lg w-25 mt-3 ms-1"
+      Text="Filtros"
+      Icon="mdi-filter"
+      :OnClickButton="onClickButtonFiltersMobile"
+    />
+  </div>
 
     <modal
-      :visible="!hideMobileOrder"
-      :OnCloseTittleButton="onCloseModal"
-      Title="Orden"
-    >
-      <slot name="customcontrol">order</slot>
-    </modal>
-  </template>
+    :visible="!hideMobileFilters"
+    :OnCloseTittleButton="onCloseModal"
+    Title="Filtros"
+  >
+    <customselect
+      class="d-inline select w-100 mt-3"
+      :ItemSource="catalogs.tipoInmuebles"
+      ItemIdAttribute="id"
+      ItemNameAttribute="description"
+      DefaultOption="Tipo de inmueble"
+      v-model="params.propertytype"
+      :DefaultOptionActive="true"
+    />
+
+    <customselect
+      class="d-inline select w-100 mt-3"
+      :ItemSource="catalogs.estados"
+      ItemIdAttribute="id"
+      ItemNameAttribute="description"
+      DefaultOption="Estado"
+      v-model="params.state"
+      :OnChangeSelect="onChangeEstado"
+      :DefaultOptionActive="true"
+    />
+
+    <customselect
+      class="d-inline select w-100 mt-3"
+      :ItemSource="catalogs.municipios"
+      ItemIdAttribute="id"
+      ItemNameAttribute="description"
+      DefaultOption="Municipio"
+      v-model="params.city"
+      :DefaultOptionActive="true"
+    />
+
+    <customselect
+      class="d-inline select w-100 mt-3"
+      v-if="isPrecio"
+      :ItemSource="catalogs.rangoprecios"
+      ItemIdAttribute="key"
+      ItemNameAttribute="description"
+      DefaultOption="Precio"
+      v-model="params.price"
+      :DefaultOptionActive="true"
+    />
+
+    <customselect
+    v-if="isRooms"
+      class="d-inline select w-100 mt-3"
+      :ItemSource="catalogs.habitaciones"
+      ItemIdAttribute="id"
+      ItemNameAttribute="cuartos"
+      DefaultOption="Habitaciones"
+      v-model="params.rooms"
+      :DefaultOptionActive="true"
+    />
+
+    <customselect
+      v-if="isBatrooms"
+      class="d-inline select w-100 mt-3"
+      :ItemSource="catalogs.banios"
+      ItemIdAttribute="id"
+      ItemNameAttribute="description"
+      DefaultOption="Baño"
+      v-model="params.bathrooms"
+      :DefaultOptionActive="true"
+    />
+
+    <customselect
+      class="d-inline select w-100 mt-3"
+      :ShowControl="isLogin"
+      :ItemSource="catalogs.etapaprocesal"
+      ItemIdAttribute="id"
+      ItemNameAttribute="description"
+      DefaultOption="Etapa"
+      v-model="params.proceduralStage"
+      :DefaultOptionActive="true"
+    />
+    <customselect
+      class="d-inline select w-100 mt-3"
+      :ShowControl="isLogin"
+      :ItemSource="catalogs.occupations"
+      ItemIdAttribute="id"
+      ItemNameAttribute="description"
+      DefaultOption="Etapa"
+      v-model="params.proceduralStage"
+      :DefaultOptionActive="true"
+    />
+    <customselect
+      class="d-inline select w-100 mt-3"
+      :ShowControl="isLogin"
+      :ItemSource="catalogs.maritalstatus"
+      ItemIdAttribute="id"
+      ItemNameAttribute="description"
+      DefaultOption="Etapa"
+      v-model="params.proceduralStage"
+      :DefaultOptionActive="true"
+    />
+
+    <custom-button-primary
+      Icon="mdi-magnify"
+      Text="Buscar"
+      :OnClickButton="onClickButtonBuscar"
+    />
+
+    <customButtonSeconday
+      Text="Limpiar"
+      Icon="mdi-filter-remove-outline"
+      :OnClickButton="onClickButtonLimpiar"
+    />
+  </modal>
+
+  <modal
+    :visible="!hideMobileOrder"
+    :OnCloseTittleButton="onCloseModal"
+    Title="Orden"
+  >
+    <slot name="customcontrol">order</slot>
+  </modal>
+</template>
   
   <script>
-  import catservice from "@/components/services/catservice";
-  import utils from "@/components/shared/commons/utils";
-  import customButtonPrimary from "@/components/shared/components/ButtonPrimary.vue";
-  import customButtonSeconday from "@/components/shared/components/ButtonSecondary.vue";
-  import customselect from "@/components/shared/components/CustomSelect.vue";
-  import Modal from "@/components/shared/components/Modal2.vue";
-  
-  export default {
-    name: "buscadorCompo",
-    props: {
-      OnClickBuscar: { type: Function, default: null },
-      MainText: {
-        type: String,
-        default: "Buscar una oferta",
-      },
-      MinorText: {
-        type: String,
-        default: "Elige entre las ofertas mas destacadas",
-      },
-      State: { type: String, default: "" },
-      PorpertyType: { type: String, default: "" },
-      City: { type: String, default: "" },
-      Price: { type: String, default: "" },
-      Rooms: { type: String, default: "" },
-      Bathrooms: { type: String, default: "" },
-      ProceduraStage: { type: String, default: "" },
+import catservice from "@/core/services/catservice";
+import utils from "@/core/utils/utils";
+import customButtonPrimary from "@/components/common/ButtonPrimary.vue";
+import customButtonSeconday from "@/components/common/ButtonSecondary.vue";
+import customselect from "@/components/common/CustomSelect.vue";
+import Modal from "@/components/common/Modal2.vue";
+
+export default {
+  name: "buscadorCompo",
+  props: {
+    OnClickBuscar: { type: Function, default: null },
+    MainText: {
+      type: String,
+      default: "Buscar una oferta",
     },
-    components: {
-      customButtonPrimary,
-      customButtonSeconday,
-      customselect,
-      Modal,
+    MinorText: {
+      type: String,
+      default: "Elige entre las ofertas mas destacadas",
     },
-    data() {
-      return {
-        catalogs: {
-          tipoInmuebles: [],
-          estados: [],
-          municipios: [{ id: "1", description: "" }],
-          rangoprecios: [],
-          habitaciones: [],
-          etapaprocesal: [],
-          bathrooms: []
-        },
-        hideFilters: true,
-        hideMobileFilters: true,
-        hideMobileOrder: true,
-        params: {
-          propertytype: "",
-          state: "",
-          city: "",
-          price: "",
-          rooms: "",
-          proceduralStage: "",
-          bathrooms: "",
-        },
-        orderSelect: "",
-        show: false 
-      };
+    State: { type: String, default: "" },
+    PorpertyType: { type: String, default: "" },
+    City: { type: String, default: "" },
+    Price: { type: String, default: "" },
+    Rooms: { type: String, default: "" },
+    Bathrooms: { type: String, default: "" },
+    ProceduraStage: { type: String, default: "" },
+    isTipoInmueble: {
+      type: Boolean,
+      default: false,
     },
-    methods: {
-      onClickButtonBuscar() {
-        if (this.OnClickBuscar != null) {
-          this.OnClickBuscar(this.params);
-        }
+      isEstado: {
+        type: Boolean,
+        default: false,
       },
-      onClickButtonLimpiar() {
-        utils.setAllPropsObject(this.params, "");
-        this.$store.state.filterSaved = null;
-        
+      isMunicipio: {
+        type: Boolean,
+        default: false,
       },
-      onClickButtonPlus() {
-        this.hideFilters = !this.hideFilters;
-        this.show = !this.show
+      isPrecio: {
+        type: Boolean,
+        default: false,
       },
-      onClickButtonFiltersMobile() {
-        this.hideMobileFilters = !this.hideMobileFilters;
+      isBatrooms: {
+        type: Boolean,
+        default: false,
       },
-      onOrderButtonClick() {
-        this.hideMobileOrder = !this.hideMobileOrder;
+      isRooms: {
+        type: Boolean,
+        default: false,
       },
-      async onChangeEstado(id) {
-        this.catalogs.municipios = await catservice.Municipios(id);
+  },
+  components: {
+    customButtonPrimary,
+    customButtonSeconday,
+    customselect,
+    Modal,
+  },
+  data() {
+    return {
+      catalogs: {
+        tipoInmuebles: [],
+        estados: [],
+        municipios: [{ id: "1", description: "" }],
+        rangoprecios: [],
+        habitaciones: [],
+        etapaprocesal: [],
+        bathrooms: [],
       },
-      onCloseModal(val) {
-        this.hideMobileFilters = val;
-        this.hideMobileOrder = val;
+      hideFilters: true,
+      hideMobileFilters: true,
+      hideMobileOrder: true,
+      params: {
+        propertytype: "",
+        state: "",
+        city: "",
+        price: "",
+        rooms: "",
+        proceduralStage: "",
+        bathrooms: "",
       },
-      start(el) { el.style.height = el.scrollHeight + "px"; },
-      end(el) { el.style.height = ""; }
-    },
-    computed: {
-      ShowModalFilter() {
-        return this.showFilters;
-      },
-      isLogin() {
-        return this.$store.state.isLogin;
-      },
-    },
-    async mounted() {
-      this.catalogs.tipoInmuebles = await catservice.TipoInmuebles();
-  
-      this.catalogs.estados = await catservice.Estados();
-  
-      this.catalogs.rangoprecios = catservice.RangoPrecios();
-  
-      this.catalogs.habitaciones = await catservice.Habitaciones();
-  
-      if (this.isLogin) {
-        this.catalogs.etapaprocesal = await catservice.EtapaProcesal();
-      }
-  
-      this.catalogs.banios = await catservice.Banios();
-    },
-    watch: {
-      async State(val) {
-        this.params.state = val;
-        this.catalogs.municipios = await catservice.Municipios(val);
-      },
-      PorpertyType(val) {
-        this.params.propertytype = val;
-      },
-      City(val) {
-        this.params.city = val;
-      },
-      Price(val) {
-        this.params.price = val;
-      },
-      Rooms(val) {
-        this.params.rooms = val;
-      },
-      Bathrooms(val) {
-        this.params.bathrooms = val;
-      },
-      ProceduraStage(val) {
-        this.params.proceduralStage = val;
-      },
-      async isLogin (){
-        this.catalogs.etapaprocesal = await catservice.EtapaProcesal();
+      orderSelect: "",
+      show: false,
+
+    };
+  },
+  methods: {
+    onClickButtonBuscar() {
+      if (this.OnClickBuscar != null) {
+        this.OnClickBuscar(this.params);
       }
     },
-  };
-  </script>
+    onClickButtonLimpiar() {
+      utils.setAllPropsObject(this.params, "");
+      this.$store.state.filterSaved = null;
+    },
+    onClickButtonPlus() {
+      this.hideFilters = !this.hideFilters;
+      this.show = !this.show;
+    },
+    onClickButtonFiltersMobile() {
+      this.hideMobileFilters = !this.hideMobileFilters;
+    },
+    onOrderButtonClick() {
+      this.hideMobileOrder = !this.hideMobileOrder;
+    },
+    async onChangeEstado(id) {
+      this.catalogs.municipios = await catservice.Municipios(id);
+    },
+    onCloseModal(val) {
+      this.hideMobileFilters = val;
+      this.hideMobileOrder = val;
+    },
+    start(el) {
+      el.style.height = el.scrollHeight + "px";
+    },
+    end(el) {
+      el.style.height = "";
+    },
+  },
+  computed: {
+    ShowModalFilter() {
+      return this.showFilters;
+    },
+    isLogin() {
+      return this.$store.state.isLogin;
+    },
+  },
+  async mounted() {
+    this.catalogs.tipoInmuebles = await catservice.TipoInmuebles();
+
+    this.catalogs.estados = await catservice.Estados();
+
+    this.catalogs.rangoprecios = catservice.RangoPrecios();
+
+    this.catalogs.habitaciones = await catservice.Habitaciones();
+
+    if (this.isLogin) {
+      this.catalogs.etapaprocesal = await catservice.EtapaProcesal();
+    }
+
+    this.catalogs.banios = await catservice.Banios();
+  },
+  watch: {
+    async State(val) {
+      this.params.state = val;
+      this.catalogs.municipios = await catservice.Municipios(val);
+    },
+    PorpertyType(val) {
+      this.params.propertytype = val;
+    },
+    City(val) {
+      this.params.city = val;
+    },
+    Price(val) {
+      this.params.price = val;
+    },
+    Rooms(val) {
+      this.params.rooms = val;
+    },
+    Bathrooms(val) {
+      this.params.bathrooms = val;
+    },
+    ProceduraStage(val) {
+      this.params.proceduralStage = val;
+    },
+    async isLogin() {
+      this.catalogs.etapaprocesal = await catservice.EtapaProcesal();
+    },
+  },
+};
+</script>
   
   <style lang="scss" scoped>
   .select {
@@ -492,4 +528,25 @@
       display: none;
     }
   }
-  </style>
+
+  .desktop-style {
+  display: none; /* Hide on mobile */
+}
+
+.mobile-style {
+  display: block; /* Show on mobile */
+}
+
+/* Apply desktop styles */
+@media only screen and (min-width: 900px) {
+  .desktop-style {
+    display: block; /* Show on desktop */
+  }
+
+  .mobile-style {
+    display: none; /* Hide on desktop */
+  }
+}
+
+
+</style>

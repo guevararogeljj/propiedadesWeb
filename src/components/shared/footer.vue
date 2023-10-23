@@ -29,7 +29,7 @@
           <p>81 21 88 88 00</p>
           <v-label> <strong>Redes sociales</strong></v-label>
           <p>
-            <v-btn icon variant
+            <v-btn icon 
             href="https://www.facebook.com/finastrategy/"
             target="_blank">
               <span>

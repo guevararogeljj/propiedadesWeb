@@ -21,7 +21,7 @@
     props: {
       Text: { type: String, required: true },
       OnClickButton: { type: Function, default: null },
-      Icon: { type: String, required: false },
+     Icon: { type: String, default: null },
     },
     methods: {
       onClickButtonInternal() {

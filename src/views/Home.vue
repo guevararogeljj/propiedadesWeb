@@ -1,11 +1,15 @@
 <template>
   <v-container>
-    <buscador-light
+    <!-- <buscador-light
       TitleText="Texto ancla"
       :OnClickBuscar="onClickBuscar"
       Icon="mdi-facebook"
-    />
-    <find-oportunity/>
+      :isTipoInmueble="true"
+      :isEstado="true"
+      :isMunicipio="true"
+    /> -->
+    <finder :OnClickBuscar="onClickBuscar" :isTipoInmueble="true" :isEstado="true" :isMunicipio="true" />
+    <find-oportunity />
     <br />
     <support />
     <br />
@@ -13,13 +17,9 @@
     <br />
     <br />
     <br />
-    <Contact/>
-    
-    <modal
-      :visible="showModal"
-      Title="Ya te escuchamos."
-      :OnCloseTittleButton="onCloseModal"
-    >
+    <Contact />
+
+    <modal :visible="showModal" Title="Ya te escuchamos." :OnCloseTittleButton="onCloseModal">
       {{ messageContact }}
     </modal>
   </v-container>
@@ -35,6 +35,7 @@ import oportunity from "@/components/client/oportunity.vue";
 import Support from "@/components/client/support.vue";
 import Contact from "@/components/shared/Contact.vue"
 import FindOportunity from '@/components/client/findOportunity.vue';
+import finder from "@/components/client/finder.vue";
 export default {
   components: {
     BuscadorLight,
@@ -44,6 +45,7 @@ export default {
     Support,
     oportunity,
     FindOportunity,
+    finder
   },
   name: "Home",
   data() {
@@ -77,6 +79,7 @@ export default {
       }
     },
     onClickBuscar(params) {
+      debugger;
       if (params.estado != "" || params.tipoInmueble != "") {
         this.$router.push({
           name: "properties",
@@ -90,12 +93,10 @@ export default {
       return this.$route.params.section;
     },
     state() {
-      debugger;
       return this.$store.state;
     },
     isMovil() {
       const touchDevice = "ontouchstart" in document.documentElement;
-      // console.log('touchDevice', touchDevice);
       return touchDevice;
     },
   },
@@ -116,12 +117,11 @@ export default {
 </script>
 
 <style scope lang="scss">
-
-  .my-card {
+.my-card {
   background-image: url("@/assets/nodata.png");
-  background-size: cover; /* This will make sure the image covers the entire card */
-  background-position: center; /* This will center the image in the card */
+  background-size: cover;
+  /* This will make sure the image covers the entire card */
+  background-position: center;
+  /* This will center the image in the card */
 }
-
-
 </style>

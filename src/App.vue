@@ -1,5 +1,5 @@
 <template>
-  <v-app class="WordSection1">
+  <v-app>
   <div>
     <router-view />
     <footerComponent />

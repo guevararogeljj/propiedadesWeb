@@ -4,9 +4,8 @@
       @click="onClickButtonInternal"
       :disabled="IsDisabled"
     >
-      <img v-if="ImageIcon != undefined" :src="ImageIcon" :alt="Text"  class="pb-1"  />
+    <v-icon medium>{{Icon}}</v-icon>
       {{ Text }}
-      <img v-if="ImageIconRight != undefined" :src="ImageIconRight" :alt="Text"  class="pb-1"  />
     </v-btn>
   </template>
   
@@ -19,9 +18,9 @@
     props: {
       Text: { type: String, required: true },
       OnClickButton: { type: Function, default: null },
-      ImageIcon: { type: String, required: false },
+      Icon: { type: String, required: false },
       IsDisabled: { type: Boolean, default: false },
-      ImageIconRight: { type: String, required: false },
+
     },
     methods: {
       onClickButtonInternal() {
