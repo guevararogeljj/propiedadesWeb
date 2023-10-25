@@ -28,7 +28,7 @@ export default defineConfig({
         }],
       },
     }),
-    requireTransform({}),
+    requireTransform({})
     // vitePluginRequire(),
   ],
   define: { 'process.env': {} },

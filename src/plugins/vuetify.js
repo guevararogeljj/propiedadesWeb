@@ -10,11 +10,15 @@ import 'vuetify/styles'
 import { VSkeletonLoader } from 'vuetify/labs/VSkeletonLoader'
 // Composables
 import { createVuetify } from 'vuetify'
+import 'bootstrap/scss/bootstrap.scss'
 
-// https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
+import '@/assets/css/font-awesome-pro.css'
+import '@/assets/css/flaticon_shofy.css'
+import '@/assets/scss/main.scss'
+
 export default createVuetify({
   components: {
-    VSkeletonLoader,
+    VSkeletonLoader
   },
   theme: {
     themes: {

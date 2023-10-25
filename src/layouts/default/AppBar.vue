@@ -41,11 +41,9 @@
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list nav dense>
-        <v-list-item-group>
           <v-list-item v-for="(item, index) in myItems" :key="item" :to="item.route">
             <v-list-item-title @click="tab = index">{{ item.name }}</v-list-item-title>
           </v-list-item>
-        </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
   </div>

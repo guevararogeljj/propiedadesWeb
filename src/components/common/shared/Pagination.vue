@@ -1,9 +1,9 @@
 
 <template>
-    <div class="row justify-content-center d-flex col-sm-12 alig-items-center">
-      <div class="col-lg-3">
-        <p class="d-inline-block">Vista por página</p>
-        <div class="d-inline-block ms-2">
+    <v-container>
+      <v-row>
+        <v-col cols="12" sm="6" md="4">
+          <p>Vista por página</p>
           <select
             class="form-select"
             v-model="perPage"
@@ -15,34 +15,34 @@
             <option value="36">36</option>
             <option value="45">45</option>
           </select>
-        </div>
-      </div>
-      <div class="col-lg-2 col-sm-12">
-        <!-- página {{ currentPage }} de {{ totalPages }} -->
-  
-        {{ currentProperties }}  de {{ propTotalItems }}
-      </div>
-  
-      <div class="col-lg-1 col-sm-12">
-        <button-flat
-          :disabled="isInFirstPage"
-          Text=""
-
-          :OnClickButton="onClickPreviousPage"
-        />
-  
-        <button-flat
-          :disabled="isInLastPage"
-          Text=""
-
-          :OnClickButton="onClickNextPage"
-        />
-      </div>
-    </div>
+        </v-col>
+        <v-col cols="12" sm="6" md="4">
+          <!-- página {{ currentPage }} de {{ totalPages }} -->
+          {{ currentProperties }} de {{ propTotalItems }}
+        </v-col>
+        <v-col cols="12" sm="12" md="4">
+          <v-btn
+            :disabled="isInFirstPage"
+            :icon="isInFirstPage"
+            @click="onClickPreviousPage"
+          >
+            <v-icon>mdi-chevron-left</v-icon>
+          </v-btn>
+          <v-btn
+            :disabled="isInLastPage"
+            :icon="isInLastPage"
+            @click="onClickNextPage"
+          >
+            <v-icon>mdi-chevron-right</v-icon>
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
   </template>
   
   <script>
-  import ButtonFlat from "@/components/common/ButtonPrimary.vue";
+  import ButtonFlat from "@/components/common/ButtonSecondary.vue";
+
   export default {
     name: "paginationComp",
     components: {
@@ -179,7 +179,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    background-image: url("@/assets/select_icon.svg");
+
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
     background-size: 24px 24px;

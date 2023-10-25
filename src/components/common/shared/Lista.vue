@@ -1,6 +1,6 @@
   <template>
   <div class="container">
-    <div class=" mt-5  row"  v-if="NoItemsMessage">
+    <div class=" mt-5  row" v-if="NoItemsMessage">
       <div class="col-12 ">No se encontraron propiedades</div>
     </div>
     <div v-if="!NoItemsMessage" class="row">

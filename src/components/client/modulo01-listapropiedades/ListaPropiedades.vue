@@ -14,9 +14,8 @@
         </template>
       </buscador>
     </div>
-    <div class="">
-      <v-skeleton-loader v-if="!ShowProperties" class="mx-auto" type="card, list-item, text@3"></v-skeleton-loader>
-      <lista :ItemSource="propiedades" ItemIdAttribute="creditnumber" :NoItemsMessage="!ShowProperties">
+      <v-skeleton-loader v-if="this.$store.state.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
+      <lista v-else :ItemSource="propiedades" ItemIdAttribute="creditnumber" :NoItemsMessage="!ShowProperties">
         <template v-slot:item="{ item }">
           <property-card :Title="item.title" :OnClick="onClickProperty" :Settlement="item.settlement" :City="item.city"
             :State="item.state" :Price="item.price" :Favorite="item.favorite" :Id="item.creditnumber"
@@ -39,7 +38,6 @@
           </property-card>
         </template>
       </lista>
-    </div>
     <div class="d-grid gap-2">
       <div class="row mt-3">
         <pagination class="mt-5" :class="{ 'd-none': !ShowProperties }" :propItemSource="ItemSourcePagination.length"
@@ -96,8 +94,7 @@ export default {
       outBathrooms: '',
       outProceduraStage: '',
       showModalLoginRequest: false,
-      propexample,
-      isLoading: true,
+      propexample
     };
   },
   methods: {
@@ -235,11 +232,7 @@ export default {
       this.performSearch(this.getRequestsaved)
     }
     else {
-
-
-
       this.Loading(true);
-
       if (
         (this.$route.query.state != "" && this.$route.query.state != undefined) ||
         (this.$route.query.type != "" && this.$route.query.type != undefined)
@@ -288,21 +281,7 @@ export default {
 
   },
   computed: {
-    // loadProperties(properties){
 
-    //   let favorites = await usersignin.favorites({
-    //     email: this.state.userdata.email,
-    //   });
-
-    //   for (var i in favorites) {
-    //     const item = properties.find(
-    //       (x) => x.creditnumber === favorites[i].creditnumber
-    //     );
-    //     const index = properties.indexOf(item);
-    //     properties[index].favorite = favorites[i].favorite;
-    //   }
-    // return properties;
-    // },
     ShowProperties() {
       let show = false;
       if (this.ItemSourcePagination.length > 0) {

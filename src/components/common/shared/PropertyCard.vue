@@ -1,16 +1,34 @@
 <template>
-  <div class="card">
-    <div v-if="IsSold" class="banner-sale">VENDIDO</div>
-    <img class="card-img-top" :src="Image" @click="onClickTitle" alt="property" height="300" />
-    <div class="info-container"></div>
-    <div class="card-body">
-      <div class="card-title text-start" @click="onClickTitle">
+  <div :class="`tp-product-item-2 ${spacing ? 'mb-40' : ''}`">
+    <div
+      class="tp-product-thumb-2 p-relative z-index-1 fix w-img"
+      style="background-color: #f2f3f5"
+    >
+    <img  src="@/assets/propsample.jpeg"   @click="onClickTitle" alt="property" height="300" />
+    </div>
+      <!-- product badge -->
+      <div class="tp-product-badge">
+        <!-- <div v-if="IsSold" class="banner-sale">VENDIDO</div> -->
+        <span v-if="IsSold" class="product-hot">out-of-stock</span>
+      </div>
+      <!-- product action -->
+      <div class="tp-product-action-2 tp-product-action-blackStyle">
+        <div class="tp-product-action-item-2 d-flex flex-column">
+          <div class="d-inline col-12 d-flex justify-content-end">
+          </div>
+        <slot name="favoritebar"></slot>
+      </div>
+      <div class="card-text card-text-state d-flex justify-content-end"></div>
+       </div>
+    <div class="tp-product-content-2 pt-15">
+      <div class="tp-product-tag-2">
         <span class="tooltip-custom" :data-text="Title">
           {{ textTruncateTitle }}
           <a v-if="this.Title.length > 30"> ... </a>
-        </span>
+        </span> 
       </div>
-      <div class="card-text mt-3 card-text-price d-flex justify-content-start">
+      <h3 class="tp-product-title-2">
+        <div class="card-text mt-3 card-text-price d-flex justify-content-start">
         {{ priceFormated }} MXN
       </div>
       <div class="card-text card-text-state">
@@ -18,9 +36,7 @@
           <div class="d-inline col-10 d-flex justify-content-start">
             {{ State }}
           </div>
-        </div>
-      </div>
-      <div class="card-text card-text-city d-flex justify-content-start">
+          <div class="card-text card-text-city d-flex justify-content-start">
         <label v-if="(textTruncate.length > 1)">
 
           <label v-if="isExpanded" @click="(isExpanded = false)">
@@ -42,11 +58,22 @@
         <slot name="favoritebar"></slot>
       </div>
       <div class="card-text card-text-state d-flex justify-content-end"></div>
+        </div>
+      </div>
+      </h3>
+      <div class="tp-product-rating-icon tp-product-rating-icon-2">
+
+      </div>
+      <div class="tp-product-price-wrapper-2">
+
+  
+      </div>
     </div>
   </div>
 </template>
   
 <script>
+
 export default {
   components: {
     // PropertyCardIconBar,
@@ -55,6 +82,7 @@ export default {
   data() {
     return {
       isExpanded: false,
+      spacing: true,
     };
   },
   props: {
@@ -84,18 +112,12 @@ export default {
       const ubiDescription = this.Settlement.trim() + ',' + this.City.trim();
 
       if (ubiDescription.length > 36) {
-        //array = [];
-        // console.log('textTruncate.ubiDescription', ubiDescription);
         array.push(ubiDescription.substring(0, 35));
         array.push(ubiDescription.substring(35, ubiDescription.length));
       }
       else {
         array.push(ubiDescription);
       }
-
-      // console.log('array.length', array.length);
-      // console.log('array.length', array.length);
-
       return array;
     },
     priceFormated() {
@@ -133,8 +155,7 @@ export default {
 }
 
 .card-img-top {
-  widows: 100%;
-  max-height: 300px;
+
   cursor: pointer;
 }
 
@@ -157,11 +178,6 @@ export default {
 .card-text-price {
   font-family: "Roboto";
   font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 28px;
-  letter-spacing: 0.15px;
-
   /* Brand/Blue */
 
   color: #0092bc;
@@ -171,8 +187,8 @@ export default {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 14px;
+  line-height: 20px;
   /* identical to box height, or 150% */
 
   letter-spacing: 0.5px;
@@ -187,7 +203,7 @@ export default {
 
   font-family: "Roboto";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 20px;
   line-height: 28px;
   /* identical to box height, or 140% */
@@ -250,7 +266,7 @@ export default {
 
 @media only screen and (max-width: 900px) {
   .card {
-    widows: 98vw;
+    widows: 88vw;
   }
 }
 </style>
