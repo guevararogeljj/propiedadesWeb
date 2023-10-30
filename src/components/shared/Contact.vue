@@ -1,74 +1,44 @@
 <template>
   <div class="content">
-    <v-row>
-      <h1 class="center">Contáctenos</h1>
+    <v-row justify="center">
+      <h1 class="center">{{ Titulo }}</h1>
     </v-row>
-    <v-col cols="6" class="center">
-      <v-text-field
-        density="compact"
-        variant="outlined"
-        label="Nombre completo"
-        v-model="data.fullname"
-      ></v-text-field>
-    </v-col>
-    <v-row>
-      <v-col cols="6" class="center">
-        <v-text-field
-          density="compact"
-          variant="outlined"
-          label="Teléfono"
-          v-model="data.cellphone"
-        ></v-text-field>
+    <v-row justify="center">
+      <v-col>
+        <v-text-field density="compact" variant="solo" type="text" label="Nombre completo" v-model="data.fullname"
+          :error-messages="v$.data.fullname.$errors.map(e => e.$message)" @input="v$.data.fullname.$touch"
+          @blur="v$.data.fullname.$touch"></v-text-field>
+
       </v-col>
     </v-row>
-    <v-row>
-      <v-col cols="6" class="center">
-        <v-text-field
-          density="compact"
-          variant="outlined"
-          label="correo electrónico"
-          v-model="data.email"
-        ></v-text-field>
+    <v-row justify="center">
+      <v-col>
+        <v-text-field density="compact" variant="solo" label="Teléfono" type="number" v-model="data.cellphone"
+          :error-messages="v$.data.cellphone.$errors.map(e => e.$message)" @input="v$.data.cellphone.$touch"
+          @blur="v$.data.cellphone.$touch"></v-text-field>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col cols="6" class="center">
-        <v-text-field
-          density="compact"
-          variant="outlined"
-          label="Mensaje"
-          v-model="data.message"
-        ></v-text-field>
+    <v-row justify="center">
+      <v-col>
+        <v-text-field density="compact" variant="solo" type="email" label="correo electrónico" v-model="data.email"
+          :error-messages="v$.data.email.$errors.map(e => e.$message)" @input="v$.data.email.$touch"
+          @blur="v$.data.email.$touch"></v-text-field>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col cols="6" class="center">
+    <v-row justify="center">
+      <v-col>
+        <v-text-field density="compact" variant="solo" label="Mensaje" type="text" v-model="data.message"
+          :error-messages="v$.data.message.$errors.map(e => e.$message)" @input="v$.data.message.$touch"
+          @blur="v$.data.message.$touch"></v-text-field>
+      </v-col>
+    </v-row>
+    <v-row justify="center">
+      <v-col>
         <div class="row mt-3 pb-3">
-        <div class="col-1"></div>
-        <div class="col-lg-3 col-sm-12">
-          <div class="form-check">
-            <v-checkbox
-              v-model="this.data.terms"
-              class="form-check-input"
-              type="checkbox"
-              id="flexCheckDefault"
-            />
-            <label class="form-check-label" for="flexCheckDefault">
-              Acepto el
-              <a :href="DataPrivacityUrl" target="_blank" > Aviso de privacidad</a>.
-            </label>
+          <div>
+            <button-secondary :IsDisabled="this.v$.$invalid" Text="ENVIAR MENSAJE" Icon="mdi-send" color="primary" @click="onClickButtonSend" />
           </div>
         </div>
-        <div class="col-4"></div>
-        <div class="col-lg-4 col-sm-12 container-button">
-          <button-secondary
-            Text="ENVIAR MENSAJE"
-            class=""
-            :IsDisabled="sendActive"
-            :OnClickButton="onClickButtonSend"
-          />
-        </div>
-      </div>
       </v-col>
     </v-row>
   </div>
@@ -77,7 +47,14 @@
 <script>
 import ButtonSecondary from "@/components/common/ButtonSecondary.vue";
 import utils from "@/core/utils/utils";
+import { dialogSuccess, dialogError } from "@/core/utils/alerts";
+import { useVuelidate } from '@vuelidate/core'
+import { required, email, minLength, maxLength, helpers } from "@vuelidate/validators";
+import contservice from "@/core/services/contservice";
 export default {
+  setup() {
+    return { v$: useVuelidate() }
+  },
   components: { ButtonSecondary },
   name: "contactComp",
   data() {
@@ -89,6 +66,26 @@ export default {
         message: "",
         terms: false,
       },
+      v$: useVuelidate(),
+    };
+  },
+  validations() {
+    return {
+      data: {
+        fullname: { required: helpers.withMessage("El nombre es requerido", required) },
+        email: { required: helpers.withMessage("El correo es requerido", required), email: helpers.withMessage("El correo no es válido", email) },
+        cellphone: {
+          required: helpers.withMessage("El Teléfono es requerido", required),
+          maxLength: helpers.withMessage("El Teléfono debe tener 10 dígitos", maxLength(10)),
+          minLength: helpers.withMessage("El Teléfono debe tener 10 dígitos", minLength(10))
+        },
+        message: {
+          required: helpers.withMessage("El Mensaje es requerido", required),
+          maxLength: helpers.withMessage("El Mensaje debe tener máximo 500 caracteres", maxLength(500)),
+          minLength: helpers.withMessage("El Mensaje debe tener mínimo 10 caracteres", minLength(10))
+        },
+        terms: { required: helpers.withMessage("Debe aceptar los términos y condiciones", required) },
+      },
     };
   },
   props: {
@@ -98,14 +95,37 @@ export default {
       default:
         "https://www.finastrategy.mx/wp-content/themes/finastrategy/assets/aviso-de-privacidad.pdf",
     },
+    Titulo: {
+      type: String,
+      default: "Contáctenos"
+    }
   },
   methods: {
-    onClickButtonSend() {
-      if (this.OnClickSendData !== null) {
-        this.OnClickSendData(this.data);
-        utils.setAllPropsObject(this.data);
+    async onClickButtonSend() {
+      if (this.v$.$invalid) {
+        dialogError({
+          title: "Error",
+          text: "Favor de llenar los campos requeridos",
+        });
+        return;
       }
+      const result = await contservice.send(this.data);
+      if (result.success != true) {
+        dialogError({
+          title: "Error",
+          text: result.message,
+        });
+        return;
+      }
+      else {
+        dialogSuccess({
+          title: "",
+          text: "El mensaje se envió correctamente " + result.message,
+        });
+      }
+      utils.setAllPropsObject(this.data);
     },
+
   },
   computed: {
     sendActive() {

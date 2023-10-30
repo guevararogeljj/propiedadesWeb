@@ -18,17 +18,12 @@
     <br />
     <br />
     <Contact />
-
-    <modal :visible="showModal" Title="Ya te escuchamos." :OnCloseTittleButton="onCloseModal">
-      {{ messageContact }}
-    </modal>
   </v-container>
 </template>
 
 <script>
 import BuscadorLight from "@/components/client/finderLight.vue";
 import TitleDescription from "@/components/shared/TitleDescription.vue";
-import modal from "@/components/common/Modal2.vue";
 import antiforgery from "@/core/services/antiforgery";
 import contservice from "@/core/services/contservice";
 import oportunity from "@/components/client/oportunity.vue";
@@ -41,7 +36,6 @@ export default {
     BuscadorLight,
     TitleDescription,
     Contact,
-    modal,
     Support,
     oportunity,
     FindOportunity,
@@ -107,6 +101,7 @@ export default {
     },
   },
   async mounted() {
+
     const aft = await antiforgery.get();
     this.state.requesttoken = aft;
     if (this.$route.params.section) {

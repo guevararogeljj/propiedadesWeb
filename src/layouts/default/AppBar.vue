@@ -10,7 +10,7 @@
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn variant="text" @click="navigateInicio">Inicio</v-btn>
         <v-btn variant="text" @click="navigateCatalogo">Catálogo</v-btn>
-        <v-btn variant="text">Nosotros</v-btn>
+        <v-btn variant="text" @click="navigateUs">Nosotros</v-btn>
         <v-btn variant="text">Hola Armando</v-btn>
       </v-toolbar-items>
       <v-menu>
@@ -66,6 +66,9 @@ export default {
     },
     navigateCatalogo() {
       this.$router.push("/propiedades");
+    },
+    navigateUs() {
+      this.$router.push("/us");
     },
 
   }

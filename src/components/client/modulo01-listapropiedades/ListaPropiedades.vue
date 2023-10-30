@@ -3,7 +3,7 @@
     <div class="row">
       <buscador MinorText="" MainText="Ofertas más destacadas" :OnClickBuscar="performSearch"
         :PorpertyType="outPropertyType" :State="outState" :City="outCity" :Price="outPrice" :Rooms="outRooms"
-        :Bathrooms="outBathrooms" :ProceduraStage="outProceduraStage">
+        :Bathrooms="outBathrooms" :ProceduraStage="outProceduraStage" :isTipoInmueble="true" :isEstado="true" :isMunicipio="true" >
         <template v-slot:customcontrol>
           <OrderBar class="orderbar">
             <template v-slot:order="{ items }">

@@ -45,9 +45,6 @@ const routes = [
       {
         path: '/propiedades',
         name: 'properties',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "properties" */ '@/components/client/modulo01-listapropiedades/ListaPropiedades.vue'),
         meta: { requiredlogin: false }
       },
@@ -59,6 +56,12 @@ const routes = [
       //   requiresAuth: true
       //   }
       // },
+      {
+        path: '/information',
+        name: 'information',
+        component: () => import('@/views/client/PropertyInfo.vue'),
+        meta: { requiredlogin: false }
+      },
     ],
   },
 ]

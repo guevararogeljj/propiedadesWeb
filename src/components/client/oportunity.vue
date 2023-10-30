@@ -1,6 +1,6 @@
 <template>
     <v-row class="content">
-        <h1 class="center">Oportunidades</h1>
+        <h1 class="center">{{title}}</h1>
       <v-col cols="12">
         <v-carousel v-model="model">
           <v-carousel-item>
@@ -74,6 +74,12 @@
 <script>
 export default {
   name: "CarouselExample",
+  props: {
+    title: {
+      type: String,
+      default: "Oportunidades",
+    },
+  },
   data: () => ({
     model: 0,
   }),
