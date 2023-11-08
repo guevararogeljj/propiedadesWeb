@@ -22,7 +22,7 @@ export const dialogElimination = ({ title, text }: { title: string, text?: strin
         },
         showCancelButton: true,
         confirmButtonText: "Aceptar",
-        confirmButtonColor: '#424242'
+        confirmButtonColor: '#15DB29'
     });
 };
 
@@ -36,7 +36,7 @@ export const dialogConfirm = ({ title, text, icon = 'success' }: { title: string
         showCancelButton: false,
         showDenyButton: true,
         confirmButtonText: "Aceptar",
-        confirmButtonColor: '#424242',
+        confirmButtonColor: '#15DB29',
         timer: 1500,
         // cancelButtonColor:
     });
@@ -54,9 +54,9 @@ export const dialogConfirmYesOrDont = ({ title, text }: { title: string, text?: 
         denyButtonText: 'No',
         denyButtonColor: '#621132',
         confirmButtonText: 'Sí',
-        confirmButtonColor: '#424242',
+        confirmButtonColor: '#15DB29',
         cancelButtonText: 'Cancelar',
-        cancelButtonColor: '#621132',
+        cancelButtonColor: '#EC3737',
     });
 };
 
@@ -69,7 +69,7 @@ export const dialogConfirmWithText = ({ title, placeholder, textValidation }: { 
         input: "textarea",
         showCancelButton: true,
         confirmButtonText: "Aceptar",
-        confirmButtonColor: '#424242',
+        confirmButtonColor: '##15DB29',
     });
 };
 

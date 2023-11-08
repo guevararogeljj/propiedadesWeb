@@ -1,11 +1,14 @@
 <template>
   <div class="content">
-    <v-row justify="center">
+    <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
+    <v-form v-else>
+    <v-row justify="center" >
       <h1 class="center">{{ Titulo }}</h1>
     </v-row>
     <v-row justify="center">
-      <v-col>
-        <v-text-field density="compact" variant="solo" type="text" label="Nombre completo" v-model="data.fullname"
+      <v-col
+      >
+        <v-text-field class="contactFom" density="compact" variant="solo" type="text" label="Nombre completo" v-model="data.fullname"
           :error-messages="v$.data.fullname.$errors.map(e => e.$message)" @input="v$.data.fullname.$touch"
           @blur="v$.data.fullname.$touch"></v-text-field>
 
@@ -13,21 +16,21 @@
     </v-row>
     <v-row justify="center">
       <v-col>
-        <v-text-field density="compact" variant="solo" label="Teléfono" type="number" v-model="data.cellphone"
+        <v-text-field class="contactFom" density="compact" variant="solo" label="Teléfono" type="number" v-model="data.cellphone"
           :error-messages="v$.data.cellphone.$errors.map(e => e.$message)" @input="v$.data.cellphone.$touch"
           @blur="v$.data.cellphone.$touch"></v-text-field>
       </v-col>
     </v-row>
     <v-row justify="center">
       <v-col>
-        <v-text-field density="compact" variant="solo" type="email" label="correo electrónico" v-model="data.email"
+        <v-text-field class="contactFom" density="compact" variant="solo" type="email" label="correo electrónico" v-model="data.email"
           :error-messages="v$.data.email.$errors.map(e => e.$message)" @input="v$.data.email.$touch"
           @blur="v$.data.email.$touch"></v-text-field>
       </v-col>
     </v-row>
     <v-row justify="center">
       <v-col>
-        <v-text-field density="compact" variant="solo" label="Mensaje" type="text" v-model="data.message"
+        <v-text-field class="contactFom" density="compact" variant="solo" label="Mensaje" type="text" v-model="data.message"
           :error-messages="v$.data.message.$errors.map(e => e.$message)" @input="v$.data.message.$touch"
           @blur="v$.data.message.$touch"></v-text-field>
       </v-col>
@@ -41,6 +44,7 @@
         </div>
       </v-col>
     </v-row>
+  </v-form>
   </div>
 </template>
 
@@ -67,6 +71,7 @@ export default {
         terms: false,
       },
       v$: useVuelidate(),
+      isLoading: false,
     };
   },
   validations() {
@@ -102,6 +107,7 @@ export default {
   },
   methods: {
     async onClickButtonSend() {
+      debugger
       if (this.v$.$invalid) {
         dialogError({
           title: "Error",
@@ -109,7 +115,9 @@ export default {
         });
         return;
       }
+      this.isLoading = this.Loading(true);
       const result = await contservice.send(this.data);
+    
       if (result.success != true) {
         dialogError({
           title: "Error",
@@ -123,9 +131,13 @@ export default {
           text: "El mensaje se envió correctamente " + result.message,
         });
       }
+      this.isLoading = this.Loading(false);
+      this.v$.data.$reset();
       utils.setAllPropsObject(this.data);
     },
-
+    Loading(value) {
+      return (this.$store.state.isLoading = value);
+    }, 
   },
   computed: {
     sendActive() {
@@ -156,5 +168,9 @@ export default {
 .center {
   margin: auto;
   padding: 10px;
+}
+.contactFom {
+  width: 394px;
+  margin: auto;
 }
 </style>

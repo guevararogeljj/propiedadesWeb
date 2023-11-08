@@ -1,75 +1,69 @@
 <template>
   <div :class="`tp-product-item-2 ${spacing ? 'mb-40' : ''}`">
-    <div
-      class="tp-product-thumb-2 p-relative z-index-1 fix w-img"
-      style="background-color: #f2f3f5"
-    >
-    <img  src="@/assets/propsample.jpeg"   @click="onClickTitle" alt="property" height="300" />
-    </div>
+    <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img" style="background-color: #f2f3f5">
+      <img src="@/assets/propsample.jpeg" @click="onClickTitle" alt="property" height="300" />
       <!-- product badge -->
       <div class="tp-product-badge">
-        <!-- <div v-if="IsSold" class="banner-sale">VENDIDO</div> -->
-        <span v-if="IsSold" class="product-hot">out-of-stock</span>
+        <span v-if="IsSold" class="product-hot">vendido</span>
       </div>
       <!-- product action -->
       <div class="tp-product-action-2 tp-product-action-blackStyle">
-        <div class="tp-product-action-item-2 d-flex flex-column">
-          <div class="d-inline col-12 d-flex justify-content-end">
-          </div>
+      <div class="tp-product-action-item-2 d-flex flex-column">
+        <div class="d-inline col-12 d-flex justify-content-end">
+        </div>
         <slot name="favoritebar"></slot>
       </div>
       <div class="card-text card-text-state d-flex justify-content-end"></div>
-       </div>
+    </div>
     <div class="tp-product-content-2 pt-15">
       <div class="tp-product-tag-2">
         <span class="tooltip-custom" :data-text="Title">
           {{ textTruncateTitle }}
           <a v-if="this.Title.length > 30"> ... </a>
-        </span> 
+        </span>
       </div>
-      <h3 class="tp-product-title-2">
+      <div class="tp-product-title-2">
         <div class="card-text mt-3 card-text-price d-flex justify-content-start">
-        {{ priceFormated }} MXN
-      </div>
-      <div class="card-text card-text-state">
-        <div class="row">
-          <div class="d-inline col-10 d-flex justify-content-start">
-            {{ State }}
+          {{ priceFormated }} MXN
+        </div>
+        <div class="card-text card-text-state">
+          <div class="row">
+            <div class="d-inline col-10 d-flex justify-content-start">
+              {{ State }}
+            </div>
+            <div class="card-text card-text-city d-flex justify-content-start">
+              <label v-if="(textTruncate.length > 1)">
+
+                <label v-if="isExpanded" @click="(isExpanded = false)">
+                  {{ textTruncate[0] + textTruncate[1] }}
+                </label>
+                <label v-else>
+                  {{ textTruncate[0] }} <a v-if="!isExpanded"> ... </a>
+                </label>
+
+              </label>
+              <label v-else>
+                {{ textTruncate[0] }}
+              </label>
+            </div>
+            <div class="mt-2">
+              <slot name="iconbar"></slot>
+            </div>
+            <div class="d-inline col-12 d-flex justify-content-end">
+              <!-- <slot name="favoritebar"></slot> -->
+            </div>
+            <div class="card-text card-text-state d-flex justify-content-end"></div>
           </div>
-          <div class="card-text card-text-city d-flex justify-content-start">
-        <label v-if="(textTruncate.length > 1)">
-
-          <label v-if="isExpanded" @click="(isExpanded = false)">
-            {{ textTruncate[0] + textTruncate[1] }}
-          </label>
-          <label v-else>
-            {{ textTruncate[0] }} <a v-if="!isExpanded"> ... </a>
-          </label>
-
-        </label>
-        <label v-else>
-          {{ textTruncate[0] }}
-        </label>
-      </div>
-      <div class="mt-2">
-        <slot name="iconbar"></slot>
-      </div>
-      <div class="d-inline col-12 d-flex justify-content-end">
-        <slot name="favoritebar"></slot>
-      </div>
-      <div class="card-text card-text-state d-flex justify-content-end"></div>
         </div>
       </div>
-      </h3>
       <div class="tp-product-rating-icon tp-product-rating-icon-2">
 
       </div>
       <div class="tp-product-price-wrapper-2">
-
-  
       </div>
     </div>
   </div>
+</div>
 </template>
   
 <script>

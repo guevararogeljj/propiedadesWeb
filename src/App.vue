@@ -1,10 +1,12 @@
 <template>
   <v-app>
-  <div>
-    <router-view />
+
+    <div class="content">
+      <router-view />
+
+    </div>
     <footerComponent />
-  </div>
-</v-app>
+  </v-app>
 </template>
 
 <script>
@@ -21,14 +23,16 @@ export default {
 <style>
 .content {
   background-color: #eaecee;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
+
 .my-card {
   background-image: url("@/assets/nodata.png");
-  background-size: cover; /* This will make sure the image covers the entire card */
-  background-position: center; /* This will center the image in the card */
+  background-size: cover;
+  /* This will make sure the image covers the entire card */
+  background-position: center;
+  /* This will center the image in the card */
 }
-.WordSection1{
+
+.WordSection1 {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-</style>
+}</style>

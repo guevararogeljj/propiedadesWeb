@@ -1,17 +1,24 @@
 <template>
   <div class="">
-    <img :src="ImageUrl" :alt="AlterName" class="d-inline" />
-    <!-- <v-img src='@/assets/batt'  :width="300" aspect-ratio="16/9" cover></v-img> -->
+    <!-- <img
+      :src="ImageUrl"
+      :alt="AlterName"
+      class="d-inline-block align-top"
+      min-height="10"
+      min-width="20"
+    /> -->
+    <v-icon :icon="Icon" :alt="AlterName">
+    </v-icon>
+    <!-- <v-img :src="ImageUrl" class="d-inline-block align-top"></v-img> -->
     <p class="d-inline font-property">{{ Text }} {{ Text2 }}</p>
   </div>
 </template>
   
 <script>
-
 export default {
   name: "imageComp",
   props: {
-    ImageUrl: { type: String, required: true },
+    Icon: { type: String, required: true },
     AlterName: {
       type: String,
       default: () => {

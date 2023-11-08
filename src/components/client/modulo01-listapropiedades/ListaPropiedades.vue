@@ -1,49 +1,101 @@
 <template>
   <div class="container">
+    <br>
+    <v-divider class="d-sm-none"></v-divider>
     <div class="row">
-      <buscador MinorText="" MainText="Ofertas más destacadas" :OnClickBuscar="performSearch"
-        :PorpertyType="outPropertyType" :State="outState" :City="outCity" :Price="outPrice" :Rooms="outRooms"
-        :Bathrooms="outBathrooms" :ProceduraStage="outProceduraStage" :isTipoInmueble="true" :isEstado="true" :isMunicipio="true" >
+      <buscador
+        MinorText=""
+        MainText="Ofertas más destacadas"
+        :OnClickBuscar="performSearch"
+        :PorpertyType="outPropertyType"
+        :State="outState"
+        :City="outCity"
+        :Price="outPrice"
+        :Rooms="outRooms"
+        :Bathrooms="outBathrooms"
+        :ProceduraStage="outProceduraStage"
+        :isTipoInmueble="true"
+        :isEstado="true"
+        :isMunicipio="true"
+        :isClear="true"
+      >
         <template v-slot:customcontrol>
           <OrderBar class="orderbar">
             <template v-slot:order="{ items }">
-              <customselect :ItemSource="items" v-model="ordenProperties" DefaultOption="Destacados"
-                :DefaultOptionActive="true" />
+              <customselect
+                :ItemSource="items"
+                v-model="ordenProperties"
+                DefaultOption="Destacados"
+                :DefaultOptionActive="true"
+              />
             </template>
           </OrderBar>
         </template>
       </buscador>
     </div>
-      <v-skeleton-loader v-if="this.$store.state.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
-      <lista v-else :ItemSource="propiedades" ItemIdAttribute="creditnumber" :NoItemsMessage="!ShowProperties">
-        <template v-slot:item="{ item }">
-          <property-card :Title="item.title" :OnClick="onClickProperty" :Settlement="item.settlement" :City="item.city"
-            :State="item.state" :Price="item.price" :Favorite="item.favorite" :Id="item.creditnumber"
-            :Image="item.thumbnail ?? propexample" :IsSold="item.sold">
-            <template v-slot:iconbar>
-              <PropertyCardIconBar :LivingSize="item.constructionsize" :BathsQuantity="item.bathrooms"
-                :BebsQuantity="item.rooms" :ConstructionSize="item.constructionsize" :ParkingLots="item.parkingspaces"
-                ConstructionSizeUnits="m²" LivinSizeUnits="m²"></PropertyCardIconBar>
-            </template>
-            <template v-slot:favoritebar>
-              <div>
-                <img v-if="item.favorite" src="@/assets/favorite2_icon.svg" alt="favorite" @click="
-                  onClickFavoriteButton(item.favorite, item.creditnumber)
-                  " />
-                <img v-else src="@/assets/favorite_icon.svg" alt="favorite" @click="
-                  onClickFavoriteButton(item.favorite, item.creditnumber)
-                  " />
-              </div>
-            </template>
-          </property-card>
-        </template>
-      </lista>
+    <v-skeleton-loader
+      v-if="this.isLoading"
+      class="mx-auto"
+      type="image, table"
+    ></v-skeleton-loader>
+    <lista
+      v-else
+      :ItemSource="propiedades"
+      ItemIdAttribute="creditnumber"
+      :NoItemsMessage="!ShowProperties"
+    >
+      <template v-slot:item="{ item }">
+        <property-card
+          :Title="item.title"
+          :OnClick="onClickProperty"
+          :Settlement="item.settlement"
+          :City="item.city"
+          :State="item.state"
+          :Price="item.price"
+          :Favorite="item.favorite"
+          :Id="item.creditnumber"
+          :Image="item.thumbnail ?? propexample"
+          :IsSold="item.sold"
+        >
+          <template v-slot:iconbar>
+            <PropertyCardIconBar
+            class="d-none d-sm-block"
+              :LivingSize="item.constructionsize"
+              :BathsQuantity="item.bathrooms"
+              :BebsQuantity="item.rooms"
+              :ConstructionSize="item.constructionsize"
+              :ParkingLots="item.parkingspaces"
+              ConstructionSizeUnits="m²"
+              LivinSizeUnits="m²"
+            ></PropertyCardIconBar>
+          </template>
+          <template v-slot:favoritebar>
+            <div>
+              <!-- <img v-if="item.favorite" src="@/assets/favorite2_icon.svg" alt="favorite" @click="
+                onClickFavoriteButton(item.favorite, item.creditnumber)
+                " />
+              <img v-else src="@/assets/favorite_icon.svg" alt="favorite" @click="
+                onClickFavoriteButton(item.favorite, item.creditnumber)
+                " /> -->
+            </div>
+          </template>
+        </property-card>
+      </template>
+    </lista>
     <div class="d-grid gap-2">
       <div class="row mt-3">
-        <pagination class="mt-5" :class="{ 'd-none': !ShowProperties }" :propItemSource="ItemSourcePagination.length"
-          :propTotalItems="totalItems" :propCurrentPage="currentPage" :propPerPage="perPage" @pagechanged="onPageChange"
-          @setCurrentPage="(value) => currentPage = value" @setPerPage="(value) => perPage = value"
-          @setTotalItems="(value) => totalItems = value">
+        <pagination
+          class="mt-5"
+          :class="{ 'd-none': !ShowProperties }"
+          :propItemSource="ItemSourcePagination.length"
+          :propTotalItems="totalItems"
+          :propCurrentPage="currentPage"
+          :propPerPage="perPage"
+          @pagechanged="onPageChange"
+          @setCurrentPage="(value) => (currentPage = value)"
+          @setPerPage="(value) => (perPage = value)"
+          @setTotalItems="(value) => (totalItems = value)"
+        >
         </pagination>
       </div>
     </div>
@@ -56,7 +108,10 @@
 
 <script>
 import propservice from "@/core/services/propservice";
-import { default as signinservice, default as usersignin } from "@/core/services/userservice";
+import {
+  default as signinservice,
+  default as usersignin,
+} from "@/core/services/userservice";
 import buscador from "@/components/client/finder.vue";
 import customselect from "@/components/common/CustomSelect.vue";
 import lista from "@/components/common/shared/Lista.vue";
@@ -88,13 +143,14 @@ export default {
       ordenProperties: "",
       outState: "",
       outPropertyType: "",
-      outCity: '',
-      outPrice: '',
-      outRooms: '',
-      outBathrooms: '',
-      outProceduraStage: '',
+      outCity: "",
+      outPrice: "",
+      outRooms: "",
+      outBathrooms: "",
+      outProceduraStage: "",
       showModalLoginRequest: false,
-      propexample
+      propexample,
+      isLoading: false,
     };
   },
   methods: {
@@ -129,7 +185,7 @@ export default {
     },
     async performSearch(params) {
       // console.log('params', params)
-      this.Loading(true);
+      this.isLoading = this.Loading(true);
       this.ParamsProperties = params;
       //this.currentPage = 1;
       let properties = await propservice.PropertiesRange(
@@ -140,9 +196,10 @@ export default {
 
       this.$store.state.filterSaved = params;
 
-
       if (this.state.isLogin) {
-        const propertiesandfavorites = await this.loadProperties(properties.result.result.items);
+        const propertiesandfavorites = await this.loadProperties(
+          properties.result.result.items
+        );
 
         this.ItemSourcePagination = propertiesandfavorites;
       } else {
@@ -151,21 +208,22 @@ export default {
 
       this.totalItems = properties.result.result.count;
       this.propiedades = properties.result.result.items;
-      this.Loading(false);
+      this.isLoading = this.Loading(false);
     },
     async searchProps(currentPage, perPage) {
       // console.log('params', this.ParamsProperties)
-      this.Loading(true);
+      this.isLoading = this.Loading(true);
       //this.currentPage = 1;
       let properties = await propservice.PropertiesRange(
         currentPage,
         perPage,
-        this.ParamsProperties,
+        this.ParamsProperties
       );
 
-
       if (this.state.isLogin) {
-        const propertiesandfavorites = await this.loadProperties(properties.result.result.items);
+        const propertiesandfavorites = await this.loadProperties(
+          properties.result.result.items
+        );
 
         this.ItemSourcePagination = propertiesandfavorites;
       } else {
@@ -174,7 +232,7 @@ export default {
 
       this.totalItems = properties.result.result.count;
       this.propiedades = properties.result.result.items;
-      this.Loading(false);
+      this.isLoading = this.Loading(false);
     },
     loadItemsToGrid(pageNumber, pageSize) {
       return this.ItemSourcePagination.slice(
@@ -183,8 +241,6 @@ export default {
       );
     },
     onPageChange(event) {
-      // console.log('onPageChange.event', event);
-      // this.propiedades = this.loadItemsToGrid(event.page, event.pagesize);
       this.searchProps(event.currentPage, event.perPage);
     },
     async onClickFavoriteButton(val, idprop) {
@@ -216,10 +272,9 @@ export default {
   },
   async mounted() {
     let properties = [];
-    console.log(this.getRequestsaved)
+    console.log(this.getRequestsaved);
 
     if (this.getRequestsaved) {
-
       this.outBathrooms = this.state.filterSaved.bathrooms;
       this.outCity = this.state.filterSaved.city;
       this.outPropertyType = this.state.filterSaved.propertytype;
@@ -229,12 +284,12 @@ export default {
       this.outBathrooms = this.state.filterSaved.bathrooms;
       this.outState = this.state.filterSaved.state;
       console.log(this.state);
-      this.performSearch(this.getRequestsaved)
-    }
-    else {
-      this.Loading(true);
+      this.performSearch(this.getRequestsaved);
+    } else {
+      this.isLoading = this.Loading(true);
       if (
-        (this.$route.query.state != "" && this.$route.query.state != undefined) ||
+        (this.$route.query.state != "" &&
+          this.$route.query.state != undefined) ||
         (this.$route.query.type != "" && this.$route.query.type != undefined)
       ) {
         this.outState = this.$route.query.state;
@@ -242,7 +297,10 @@ export default {
         properties = await propservice.PropertiesRange(
           this.currentPage,
           this.perPage,
-          { propertytype: this.$route.query.type, state: this.$route.query.state }
+          {
+            propertytype: this.$route.query.type,
+            state: this.$route.query.state,
+          }
         );
       } else {
         properties = await propservice.PropertiesRange(
@@ -252,20 +310,20 @@ export default {
         );
       }
 
-
       if (this.state.isLogin) {
-        const propertiesandfavorites = await this.loadProperties(properties.result.result.items);
+        const propertiesandfavorites = await this.loadProperties(
+          properties.result.result.items
+        );
 
         this.ItemSourcePagination = propertiesandfavorites;
-        this.Loading(false);
+        this.isLoading = this.Loading(false);
       } else {
         this.ItemSourcePagination = properties.result.result.items;
-
       }
       this.totalItems = properties.result.result.count;
       this.propiedades = properties.result.result.items;
 
-      this.Loading(false);
+      this.isLoading = this.Loading(false);
     }
   },
   watch: {
@@ -278,10 +336,13 @@ export default {
         newValue
       );
     },
-
   },
-  computed: {
 
+  scrollToTop() {
+    window.scrollTo(0, 0);
+  },
+
+  computed: {
     ShowProperties() {
       let show = false;
       if (this.ItemSourcePagination.length > 0) {

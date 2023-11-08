@@ -1,5 +1,5 @@
 import api from "./apiconfig";
-
+var url = import.meta.env.VITE_APP_ROOT_API;
 export default {
 
     Estados() {

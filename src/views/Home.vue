@@ -1,23 +1,25 @@
 <template>
   <v-container>
-    <!-- <buscador-light
-      TitleText="Texto ancla"
-      :OnClickBuscar="onClickBuscar"
-      Icon="mdi-facebook"
-      :isTipoInmueble="true"
-      :isEstado="true"
-      :isMunicipio="true"
-    /> -->
-    <finder :OnClickBuscar="onClickBuscar" :isTipoInmueble="true" :isEstado="true" :isMunicipio="true" />
-    <find-oportunity />
-    <br />
-    <support />
-    <br />
-    <oportunity />
-    <br />
-    <br />
-    <br />
-    <Contact />
+    <v-alert v-model="alert" border="start"  variant="elevated" closable close-label="Close Alert"
+      color="alert3" class="my-alert">
+      Te invitamos a conocer nuestros Términos y Condiciones y Política de Privacidad
+    </v-alert>
+
+    <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
+    <div v-else>
+      <finder :OnClickBuscar="onClickBuscar" :isTipoInmueble="true" :isEstado="true" :isMunicipio="true"
+        MainText="Invierte hoy en propiedades de oportunidad" MinorText="" />
+      <find-oportunity />
+      <br />
+      <support />
+      <br />
+      <oportunity />
+      <br />
+      <br />
+      <br />
+
+      <Contact />
+    </div>
   </v-container>
 </template>
 
@@ -48,6 +50,8 @@ export default {
       messageContact: "",
       variants: ["elevated", "flat"],
       color: "indigo",
+      isLoading: false,
+      alert: true,
     };
   },
   methods: {
@@ -73,7 +77,6 @@ export default {
       }
     },
     onClickBuscar(params) {
-      debugger;
       if (params.estado != "" || params.tipoInmueble != "") {
         this.$router.push({
           name: "properties",
@@ -101,12 +104,15 @@ export default {
     },
   },
   async mounted() {
-
+    this.isLoading = this.Loading(true)
+    // this.$store.state.isLoading = true;
     const aft = await antiforgery.get();
     this.state.requesttoken = aft;
     if (this.$route.params.section) {
       this.moveScrollToSecction(this.$route.params.section);
     }
+    this.isLoading = this.Loading(false);
+    // this.$store.state.isLoading = false;
   },
 };
 </script>
@@ -118,5 +124,22 @@ export default {
   /* This will make sure the image covers the entire card */
   background-position: center;
   /* This will center the image in the card */
+}
+
+.card-cesion {
+  background-image: url("@/assets/icon_cesion.svg");
+  background-size: cover;
+  /* This will make sure the image covers the entire card */
+  background-position: center;
+  /* This will center the image in the card */
+}
+.my-alert {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 10;
+  left: 0;
+  z-index: 9999;
+
 }
 </style>

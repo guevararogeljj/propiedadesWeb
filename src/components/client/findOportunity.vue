@@ -5,7 +5,7 @@
     </v-row>
     <v-row align="center" justify="center">
       <v-col cols="auto">
-        <v-card  height="200px" width="200px" class="my-card">
+        <v-card  height="243px" width="249px" class="card-cesion">
           <!-- Card content goes here -->
           <v-card-title></v-card-title>
           <v-card-text>
@@ -16,7 +16,7 @@
         <div align="center" justify="center"><strong>Cesión de derechos</strong></div>
       </v-col>
       <v-col cols="auto">
-        <v-card  height="200px" width="200px" class="my-card">
+        <v-card  height="243px" width="249px" class="card-cesion">
           <!-- Card content goes here -->
           <v-card-title></v-card-title>
           <v-card-text>

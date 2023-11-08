@@ -3,39 +3,39 @@
   
   <div class="row ms-1" v-if="!DetailsMode">
     <div class="col-4 text-start">
-      <IconNumber :ImageUrl="bathIcon" AlterName="beds" :Text="BebsQuantity" :Text2="BedsUnits"></IconNumber>
+      <IconNumber Icon="mdi-bathtub" AlterName="beds" :Text="BebsQuantity" :Text2="BedsUnits"></IconNumber>
     </div>
     <div class="col-4 text-start">
-      <IconNumber :ImageUrl="bedIcon" AlterName="baths" :Text="BathsQuantity" :Text2="BathsUnits"></IconNumber>
+      <IconNumber Icon="mdi-bed" AlterName="baths" :Text="BathsQuantity" :Text2="BathsUnits"></IconNumber>
     </div>
 
     <div class="col-4 text-start">
-      <IconNumber :ImageUrl="sizeIcon" AlterName="living size" :Text="LivingSize" :Text2="LivinSizeUnits"></IconNumber>
+      <IconNumber Icon="mdi-image-size-select-small" AlterName="living size" :Text="LivingSize" :Text2="LivinSizeUnits"></IconNumber>
     </div>
     <div class="col-4 text-start">
-      <IconNumber :ImageUrl="constructionSize" AlterName="Construction size" :Text="ConstructionSize"
+      <IconNumber Icon="mdi-domain" AlterName="Construction size" :Text="ConstructionSize"
         :Text2="ConstructionSizeUnits"></IconNumber>
     </div>
     <div class="col-4 text-start">
-      <IconNumber :ImageUrl="parkingLots" AlterName="parkinglot" :Text="ParkingLots"></IconNumber>
+      <IconNumber Icon="mdi-car" AlterName="parkinglot" :Text="ParkingLots"></IconNumber>
     </div>
   </div>
   <div class="row ms-1" v-if="DetailsMode">
     <div class="col-6 text-start mt-3">
-      <IconNumber :ImageUrl="bedIcon" AlterName="beds" :Text="BebsQuantity" :Text2="BedsUnits"></IconNumber>
+      <IconNumber Icon="mdi-bed" AlterName="beds" :Text="BebsQuantity" :Text2="BedsUnits"></IconNumber>
     </div>
     <div class="col-6 text-start mt-3">
-      <IconNumber :ImageUrl="bathIcon" AlterName="baths" :Text="BathsQuantity" :Text2="BathsUnits"></IconNumber>
+      <IconNumber Icon="mdi-bathtub" AlterName="baths" :Text="BathsQuantity" :Text2="BathsUnits"></IconNumber>
     </div>
 
     <div class="col-6 text-start mt-3">
-      <IconNumber :ImageUrl="sizeIcon" AlterName="living size" :Text="LivingSize" :Text2="LivinSizeUnits"></IconNumber>
+      <IconNumber Icon="mdi-image-size-select-small" AlterName="living size" :Text="LivingSize" :Text2="LivinSizeUnits"></IconNumber>
     </div>
     <div class="col-6 text-start mt-3">
-      <IconNumber :ImageUrl="constructionSize" AlterName="Construction size" :Text="ConstructionSize" :Text2="ConstructionSizeUnits"></IconNumber>
+      <IconNumber Icon="mdi-domain" AlterName="Construction size" :Text="ConstructionSize" :Text2="ConstructionSizeUnits"></IconNumber>
     </div>
     <div class="col-6 text-start mt-3">
-      <IconNumber :ImageUrl="parkingLots" AlterName="parkinglot" :Text="ParkingLots" :Text2="ParkingUnits"></IconNumber>
+      <IconNumber Icon="mdi-car" AlterName="parkinglot" :Text="ParkingLots" :Text2="ParkingUnits"></IconNumber>
     </div>
   </div>
 </template>

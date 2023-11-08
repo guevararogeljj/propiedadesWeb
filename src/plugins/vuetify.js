@@ -12,7 +12,7 @@ import { VSkeletonLoader } from 'vuetify/labs/VSkeletonLoader'
 import { createVuetify } from 'vuetify'
 import 'bootstrap/scss/bootstrap.scss'
 
-import '@/assets/css/font-awesome-pro.css'
+// import '@/assets/css/font-awesome-pro.css'
 import '@/assets/css/flaticon_shofy.css'
 import '@/assets/scss/main.scss'
 
@@ -24,16 +24,20 @@ export default createVuetify({
     themes: {
       light: {
         colors: {
-          primary: '#1867C0',
-          secondary: '#5CBBF6',
+          primary: '#1067AC',
+          primary2: '#1283DE',
+          primary3: '#379BEC',
+          primary4: '#62B2F3',
+          secondary: '#000000',
+          secondary2: '#959DA4',
+          secondary3: '#E0E2E4',
+          alert1: '#EC3737',
+          alert2: '#15DB29',
+          alert3: '#662C80',
+          alert4: '#DFC9E9',
+          alert5: '#FFC101',
         },
       },
-      fonts: {
-        body: 'Roboto, sans-serif',
-      },
-    },
-    fonts: {
-      body: 'Roboto, sans-serif',
     },
   },
 })

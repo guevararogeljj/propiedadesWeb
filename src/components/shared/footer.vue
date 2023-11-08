@@ -15,7 +15,7 @@
         <v-col cols="12" sm="6" md="3">
           <v-label> <strong>Navegación</strong></v-label>
           <p><router-link to="/" class="footer-link mb-2">Inicio</router-link></p>
-          <p><router-link to="/" class="footer-link mb-2">Catálogo</router-link></p>
+          <p><router-link to="/propiedades" class="footer-link mb-2">Catálogo</router-link></p>
           <p><router-link to="/us" class="footer-link mb-2">Nosotros</router-link></p>
           <p><router-link to="/frequentQuestions" class="footer-link mb-2">Preguntas Frecuentes</router-link></p>
         </v-col>
@@ -27,7 +27,7 @@
           <p>Llámanos</p>
           <p>55 99 90 88 00</p>
           <p>81 21 88 88 00</p>
-          <v-label> <strong>Redes sociales</strong></v-label>
+          <!-- <v-label> <strong>Redes sociales</strong></v-label>
           <p>
             <v-btn icon 
             href="https://www.facebook.com/finastrategy/"
@@ -36,7 +36,7 @@
                 <v-icon medium>mdi-facebook</v-icon>
               </span>
             </v-btn>
-          </p>
+          </p> -->
         </v-col>
       </v-row>
     </v-container>

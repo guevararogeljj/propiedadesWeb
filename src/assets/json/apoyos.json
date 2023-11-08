@@ -1,0 +1,24 @@
+{
+    "tabs": [
+      {
+        "title": "¿Cómo comienzo?",
+        "value": "tab0",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et varius felis. Vivamus vel sapien vel erat pulvinar accumsan sit amet vitae neque. Proin quis scelerisque dui. Duis in laoreet libero. Etiam consectetur lorem tincidunt ornare sagittis. Donec quis nulla non est ultricies eleifend quis tristique tortor. Donec tincidunt nisl quis libero sollicitudin elementum. Duis laoreet nunc fermentum, mollis velit vel, egestas felis. In hac habitasse platea dictumst. Suspendisse ut viverra nisi, ut placerat nisl. Sed fermentum, erat ut maximus ullamcorper, ex quam rutrum magna, venenatis porta libero augue ut diam."
+      },
+        {
+          "title": "Apoyo 1",
+          "value": "tab1",
+          "text": "Suspendisse lobortis, tortor quis suscipit dapibus, nisi velit ultrices libero, vel vehicula tellus erat in lacus. Fusce scelerisque, nunc at pellentesque molestie, erat purus scelerisque lorem, eget imperdiet neque felis non arcu. Pellentesque et tellus magna. Etiam hendrerit tristique iaculis. Aenean condimentum, lectus et maximus porta, metus lorem iaculis nibh, imperdiet accumsan ante metus vehicula justo."
+        },
+        {
+          "title": "Apoyo 2",
+          "value": "tab2",
+          "text": "Sed suscipit vestibulum mi in pellentesque. Nam auctor congue vulputate. Suspendisse potenti. Ut finibus condimentum ligula, in condimentum sapien imperdiet quis. Cras consequat non erat at elementum. Etiam sed velit et nisl auctor iaculis. Suspendisse potenti. Aliquam gravida lectus sit amet augue sagittis commodo. Donec et tortor id erat mollis finibus."
+        },
+        {
+          "title": "Apoyo 3",
+          "value": "tab3",
+          "text": "Contenido de la pestaña 3"
+        }
+      ]
+}

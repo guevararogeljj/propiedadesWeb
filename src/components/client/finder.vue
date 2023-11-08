@@ -1,5 +1,5 @@
 <template>
-  <div class="pb-3 wrapper desktop-style">
+  <div class="pb-3 wrapper desktop-style" :style="{'background-image': 'url(' + backgroundFinder + ')'}">
     <div class="row">
       <div class="col-12 maintext">{{ MainText }}</div>
       <div class="col-12 minortext mt-1">{{ MinorText }}</div>
@@ -66,6 +66,7 @@
             :OnClickButton="onClickButtonBuscar"
           />
           <customButtonSeconday
+          v-if="isClear"
             Text="Limpiar"
             Icon="mdi-filter-remove-outline"
             :OnClickButton="onClickButtonLimpiar"
@@ -247,6 +248,7 @@
     />
 
     <customButtonSeconday
+      v-if="isClear"
       Text="Limpiar"
       Icon="mdi-filter-remove-outline"
       :OnClickButton="onClickButtonLimpiar"
@@ -269,7 +271,7 @@ import customButtonPrimary from "@/components/common/ButtonPrimary.vue";
 import customButtonSeconday from "@/components/common/ButtonSecondary.vue";
 import customselect from "@/components/common/CustomSelect.vue";
 import Modal from "@/components/common/Modal2.vue";
-
+import backgroundFinder from "@/assets/backgroundFinder.jpeg";
 export default {
   name: "buscadorCompo",
   props: {
@@ -313,6 +315,10 @@ export default {
         type: Boolean,
         default: false,
       },
+      isClear: {
+        type: Boolean,
+        default: false,
+      },
   },
   components: {
     customButtonPrimary,
@@ -345,7 +351,7 @@ export default {
       },
       orderSelect: "",
       show: false,
-
+      backgroundFinder
     };
   },
   methods: {
@@ -465,9 +471,10 @@ export default {
     font-size: 48px;
     line-height: 48px;
     /* or 100% */
-    color: #63666a;
-    align-items: center;
-    text-align: center;
+    color: #ffffff;
+    align-items: left;
+    padding: 0.5em;
+    text-align: left;
   }
   
   .minortext {
@@ -541,6 +548,10 @@ export default {
 @media only screen and (min-width: 900px) {
   .desktop-style {
     display: block; /* Show on desktop */
+    background-image: "url(@/assets/backgroundFinder.jpeg)";
+    background-size: cover;
+    background-position: center;
+
   }
 
   .mobile-style {

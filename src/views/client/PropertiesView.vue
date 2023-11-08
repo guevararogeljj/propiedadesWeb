@@ -1,5 +1,4 @@
 <template>
-
   <property-list></property-list>
   </template>
   
