@@ -3,6 +3,7 @@
       type="button" 
       @click="onClickButtonInternal"
       :disabled="IsDisabled"
+  
     >
     <v-icon medium>{{Icon}}</v-icon>
       {{ Text }}

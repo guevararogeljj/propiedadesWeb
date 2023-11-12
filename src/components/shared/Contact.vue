@@ -2,49 +2,51 @@
   <div class="content">
     <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
     <v-form v-else>
-    <v-row justify="center" >
-      <h1 class="center">{{ Titulo }}</h1>
-    </v-row>
-    <v-row justify="center">
-      <v-col
-      >
-        <v-text-field class="contactFom" density="compact" variant="solo" type="text" label="Nombre completo" v-model="data.fullname"
-          :error-messages="v$.data.fullname.$errors.map(e => e.$message)" @input="v$.data.fullname.$touch"
-          @blur="v$.data.fullname.$touch"></v-text-field>
+      <v-row justify="center">
+        <h1 class="center">{{ Titulo }}</h1>
+      </v-row>
+      <v-row justify="center">
+        <h2 class="h6">{{ Subtitulo }}</h2>
+      </v-row>
+      <v-row justify="center">
+        <v-col>
+          <v-text-field class="contactFom" density="compact" variant="solo" type="text" label="Nombre completo"
+            v-model="data.fullname" :error-messages="v$.data.fullname.$errors.map(e => e.$message)"
+            @input="v$.data.fullname.$touch" @blur="v$.data.fullname.$touch"></v-text-field>
 
-      </v-col>
-    </v-row>
-    <v-row justify="center">
-      <v-col>
-        <v-text-field class="contactFom" density="compact" variant="solo" label="Teléfono" type="number" v-model="data.cellphone"
-          :error-messages="v$.data.cellphone.$errors.map(e => e.$message)" @input="v$.data.cellphone.$touch"
-          @blur="v$.data.cellphone.$touch"></v-text-field>
-      </v-col>
-    </v-row>
-    <v-row justify="center">
-      <v-col>
-        <v-text-field class="contactFom" density="compact" variant="solo" type="email" label="correo electrónico" v-model="data.email"
-          :error-messages="v$.data.email.$errors.map(e => e.$message)" @input="v$.data.email.$touch"
-          @blur="v$.data.email.$touch"></v-text-field>
-      </v-col>
-    </v-row>
-    <v-row justify="center">
-      <v-col>
-        <v-text-field class="contactFom" density="compact" variant="solo" label="Mensaje" type="text" v-model="data.message"
-          :error-messages="v$.data.message.$errors.map(e => e.$message)" @input="v$.data.message.$touch"
-          @blur="v$.data.message.$touch"></v-text-field>
-      </v-col>
-    </v-row>
-    <v-row justify="center">
-      <v-col>
-        <div class="row mt-3 pb-3">
-          <div>
-            <button-secondary :IsDisabled="this.v$.$invalid" Text="ENVIAR MENSAJE" Icon="mdi-send" color="primary" @click="onClickButtonSend" />
-          </div>
-        </div>
-      </v-col>
-    </v-row>
-  </v-form>
+        </v-col>
+      </v-row>
+      <v-row justify="center">
+        <v-col>
+          <v-text-field class="contactFom" density="compact" variant="solo" label="Teléfono" type="number"
+            v-model="data.cellphone" :error-messages="v$.data.cellphone.$errors.map(e => e.$message)"
+            @input="v$.data.cellphone.$touch" @blur="v$.data.cellphone.$touch"></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row justify="center">
+        <v-col>
+          <v-text-field class="contactFom" density="compact" variant="solo" type="email" label="correo electrónico"
+            v-model="data.email" :error-messages="v$.data.email.$errors.map(e => e.$message)"
+            @input="v$.data.email.$touch" @blur="v$.data.email.$touch"></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row justify="center">
+        <v-col>
+          <v-text-field class="contactFom" density="compact" variant="solo" label="Mensaje" type="text"
+            v-model="data.message" :error-messages="v$.data.message.$errors.map(e => e.$message)"
+            @input="v$.data.message.$touch" @blur="v$.data.message.$touch"></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col class="centerButton" fluid>
+          <button-secondary :IsDisabled="this.v$.$invalid" Text="ENVIAR MENSAJE" 
+            Icon="mdi-send" 
+            color="primary3" 
+            variant="flat"
+            @click="onClickButtonSend" />
+        </v-col>
+      </v-row>
+    </v-form>
   </div>
 </template>
 
@@ -103,7 +105,11 @@ export default {
     Titulo: {
       type: String,
       default: "Contáctenos"
-    }
+    },
+    Subtitulo: {
+      type: String,
+      default: "Déjanos un mensaje y uno de nuestros agentes se pondrá en contacto contigo en muy poco tiempo."
+    },
   },
   methods: {
     async onClickButtonSend() {
@@ -117,7 +123,7 @@ export default {
       }
       this.isLoading = this.Loading(true);
       const result = await contservice.send(this.data);
-    
+
       if (result.success != true) {
         dialogError({
           title: "Error",
@@ -137,7 +143,7 @@ export default {
     },
     Loading(value) {
       return (this.$store.state.isLoading = value);
-    }, 
+    },
   },
   computed: {
     sendActive() {
@@ -169,8 +175,16 @@ export default {
   margin: auto;
   padding: 10px;
 }
+
 .contactFom {
   width: 394px;
   margin: auto;
+}
+
+.centerButton {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
 }
 </style>

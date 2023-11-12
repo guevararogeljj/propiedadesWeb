@@ -39,6 +39,7 @@
             />
             <custom-button-primary
               Text="Buscar"
+              color="primary3"
               :OnClickButton="onClickButtonBuscar"
               Icon="mdi-magnify"
             />

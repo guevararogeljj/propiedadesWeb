@@ -2,7 +2,9 @@
   <v-container>
     <v-alert v-model="alert" border="start"  variant="elevated" closable close-label="Close Alert"
       color="alert3" class="my-alert">
-      Te invitamos a conocer nuestros Términos y Condiciones y Política de Privacidad
+      <label class="h5">Te invitamos a conocer nuestros</label>
+      <router-link to="/termsAndConditions" class="h5"> Términos y condiciones</router-link>
+      <router-link to="/privacyPolicy" class="h5"> y Política de privacidad</router-link>
     </v-alert>
 
     <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
@@ -117,8 +119,7 @@ export default {
 };
 </script>
 
-<style scope lang="scss">
-.my-card {
+<style scope lang="scss"> .my-card {
   background-image: url("@/assets/nodata.png");
   background-size: cover;
   /* This will make sure the image covers the entire card */
@@ -126,13 +127,7 @@ export default {
   /* This will center the image in the card */
 }
 
-.card-cesion {
-  background-image: url("@/assets/icon_cesion.svg");
-  background-size: cover;
-  /* This will make sure the image covers the entire card */
-  background-position: center;
-  /* This will center the image in the card */
-}
+
 .my-alert {
   width: 100%;
   text-align: center;

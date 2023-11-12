@@ -1,11 +1,14 @@
 <template>
   <div class="content">
-    <br>
+    <br />
     <v-row>
       <h1 class="center">Nosotros</h1>
     </v-row>
-    <br>
-    <v-row>
+    <br />
+    <v-row class="body">
+    <div class="banner"></div>
+    </v-row>
+    <!-- <v-row>
       <v-col cols="12">
         <div style="text-align: center;">
           <video style="width: 100%; height: auto;" controls>
@@ -13,9 +16,9 @@
           </video>
         </div>
       </v-col>
-    </v-row>
-    <br>
-    <v-col cols="12">
+    </v-row> -->
+    <br />
+    <!-- <v-col cols="12">
       <div class=WordSection1>
 
         <p class=MsoNormal>Somos una administradora de cartera que conecta el mundo de
@@ -90,22 +93,19 @@
         </p>
 
       </div>
-    </v-col>
+    </v-col> -->
   </div>
 </template>
 <script>
-import json from '@/assets/json/preguntas_frecuentes.json'
-import VueVideoPlayer from 'vue-video-player';
+import json from "@/assets/json/preguntas_frecuentes.json";
+import VueVideoPlayer from "vue-video-player";
 export default {
   data() {
     return {
-      colors: [
-        '#EAECEE',
-        '#EAECEE',
-      ],
+      colors: ["#EAECEE", "#EAECEE"],
       preguntasRespuestas: [],
-      videoUrl: 'https://example.com/video.mp4',
-    }
+      videoUrl: "https://example.com/video.mp4",
+    };
   },
   components: {
     VueVideoPlayer,
@@ -113,28 +113,42 @@ export default {
   mounted() {
     this.scrollToTop();
     this.cargarPreguntasRespuestas();
-
   },
   methods: {
     scrollToTop() {
       window.scrollTo(0, 0);
     },
     cargarPreguntasRespuestas() {
-
       this.preguntasRespuestas = json.preguntas_respuestas || [];
-
     },
   },
-}
+};
 </script>
 <style scoped>
+.body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.banner {
+  background-image: url("@/assets/nosotros-banner-finastrategy-0 5.png");
+  background-size: 1242px 350px;
+      width: 1242px;
+      height: 350px;
+      position: relative;
+      z-index: 1; 
+}
+
 .center {
   margin: auto;
   padding: 10px;
 }
 
 .WordSection1 {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-</style>
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}</style>
     
