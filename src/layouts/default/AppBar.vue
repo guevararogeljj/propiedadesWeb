@@ -66,7 +66,7 @@ export default {
 
 }
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   body {
     /* Adjust styles for smaller screens */
     background-size: contain;

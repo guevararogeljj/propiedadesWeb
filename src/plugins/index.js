@@ -15,7 +15,7 @@ import * as components from "vuetify/components"
 export function registerPlugins (app) {
   WebFont.load({
     google: {
-      families: ['Titillium Web:300,400,700', 'sans-serif']
+      families: ['Barlow Web:300,400,700', 'Barlow']
     }
   });
   app

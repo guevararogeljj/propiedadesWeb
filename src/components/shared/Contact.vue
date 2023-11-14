@@ -6,7 +6,7 @@
         <h1 class="center">{{ Titulo }}</h1>
       </v-row>
       <v-row justify="center">
-        <h2 class="h6">{{ Subtitulo }}</h2>
+        <div>{{ Subtitulo }}</div>
       </v-row>
       <v-row justify="center">
         <v-col>
@@ -44,6 +44,11 @@
             color="primary3" 
             variant="flat"
             @click="onClickButtonSend" />
+        </v-col>
+      </v-row>
+      <v-row justify="center">
+        <v-col>
+          <label>Al enviar mensaje acepto los Términos y Condiciones y las Políticas de Privacidad</label>
         </v-col>
       </v-row>
     </v-form>

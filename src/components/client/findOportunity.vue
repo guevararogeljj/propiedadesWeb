@@ -9,11 +9,23 @@
           <!-- Card content goes here -->
           <v-card-title></v-card-title>
           <v-card-text>
-
             <!-- More card content -->
           </v-card-text>
         </v-card>
-        <div align="center" justify="center"><strong>Cesión de derechos</strong></div>
+        <div>
+          <strong class="textCenter">
+          <p>
+            <strong class="textCenter">Cesión de derechos</strong>
+          </p>
+        </strong>
+          <p class="textCardItems">
+            Es un contrato por el cual la parte cedente enajena su derecho
+            legalmente cedible en favor de otra persona denominada cesionario,
+            para que éste lo ejerza en su propio nombre. La cesión es siempre un
+            acto jurídico inter-vivos, por lo que para perfeccionarse se
+            requiere que sea a través de escritura pública.
+          </p>
+        </div>
       </v-col>
       <v-col cols="auto">
         <v-card class="card-venta">
@@ -23,16 +35,27 @@
             <!-- More card content -->
           </v-card-text>
         </v-card>
-        <div align="center" justify="center"><strong>Venta de inmuebles</strong></div>
+        <div>
+          <strong class="textCenter">
+            <p>
+              <strong class="textCenter">Venta de inmuebles</strong>
+            </p>
+          </strong>
+          <p class="textCardItems">
+            Es un contrato por el cual la parte cedente enajena su derecho
+            legalmente cedible en favor de otra persona denominada cesionario,
+            para que éste lo ejerza en su propio nombre. La cesión es siempre un
+            acto jurídico inter-vivos, por lo que para perfeccionarse se
+            requiere que sea a través de escritura pública.
+          </p>
+        </div>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style scoped>
@@ -52,5 +75,18 @@ export default {
   width: 260.7px;
   background-color: transparent;
   border-color: transparent;
+}
+
+.textCardItems {
+  width: 300px;
+  max-width: max-content;
+  text-align: justify;
+  margin: 0 auto;
+  min-width: none;
+}
+
+.textCenter {
+  text-align: center;
+  align-content: center;
 }
 </style>
