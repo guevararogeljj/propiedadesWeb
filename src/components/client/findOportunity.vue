@@ -101,7 +101,4 @@ export default {};
   color: #000000!important;
 
 }
-.titleOne {
-
-}
 </style>

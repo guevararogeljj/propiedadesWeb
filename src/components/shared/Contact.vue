@@ -2,9 +2,10 @@
   <div class="content">
     <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
     <v-form v-else>
-      <v-row justify="center">
+      <v-row>
         <v-col cols="12">
-        <div class="center h2">{{ Titulo }}</div>
+        <!-- <div class="center h2">{{ Titulo }}</div> -->
+        <div class="center w-auto h1">{{ Titulo }}</div>
         </v-col>
       </v-row>
       <v-row>
@@ -82,7 +83,9 @@ export default {
   validations() {
     return {
       data: {
-        fullname: { required: helpers.withMessage("El nombre es requerido", required) },
+        fullname: { 
+          required: helpers.withMessage("El nombre es requerido", required)
+         },
         email: { required: helpers.withMessage("El correo es requerido", required), email: helpers.withMessage("El correo no es válido", email) },
         cellphone: {
           required: helpers.withMessage("El Teléfono es requerido", required),
@@ -172,7 +175,12 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style scoped >
+.center {
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+}
 .contactFom {
   width: 394px;
   margin: auto;

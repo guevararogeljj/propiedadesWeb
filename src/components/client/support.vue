@@ -1,9 +1,9 @@
 <template>
-  <v-card color="primary3">
+  <v-card color="primary3" class="card-style">
     <v-card-title style="text-align: center;">
       <span class="title">Te apoyamos en tu proceso de compra</span>
     </v-card-title>
-    <v-tabs v-model="activeTab" align-tabs="center" background-color="primary" dark>
+    <v-tabs v-model="activeTab" align-tabs="center" background-color="primary">
       <v-tab v-for="tab in tabs" :key="tab.value" :value="tab.value" class="custom-tab">
         {{ tab.title }}
       </v-tab>
@@ -36,12 +36,14 @@ export default {
 
 </script>
 <style scoped>
+
 .card-text {
   text-align: justify;
   width: 70%;
-
 }
-
+.card-style {
+  border-radius: 30px;
+}
 .asesor-inmobiliario {
   background-image: url("@/assets/asesor-inmobiliario.png");
   height: 586px;
@@ -59,8 +61,11 @@ export default {
     background-repeat: no-repeat;
     background-color: transparent;
     border-color: transparent;
+    width: auto;
   }
-
+  .card-style {
+  border-radius: 0px;
+}
   .card-text {
     text-align: center justify;
     width: 100%;

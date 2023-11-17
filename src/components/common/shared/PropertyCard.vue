@@ -1,6 +1,6 @@
 <template>
   <div :class="`tp-product-item-2 ${spacing ? 'mb-40' : ''}`">
-    <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img" style="background-color: #f2f3f5">
+    <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img card-border" style="background-color: #f2f3f5">
       <img src="@/assets/propsample.jpeg" @click="onClickTitle" alt="property" height="300" />
       <!-- product badge -->
       <div class="tp-product-badge">
@@ -138,6 +138,9 @@ export default {
 </script>
   
 <style scoped lang="scss">
+.card-border {
+  border-radius: 22px;
+}
 .card {
   // max-width: 24em;
   // max-height: 30em;

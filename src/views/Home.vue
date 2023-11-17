@@ -1,26 +1,25 @@
 <template>
   <v-container>
-    <v-alert v-model="alert" border="start"  variant="elevated" closable close-label="Close Alert"
-      color="alert3" class="my-alert">
-      <label class="h5">Te invitamos a conocer nuestros</label>
-      <router-link to="/termsAndConditions" class="h5"> Términos y condiciones</router-link>
-      <router-link to="/privacyPolicy" class="h5"> y Política de privacidad</router-link>
+    <v-alert v-model="alert" border="start" variant="elevated" closable close-label="Close Alert" color="alert3"
+      class="my-alert">
+      <label class="h7">Te invitamos a conocer nuestros</label>
+      <router-link to="/termsAndConditions" class="h7"> Términos y condiciones</router-link>
+      <router-link to="/privacyPolicy" class="h7"> y Política de privacidad</router-link>
     </v-alert>
 
     <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
     <div v-else>
       <finder :OnClickBuscar="onClickBuscar" :isTipoInmueble="true" :isEstado="true" :isMunicipio="true"
-        MainText="Invierte hoy en propiedades de oportunidad" MinorText="" :changeBtn="true"/>
+        MainText="Invierte hoy en propiedades de oportunidad" MinorText="" :changeBtn="true" />
+      <div class="salto"></div>
       <find-oportunity />
-      <br />
+      <div class="salto"></div>
       <support />
-      <br />
+      <div class="salto"></div>
       <oportunity />
-      <br />
-      <br />
-      <br />
-
+      <div class="salto"></div>
       <Contact />
+      <div class="salto"></div>
     </div>
   </v-container>
 </template>
@@ -121,21 +120,26 @@ export default {
 
 <style scope lang="scss"> 
 .my-card {
-  background-image: url("@/assets/nodata.png");
-  background-size: cover;
-  /* This will make sure the image covers the entire card */
-  background-position: center;
-  /* This will center the image in the card */
-}
+   background-image: url("@/assets/nodata.png");
+   background-size: cover;
+   /* This will make sure the image covers the entire card */
+   background-position: center;
+   /* This will center the image in the card */
+ }
 
+ .salto {
+   width: 100%;
+   height: 100px;
+   flex-shrink: 0;
+ }
 
-.my-alert {
-  width: 100%;
-  text-align: center;
-  position: absolute;
-  top: 10;
-  left: 0;
-  z-index: 9999;
+ .my-alert {
+   width: 100%;
+   text-align: center;
+   position: absolute;
+   top: 10;
+   left: 0;
+   z-index: 9999;
 
-}
+ }
 </style>

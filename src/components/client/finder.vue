@@ -273,6 +273,8 @@ export default {
     background-image: url("@/assets/banner-home-mobile-4 1.png");
     background-size: cover;
     background-position: center;
+    border-radius: 26px;
+    
 
   }
 }
@@ -285,6 +287,7 @@ export default {
     background-image: url("@/assets/backgroundFinder.jpeg");
     background-size: cover;
     background-position: center;
+    border-radius: 26px;
   }
 }
 
@@ -294,6 +297,7 @@ export default {
     background-image: url("@/assets/backgroundFinder.jpeg");
     background-size: cover;
     background-position: center;
+    border-radius: 26px;
   }
 }
 
@@ -303,6 +307,7 @@ export default {
     background-image: url("@/assets/backgroundFinder.jpeg");
     background-size: cover;
     background-position: center;
+    border-radius: 26px;
   }
 }
 </style>
