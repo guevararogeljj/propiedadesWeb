@@ -1,12 +1,12 @@
 <template>
-  <v-card color="primary3" >
+  <v-card color="primary3">
     <v-card-title style="text-align: center;">
       <span class="title">Te apoyamos en tu proceso de compra</span>
     </v-card-title>
-  <v-tabs v-model="activeTab"  align-tabs="center">
-    <v-tab v-for="tab in tabs" :key="tab.value" :value="tab.value">
-      {{ tab.title }}
-    </v-tab>
+    <v-tabs v-model="activeTab" align-tabs="center" background-color="primary" dark>
+      <v-tab v-for="tab in tabs" :key="tab.value" :value="tab.value" class="custom-tab">
+        {{ tab.title }}
+      </v-tab>
     </v-tabs>
     <v-card-text>
       <v-window v-model="activeTab" class="asesor-inmobiliario">
@@ -16,7 +16,6 @@
       </v-window>
     </v-card-text>
   </v-card>
-
 </template>
 
 <script>
@@ -37,17 +36,43 @@ export default {
 
 </script>
 <style scoped>
-.card-text{
+.card-text {
   text-align: justify;
   width: 70%;
 
 }
-.asesor-inmobiliario{
+
+.asesor-inmobiliario {
   background-image: url("@/assets/asesor-inmobiliario.png");
   height: 586px;
   background-position: right center;
   background-repeat: no-repeat;
   background-color: transparent;
   border-color: transparent;
+}
+
+@media (max-width: 767px) {
+  .asesor-inmobiliario {
+    background-image: url("@/assets/asesor-inmobiliario-2 1.png");
+    /* height: 459px; */
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border-color: transparent;
+  }
+
+  .card-text {
+    text-align: center justify;
+    width: 100%;
+
+  }
+}
+
+.custom-tab {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  color: black;
+
 }
 </style>

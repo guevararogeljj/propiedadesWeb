@@ -1,15 +1,13 @@
 <template>
   <v-footer>
     <v-container>
-      <v-row>
+      <v-row style="align-items: center;">
         <v-col cols="12" sm="6" md="3">
           <div class="logoClass ms-5"></div>
         </v-col>
         <v-col cols="12" sm="6" md="3">
           <v-label> <strong>Legales</strong></v-label>
-  
             <p><router-link to="/termsAndConditions" class="footer-link mb-2">Términos y condiciones</router-link></p>
-
             <p><router-link to="/privacyPolicy" class="footer-link mb-2">Aviso de privacidad</router-link></p>
         </v-col>
         <v-col cols="12" sm="6" md="3">
@@ -27,16 +25,6 @@
           <p>Llámanos</p>
           <p>55 99 90 88 00</p>
           <p>81 21 88 88 00</p>
-          <!-- <v-label> <strong>Redes sociales</strong></v-label>
-          <p>
-            <v-btn icon 
-            href="https://www.facebook.com/finastrategy/"
-            target="_blank">
-              <span>
-                <v-icon medium>mdi-facebook</v-icon>
-              </span>
-            </v-btn>
-          </p> -->
         </v-col>
       </v-row>
     </v-container>

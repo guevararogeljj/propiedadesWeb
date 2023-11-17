@@ -1,7 +1,12 @@
 <template>
   <v-container fluid class="content">
+    
     <v-row align="center" justify="center">
-      <h1>Encuentra la oportunidad de inversión a tu medida</h1>
+      <span class="h1 color-black">Encuentra la</span>&nbsp;
+      <span class="h1 color-primary">oportunidad de inversión </span>&nbsp;
+    </v-row>
+    <v-row  align="center" justify="center">
+      <span class="h1 color-black">a tu medida</span>
     </v-row>
     <v-row align="center" justify="center">
       <v-col cols="auto">
@@ -88,5 +93,15 @@ export default {};
 .textCenter {
   text-align: center;
   align-content: center;
+}
+.color-primary {
+  color: #379BEC!important;
+}
+.color-black {
+  color: #000000!important;
+
+}
+.titleOne {
+
 }
 </style>

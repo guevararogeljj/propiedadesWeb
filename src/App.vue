@@ -22,7 +22,8 @@ export default {
 </script>
 <style>
 .content {
-  background-color: #eaecee;
+  background-color: none;
+  align-items: center justify;
 }
 
 .my-card {

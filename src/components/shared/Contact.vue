@@ -3,52 +3,50 @@
     <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
     <v-form v-else>
       <v-row justify="center">
-        <h1 class="center">{{ Titulo }}</h1>
+        <v-col cols="12">
+        <div class="center h2">{{ Titulo }}</div>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12">
+        <div class="center w-auto">{{ Subtitulo }}</div>
+        </v-col>
       </v-row>
       <v-row justify="center">
-        <div>{{ Subtitulo }}</div>
-      </v-row>
-      <v-row justify="center">
-        <v-col>
-          <v-text-field class="contactFom" density="compact" variant="solo" type="text" label="Nombre completo"
+        <v-col cols="12">
+          <v-text-field class="contactFom" density="compact" variant="outlined" type="text" label="Nombre completo"
             v-model="data.fullname" :error-messages="v$.data.fullname.$errors.map(e => e.$message)"
             @input="v$.data.fullname.$touch" @blur="v$.data.fullname.$touch"></v-text-field>
-
         </v-col>
       </v-row>
-      <v-row justify="center">
-        <v-col>
-          <v-text-field class="contactFom" density="compact" variant="solo" label="Teléfono" type="number"
+      <v-row>
+        <v-col cols="12">
+          <v-text-field class="contactFom" density="compact" variant="outlined" label="Teléfono" type="number"
             v-model="data.cellphone" :error-messages="v$.data.cellphone.$errors.map(e => e.$message)"
-            @input="v$.data.cellphone.$touch" @blur="v$.data.cellphone.$touch"></v-text-field>
-        </v-col>
+            @input="v$.data.cellphone.$touch" @blur="v$.data.cellphone.$touch"></v-text-field> </v-col>
       </v-row>
-      <v-row justify="center">
-        <v-col>
-          <v-text-field class="contactFom" density="compact" variant="solo" type="email" label="correo electrónico"
+      <v-row>
+        <v-col cols="12">
+          <v-text-field class="contactFom" density="compact" variant="outlined" type="email" label="correo electrónico"
             v-model="data.email" :error-messages="v$.data.email.$errors.map(e => e.$message)"
             @input="v$.data.email.$touch" @blur="v$.data.email.$touch"></v-text-field>
         </v-col>
       </v-row>
-      <v-row justify="center">
-        <v-col>
-          <v-text-field class="contactFom" density="compact" variant="solo" label="Mensaje" type="text"
+      <v-row>
+        <v-col cols="12">
+          <v-textarea class="contactFom" density="compact" auto-grow="4" variant="outlined" label="Mensaje" type="text"
             v-model="data.message" :error-messages="v$.data.message.$errors.map(e => e.$message)"
-            @input="v$.data.message.$touch" @blur="v$.data.message.$touch"></v-text-field>
+            @input="v$.data.message.$touch" @blur="v$.data.message.$touch"></v-textarea>
         </v-col>
       </v-row>
       <v-row>
-        <v-col class="centerButton" fluid>
-          <button-secondary :IsDisabled="this.v$.$invalid" Text="ENVIAR MENSAJE" 
-            Icon="mdi-send" 
-            color="primary3" 
-            variant="flat"
-            @click="onClickButtonSend" />
-        </v-col>
-      </v-row>
-      <v-row justify="center">
-        <v-col>
-          <label>Al enviar mensaje acepto los Términos y Condiciones y las Políticas de Privacidad</label>
+        <v-col cols="12">
+          <div class="text-center mx-auto">
+            <button-secondary :IsDisabled="this.v$.$invalid" Text="ENVIAR MENSAJE" Icon="mdi-send" color="primary3"
+              class="btnCustom" @click="onClickButtonSend" />
+            <br />
+            <label>Al enviar mensaje acepto los Términos y Condiciones y las Políticas de Privacidad</label>
+          </div>
         </v-col>
       </v-row>
     </v-form>
@@ -118,7 +116,6 @@ export default {
   },
   methods: {
     async onClickButtonSend() {
-      debugger
       if (this.v$.$invalid) {
         dialogError({
           title: "Error",
@@ -176,20 +173,34 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.center {
-  margin: auto;
-  padding: 10px;
-}
-
 .contactFom {
   width: 394px;
   margin: auto;
+  min-width: 320px;
 }
 
-.centerButton {
-  align-items: center;
-  justify-content: center;
-  display: flex;
+.btnCustom {
+  width: 394px;
+  margin-left: -10;
+  margin-right: -10;
+  padding: 10px;
+  min-width: 394px;
+}
 
+
+@media only screen and (max-width: 767px) {
+  .contactFom {
+    width: 288px;
+    margin: auto;
+    min-width: 288px;
+  }
+
+  .btnCustom {
+    width: 288px;
+    margin-left: -10;
+    margin-right: -10;
+    padding: 10px;
+    min-width: 288px;
+  }
 }
 </style>
