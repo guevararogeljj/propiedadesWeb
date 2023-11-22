@@ -2,7 +2,8 @@
   <div class="content">
     <br>
     <v-row>
-      <h1 class="center">Preguntas Frecuentes</h1>
+      <span class="h1 color-black center"> Preguntas Frecuentes</span>&nbsp;
+      <!-- <h1 class="center">Preguntas Frecuentes</h1> -->
     </v-row>
     <br>
     <v-col cols="12">

@@ -1,5 +1,6 @@
 <template>
-  <div class="pb-3 wrapper desktop-style">
+  <v-container>
+  <div class="wrapper desktop-style">
     <div class="row">
       <div class="col-12 maintext">{{ MainText }}</div>
       <div class="col-12 minortext mt-1">{{ MinorText }}</div>
@@ -41,6 +42,7 @@
       </v-col>
     </v-row>
   </div>
+</v-container>
 </template>
   
 <script>
@@ -282,12 +284,13 @@ export default {
 /* Apply desktop styles */
 @media only screen and (min-width: 900px) {
   .desktop-style {
-    display: block;
+
     /* Show on desktop */
     background-image: url("@/assets/backgroundFinder.jpeg");
     background-size: cover;
-    background-position: center;
     border-radius: 26px;
+    // width: 1242px;
+    // height: 500px;
   }
 }
 

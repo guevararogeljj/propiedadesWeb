@@ -120,7 +120,7 @@ import OrderBar from "@/components/common/shared/OrderBar.vue";
 import pagination from "@/components/common/shared/Pagination.vue";
 import propertyCard from "@/components/common/shared/PropertyCard.vue";
 import PropertyCardIconBar from "@/components/common/shared/PropertyCardIconBar.vue";
-import propexample from "@/assets/propexample.jpg";
+// import propexample from "@/assets/propexample.jpg";
 export default {
   components: {
     buscador,

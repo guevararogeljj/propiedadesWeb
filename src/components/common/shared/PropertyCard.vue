@@ -67,7 +67,7 @@
 </template>
   
 <script>
-
+import propsample from "@/assets/propsample.jpeg";
 export default {
   components: {
     // PropertyCardIconBar,
@@ -119,6 +119,7 @@ export default {
       const price = currencESLocale.format(this.Price, {
         style: "currency",
         currency: "USD",
+        
       });
       return `$${price}`;
     },

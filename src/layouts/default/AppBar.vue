@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content" >
     <v-app-bar app>
    
       <v-app-bar-nav-icon @click="drawer = true" class="d-flex d-sm-none"></v-app-bar-nav-icon>
@@ -12,7 +12,7 @@
         <v-btn variant="text" @click="navigateInicio">Inicio</v-btn>
         <v-btn variant="text" @click="navigateCatalogo">Catálogo</v-btn>
         <v-btn variant="text" @click="navigateUs">Nosotros</v-btn>
-        <v-btn variant="text">Hola Armando</v-btn>
+        <!-- <v-btn variant="text">Hola Armando</v-btn> -->
       </v-toolbar-items>
 
     </v-app-bar>

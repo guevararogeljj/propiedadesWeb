@@ -9,7 +9,7 @@
 
     <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
     <div v-else>
-      <finder :OnClickBuscar="onClickBuscar" :isTipoInmueble="true" :isEstado="true" :isMunicipio="true"
+      <finder  :OnClickBuscar="onClickBuscar" :isTipoInmueble="true" :isEstado="true" :isMunicipio="true"
         MainText="Invierte hoy en propiedades de oportunidad" MinorText="" :changeBtn="true" />
       <div class="salto"></div>
       <find-oportunity />

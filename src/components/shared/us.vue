@@ -16,24 +16,24 @@
     <v-row>
       <v-col cols="12">
         <div style="text-align: center;">
-          <video style="width: 100%; height: auto;" controls>
+          <video style="width: 929.875px; height: 525.99px; flex-shrink: 0;" controls>
             <source src="https://finastrategy.mx/wp-content/uploads/2023/09/Capsula%2001_Nosotros.mp4" type="video/mp4">
           </video>
         </div>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col cols="12" md="7">
-        <div class="bannerHappy center"></div>
-      </v-col>
-      <v-col cols="12" md="4" class="center"> <!-- Columna derecha -->
-        <label class="textCenter h4" color="primary">Invierte hoy en tu patrimonio</label>
+    <div class="containerus  center">
+      <div class="left-div">
+      </div>
+      <div class="right-div">
+        <label class="h4" color="primary">Invierte hoy en tu patrimonio</label>
         <br>
-        <label class="textCenter h1" color="primary">Tu oportunidad de encontrar tu lugar soñado está aquí </label>
+        <label class="h1" style="width: 505px; height: 159px; justify-items: end;" color="primary">Tu oportunidad de
+          encontrar tu lugar soñado está aquí </label>
         <br>
-        <ButtonSecondary color="primary3"  @click="ToCatalog()" Text="Ver propiedades" width="324px"  />
-      </v-col>
-    </v-row>
+        <ButtonSecondary color="primary5" class="btn" @click="ToCatalog()" Text="Ver propiedades" width="324px" />
+      </div>
+    </div>
     <v-row>
       <Contact class="center" />
     </v-row>
@@ -75,12 +75,38 @@ export default {
 };
 </script>
 <style scoped>
+.containerus {
+  display: flex;
+  width: 1242px;
+}
+
+.left-div {
+  flex: 1;
+  background-image: url("@/assets/persona-feliz-compra.png");
+  width: 705px;
+  height: 471px;
+  background-position: right;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  /* Agrega aquí otros estilos para el div de la izquierda */
+}
+
+.right-div {
+  flex: 1;
+  background-color: #379BEC;
+  color: white;
+  align-content: center;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-left: 20px;
+  /* Agrega aquí otros estilos para el div de la derecha */
+}
+
 .textCenter {
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
-
 }
 
 .center {
@@ -98,10 +124,19 @@ export default {
 
 .bannerHappy {
   background-image: url("@/assets/persona-feliz-compra.png");
-  width: 610px;
-  height: 407px;
-  position: relative;
-  z-index: 1;
+  width: 705px;
+  height: 471px;
+  background-position: right top;
+
+}
+
+.btn {
+  display: flex;
+  width: 394px;
+  padding: 18px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 @media (max-width: 767px) {
@@ -109,9 +144,32 @@ export default {
     background-image: none;
     display: none;
   }
+
   .bannerHappy {
     background-image: none;
     display: none;
+  }
+
+  .left-div {
+  display: none;
+    /* Agrega aquí otros estilos para el div de la izquierda */
+  }
+
+  .right-div {
+    display: flex;
+    flex: 1;
+    background-color: #379BEC;
+    color: white;
+    align-content: center;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-left: 20px;
+    /* Agrega aquí otros estilos para el div de la derecha */
+  }
+
+  .containerus {
+    display: flex;
+    width: 600px;
   }
 }
 
@@ -120,10 +178,15 @@ export default {
   padding: 10px;
 }
 
+@media only screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 1) {
 
-.WordSection1 {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  .banner {
+    background-image: url("@/assets/nosotros-banner-finastrategy-0 5.png");
+    width: 800px;
+    height: 350px;
+    position: relative;
+    z-index: 1;
+  }
 }
 </style>
     

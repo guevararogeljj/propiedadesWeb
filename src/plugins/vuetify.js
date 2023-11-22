@@ -28,6 +28,7 @@ export default createVuetify({
           primary2: '#1283DE',
           primary3: '#379BEC',
           primary4: '#62B2F3',
+          primary5: '#E3F1FC',
           secondary: '#000000',
           secondary2: '#959DA4',
           secondary3: '#E0E2E4',

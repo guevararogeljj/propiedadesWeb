@@ -35,7 +35,7 @@
       </v-row>
       <v-row>
         <v-col cols="12">
-          <v-textarea class="contactFom" density="compact" auto-grow="4" variant="outlined" label="Mensaje" type="text"
+          <v-textarea class="contactFom" density="compact"  variant="outlined" label="Mensaje" type="text"
             v-model="data.message" :error-messages="v$.data.message.$errors.map(e => e.$message)"
             @input="v$.data.message.$touch" @blur="v$.data.message.$touch"></v-textarea>
         </v-col>
