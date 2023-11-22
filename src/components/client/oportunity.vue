@@ -3,14 +3,16 @@
     <!-- <h1 class="center">{{title}}</h1> -->
     <span class="h1 color-black center"> {{ title }}</span>&nbsp;
     <v-col cols="12">
-      <v-carousel hide-delimiters :cycle="false" :show-arrows="true" :show-indicators="false" :per-page="1">
-        <v-carousel-item v-for="(group, index) in carouselGroups" :key="index">
+      <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
+      <v-carousel v-else hide-delimiters :cycle="false" :show-arrows="true" :show-indicators="false" :per-page="1">
+        <v-carousel-item v-for="(group, index) in groupedData" :key="index">
           <v-row>
             <v-col v-for="(item, itemIndex) in group" :key="itemIndex" cols="4">
               <div :class="`tp-product-item-2 ${spacing ? 'mb-40' : ''}`">
                 <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img card-border"
                   style="background-color: #f2f3f5">
-                  <img :src="item.imageSrc" @click="onClickTitle" alt="property"  />
+                  <img src="https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg" @click="onClickTitle"
+                    alt="property" />
                   <div class="tp-product-action-2 tp-product-action-blackStyle">
                     <div class="tp-product-action-item-2 d-flex flex-column">
                       <div class="d-inline col-12 d-flex justify-content-end">
@@ -21,39 +23,35 @@
                   <div class="tp-product-content-2 pt-15">
                     <div class="tp-product-tag-2">
                       <span class="tooltip-custom">
-                      <!-- <span class="tooltip-custom" :data-text="Title"> -->
-                        <!-- {{ textTruncateTitle }} -->
-                        titulo
-                        <!-- <a v-if="this.Title.length > 30"> ... </a> -->
+                        <!-- <span class="tooltip-custom" :data-text="Title"> -->
+                        {{ textTruncateTitle(item.title) }}
+
+                        <a v-if="item.title.length > 30"> ... </a>
                       </span>
                     </div>
                     <div class="tp-product-title-2">
                       <div class="card-text mt-3 card-text-price d-flex justify-content-start">
-                        MXN
+                        {{ priceFormated(item.price) }} MXN
                       </div>
                       <div class="card-text card-text-state">
                         <div class="row">
                           <div class="d-inline col-10 d-flex justify-content-start">
-                            <!-- {{ State }} -->
-                            estado
+                            {{ item.state }}
                           </div>
                           <div class="card-text card-text-city d-flex justify-content-start">
-                            detalles
-                            <!-- <label v-if="(textTruncate.length > 1)">
-                <label v-if="isExpanded" @click="(isExpanded = false)">
-                  {{ textTruncate[0] + textTruncate[1] }}
-                </label>
-                <label v-else>
-                  {{ textTruncate[0] }} <a v-if="!isExpanded"> ... </a>
-                </label>
-
-              </label>
-              <label v-else>
-                {{ textTruncate[0] }}
-              </label> -->
                           </div>
                           <div class="mt-2">
-                            <slot name="iconbar"></slot>
+                            <!-- <slot name="iconbar"></slot> -->
+                            <PropertyCardIconBar
+                            class="d-none d-sm-block"
+                            :LivingSize="item.constructionsize"
+                            :BathsQuantity="item.bathrooms"
+                            :BebsQuantity="item.rooms"
+                            :ConstructionSize="item.constructionsize"
+                            :ParkingLots="item.parkingspaces"
+                            ConstructionSizeUnits="m²"
+                            LivinSizeUnits="m²"
+                          ></PropertyCardIconBar>
                           </div>
                           <div class="d-inline col-12 d-flex justify-content-end">
                             <!-- <slot name="favoritebar"></slot> -->
@@ -88,6 +86,7 @@ import {
   default as signinservice,
   default as usersignin,
 } from "@/core/services/userservice";
+import PropertyCardIconBar from "@/components/common/shared/PropertyCardIconBar.vue";
 export default {
   name: "CarouselExample",
   props: {
@@ -96,44 +95,28 @@ export default {
       default: "Oportunidades",
     },
   },
+  components: {
+    PropertyCardIconBar,
+  },
   data: () => ({
     isExpanded: false,
     spacing: true,
-    model: 0,
-    carouselGroups: [
-      [
-        { imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg', altText: 'Imagen 1' },
-        { imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg', altText: 'Imagen 2' },
-        { imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg', altText: 'Imagen 3' }
-      ],
-      [
-        { imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg', altText: 'Imagen 4' },
-        { imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg', altText: 'Imagen 5' },
-        { imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg', altText: 'Imagen 6' }
-      ],
-      [
-        { imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg', altText: 'Imagen 4' },
-        { imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg', altText: 'Imagen 5' },
-        { imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg', altText: 'Imagen 6' }
-      ],
-      // Agrega más grupos de imágenes para completar las 12 imágenes
-    ],
     propiedades: [],
-      currentPage: 1,
-      totalItems: 0,
-      perPage: 9,
-      ParamsProperties: {},
-      ItemSourcePagination: [],
-      ordenProperties: "",
-      outState: "",
-      outPropertyType: "",
-      outCity: "",
-      outPrice: "",
-      outRooms: "",
-      outBathrooms: "",
-      outProceduraStage: "",
-      showModalLoginRequest: false,
-      isLoading: false,
+    currentPage: 1,
+    totalItems: 0,
+    perPage: 9,
+    ParamsProperties: {},
+    ItemSourcePagination: [],
+    ordenProperties: "",
+    outState: "",
+    outPropertyType: "",
+    outCity: "",
+    outPrice: "",
+    outRooms: "",
+    outBathrooms: "",
+    outProceduraStage: "",
+    showModalLoginRequest: false,
+    isLoading: false,
   }),
   methods: {
     async loadProperties(properties) {
@@ -185,6 +168,32 @@ export default {
       this.totalItems = properties.result.result.count;
       this.propiedades = properties.result.result.items;
       this.isLoading = this.Loading(false);
+    },
+    textTruncateTitle(title) {
+      if (title.length > 30) return title.trim().substring(0, 30)
+      else return title.trim()
+    },
+    textTruncate(settlement, city) {
+      let array = [];
+      const ubiDescription = settlement.trim() + ',' + city.trim();
+
+      if (ubiDescription.length > 36) {
+        array.push(ubiDescription.substring(0, 35));
+        array.push(ubiDescription.substring(35, ubiDescription.length));
+      }
+      else {
+        array.push(ubiDescription);
+      }
+      return array;
+    },
+    priceFormated(prices) {
+      let currencESLocale = Intl.NumberFormat("es-MX");
+      const price = currencESLocale.format(prices, {
+        style: "currency",
+        currency: "USD",
+
+      });
+      return `$${price}`;
     },
   },
   async mounted() {
@@ -259,6 +268,15 @@ export default {
     getRequestsaved() {
       return this.$store.getters.getRequestsaved;
     },
+    groupedData() {
+      // Agrupa los elementos del JSON en grupos de 3x3
+      const groups = [];
+      for (let i = 0; i < this.propiedades.length; i += 3) {
+        groups.push(this.propiedades.slice(i, i + 3));
+      }
+      return groups;
+    },
+
   },
 };
 </script>
