@@ -1,8 +1,11 @@
 <template>
-  <v-row class="content">
+  <v-row>
+        <span class="h1 color-black center"> {{ title }}</span>
+  </v-row>
+  <v-row>
     <!-- <h1 class="center">{{title}}</h1> -->
-    <span class="h1 color-black center"> {{ title }}</span>&nbsp;
-    <v-col cols="12">
+    <!-- <span class="h1 color-black center"> {{ title }}</span> -->
+    <v-col cols="14">
       <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
       <v-carousel v-else hide-delimiters :cycle="false" :show-arrows="true" :show-indicators="false" :per-page="1">
         <v-carousel-item v-for="(group, index) in groupedData" :key="index">
@@ -52,6 +55,7 @@
                             ConstructionSizeUnits="m²"
                             LivinSizeUnits="m²"
                           ></PropertyCardIconBar>
+
                           </div>
                           <div class="d-inline col-12 d-flex justify-content-end">
                             <!-- <slot name="favoritebar"></slot> -->
@@ -60,8 +64,8 @@
                         </div>
                       </div>
                     </div>
-                    <div class="tp-product-rating-icon tp-product-rating-icon-2">
-
+                    <div class="tp-product tp-product-rating-icon-2">
+                      <ButtonSecondary  class="btn" @click="ToCatalog()" Text="Ver detalles"  />
                     </div>
                     <div class="tp-product-price-wrapper-2">
                     </div>
@@ -74,13 +78,19 @@
       </v-carousel>
     </v-col>
   </v-row>
-  <v-row>
 
+  <v-row>
+    <v-col cols="12">
+          <div class="text-center mx-auto">
+            <button-secondary  Text="ver listado completo"  color="primary3"
+              class="btnCustom" @click="onClickButtonSend" width="394px" />
+          </div>
+        </v-col>
   </v-row>
 </template>
 
 <script>
-
+import ButtonSecondary from "../common/ButtonSecondary.vue";
 import propservice from "@/core/services/propservice";
 import {
   default as signinservice,
@@ -97,6 +107,7 @@ export default {
   },
   components: {
     PropertyCardIconBar,
+    ButtonSecondary,
   },
   data: () => ({
     isExpanded: false,
@@ -281,6 +292,14 @@ export default {
 };
 </script>
 <style scoped>
+.btn {
+  display: flex;
+  width: 394px;
+  padding: 18px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
 .center {
   margin: auto;
   padding: 10px;

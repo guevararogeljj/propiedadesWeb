@@ -7,7 +7,7 @@
       <router-link to="/privacyPolicy" class="h7"> y Política de privacidad</router-link>
     </v-alert>
 
-    <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
+    <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image"></v-skeleton-loader>
     <div v-else>
       <finder  :OnClickBuscar="onClickBuscar" :isTipoInmueble="true" :isEstado="true" :isMunicipio="true"
         MainText="Invierte hoy en propiedades de oportunidad" MinorText="" :changeBtn="true" />
