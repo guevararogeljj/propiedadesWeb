@@ -1,20 +1,20 @@
 <template>
-  <v-row>
-        <span class="h1 color-black center"> {{ title }}</span>
+<v-row>
+    <span class="h1 color-black center"> {{ title }}</span>
   </v-row>
   <v-row>
     <!-- <h1 class="center">{{title}}</h1> -->
     <!-- <span class="h1 color-black center"> {{ title }}</span> -->
     <v-col cols="14">
       <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
-      <v-carousel v-else hide-delimiters :cycle="false" :show-arrows="true" :show-indicators="false" :per-page="1">
+      <v-carousel v-else hide-delimiters height="w-auto" :cycle="false" :show-arrows="true" :show-indicators="false" :per-page="1">
         <v-carousel-item v-for="(group, index) in groupedData" :key="index">
           <v-row>
-            <v-col v-for="(item, itemIndex) in group" :key="itemIndex" cols="4">
+            <v-col v-for="(item, itemIndex) in group" :key="itemIndex" cols="4" style="height: 800;">
               <div :class="`tp-product-item-2 ${spacing ? 'mb-40' : ''}`">
                 <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img card-border"
                   style="background-color: #f2f3f5">
-                  <img src="https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg" @click="onClickTitle"
+                  <img :src="item.thumbnail"  @click="onClickTitle" height="296" 
                     alt="property" />
                   <div class="tp-product-action-2 tp-product-action-blackStyle">
                     <div class="tp-product-action-item-2 d-flex flex-column">
@@ -28,7 +28,6 @@
                       <span class="tooltip-custom">
                         <!-- <span class="tooltip-custom" :data-text="Title"> -->
                         {{ textTruncateTitle(item.title) }}
-
                         <a v-if="item.title.length > 30"> ... </a>
                       </span>
                     </div>
@@ -41,11 +40,12 @@
                           <div class="d-inline col-10 d-flex justify-content-start">
                             {{ item.state }}
                           </div>
-                          <div class="card-text card-text-city d-flex justify-content-start">
-                          </div>
-                          <div class="mt-2">
-                            <!-- <slot name="iconbar"></slot> -->
-                            <PropertyCardIconBar
+                          <br />
+                          
+
+                        </div>
+                        <v-col>
+                          <PropertyCardIconBar
                             class="d-none d-sm-block"
                             :LivingSize="item.constructionsize"
                             :BathsQuantity="item.bathrooms"
@@ -55,13 +55,7 @@
                             ConstructionSizeUnits="m²"
                             LivinSizeUnits="m²"
                           ></PropertyCardIconBar>
-
-                          </div>
-                          <div class="d-inline col-12 d-flex justify-content-end">
-                            <!-- <slot name="favoritebar"></slot> -->
-                          </div>
-                          <div class="card-text card-text-state d-flex justify-content-end"></div>
-                        </div>
+                        </v-col>
                       </div>
                     </div>
                     <div class="tp-product tp-product-rating-icon-2">
@@ -76,22 +70,35 @@
           </v-row>
         </v-carousel-item>
       </v-carousel>
+
     </v-col>
+
   </v-row>
 
   <v-row>
     <v-col cols="12">
-          <div class="text-center mx-auto">
-            <button-secondary  Text="ver listado completo"  color="primary3"
-              class="btnCustom" @click="onClickButtonSend" width="394px" />
-          </div>
-        </v-col>
+      <div class="text-center mx-auto">
+        <button-secondary
+          Text="ver listado completo"
+          color="primary3"
+          class="btnCustom"
+          @click="onClickButtonSend"
+          width="394px"
+        />
+      </div>
+    </v-col>
   </v-row>
 </template>
 
-<script>
+<script type="ts">
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Pagination } from "swiper/modules";
+import SvgSectionLine from "@/components/svg/section-line.vue";
+import SvgRightArrow from "@/components/svg/right-arrow.vue";
+import product_data from "@/core/data/product-data";
 import ButtonSecondary from "../common/ButtonSecondary.vue";
 import propservice from "@/core/services/propservice";
+import item_client from "@/components/client/modulo-oportunidades/item_client.vue";
 import {
   default as signinservice,
   default as usersignin,
@@ -108,6 +115,9 @@ export default {
   components: {
     PropertyCardIconBar,
     ButtonSecondary,
+    SvgSectionLine,
+    item_client,
+    SvgRightArrow,
   },
   data: () => ({
     isExpanded: false,
@@ -128,6 +138,9 @@ export default {
     outProceduraStage: "",
     showModalLoginRequest: false,
     isLoading: false,
+    offer_products: product_data.filter(
+      (p) => p.productType === "electronics" && p.offerDate
+    ),
   }),
   methods: {
     async loadProperties(properties) {
@@ -208,6 +221,8 @@ export default {
     },
   },
   async mounted() {
+
+
     let properties = [];
     if (this.getRequestsaved) {
       this.outBathrooms = this.state.filterSaved.bathrooms;
@@ -292,6 +307,13 @@ export default {
 };
 </script>
 <style scoped>
+.carrusel {
+
+height: 296px;
+flex-shrink: 0;
+border-radius: 22px 22px 0px 0px;
+background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+}
 .btn {
   display: flex;
   width: 394px;
@@ -300,6 +322,7 @@ export default {
   align-items: center;
   gap: 10px;
 }
+
 .center {
   margin: auto;
   padding: 10px;
@@ -307,9 +330,7 @@ export default {
 
 .color-black {
   color: #000000 !important;
-
 }
-
 
 .card-border {
   border-radius: 22px;
@@ -317,12 +338,13 @@ export default {
 
 .card {
   background: #ffffff;
-  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.14)) drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.12)) drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.14))
+    drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.12))
+    drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.2));
   border-radius: 8px;
 }
 
 .card-img-top {
-
   cursor: pointer;
 }
 
@@ -389,7 +411,7 @@ export default {
   width: 224px;
   height: 39px;
 
-  background: #D60101;
+  background: #d60101;
   border-radius: 6px;
 
   font-family: "Roboto";
@@ -424,6 +446,23 @@ export default {
   text-align: center;
   font-size: 0.7em;
   display: none;
+}
+.carousel {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px; /* Adjust the gap between items as needed */
+}
+
+.item {
+  /* Add your styles for the carousel items */
+  width: 100%;
+  height: 100px; /* Adjust the height of the items as needed */
+  background-color: #ccc;
 }
 
 .tooltip-custom:hover:before {
