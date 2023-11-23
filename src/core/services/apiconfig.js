@@ -13,7 +13,7 @@ export default () => {
 
     return axios.create(
         {
-            baseURL: import.meta.env.VITE_APP_ROOT_API,
+            baseURL: "https://apipropiedadesqa.finastrategy.mx/api" ,
         }
     );
 }
