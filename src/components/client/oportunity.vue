@@ -131,7 +131,6 @@ export default {
   }),
   methods: {
     async loadProperties(properties) {
-      // console.log('1. loadProperties.properties', properties);
       let favorites = await usersignin.favorites({
         cellphone: this.state.userdata.cellphone,
       });
@@ -168,16 +167,16 @@ export default {
 
       if (this.state.isLogin) {
         const propertiesandfavorites = await this.loadProperties(
-          properties.result.result.items
+          properties.result.items
         );
 
         this.ItemSourcePagination = propertiesandfavorites;
       } else {
-        this.ItemSourcePagination = properties.result.result.items;
+        this.ItemSourcePagination = properties.result.items;
       }
 
-      this.totalItems = properties.result.result.count;
-      this.propiedades = properties.result.result.items;
+      this.totalItems = properties.result.count;
+      this.propiedades = properties.result.items;
       this.isLoading = this.Loading(false);
     },
     textTruncateTitle(title) {
@@ -219,7 +218,7 @@ export default {
       this.outBathrooms = this.state.filterSaved.bathrooms;
       this.outState = this.state.filterSaved.state;
       console.log(this.state);
-      this.performSearch(this.getRequestsaved);
+       await this.performSearch(this.getRequestsaved);
     } else {
       this.isLoading = this.Loading(true);
       if (
@@ -247,16 +246,18 @@ export default {
 
       if (this.state.isLogin) {
         const propertiesandfavorites = await this.loadProperties(
-          properties.result.result.items
+          properties.result.items
         );
 
         this.ItemSourcePagination = propertiesandfavorites;
         this.isLoading = this.Loading(false);
       } else {
-        this.ItemSourcePagination = properties.result.result.items;
+        debugger;
+       console.log(properties);
+        this.ItemSourcePagination = properties.result.items;
       }
-      this.totalItems = properties.result.result.count;
-      this.propiedades = properties.result.result.items;
+      this.totalItems = properties.result.count;
+      this.propiedades = properties.result.items;
 
       this.isLoading = this.Loading(false);
     }
