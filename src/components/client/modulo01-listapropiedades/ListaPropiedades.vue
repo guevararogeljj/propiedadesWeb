@@ -54,7 +54,7 @@
           :Price="item.price"
           :Favorite="item.favorite"
           :Id="item.creditnumber"
-          Image='@/assets/propexample.jpg'
+          :Image="item.thumbnail ?? require('@/assets/propexample.svg')"
           :IsSold="item.sold"
         >
           <template v-slot:iconbar>

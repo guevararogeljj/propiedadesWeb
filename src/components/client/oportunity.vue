@@ -10,11 +10,11 @@
       <v-carousel v-else hide-delimiters :cycle="false" :show-arrows="true" :show-indicators="false" :per-page="1">
         <v-carousel-item v-for="(group, index) in groupedData" :key="index">
           <v-row>
-            <v-col v-for="(item, itemIndex) in group" :key="itemIndex" cols="4">
-              <div :class="`tp-product-item-2 ${spacing ? 'mb-40' : ''}`">
+            <v-col v-for="(item, itemIndex) in group" :key="itemIndex" cols="3" class="center" >
+              <div :class="`tp-product-item-2  ${spacing ? 'mb-40' : ''}`">
                 <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img card-border"
                   style="background-color: #f2f3f5">
-                  <img src="https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg" @click="onClickTitle"
+                  <img :src="item.thumbnail"  @click="onClickTitle" 
                     alt="property" />
                   <div class="tp-product-action-2 tp-product-action-blackStyle">
                     <div class="tp-product-action-item-2 d-flex flex-column">
@@ -28,7 +28,6 @@
                       <span class="tooltip-custom">
                         <!-- <span class="tooltip-custom" :data-text="Title"> -->
                         {{ textTruncateTitle(item.title) }}
-
                         <a v-if="item.title.length > 30"> ... </a>
                       </span>
                     </div>
@@ -252,8 +251,6 @@ export default {
         this.ItemSourcePagination = propertiesandfavorites;
         this.isLoading = this.Loading(false);
       } else {
-        debugger;
-       console.log(properties);
         this.ItemSourcePagination = properties.result.items;
       }
       this.totalItems = properties.result.count;
