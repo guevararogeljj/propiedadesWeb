@@ -14,7 +14,7 @@
               <div :class="`tp-product-item-2 ${spacing ? 'mb-40' : ''}`">
                 <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img card-border"
                   style="background-color: #f2f3f5">
-                  <img :src="item.thumbnail"  @click="onClickTitle" height="296" 
+                  <img src="https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg" @click="onClickTitle"
                     alt="property" />
                   <div class="tp-product-action-2 tp-product-action-blackStyle">
                     <div class="tp-product-action-item-2 d-flex flex-column">
@@ -144,7 +144,6 @@ export default {
   }),
   methods: {
     async loadProperties(properties) {
-      // console.log('1. loadProperties.properties', properties);
       let favorites = await usersignin.favorites({
         cellphone: this.state.userdata.cellphone,
       });
@@ -181,16 +180,16 @@ export default {
 
       if (this.state.isLogin) {
         const propertiesandfavorites = await this.loadProperties(
-          properties.result.result.items
+          properties.result.items
         );
 
         this.ItemSourcePagination = propertiesandfavorites;
       } else {
-        this.ItemSourcePagination = properties.result.result.items;
+        this.ItemSourcePagination = properties.result.items;
       }
 
-      this.totalItems = properties.result.result.count;
-      this.propiedades = properties.result.result.items;
+      this.totalItems = properties.result.count;
+      this.propiedades = properties.result.items;
       this.isLoading = this.Loading(false);
     },
     textTruncateTitle(title) {
@@ -234,7 +233,7 @@ export default {
       this.outBathrooms = this.state.filterSaved.bathrooms;
       this.outState = this.state.filterSaved.state;
       console.log(this.state);
-      this.performSearch(this.getRequestsaved);
+       await this.performSearch(this.getRequestsaved);
     } else {
       this.isLoading = this.Loading(true);
       if (
@@ -262,16 +261,16 @@ export default {
 
       if (this.state.isLogin) {
         const propertiesandfavorites = await this.loadProperties(
-          properties.result.result.items
+          properties.result.items
         );
 
         this.ItemSourcePagination = propertiesandfavorites;
         this.isLoading = this.Loading(false);
       } else {
-        this.ItemSourcePagination = properties.result.result.items;
+        this.ItemSourcePagination = properties.result.items;
       }
-      this.totalItems = properties.result.result.count;
-      this.propiedades = properties.result.result.items;
+      this.totalItems = properties.result.count;
+      this.propiedades = properties.result.items;
 
       this.isLoading = this.Loading(false);
     }

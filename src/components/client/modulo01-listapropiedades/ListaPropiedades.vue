@@ -54,7 +54,7 @@
           :Price="item.price"
           :Favorite="item.favorite"
           :Id="item.creditnumber"
-          :Image="item.thumbnail ?? propexample"
+          :Image="item.thumbnail ?? require('@/assets/propexample.svg')"
           :IsSold="item.sold"
         >
           <template v-slot:iconbar>
@@ -120,7 +120,7 @@ import OrderBar from "@/components/common/shared/OrderBar.vue";
 import pagination from "@/components/common/shared/Pagination.vue";
 import propertyCard from "@/components/common/shared/PropertyCard.vue";
 import PropertyCardIconBar from "@/components/common/shared/PropertyCardIconBar.vue";
-import propexample from "@/assets/propexample.jpg";
+// import propexample from "@/assets/propexample.jpg";
 export default {
   components: {
     buscador,
@@ -149,7 +149,7 @@ export default {
       outBathrooms: "",
       outProceduraStage: "",
       showModalLoginRequest: false,
-      propexample,
+      // propexample,
       isLoading: false,
     };
   },
@@ -198,16 +198,16 @@ export default {
 
       if (this.state.isLogin) {
         const propertiesandfavorites = await this.loadProperties(
-          properties.result.result.items
+          properties.result.items
         );
 
         this.ItemSourcePagination = propertiesandfavorites;
       } else {
-        this.ItemSourcePagination = properties.result.result.items;
+        this.ItemSourcePagination = properties.result.items;
       }
 
-      this.totalItems = properties.result.result.count;
-      this.propiedades = properties.result.result.items;
+      this.totalItems = properties.result.count;
+      this.propiedades = properties.result.items;
       this.isLoading = this.Loading(false);
     },
     async searchProps(currentPage, perPage) {
@@ -222,16 +222,16 @@ export default {
 
       if (this.state.isLogin) {
         const propertiesandfavorites = await this.loadProperties(
-          properties.result.result.items
+          properties.result.items
         );
 
         this.ItemSourcePagination = propertiesandfavorites;
       } else {
-        this.ItemSourcePagination = properties.result.result.items;
+        this.ItemSourcePagination = properties.result.items;
       }
 
-      this.totalItems = properties.result.result.count;
-      this.propiedades = properties.result.result.items;
+      this.totalItems = properties.result.count;
+      this.propiedades = properties.result.items;
       this.isLoading = this.Loading(false);
     },
     loadItemsToGrid(pageNumber, pageSize) {
@@ -312,16 +312,16 @@ export default {
 
       if (this.state.isLogin) {
         const propertiesandfavorites = await this.loadProperties(
-          properties.result.result.items
+          properties.result.items
         );
 
         this.ItemSourcePagination = propertiesandfavorites;
         this.isLoading = this.Loading(false);
       } else {
-        this.ItemSourcePagination = properties.result.result.items;
+        this.ItemSourcePagination = properties.result.items;
       }
-      this.totalItems = properties.result.result.count;
-      this.propiedades = properties.result.result.items;
+      this.totalItems = properties.result.count;
+      this.propiedades = properties.result.items;
 
       this.isLoading = this.Loading(false);
     }

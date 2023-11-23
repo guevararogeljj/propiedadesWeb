@@ -3,7 +3,7 @@ import api from "./apiconfig";
 export default {
 
     get() {
-        const url = import.meta.env.VITE_APP_ROOT_API + '/antiforgery';
+        const url = "https://apipropiedadesqa.finastrategy.mx/api"  + '/antiforgery';
         return api().get(url).then(result => {
             if (result.status == 200) {
                 if (result.data.success) {
