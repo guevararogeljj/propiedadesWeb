@@ -221,14 +221,14 @@ li,
   /**
   @font family declaration
   */
-  --tp-ff-body: 'Jost', sans-serif;
-  --tp-ff-heading: 'Jost', sans-serif;
-  --tp-ff-p: 'Jost', sans-serif;
-  --tp-ff-jost: 'Jost', sans-serif;
+  --tp-ff-body: 'Barlow';
+  --tp-ff-heading: 'Barlow';
+  --tp-ff-p: 'Barlow';
+  --tp-ff-jost: 'Barlow';
   --tp-ff-fontawesome: "Font Awesome 6 Pro";
-  --tp-ff-roboto: 'Roboto', sans-serif;
-  --tp-ff-oregano: 'Oregano', cursive;
-  --tp-ff-charm: 'Charm', cursive;
+  --tp-ff-roboto: 'Barlow';
+  --tp-ff-oregano: 'Barlow';
+  --tp-ff-charm: 'Barlow';
   /**
   @color declaration
   */
