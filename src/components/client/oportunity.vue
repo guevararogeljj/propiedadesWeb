@@ -1,10 +1,25 @@
 <template>
   <v-row>
-    <span class="h1 color-black center"> {{ title }}</span>
+    
+    <!-- <span class="h1 color-black center"> {{ title }}</span>     <div class="counter" style="margin-right: auto;">{{ this.totalItems }} Disponibles</div> -->
   </v-row>
+  <v-row>
+      <v-col cols="12" md="4">
+        <!-- Content for column 1 -->
+      </v-col>
+      <v-col cols="12" md="4">
+        <span class="h1 color-black"> {{ title }}</span>
+      </v-col>
+      <v-col cols="12" md="4">
+        <div class="counter" v-if="!this.isLoading">
+        <p class="counterText" >  {{ this.totalItems }} Disponibles </p>
+        </div>
+      </v-col>
+    </v-row>
   <v-row>
     <!-- <h1 class="center">{{title}}</h1> -->
     <!-- <span class="h1 color-black center"> {{ title }}</span> -->
+    
     <v-col cols="14">
       <v-skeleton-loader
         v-if="this.isLoading"
@@ -19,6 +34,7 @@
           :show-indicators="false"
           :per-page="1"
         >
+   
           <v-carousel-item v-for="(group, index) in groupedData" :key="index">
             <v-row>
               <v-col
@@ -290,28 +306,43 @@ export default {
 };
 </script>
 <style scoped>
-.carrusel {
-  height: 296px;
-  flex-shrink: 0;
-  border-radius: 22px 22px 0px 0px;
-  background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+.counterText{
+  color: var(--secundarios-600, #000);
+  text-align: center;
+  /* Heading/Semibold 1 */
+  font-family: Barlow;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px; /* 104% */
+  letter-spacing: -0.5px;
 }
-.btn {
-  display: flex;
-  width: 394px;
-  padding: 18px 16px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
+.counter{
 
+  width: 206px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: var(--alertas-yellow, #FFC101);
+  float: right;
+
+}
 .center {
   margin: auto;
   padding: 10px;
 }
 
 .color-black {
-  color: #000000 !important;
+  color: var(--primary-500, #379BEC);
+text-align: center;
+/* Heading/Large1 */
+font-family: Barlow;
+font-size: 48px;
+font-style: normal;
+font-weight: 500;
+line-height: 52.83px; /* 110.063% */
+letter-spacing: -1.44px;
+
 }
 
 .card-border {

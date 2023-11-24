@@ -1,5 +1,31 @@
 <template>
-  <v-card color="primary3" class="card-style">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#tab1">Elemento 1</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#tab2">Elemento 2</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#tab3">Elemento 3</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="tab1">
+      <h3>Contenido del elemento 1</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+    <div class="tab-pane fade" id="tab2">
+      <h3>Contenido del elemento 2</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+    <div class="tab-pane fade" id="tab3">
+      <h3>Contenido del elemento 3</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+  </div>
+  <!-- <v-card color="primary3" class="card-style">
     <v-card-title style="text-align: center;">
       <span class="title">Te apoyamos en tu proceso de compra</span>
     </v-card-title>
@@ -15,7 +41,7 @@
         </v-window-item>
       </v-window>
     </v-card-text>
-  </v-card>
+  </v-card> -->
 </template>
 
 <script>
