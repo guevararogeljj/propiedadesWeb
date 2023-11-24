@@ -3,7 +3,7 @@
     
     <v-row align="center" justify="center">
       <span class="h1 color-black">Encuentra la</span>&nbsp;
-      <span class="h1 color-primary">oportunidad de inversión </span>&nbsp;
+      &nbsp;<span class="h1 color-primary"> oportunidad de inversión </span>&nbsp;
     </v-row>
     <v-row  align="center" justify="center">
       <span class="h1 color-black">a tu medida</span>

@@ -1,78 +1,63 @@
 <template>
-<v-row>
+  <v-row>
     <span class="h1 color-black center"> {{ title }}</span>
   </v-row>
   <v-row>
     <!-- <h1 class="center">{{title}}</h1> -->
     <!-- <span class="h1 color-black center"> {{ title }}</span> -->
     <v-col cols="14">
-      <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
-      <v-carousel v-else hide-delimiters height="w-auto" :cycle="false" :show-arrows="true" :show-indicators="false" :per-page="1">
+      <v-skeleton-loader
+        v-if="this.isLoading"
+        class="mx-auto"
+        type="image, table"
+      ></v-skeleton-loader>
+      <v-carousel
+        v-else
+        hide-delimiters
+        height="w-auto"
+        :cycle="false"
+        :show-arrows="true"
+        :show-indicators="false"
+        :per-page="1"
+      >
         <v-carousel-item v-for="(group, index) in groupedData" :key="index">
           <v-row>
-            <v-col v-for="(item, itemIndex) in group" :key="itemIndex" cols="4" style="height: 800;">
-              <div :class="`tp-product-item-2 ${spacing ? 'mb-40' : ''}`">
-                <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img card-border"
-                  style="background-color: #f2f3f5">
-                  <img src="https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg" @click="onClickTitle"
-                    alt="property" />
-                  <div class="tp-product-action-2 tp-product-action-blackStyle">
-                    <div class="tp-product-action-item-2 d-flex flex-column">
-                      <div class="d-inline col-12 d-flex justify-content-end">
-                      </div>
-                    </div>
-                    <div class="card-text card-text-state d-flex justify-content-end"></div>
-                  </div>
-                  <div class="tp-product-content-2 pt-15">
-                    <div class="tp-product-tag-2">
-                      <span class="tooltip-custom">
-                        <!-- <span class="tooltip-custom" :data-text="Title"> -->
-                        {{ textTruncateTitle(item.title) }}
-                        <a v-if="item.title.length > 30"> ... </a>
-                      </span>
-                    </div>
-                    <div class="tp-product-title-2">
-                      <div class="card-text mt-3 card-text-price d-flex justify-content-start">
-                        {{ priceFormated(item.price) }} MXN
-                      </div>
-                      <div class="card-text card-text-state">
-                        <div class="row">
-                          <div class="d-inline col-10 d-flex justify-content-start">
-                            {{ item.state }}
-                          </div>
-                          <br />
-                          
-
-                        </div>
-                        <v-col>
-                          <PropertyCardIconBar
-                            class="d-none d-sm-block"
-                            :LivingSize="item.constructionsize"
-                            :BathsQuantity="item.bathrooms"
-                            :BebsQuantity="item.rooms"
-                            :ConstructionSize="item.constructionsize"
-                            :ParkingLots="item.parkingspaces"
-                            ConstructionSizeUnits="m²"
-                            LivinSizeUnits="m²"
-                          ></PropertyCardIconBar>
-                        </v-col>
-                      </div>
-                    </div>
-                    <div class="tp-product tp-product-rating-icon-2">
-                      <ButtonSecondary  class="btn" @click="ToCatalog()" Text="Ver detalles"  />
-                    </div>
-                    <div class="tp-product-price-wrapper-2">
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <v-col
+              v-for="(item, itemIndex) in group"
+              :key="itemIndex"
+              cols="4"
+              style="height: 800"
+            >
+              <oportunidadCard
+                :Title="item.title"
+                :OnClick="onClickProperty"
+                :Settlement="item.settlement"
+                :City="item.city"
+                :State="item.state"
+                :Price="item.price"
+                :Favorite="item.favorite"
+                :Id="item.creditnumber"
+                :Image="item.thumbnail ?? require('@/assets/propexample.svg')"
+                :IsSold="item.sold"
+              >
+                <template v-slot:iconbar>
+                  <PropertyCardIconBar
+                    class="d-none d-sm-block"
+                    :LivingSize="item.constructionsize"
+                    :BathsQuantity="item.bathrooms"
+                    :BebsQuantity="item.rooms"
+                    :ConstructionSize="item.constructionsize"
+                    :ParkingLots="item.parkingspaces"
+                    ConstructionSizeUnits="m²"
+                    LivinSizeUnits="m²"
+                  ></PropertyCardIconBar>
+                </template>
+              </oportunidadCard>
             </v-col>
           </v-row>
         </v-carousel-item>
       </v-carousel>
-
     </v-col>
-
   </v-row>
 
   <v-row>
@@ -104,6 +89,7 @@ import {
   default as usersignin,
 } from "@/core/services/userservice";
 import PropertyCardIconBar from "@/components/common/shared/PropertyCardIconBar.vue";
+import oportunidadCard from "@/components/client/modulo-oportunidades/oportunidadCard.vue";
 export default {
   name: "CarouselExample",
   props: {
@@ -118,6 +104,7 @@ export default {
     SvgSectionLine,
     item_client,
     SvgRightArrow,
+    oportunidadCard
   },
   data: () => ({
     isExpanded: false,
@@ -143,6 +130,9 @@ export default {
     ),
   }),
   methods: {
+    onClickProperty(id) {
+      this.$router.push({ name: "information", query: { id: id } });
+    },
     async loadProperties(properties) {
       let favorites = await usersignin.favorites({
         cellphone: this.state.userdata.cellphone,
@@ -307,11 +297,10 @@ export default {
 </script>
 <style scoped>
 .carrusel {
-
-height: 296px;
-flex-shrink: 0;
-border-radius: 22px 22px 0px 0px;
-background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+  height: 296px;
+  flex-shrink: 0;
+  border-radius: 22px 22px 0px 0px;
+  background: url(<path-to-image>), lightgray 50% / cover no-repeat;
 }
 .btn {
   display: flex;

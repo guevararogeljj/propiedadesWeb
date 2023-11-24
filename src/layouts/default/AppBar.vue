@@ -21,12 +21,13 @@
         </v-btn>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+
       <div class="hidden-sm-and-down" style="margin-right: 100px;">
-        <v-btn variant="text" color="primary3" @click="navigateInicio">Inicio</v-btn>
-        <v-btn variant="text" @click="navigateCatalogo">Catálogo</v-btn>
-        <v-btn variant="text" @click="navigateUs">Nosotros</v-btn>
-        <button-secondary  Text="Registrarme" />        
-        <v-btn color="primary3"  variant="flat" text @click="onButtonClick">Iniciar</v-btn>
+        <v-btn variant="text" class="lowercase-text"  color="primary3" @click="navigateInicio">Inicio</v-btn>
+        <v-btn variant="text"  class="lowercase-text" @click="navigateCatalogo">Catálogo</v-btn>
+        <v-btn variant="text"  class="lowercase-text" @click="navigateUs">Nosotros</v-btn>
+        <v-btn variant="text"  class="lowercase-text" >Registrarme</v-btn>
+        <v-btn color="primary3"  class="lowercase-text"  variant="flat" text @click="onButtonClick">Iniciar</v-btn>
       </div>
     
       
@@ -74,6 +75,9 @@ export default {
 };
 </script>
 <style scoped>
+.lowercase-text {
+  text-transform: capitalize;
+}
 .logoClass {
   background-image: url("https://finastrategy.mx/wp-content/themes/finastrategy/assets/img/logo-finastrategy.png");
   background-size: 189px;
