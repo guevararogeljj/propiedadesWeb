@@ -4,16 +4,9 @@
       class="tp-product-thumb-2 p-relative z-index-1 fix w-img card-border"
       style="background-color: #f2f3f5"
     >
-      <img :src="Image" alt="property" height="300" />
-      <!-- product action -->
-      <div class="tp-product-action-2 tp-product-action-blackStyle">
-        <div class="tp-product-action-item-2 d-flex flex-column">
-          <div class="d-inline col-12 d-flex justify-content-end"></div>
-          <slot name="favoritebar"></slot>
-        </div>
-        <div class="card-text card-text-state d-flex justify-content-end"></div>
-      </div>
-      <div class="tp-product-content-2 pt-15">
+      <img :src="Image" alt="property" height="250" />
+
+      <div class="tp-product-content-1 pt-5">
         <div class="tp-product-tag-2">
           <span class="tooltip-custom" :data-text="Title">
             {{ textTruncateTitle }}
@@ -48,6 +41,14 @@
               </div>
               <div class="mt-2">
                 <slot name="iconbar"></slot>
+                <div class="tp-product-price-wrapper-2 center">
+                  <ButtonSecondary
+                    color="primary3"
+                    class="btn"
+                    Text="Ver detalles"
+                    @click="onClickTitle"
+                  />
+                </div>
               </div>
               <div class="d-inline col-12 d-flex justify-content-end">
                 <!-- <slot name="favoritebar"></slot> -->
@@ -59,14 +60,6 @@
           </div>
         </div>
         <div class="tp-product-rating-icon tp-product-rating-icon-2"></div>
-        <div class="tp-product-price-wrapper-2">
-          <ButtonSecondary
-            color="primary3"
-            class="btn"
-            Text="Ver detalles"
-            @click="onClickTitle"
-          />
-        </div>
       </div>
     </div>
   </div>
@@ -145,10 +138,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.contenido {
+  max-height: 710;
+  min-height: 610;
+  height: 610;
+  background-color: #d60101;
+}
+.center {
+  margin: auto;
+  padding: 10px;
+}
 .btn {
   display: flex;
-  width: 394px;
-  padding: 18px 16px;
+  width: 347px;
+  padding: 17px 16px;
   justify-content: center;
   align-items: center;
   gap: 10px;

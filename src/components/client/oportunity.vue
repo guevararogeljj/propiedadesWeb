@@ -11,65 +11,59 @@
         class="mx-auto"
         type="image, table"
       ></v-skeleton-loader>
-      <v-carousel
-        v-else
-        hide-delimiters
-        height="w-auto"
-        :cycle="false"
-        :show-arrows="true"
-        :show-indicators="false"
-        :per-page="1"
-      >
-        <v-carousel-item v-for="(group, index) in groupedData" :key="index">
-          <v-row>
-            <v-col
-              v-for="(item, itemIndex) in group"
-              :key="itemIndex"
-              cols="4"
-              style="height: 800"
-            >
-              <oportunidadCard
-                :Title="item.title"
-                :OnClick="onClickProperty"
-                :Settlement="item.settlement"
-                :City="item.city"
-                :State="item.state"
-                :Price="item.price"
-                :Favorite="item.favorite"
-                :Id="item.creditnumber"
-                :Image="item.thumbnail ?? require('@/assets/propexample.svg')"
-                :IsSold="item.sold"
+      <div v-else>
+        <v-carousel
+          hide-delimiters
+          :cycle="false"
+          :show-arrows="true"
+          :show-indicators="false"
+          :per-page="1"
+        >
+          <v-carousel-item v-for="(group, index) in groupedData" :key="index">
+            <v-row>
+              <v-col
+                v-for="(item, itemIndex) in group"
+                :key="itemIndex"
+                cols="4"
               >
-                <template v-slot:iconbar>
-                  <PropertyCardIconBar
-                    class="d-none d-sm-block"
-                    :LivingSize="item.constructionsize"
-                    :BathsQuantity="item.bathrooms"
-                    :BebsQuantity="item.rooms"
-                    :ConstructionSize="item.constructionsize"
-                    :ParkingLots="item.parkingspaces"
-                    ConstructionSizeUnits="m²"
-                    LivinSizeUnits="m²"
-                  ></PropertyCardIconBar>
-                </template>
-              </oportunidadCard>
-            </v-col>
-          </v-row>
-        </v-carousel-item>
-      </v-carousel>
-    </v-col>
-  </v-row>
-
-  <v-row>
-    <v-col cols="12">
-      <div class="text-center mx-auto">
-        <button-secondary
-          Text="ver listado completo"
-          color="primary3"
-          class="btnCustom"
-          @click="onClickButtonSend"
-          width="394px"
-        />
+                <oportunidadCard
+                  :Title="item.title"
+                  :OnClick="onClickProperty"
+                  :Settlement="item.settlement"
+                  :City="item.city"
+                  :State="item.state"
+                  :Price="item.price"
+                  :Favorite="item.favorite"
+                  :Id="item.creditnumber"
+                  :Image="item.thumbnail ?? require('@/assets/propexample.svg')"
+                  :IsSold="item.sold"
+                >
+                  <template v-slot:iconbar>
+                    <PropertyCardIconBar
+                      class="d-none d-sm-block"
+                      :LivingSize="item.constructionsize"
+                      :BathsQuantity="item.bathrooms"
+                      :BebsQuantity="item.rooms"
+                      :ConstructionSize="item.constructionsize"
+                      :ParkingLots="item.parkingspaces"
+                      ConstructionSizeUnits="m²"
+                      LivinSizeUnits="m²"
+                    ></PropertyCardIconBar>
+                  </template>
+                </oportunidadCard>
+              </v-col>
+            </v-row>
+          </v-carousel-item>
+        </v-carousel>
+        <div class="text-center mx-auto">
+          <button-secondary
+            Text="ver listado completo"
+            color="primary3"
+            class="btnCustom"
+            @click="onClickButtonSend"
+            width="394px"
+          />
+        </div>
       </div>
     </v-col>
   </v-row>
