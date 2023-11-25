@@ -23,14 +23,15 @@
       <v-spacer></v-spacer>
 
       <div class="hidden-sm-and-down" style="margin-right: 100px;">
-        <v-btn variant="text" class="lowercase-text"  color="primary3" @click="navigateInicio">Inicio</v-btn>
-        <v-btn variant="text"  class="lowercase-text" @click="navigateCatalogo">Catálogo</v-btn>
-        <v-btn variant="text"  class="lowercase-text" @click="navigateUs">Nosotros</v-btn>
-        <v-btn variant="text"  class="lowercase-text" >Registrarme</v-btn>
-        <v-btn color="primary3"  class="lowercase-text"  variant="flat" text @click="onButtonClick">Iniciar</v-btn>
+
+        <v-btn variant="text" class="lowercase-text btnColor" @click="navigateInicio">Inicio</v-btn>
+        <v-btn variant="text" class="lowercase-text" @click="navigateCatalogo">Catálogo</v-btn>
+        <v-btn variant="text" class="lowercase-text" @click="navigateUs">Nosotros</v-btn>
+        <v-btn variant="flat" class="lowercase-text btnColor">Registrarme</v-btn>
+        <v-btn color="primary3" class="lowercase-text" variant="flat" text @click="onButtonClick">Iniciar</v-btn>
       </div>
-    
-      
+
+
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list nav dense>
@@ -76,8 +77,11 @@ export default {
 </script>
 <style scoped>
 .lowercase-text {
+  font-family: Barlow;
   text-transform: capitalize;
+  margin-right: 10px;
 }
+
 .logoClass {
   background-image: url("https://finastrategy.mx/wp-content/themes/finastrategy/assets/img/logo-finastrategy.png");
   background-size: 189px;
@@ -93,9 +97,24 @@ export default {
 }
 
 .btnColor {
-  background-color: #1a237e;
-  height: 140px;
-  color: white;
+  background-color: #f9b325;
+  color: #fff;
+  border-radius: 0px;
+  width: 106px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--primary-300, #E3F1FC);
+
+  color: var(--primary-500, #379BEC);
+  /* Text/Regular/Medium */
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  letter-spacing: -0.16px;
+  grid-gap: 10px;
 }
 
 @media (max-width: 767px) {
