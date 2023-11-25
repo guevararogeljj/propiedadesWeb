@@ -139,7 +139,8 @@
 	typography css start 
 ---------------------------------*/
 body {
-	font-family: var(--tp-ff-body);
+	// font-family: var(--tp-ff-body);
+	font-family: Barlow;
 	font-size: 14px;
 	font-weight: normal;
 	color: var(--tp-text-body);
@@ -156,7 +157,8 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: var(--tp-ff-heading);
+	// font-family: var(--tp-ff-heading);
+	font-family: Barlow;
 	color: var(--tp-heading-primary);
 	margin-top: 0px;
 	font-weight: 700;
@@ -194,7 +196,8 @@ ul {
 }
 
 p {
-	font-family: var(--tp-ff-p);
+	// font-family: var(--tp-ff-p);
+	font-family: Barlow;
 	font-size: 14px;
 	font-weight: 400;
 	color: var(--tp-text-body);

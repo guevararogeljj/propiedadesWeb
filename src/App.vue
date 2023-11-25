@@ -25,6 +25,7 @@ export default {
   background-color: none;
   align-items: center justify;
   width: 100%;
+  font-family: Barlow;
 }
 
 .my-card {

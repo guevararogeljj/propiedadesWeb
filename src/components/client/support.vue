@@ -1,37 +1,11 @@
 <template>
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#tab1">Elemento 1</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#tab2">Elemento 2</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#tab3">Elemento 3</a>
-    </li>
-  </ul>
-
-  <div class="tab-content">
-    <div class="tab-pane fade show active" id="tab1">
-      <h3>Contenido del elemento 1</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </div>
-    <div class="tab-pane fade" id="tab2">
-      <h3>Contenido del elemento 2</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </div>
-    <div class="tab-pane fade" id="tab3">
-      <h3>Contenido del elemento 3</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </div>
-  </div>
-  <!-- <v-card color="primary3" class="card-style">
+  <v-card color="primary3" class="card-style">
     <v-card-title style="text-align: center;">
       <span class="title">Te apoyamos en tu proceso de compra</span>
     </v-card-title>
-    <v-tabs v-model="activeTab" align-tabs="center" background-color="primary">
-      <v-tab v-for="tab in tabs" :key="tab.value" :value="tab.value" class="custom-tab">
-        {{ tab.title }}
+    <v-tabs v-model="activeTab" align-tabs="start">
+      <v-tab v-for="tab in tabs" :key="tab.value" :value="tab.value" selected-class="v-tab--active">
+        <p class="custom-tab"> {{ tab.title }}</p>
       </v-tab>
     </v-tabs>
     <v-card-text>
@@ -41,7 +15,7 @@
         </v-window-item>
       </v-window>
     </v-card-text>
-  </v-card> -->
+  </v-card>
 </template>
 
 <script>
@@ -62,14 +36,42 @@ export default {
 
 </script>
 <style scoped>
+.v-tab--active .custom-tab {
+  width: 228px;
+  border-radius: 40px;
+  background: var(--secundarios-blanco, #FFF);
+  color: var(--primary-500, #379BEC);
+
+}
+
+.v-tab {
+  /* color: rgba(255, 255, 255, 0.50); */
+  font-family: Barlow;
+  font-size: 20px;
+  /* 130% */
+  letter-spacing: -0.4px;
+}
+
+.v-tab:hover {
+  color: rgba(255, 255, 255, 0.50);
+  font-family: Barlow;
+  letter-spacing: -0.4px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.4px;
+  border-radius: 10px;
+}
 
 .card-text {
   text-align: justify;
   width: 70%;
 }
+
 .card-style {
   border-radius: 30px;
 }
+
 .asesor-inmobiliario {
   background-image: url("@/assets/asesor-inmobiliario.png");
   height: 586px;
@@ -89,9 +91,11 @@ export default {
     border-color: transparent;
     width: auto;
   }
+
   .card-style {
-  border-radius: 0px;
-}
+    border-radius: 0px;
+  }
+
   .card-text {
     text-align: center justify;
     width: 100%;
@@ -100,10 +104,17 @@ export default {
 }
 
 .custom-tab {
-  background-color: white;
-  padding: 10px;
-  border-radius: 10px;
-  color: black;
+  height: 50px;
 
+  border-radius: 40px;
+  color: white;
+  font-family: Barlow;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 26px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
