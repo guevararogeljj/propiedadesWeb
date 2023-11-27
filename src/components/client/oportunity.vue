@@ -86,14 +86,11 @@
 </template>
 
 <script type="ts">
-import { Swiper, SwiperSlide } from "swiper/vue";
-import { Pagination } from "swiper/modules";
-import SvgSectionLine from "@/components/svg/section-line.vue";
-import SvgRightArrow from "@/components/svg/right-arrow.vue";
-import product_data from "@/core/data/product-data";
+
+
 import ButtonSecondary from "../common/ButtonSecondary.vue";
 import propservice from "@/core/services/propservice";
-import item_client from "@/components/client/modulo-oportunidades/item_client.vue";
+
 import {
   default as signinservice,
   default as usersignin,
@@ -111,9 +108,6 @@ export default {
   components: {
     PropertyCardIconBar,
     ButtonSecondary,
-    SvgSectionLine,
-    item_client,
-    SvgRightArrow,
     oportunidadCard
   },
   data: () => ({
@@ -135,9 +129,7 @@ export default {
     outProceduraStage: "",
     showModalLoginRequest: false,
     isLoading: false,
-    offer_products: product_data.filter(
-      (p) => p.productType === "electronics" && p.offerDate
-    ),
+
   }),
   methods: {
     onClickProperty(id) {
