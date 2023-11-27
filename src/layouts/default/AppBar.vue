@@ -27,7 +27,7 @@
         <v-btn variant="text" class="lowercase-text btnColor" @click="navigateInicio">Inicio</v-btn>
         <v-btn variant="text" class="lowercase-text" @click="navigateCatalogo">Catálogo</v-btn>
         <v-btn variant="text" class="lowercase-text" @click="navigateUs">Nosotros</v-btn>
-        <v-btn variant="flat" class="lowercase-text btnColor">Registrarme</v-btn>
+        <v-btn variant="flat" class="lowercase-text btnColor" @click="navigateRegister">Registrarme</v-btn>
         <v-btn color="primary3" class="lowercase-text" variant="flat" text @click="onButtonClick">Iniciar</v-btn>
       </div>
 
@@ -70,6 +70,9 @@ export default {
     },
     navigateUs() {
       this.$router.push("/us");
+    },
+    navigateRegister() {
+      this.$router.push("/register");
     },
 
   }

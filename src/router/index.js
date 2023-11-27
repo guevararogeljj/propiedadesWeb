@@ -48,18 +48,21 @@ const routes = [
         component: () => import(/* webpackChunkName: "properties" */ '@/components/client/modulo01-listapropiedades/ListaPropiedades.vue'),
         meta: { requiredlogin: false }
       },
-      // {
-      //   path: "/products/:productId",
-      //   name: "Product",
-      //   component: () => import('@/components/client/modulo01-listapropiedades/ProductView.vue'),
-      //   meta:{
-      //   requiresAuth: true
-      //   }
-      // },
       {
         path: '/information',
         name: 'information',
         component: () => import('@/views/client/PropertyInfo.vue'),
+        meta: { requiredlogin: false }
+      },
+      {
+        path: 'register',
+        name: 'register',
+        component: () => import('@/components/client/modulo-registrar/registrar.vue'),
+      },
+      {
+        path: '/validacion',
+        name: 'validation',
+        component: () => import('@/components/shared/ValidationCodeview.vue'),
         meta: { requiredlogin: false }
       },
     ],
