@@ -105,7 +105,7 @@ export default {
 
 .custom-tab {
   height: 50px;
-
+  text-transform: capitalize;
   border-radius: 40px;
   color: white;
   font-family: Barlow;
