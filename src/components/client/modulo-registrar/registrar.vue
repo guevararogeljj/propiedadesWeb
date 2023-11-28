@@ -198,6 +198,11 @@ export default {
             this.Loading(false);
         },
     },
+    computed: {
+    state() {
+      return this.$store.state;
+    },
+  },
     async mounted() {
         const aft = await antiforgery.get();
         this.state.requesttoken = aft;

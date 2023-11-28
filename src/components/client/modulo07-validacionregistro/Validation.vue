@@ -117,7 +117,7 @@
       <v-col cols="12" sm="8" offset-sm="2" md="6" offset-md="3">
         <v-card>
           <v-card-title>
-            <p class="title">Regístrate</p>
+            <p class="title">Regístrate</p> {{ this.state.cellphone }}
             <br />
             <p class="subtitle">Verifica tu número telefónico</p>
             <p class="subtitle2">
@@ -235,18 +235,6 @@ export default {
       if (val == "phoneCodeOne") {
         this.$refs.phoneCodeTwo.focus();
       }
-
-      if (val == "phoneCodeTwo") {
-        this.$refs.phoneCodeThree.focus();
-      }
-
-      if (val == "phoneCodeThree") {
-        this.$refs.phoneCodeFour.focus();
-      }
-
-      if (val == "phoneCodeFour") {
-        //this.$refs.phoneCodeFour.lostfocust()
-      }
     },
     async onClickNextButton() {
       debugger;
@@ -299,10 +287,8 @@ export default {
     validateForm() {
       let number = "";
       number =
-        this.phoneCodeOne.toString() +
-        this.phoneCodeTwo.toString() +
-        this.phoneCodeThree.toString() +
-        this.phoneCodeFour.toString();
+        this.phoneCodeOne.toString();
+
 
       if (number.length === 4) return false;
 
@@ -313,6 +299,7 @@ export default {
     },
   },
   async mounted() {
+    debugger;
     this.Loading(true);
     this.phone = this.state.cellphone.slice(-7);
     this.sendCodePhone();
