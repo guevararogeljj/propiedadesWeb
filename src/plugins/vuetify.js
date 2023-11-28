@@ -8,6 +8,7 @@
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 import { VSkeletonLoader } from 'vuetify/labs/VSkeletonLoader'
+import {VOtpInput } from 'vuetify/labs/VOtpInput'
 // Composables
 import { createVuetify } from 'vuetify'
 import 'bootstrap/scss/bootstrap.scss'
@@ -18,7 +19,8 @@ import '@/assets/scss/main.scss'
 
 export default createVuetify({
   components: {
-    VSkeletonLoader
+    VSkeletonLoader,
+    VOtpInput
   },
   theme: {
     themes: {
