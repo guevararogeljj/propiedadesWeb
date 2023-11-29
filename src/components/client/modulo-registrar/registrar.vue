@@ -190,6 +190,7 @@ export default {
             const result = await userservice.signup(dataregister);
             if (result.success) {
                 this.$store.state.Cellphone = this.data.Cellphone;
+                this.$store.state.NameRegister = this.data.Name;
                 this.$router.push({ name: "validation" });
             } else {
                 this.$store.state.messageErrors = result.message;

@@ -1,25 +1,24 @@
 <template>
   <v-row>
-    
     <!-- <span class="h1 color-black center"> {{ title }}</span>     <div class="counter" style="margin-right: auto;">{{ this.totalItems }} Disponibles</div> -->
   </v-row>
   <v-row>
-      <v-col cols="12" md="4">
-        <!-- Content for column 1 -->
-      </v-col>
-      <v-col cols="12" md="4">
-        <span class="h1 color-black"> {{ title }}</span>
-      </v-col>
-      <v-col cols="12" md="4">
-        <div class="counter" v-if="!this.isLoading">
-        <p class="counterText" >  {{ this.totalItems }} Disponibles </p>
-        </div>
-      </v-col>
-    </v-row>
+    <v-col cols="12" md="4">
+      <!-- Content for column 1 -->
+    </v-col>
+    <v-col cols="12" md="4">
+      <span class="h1 color-black"> {{ title }}</span>
+    </v-col>
+    <v-col cols="12" md="4">
+      <div class="counter" v-if="!this.isLoading">
+        <p class="counterText">{{ this.totalItems }} Disponibles</p>
+      </div>
+    </v-col>
+  </v-row>
   <v-row>
     <!-- <h1 class="center">{{title}}</h1> -->
     <!-- <span class="h1 color-black center"> {{ title }}</span> -->
-    
+
     <v-col cols="14">
       <v-skeleton-loader
         v-if="this.isLoading"
@@ -28,19 +27,23 @@
       ></v-skeleton-loader>
       <div v-else>
         <v-carousel
+          class="carouselDesktop"
           hide-delimiters
           :cycle="false"
           :show-arrows="true"
           :show-indicators="false"
           :per-page="1"
+          color="primary3"
         >
-   
           <v-carousel-item v-for="(group, index) in groupedData" :key="index">
-            <v-row>
+            <v-row justify="center" align="center">
               <v-col
                 v-for="(item, itemIndex) in group"
                 :key="itemIndex"
-                cols="4"
+                cols="12"
+                sm="6"
+                md="4"
+                lg="3"
               >
                 <oportunidadCard
                   :Title="item.title"
@@ -71,12 +74,54 @@
             </v-row>
           </v-carousel-item>
         </v-carousel>
+
+        <v-carousel
+          hide-delimiters
+          :cycle="false"
+          :show-arrows="true"
+          :show-indicators="false"
+          :per-page="1"
+          color="primary3"
+          class="carouselResponsive"
+        >
+          <v-carousel-item v-for="(item, i) in this.propiedades" :key="i">
+            <v-row justify="center" align="center">
+              <v-col cols="12" sm="6" md="4" lg="3">
+                <oportunidadCard
+                  :Title="item.title"
+                  :OnClick="onClickProperty"
+                  :Settlement="item.settlement"
+                  :City="item.city"
+                  :State="item.state"
+                  :Price="item.price"
+                  :Favorite="item.favorite"
+                  :Id="item.creditnumber"
+                  :Image="item.thumbnail ?? require('@/assets/propexample.svg')"
+                  :IsSold="item.sold"
+                >
+                  <template v-slot:iconbar>
+                    <PropertyCardIconBar
+                      class="d-none d-sm-block"
+                      :LivingSize="item.constructionsize"
+                      :BathsQuantity="item.bathrooms"
+                      :BebsQuantity="item.rooms"
+                      :ConstructionSize="item.constructionsize"
+                      :ParkingLots="item.parkingspaces"
+                      ConstructionSizeUnits="m²"
+                      LivinSizeUnits="m²"
+                    ></PropertyCardIconBar>
+                  </template>
+                </oportunidadCard>
+              </v-col>
+            </v-row>
+          </v-carousel-item>
+        </v-carousel>
+
         <div class="text-center mx-auto">
           <button-secondary
             Text="ver listado completo"
             color="primary3"
             class="btnCustom"
-            @click="onClickButtonSend"
             width="394px"
           />
         </div>
@@ -212,8 +257,6 @@ export default {
     },
   },
   async mounted() {
-
-
     let properties = [];
     if (this.getRequestsaved) {
       this.outBathrooms = this.state.filterSaved.bathrooms;
@@ -298,7 +341,13 @@ export default {
 };
 </script>
 <style scoped>
-.counterText{
+.carouselDesktop {
+  display: flex;
+}
+.carouselResponsive {
+  display: none;
+}
+.counterText {
   color: var(--secundarios-600, #000);
   text-align: center;
   /* Heading/Semibold 1 */
@@ -309,174 +358,51 @@ export default {
   line-height: 26px; /* 104% */
   letter-spacing: -0.5px;
 }
-.counter{
-
+.counter {
   width: 206px;
   height: 40px;
   flex-shrink: 0;
   border-radius: 20px;
-  background: var(--alertas-yellow, #FFC101);
+  background: var(--alertas-yellow, #ffc101);
   float: right;
-
-}
-.center {
-  margin: auto;
-  padding: 10px;
 }
 
 .color-black {
-  color: var(--primary-500, #379BEC);
-text-align: center;
-/* Heading/Large1 */
-font-family: Barlow;
-font-size: 48px;
-font-style: normal;
-font-weight: 500;
-line-height: 52.83px; /* 110.063% */
-letter-spacing: -1.44px;
-
-}
-
-.card-border {
-  border-radius: 22px;
-}
-
-.card {
-  background: #ffffff;
-  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.14))
-    drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.12))
-    drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.2));
-  border-radius: 8px;
-}
-
-.card-img-top {
-  cursor: pointer;
-}
-
-.card-title {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1.25em;
-  line-height: 1.75;
-  /* or 140% */
-
-  cursor: pointer;
-  letter-spacing: 0.15px;
-
-  /* Grayscale/Main_Text */
-
-  color: #63666a;
-}
-
-.card-text-price {
-  font-family: "Roboto";
-  font-style: normal;
-  /* Brand/Blue */
-
-  color: #0092bc;
-}
-
-.card-text-city {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  /* identical to box height, or 150% */
-
-  letter-spacing: 0.5px;
-
-  /* Grayscale/Main_Text */
-
-  color: #63666a;
-}
-
-.card-text-state {
-  /* Headline/H6 regular */
-
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 28px;
-  /* identical to box height, or 140% */
-
-  letter-spacing: 0.15px;
-
-  /* Grayscale/finastrategy_Dark_Gray */
-
-  color: #484343;
-}
-
-.banner-sale {
-  position: absolute;
-  margin-top: 0.7rem;
-  right: 0rem;
-  width: 224px;
-  height: 39px;
-
-  background: #d60101;
-  border-radius: 6px;
-
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 28px;
-
-  letter-spacing: 0.15px;
-  padding-top: 5px;
-  vertical-align: middle !important;
-
-  color: #f8f8f8;
-}
-
-.tooltip-custom {
-  position: relative;
-}
-
-.tooltip-custom:before {
-  content: attr(data-text);
-  position: absolute;
-  top: 100%;
-  transform: translateY(-170%);
-  top: 100%;
-  margin-left: 5px;
-  max-width: 300px;
-  padding: 8px;
-  background: rgba(0, 0, 0, 0.7);
-  border-radius: 10px;
-  color: #fff;
+  color: var(--primary-500, #379bec);
   text-align: center;
-  font-size: 0.7em;
-  display: none;
-}
-.carousel {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px; /* Adjust the gap between items as needed */
+  /* Heading/Large1 */
+  font-family: Barlow;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 52.83px; /* 110.063% */
+  letter-spacing: -1.44px;
 }
 
-.item {
-  /* Add your styles for the carousel items */
-  width: 100%;
-  height: 100px; /* Adjust the height of the items as needed */
-  background-color: #ccc;
+/* Desktop */
+@media (min-width: 1024px) {
+  /* CSS styles for desktop */
 }
 
-.tooltip-custom:hover:before {
-  display: block;
+/* iPad */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* CSS styles for iPad */
+  .carouselResponsive {
+    display: flex;
+  }
+  .carouselDesktop {
+    display: none;
+  }
 }
 
-@media only screen and (max-width: 900px) {
-  .card {
-    widows: 88vw;
+/* Mobile */
+@media (max-width: 767px) {
+  /* CSS styles for mobile */
+  .carouselResponsive {
+    display: flex;
+  }
+  .carouselDesktop {
+    display: none;
   }
 }
 </style>

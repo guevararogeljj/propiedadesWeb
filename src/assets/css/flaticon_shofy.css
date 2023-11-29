@@ -2,11 +2,11 @@
     font-family: 'Barlow';
     font-style: normal;
     font-display: swap;
-    src: url('../fonts/Barlow/Barlow-Regular.ttf') format('truetype');
+    src: url('../fonts/Barlow-Regular.ttf') format('truetype');
 }
 
 i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
-    font-family: flaticon_shofy !important;
+    font-family: Barlow !important;
     font-style: normal;
     font-weight: normal !important;
     font-variant: normal;

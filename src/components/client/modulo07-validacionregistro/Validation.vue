@@ -1,117 +1,4 @@
 <template>
-  <!-- <div class="main-container">
-      <div class="container wrapper-container pt-3 pb-4 mt-3">
-        <div class="row mb-2">
-          <div class="col-12 title justify-content-center">
-            Verificación de celular
-          </div>
-          <div class="col-12 subtitle mt-1">
-            Por favor ingresa el código de 4 digitos que enviamos por SMS a tu
-            celular. {{ areacode }} ***** {{ phone }}
-          </div>
-        </div>
-  
-        <form method="post">
-          <div class="row mt-5"></div>
-          <div class="row justify-content-center">
-            <input type="hidden" name="csrf" :value="true" />
-            <div class="col-12 d-flex justify-content-center w-95">
-              <p>Ingresa el código</p>
-            </div>
-            <div class="col-12 d-flex justify-content-center">
-              <div class="row">
-                <div class="col-2"></div>
-                <div class="col-2">
-                  <input
-                    ref="phoneCodeOne"
-                    id="1"
-                    name="one"
-                    min="0"
-                    max="9"
-                    oninput="this.value=this.value.replace(/[^0-9]/g,'');"
-                    v-model="phoneCodeOne"
-                    @keypress="onKeyPress"
-                    @keyup="onChangeCode('phoneCodeOne')"
-                    class="form-control codephone"
-                    type="number"
-                    placeholder="*"
-                  />
-                </div>
-                <div class="col-2">
-                  <input
-                    ref="phoneCodeTwo"
-                    maxlength="1"
-                    oninput="this.value=this.value.replace(/[^0-9]/g,'');"
-                    @keyup="onChangeCode('phoneCodeTwo')"
-                    @keypress="onKeyPress"
-                    v-model="phoneCodeTwo"
-                    class="form-control codephone"
-                    type="number"
-                    placeholder="*"
-                    min="0"
-                    max="9"
-                  />
-                </div>
-                <div class="col-2">
-                  <input
-                    ref="phoneCodeThree"
-                    maxlength="1"
-                    oninput="this.value=this.value.replace(/[^0-9]/g,'');"
-                    @keyup="onChangeCode('phoneCodeThree')"
-                    @keypress="onKeyPress"
-                    v-model="phoneCodeThree"
-                    class="form-control codephone"
-                    type="number"
-                    placeholder="*"
-                    min="0"
-                    max="9"
-                  />
-                </div>
-                <div class="col-2">
-                  <input
-                    ref="phoneCodeFour"
-                    maxlength="1"
-                    oninput="this.value=this.value.replace(/[^0-9]/g,'');"
-                    @keyup="onChangeCode('phoneCodeFour')"
-                    @keypress="onKeyPress"
-                    v-model="phoneCodeFour"
-                    class="form-control codephone"
-                    type="number"
-                    placeholder="*"
-                    min="0"
-                    max="9"
-                  />
-                </div>
-                <div class="col-2"></div>
-              </div>
-            </div>
-  
-            <div class="row w-95 mt-2">
-              <div class="col-12">
-                <button-primary
-                  :Text="
-                    'Reenviar sms ' + (this.countdown == 0 ? '' : this.countdown)
-                  "
-                  :disabled="countdown !== 0"
-                  :OnClickButton="onClickResendButton"
-                />
-              </div>
-            </div>
-  
-            <div class="row w-95 mt-2">
-              <div class="col-12">
-                <button-primary
-                  ref="nextButton"
-                  Text="Siguiente"
-                  :OnClickButton="onClickNextButton"
-                  :disabled="validateForm"
-                />
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div> -->
   <v-container fluid>
     <v-row style="align-items: center">
       <v-col cols="12" sm="8" offset-sm="2" md="6" offset-md="3">
@@ -122,7 +9,7 @@
             <p class="subtitle">Verifica tu número telefónico</p>
             <p class="subtitle2">
               Por favor ingresa el código de 4 digitos que enviamos por SMS a tu
-            celular. {{ areacode }} ***** {{ phone }}
+            celular. {{ areacode }} ***** {{ phone.slice(-4) }}
             </p>
           </v-card-title>
           <v-card-text>
@@ -235,7 +122,7 @@ export default {
     async onClickNextButton() {
       debugger;
       this.Loading(true);
-      const value = { code: this.getcode(), cellphone: this.store().cellphone };
+      const value = { code: this.getcode(), cellphone: this.store().Cellphone };
       const result = await userservice.validatecodephone(value);
       if (result.success == true) {
         this.$router.push({ name: "registrationended" });
@@ -261,8 +148,8 @@ export default {
     },
     onClickCalcelButton() {},
     async sendCodePhone() {
-      if (this.store().cellphone) {
-        const value = { cellphone: this.store().cellphone };
+      if (this.store().Cellphone) {
+        const value = { Cellphone: this.store().Cellphone };
         await userservice.codephone(value);
       }
     },
@@ -297,7 +184,7 @@ export default {
   async mounted() {
     debugger;
     this.Loading(true);
-    this.phone = this.state.Cellphone.slice(-4);
+    this.phone = this.state.Cellphone;
     this.sendCodePhone();
     this.timer();
     this.Loading(false);

@@ -65,6 +65,12 @@ const routes = [
         component: () => import('@/components/shared/ValidationCodeview.vue'),
         meta: { requiredlogin: false }
       },
+      {
+        path: '/registroterminado',
+        name: 'registrationended',
+        component: () => import('@/components/shared/WelcomeView.vue'),
+        meta: { requiredlogin: false }
+      },
     ],
   },
 ]
