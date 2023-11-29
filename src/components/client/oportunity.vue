@@ -6,10 +6,10 @@
     <v-col cols="12" md="4">
       <!-- Content for column 1 -->
     </v-col>
-    <v-col cols="12" md="4">
+    <v-col cols="12" sm="6" md="4" lg="3">
       <span class="h1 color-black"> {{ title }}</span>
     </v-col>
-    <v-col cols="12" md="4">
+    <v-col cols="12" sm="6" md="4" lg="3">
       <div class="counter" v-if="!this.isLoading">
         <p class="counterText">{{ this.totalItems }} Disponibles</p>
       </div>
@@ -86,7 +86,7 @@
         >
           <v-carousel-item v-for="(item, i) in this.propiedades" :key="i">
             <v-row justify="center" align="center">
-              <v-col cols="12" sm="6" md="4" lg="3">
+              <v-col cols="10" sm="6" md="4" lg="3">
                 <oportunidadCard
                   :Title="item.title"
                   :OnClick="onClickProperty"
