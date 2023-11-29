@@ -10,12 +10,13 @@
                     <v-card-text>
                         <v-form>
                             <v-text-field density="compact" variant="outlined"
-                                label="Ingresa con correo electrónico o número telefónico" v-model="data.email"
-                                :error-messages="v$.data.email.$errors.map((e) => e.$message)
-                                    " @input="v$.data.email.$touch" @blur="v$.data.email.$touch"
+                                label="Ingresa con correo electrónico o número telefónico" v-model="data.Email"
+                                type="number" :error-messages="v$.data.Email.$errors.map((e) => e.$message)
+                                    " @input="v$.data.Email.$touch" @blur="v$.data.Email.$touch"
                                 autocomplete="off"></v-text-field>
-                            <v-text-field density="compact" variant="outlined" label="Password" v-model="data.Password"
-                                :error-messages="v$.data.Password.$errors.map((e) => e.$message)
+                            <v-text-field density="compact" variant="outlined" label="Contraseña" v-model="data.Password"
+                                :append-icon="value ? 'mdi-eye' : 'mdi-eye-off-outline'"
+                                @click:append="() => (value = !value)" :type="value ? 'password' : 'text'" :error-messages="v$.data.Password.$errors.map((e) => e.$message)
                                     " @input="v$.data.Password.$touch" @blur="v$.data.Password.$touch"
                                 autocomplete="off"></v-text-field>
 
@@ -25,6 +26,8 @@
                             <div style="text-align: center">
                                 <span class="leyenda">¿Aún no tienes cuenta? </span>
                                 <span class="termino">Regístrate aquí </span>
+                                <br />
+                                <span class="leyenda">Olvidé mi contraseña </span>
                             </div>
                         </v-form>
                     </v-card-text>
@@ -37,7 +40,7 @@
 <script>
 import ButtonPrimary from "@/components/common/ButtonPrimary.vue";
 import ButtonSecondary from "@/components/common/ButtonSecondary.vue";
-import usersignin from "@/components/services/usersignin";
+import usersignin from "@/core/services/usersignin";
 import privatekey from "@/core/utils/privatekey";
 import {
     required,
@@ -47,6 +50,7 @@ import {
     helpers,
 } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
+import { dialogSuccess, dialogError } from "@/core/utils/alerts";
 export default {
     setup() {
         return { v$: useVuelidate() };
@@ -59,8 +63,7 @@ export default {
         return {
             data: {
                 Email: {
-                    required: helpers.withMessage("El correo es requerido", required),
-                    email: helpers.withMessage("El correo no es válido", email),
+                    required: helpers.withMessage("El correo y/o número telefónico es requerido", required),
                 },
                 Password: {
                     required: helpers.withMessage("La contraseña es requerida", required),
@@ -85,11 +88,12 @@ export default {
     data() {
         return {
             data: {
-                email: "",
-                password: "",
+                Email: "",
+                Password: "",
             },
             goback: false,
             correoValido: false,
+            value: String,
         };
     },
     props: {
@@ -102,21 +106,21 @@ export default {
         async onClickNextButton() {
             this.state.isLoading = true;
             // const regex = /^\w+([.\-_]{0,3}?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
-            const regex = /^\d{10}$/;
-            const isCorreoValido = regex.test(this.data.email);
+            // const regex = /^\d{10}$/;
+            // const isCorreoValido = regex.test(this.data.Email);
 
-            if (!isCorreoValido) {
-                this.correoValido = true;
-                this.state.isLoading = false;
-                return;
-            }
+            // if (!isCorreoValido) {
+            //     this.correoValido = true;
+            //     this.state.isLoading = false;
+            //     return;
+            // }
 
-            this.correoValido = false;
+            // this.correoValido = false;
 
             const credentials = {
-                cellphone: "" + this.data.email,
+                cellphone: "" + this.data.Email,
                 password: privatekey.encryptstring(
-                    this.data.password,
+                    this.data.Password,
                     privatekey.publickey
                 ),
             };
@@ -139,10 +143,18 @@ export default {
                     if (this.goback) {
                         this.$router.back();
                     } else {
-                        this.$router.push({ name: "home" });
+                        dialogSuccess({
+                            title: "¡Bienvenido!",
+                            text: "Se ha iniciado sesión correctamente",
+                        });
+                        this.$router.push({ name: "Home" });
                     }
                 }
             } else {
+                dialogError({
+                    title: "¡Error!",
+                    text: "No se ha podido iniciar sesión " + result.message,
+                });
                 this.$store.state.messageErrors = result.message;
                 this.state.isLoading = false;
                 this.state.isError = true;

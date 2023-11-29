@@ -31,7 +31,7 @@
       <br />
       <br />
       <br />
-      <v-btn variant="flat" class="lowercase-text btnRegister" @click="navigateRegister">Ingresar</v-btn>
+      <v-btn variant="flat" class="lowercase-text btnRegister" @click="navigateLogin">Ingresar</v-btn>
       <v-list nav dense>
         <v-list-item v-for="(item, index) in myItems" :key="item" :to="item.route">
           <v-list-item-title @click="tab = index">{{ item.name }}</v-list-item-title>
