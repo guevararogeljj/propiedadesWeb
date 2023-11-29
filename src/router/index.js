@@ -71,6 +71,12 @@ const routes = [
         component: () => import('@/components/shared/WelcomeView.vue'),
         meta: { requiredlogin: false }
       },
+      {
+        path: '/login',
+        name: 'login',
+        component: () => import('@/components/shared/LoginView.vue'),
+        meta: { requiredlogin: false }
+      },
     ],
   },
 ]

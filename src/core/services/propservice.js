@@ -3,7 +3,7 @@ import api from "./apiconfig";
 export default {
 
     Propiedades() {
-        return  api().get("https://apipropiedadesqa.finastrategy.mx/api"  + '/properties').then(result => {
+        return  api().get("https://192.168.100.36:7126/api"  + '/properties').then(result => {
             if(result.status == 200)
             {
                 // console.log(result)
@@ -15,7 +15,7 @@ export default {
 
     },
     PropertiesRange(page, items, params,order) {
-        let url = "https://apipropiedadesqa.finastrategy.mx/api"  + `/properties/range?index=${page}&items=${items}`;
+        let url = "https://192.168.100.36:7126/api"  + `/properties/range?index=${page}&items=${items}`;
         // console.log(order)
         if (order) {
             url = url + `&order=${order}`;
@@ -40,7 +40,7 @@ export default {
     },
     PropertyDetails(id)
     {
-        return  api().get("https://apipropiedadesqa.finastrategy.mx/api"  + `/properties/details?id=${id}`).then(result => {
+        return  api().get("https://192.168.100.36:7126/api"  + `/properties/details?id=${id}`).then(result => {
             if(result.status == 200)
             {
                 // console.log(result)
@@ -53,7 +53,7 @@ export default {
     },
     legaldata(id)
     {
-        return  api().post("https://apipropiedadesqa.finastrategy.mx/api"  + `/properties/legaldetails`,id).then(result => {
+        return  api().post("https://192.168.100.36:7126/api"  + `/properties/legaldetails`,id).then(result => {
             if(result.status == 200)
             {
                 return result.data.result;

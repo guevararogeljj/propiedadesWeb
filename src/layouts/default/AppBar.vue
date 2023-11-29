@@ -1,39 +1,37 @@
 <template>
   <div class="content">
-    <!-- <v-app-bar class="justify-center" app>
-      <v-app-bar-nav-icon @click="drawer = true" class="d-flex d-sm-none"></v-app-bar-nav-icon>
-      <v-toolbar-title>
-        <v-btn class="logoClass ms-5" @click="navigateInicio">
-        </v-btn>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn variant="text" @click="navigateInicio">Inicio</v-btn>
-        <v-btn variant="text" @click="navigateCatalogo">Catálogo</v-btn>
-        <v-btn variant="text" @click="navigateUs">Nosotros</v-btn>
-        <button-secondary  Text="Registrarme" class="btnColor"/>
-      </v-toolbar-items>
-    </v-app-bar> -->
     <v-app-bar app :elevation="0">
-      <v-app-bar-nav-icon @click="drawer = true" class="d-flex d-sm-none"></v-app-bar-nav-icon>
       <v-toolbar-title>
         <v-btn class="logoClass ms-5" @click="navigateInicio">
         </v-btn>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-
-      <div class="hidden-sm-and-down" style="margin-right: 100px;">
-
+      <v-app-bar-nav-icon v-if="!drawer" @click="drawer = true" class="d-flex d-md-none"></v-app-bar-nav-icon>
+      <v-btn v-else icon class="d-flex d-md-none" @click="closeMenu()">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+      <div class="hidden-sm-and-down">
         <v-btn variant="text" class="lowercase-text btnColor" @click="navigateInicio">Inicio</v-btn>
         <v-btn variant="text" class="lowercase-text" @click="navigateCatalogo">Catálogo</v-btn>
         <v-btn variant="text" class="lowercase-text" @click="navigateUs">Nosotros</v-btn>
         <v-btn variant="flat" class="lowercase-text btnColor" @click="navigateRegister">Registrarme</v-btn>
-        <v-btn color="primary3" class="lowercase-text" variant="flat" text >Iniciar</v-btn>
+        <v-btn color="primary3" class="lowercase-text" variant="flat" @click="navigateLogin" text>Iniciar</v-btn>
       </div>
-
-
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" absolute temporary>
+    <v-navigation-drawer v-model="drawer" absolute temporary color="primary3" permanent style="width: 100%;">
+      <div class="center">
+        <p class="titulo">Bienvenido</p>
+        <p class="subtitle">Ingresa y accede a miles de oportunidades de inversión para crecer tu patrimonio</p>
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <v-btn variant="flat" class="lowercase-text btnRegister" @click="navigateRegister">Ingresar</v-btn>
       <v-list nav dense>
         <v-list-item v-for="(item, index) in myItems" :key="item" :to="item.route">
           <v-list-item-title @click="tab = index">{{ item.name }}</v-list-item-title>
@@ -56,8 +54,9 @@ export default {
       drawer: false,
       myItems: [
         { name: 'Home', route: '/' },
-        { name: 'About', route: '/about' },
-        { name: 'Catalogo', route: '/propiedades' }
+        { name: 'Catalogo', route: '/propiedades' },
+        { name: 'Nosotros', route: '/us' },
+        { name: 'Registro', route: '/register' }
       ],
     };
   },
@@ -74,7 +73,12 @@ export default {
     navigateRegister() {
       this.$router.push("/register");
     },
-
+    closeMenu() {
+      this.drawer = !this.drawer;
+    },
+    navigateLogin() {
+      this.$router.push("/login");
+    },
   }
 };
 </script>
@@ -96,7 +100,6 @@ export default {
   /* Additional styles */
   margin: 0;
   padding: 0;
-
 }
 
 .btnColor {
@@ -120,10 +123,87 @@ export default {
   grid-gap: 10px;
 }
 
+.titulo {
+  position: absolute;
+  left: 121px;
+  top: 34px;
+  color: var(--secundarios-blanco, #FFF);
+  font-family: Barlow;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  width: 295px;
+  position: absolute;
+  left: 30px;
+  top: 75px;
+  color: var(--secundarios-blanco, #FFF);
+  text-align: center;
+
+  /* Text/Small/Medium */
+  font-family: Barlow;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 142.857% */
+  letter-spacing: -0.14px;
+}
+
+.btnRegister {
+  display: flex;
+  width: 299px;
+  height: 50px;
+  padding: 10px 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  position: absolute;
+  left: 30px;
+  top: 130px;
+  border-radius: 14px;
+  background: var(--secundarios-blanco, #FFF);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+
+}
+
 @media (max-width: 767px) {
   body {
     /* Adjust styles for smaller screens */
     background-size: contain;
   }
+  .logoClass {
+    background-image: url("https://finastrategy.mx/wp-content/themes/finastrategy/assets/img/logo-finastrategy.png");
+    background-size: 100px;
+    height: 4em;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 150px;
+    width: 100px;
+    /* Additional styles */
+    margin: 0;
+    padding: 0;
 }
+}
+
+/* Styles for desktop */
+@media (min-width: 1024px) {
+  /* Add your desktop styles here */
+}
+
+/* Styles for iPad */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Add your iPad styles here */
+}
+
 </style>

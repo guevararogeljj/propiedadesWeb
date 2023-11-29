@@ -1,9 +1,9 @@
 import api from "./apiconfig";
-var url = "https://apipropiedadesqa.finastrategy.mx/api" ;
+var url = "https://192.168.100.36:7126/api" ;
 export default {
 
     Estados() {
-        return  api().get("https://apipropiedadesqa.finastrategy.mx/api"  +'/filters/states').then(result => {
+        return  api().get("https://192.168.100.36:7126/api"  +'/filters/states').then(result => {
             if(result.status == 200){
                 return result.data
             }
@@ -12,14 +12,14 @@ export default {
         });
     },
     Municipios(id){
-        return  api().get("https://apipropiedadesqa.finastrategy.mx/api"  + '/filters/cities?id=' + id,).then(result => {
+        return  api().get("https://192.168.100.36:7126/api"  + '/filters/cities?id=' + id,).then(result => {
             return result.data
         }).catch(error=>{
             return error;
         });
     },
     TipoInmuebles(){
-        return   api().get("https://apipropiedadesqa.finastrategy.mx/api"  + '/filters/propertytype').then(result => {
+        return   api().get("https://192.168.100.36:7126/api"  + '/filters/propertytype').then(result => {
             if (result.status == 200) {
                 return result.data;
             }
@@ -58,7 +58,7 @@ export default {
         // });
     },
     Habitaciones(){
-        return  api().get("https://apipropiedadesqa.finastrategy.mx/api"  + '/filters/bedrooms').then(result => {
+        return  api().get("https://192.168.100.36:7126/api"  + '/filters/bedrooms').then(result => {
             if (result.status == 200) {
                 return result.data;
             }
@@ -70,7 +70,7 @@ export default {
         });
     },
     EtapaProcesal(){
-        return  api().get("https://apipropiedadesqa.finastrategy.mx/api"  + '/filters/proceduralStage').then(result => {
+        return  api().get("https://192.168.100.36:7126/api"  + '/filters/proceduralStage').then(result => {
             return result.data
         }).catch(error=>{
             return error;
@@ -89,14 +89,14 @@ export default {
         });
     },
     Occupations(){
-        return  api().get("https://apipropiedadesqa.finastrategy.mx/api"  + '/filters/occupations').then(result => {
+        return  api().get("https://192.168.100.36:7126/api"  + '/filters/occupations').then(result => {
             return result.data
         }).catch(error=>{
             return error;
         });
     },
     Maritalstatus(){
-        return  api().get("https://apipropiedadesqa.finastrategy.mx/api"  +  '/filters/maritalstatus').then(result => {
+        return  api().get("https://192.168.100.36:7126/api"  +  '/filters/maritalstatus').then(result => {
             return result.data
         }).catch(error=>{
             return error;
