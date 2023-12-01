@@ -130,8 +130,6 @@ export default {
           title: "Error",
           text: result.message,
         });
-        // this.modalmessage = result.message;
-        // this.showmodal = true;
         this.cleanCode();
       }
       this.Loading(false);

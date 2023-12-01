@@ -11,7 +11,7 @@
         <v-icon>mdi-close</v-icon>
       </v-btn>
       <div class="hidden-sm-and-down">
-        <v-btn variant="text" class="lowercase-text btnColor" @click="navigateInicio">Inicio</v-btn>
+        <v-btn variant="text" class="lowercase-text inicio" @click="navigateInicio">Inicio</v-btn>
         <v-btn variant="text" class="lowercase-text" @click="navigateCatalogo">Catálogo</v-btn>
         <v-btn variant="text" class="lowercase-text" @click="navigateUs">Nosotros</v-btn>
         <v-btn variant="flat" class="lowercase-text btnColor" @click="navigateRegister">Registrarme</v-btn>
@@ -81,6 +81,7 @@ export default {
       this.drawer = !this.drawer;
     },
     navigateLogin() {
+      this.drawer = !this.drawer;
       this.$router.push("/login");
     },
   },
@@ -112,6 +113,17 @@ export default {
 };
 </script>
 <style scoped>
+.inicio{
+  color: var(--primary-500, #379BEC);
+
+/* Text/Regular/Medium */
+font-family: Barlow;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px; /* 125% */
+letter-spacing: -0.16px;
+}
 .lowercase-text {
   font-family: Barlow;
   text-transform: capitalize;

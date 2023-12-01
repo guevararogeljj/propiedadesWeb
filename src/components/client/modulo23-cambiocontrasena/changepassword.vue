@@ -1,7 +1,7 @@
 <template>
     <v-container fluid>
-        <v-row style="align-items: center">
-            <v-col cols="12" sm="8" offset-sm="2" md="6" offset-md="3">
+        <v-row class="form" v-if="this.steps <= 1">
+            <v-col cols="12" sm="8" offset-sm="2" md="6" offset-md="3" align="center">
                 <v-card flat>
                     <v-card-title>
                         <p class="title">Restablecer mi contraseña</p>
@@ -32,6 +32,49 @@
                 </v-card>
             </v-col>
         </v-row>
+        <v-row class="form" v-else>
+            <v-col cols="12" sm="8" offset-sm="2" md="6" offset-md="3" align="center">
+                <v-card flat>
+                    <v-card-title>
+                        <p class="title">Restablecer mi contraseña</p>
+                        <br />
+                    </v-card-title>
+                    <v-card-text>
+                        <v-form>
+                            <v-text-field density="compact" variant="outlined" label="Contraseña" class="form-input"
+                                :append-icon="value ? 'mdi-eye' : 'mdi-eye-off-outline'"
+                                @click:append="() => (value = !value)" :type="value ? 'password' : 'text'"
+                                v-model="data.Password" :error-messages="v$.data.Password.$errors.map((e) => e.$message)
+                                    " @input="v$.data.Password.$touch" @blur="v$.data.Password.$touch"
+                                autocomplete="off"></v-text-field>
+                            <v-text-field density="compact" variant="outlined" label="Confirmar Contraseña"
+                                :append-icon="value ? 'mdi-eye' : 'mdi-eye-off-outline'"
+                                @click:append="() => (value = !value)" :type="value ? 'password' : 'text'"
+                                class="form-input" v-model="data.ConfirmPassword" :error-messages="v$.data.ConfirmPassword.$errors.map((e) => e.$message)
+                                    " @input="v$.data.ConfirmPassword.$touch" @blur="v$.data.ConfirmPassword.$touch"
+                                autocomplete="off"></v-text-field>
+
+                            <v-btn color="primary2" class="btnLogin" @click="changePassword()">Continuar</v-btn>
+                            <br />
+                            <v-btn variant="flat" @click="cancel()">Cancelar</v-btn>
+                            <br />
+                            <div class="information form-input">
+                                <span class="information">Usa de 8 a 12 caracteres</span>
+                                <div class="saltoInformation"></div>
+                                <span class="information">Una mayúscula</span>
+                                <div class="saltoInformation"></div>
+                                <span class="information">Una minúscula</span>
+                                <div class="saltoInformation"></div>
+                                <span class="information">Un número</span>
+                            </div>
+
+                        </v-form>
+                    </v-card-text>
+                </v-card>
+            </v-col>
+
+        </v-row>
+
     </v-container>
 </template>
 
@@ -40,6 +83,8 @@ import userservice from "@/core/services/userservice";
 import ButtonPrimary from "@/components/common/ButtonPrimary.vue";
 import antiforgery from "@/core/services/antiforgery";
 import { dialogSuccess, dialogError } from "@/core/utils/alerts";
+import encrypt from "@/core/utils/privatekey";
+import usersignin from "@/core/services/usersignin";
 import {
     required,
     email,
@@ -56,6 +101,7 @@ export default {
     name: "regristroComp",
     data() {
         return {
+            steps: 1,
             loading: false,
             phoneCodeOne: "",
             data: {
@@ -65,18 +111,56 @@ export default {
             areacode: "+52",
             phone: "968",
             countdown: 300,
-            modalmessage: "",
-            showmodal: false,
+            data: {
+                Password: "",
+                ConfirmPassword: "",
+            },
             v$: useVuelidate(),
+            value: String,
+        };
+    },
+    validations() {
+        return {
+            data: {
+                Password: {
+                    required: helpers.withMessage("La contraseña es requerida", required),
+                    maxLength: helpers.withMessage(
+                        "La contraseña debe tener máximo 12 caracteres",
+                        maxLength(12)
+                    ),
+                    minLength: helpers.withMessage(
+                        "La contraseña debe tener mínimo 8 caracteres",
+                        minLength(8)
+                    ),
+                    regex: helpers.withMessage(
+                        "La contraseña debe contener al menos una mayúscula, una minúscula y un número",
+                        value => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/.test(value)
+                    ),
+                },
+                ConfirmPassword: {
+                    required: helpers.withMessage("La contraseña es requerida", required),
+                    maxLength: helpers.withMessage(
+                        "La contraseña debe tener máximo 12 caracteres",
+                        maxLength(12)
+                    ),
+                    regex: helpers.withMessage(
+                        "Las contraseñas no coinciden",
+                        helpers.withMessage("Las contraseñas no coinciden", (value) => {
+                            return value === this.data.Password;
+                        })
+                    ),
+                    minLength: helpers.withMessage(
+                        "La contraseña debe tener mínimo 8 caracteres",
+                        minLength(8)
+                    ),
+                },
+            },
         };
     },
     props: {
         EnableNextButton: { type: Boolean, default: true },
     },
     methods: {
-        onCloseModalError() {
-            this.showmodal = false;
-        },
         restarTimer() {
             this.countdown = 300;
             this.timer();
@@ -94,14 +178,17 @@ export default {
                 e.preventDefault();
             }
         },
-
         async onClickNextButton() {
             debugger;
             this.Loading(true);
             const value = { code: this.getcode(), cellphone: this.store().Cellphone };
             const result = await userservice.validatecodephone(value);
             if (result.success == true) {
-                this.$router.push({ name: "registrationended" });
+                dialogSuccess({
+                    title: "Éxito",
+                    text: "Código validado correctamente",
+                });
+                this.steps = 2;
             } else {
                 dialogError({
                     title: "Error",
@@ -122,7 +209,6 @@ export default {
         },
         onClickCalcelButton() { },
         async sendCodePhone() {
-            debugger;
             if (this.store().Cellphone) {
                 const value = { Cellphone: this.store().Cellphone };
                 await userservice.codephone(value);
@@ -137,7 +223,36 @@ export default {
         cleanCode() {
             this.phoneCodeOne = "";
         },
+        async changePassword() {
+            this.Loading(true);
+            let data = {
+                newpassword: encrypt.encryptstring(
+                    this.data.Password,
+                    encrypt.publickey
+                ),
+                cellphone: this.store().Cellphone,
+                code: this.phoneCodeOne,
+            };
+            const result = await usersignin.passwordrecovery(data);
+            if (result.success) {
+                dialogSuccess({
+                    title: "Éxito",
+                    text: "Contraseña cambiada correctamente",
+                });
+                this.store.commit("LOGOUT");
+                this.$router.push({ name: "recoverpasswordsuccess" });
+            } else {
+                
+                dialogError({
+                    title: "Error",
+                    text: result.message,
+                });
+                this.cleanCode()
+            }
+            this.Loading(false);
+        }
     },
+
     computed: {
 
         state() {
@@ -145,10 +260,8 @@ export default {
         },
     },
     async mounted() {
-        debugger
         const aft = await antiforgery.get();
         this.state.requesttoken = aft;
-
         if (this.$route.query.cellphone != "" && this.$route.query.cellphone) {
             this.email = this.$route.params.cellphone;
             this.phone = this.$route.query.cellphone;
@@ -161,6 +274,41 @@ export default {
 </script>
 
 <style scoped>
+.saltoInformation {
+    width: 100%;
+    height: 5px;
+    flex-shrink: 0;
+}
+
+.information {
+    align-content: center;
+    text-align: left;
+
+    color: var(--primary-500, #379BEC);
+    /* Text/Extrasmall/Regular */
+    font-family: Barlow;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.13px;
+}
+
+.btnLogin {
+    display: flex;
+    width: 393px;
+    padding: 18px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-input {
+    max-width: 394px;
+    height: 75px;
+    flex-shrink: 0;
+}
+
 .lowercase-text {
     font-family: Barlow;
     text-transform: capitalize;
@@ -220,7 +368,6 @@ export default {
 }
 
 .form {
-    width: 394px;
     margin: auto;
     min-width: 320px;
 }

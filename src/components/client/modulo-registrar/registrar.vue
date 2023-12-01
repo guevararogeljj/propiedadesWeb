@@ -174,13 +174,7 @@ export default {
                 lastname = this.data.Lastname.split(" ")[0];
                 this.data.Lastname2  = this.data.Lastname.split(" ")[1];
                 this.data.Lastname = lastname;
-                // this.data.lastname2 = this.data.lastname2.toUpperCase();
             }
-                
-            // this.data.name = this.data.name.toUpperCase();
-            // this.data.lastname = this.data.lastname.toUpperCase();
-       
-
             this.Loading(true);
             const dataregister = utils.cloneObject(this.data);
             dataregister.Password = encrypt.encryptstring(this.data.Password, encrypt.publickey);
