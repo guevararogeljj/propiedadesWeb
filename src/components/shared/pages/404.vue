@@ -1,33 +1,107 @@
 <template>
-    <v-container fluid>
-      <v-row justify="center">
-        <v-col cols="12" sm="8" md="6">
-          <v-card class="error-card">
-            <v-card-title class="error-title">404 - Página no encontrada</v-card-title>
-            <v-card-text class="error-text">Lo sentimos, la página que estás buscando no existe.</v-card-text>
-            <v-card-actions>
-              <v-btn color="primary" to="/">Volver a la página de inicio</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-  </template>
-  
-  <style>
-  .error-card {
-    max-width: 400px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  .error-title {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .error-text {
-    margin-bottom: 20px;
-  }
-  </style>
+  <v-container fluid>
+    <v-row>
+      <v-col cols="12" sm="8" offset-sm="2" md="6" align="center">
+        <v-card flat>
+          <v-card-title>
+            <v-img class="notfound" :src="notfound"></v-img>
+            <br />
+            <p class="title">404</p>
+          </v-card-title>
+          <v-card-text>
+            <v-form>
+              <p class="subtitle">Opps, página no encontrada</p>
+              <p class="subtitle2">
+                Lo sentimos la página que estás buscando no ha sido encontrada. Por favor asegúrate de haber escrito la
+                URL
+                correctamente
+              </p>
+            </v-form>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
+<script>
+import notfound from "@/assets/notfound.png";
+export default {
+  data() {
+    return {
+      notfound,
+    };
+  },
+}
+</script>
+<style>
+.notfound {
+  width: 235.755px;
+height: 199.23px;
+flex-shrink: 0;
+
+}
+.custom-card {
+  height: 400px;
+  /* Set the desired height */
+  width: 600px;
+  /* Set the desired width */
+}
+
+.form {
+  margin: auto;
+  min-width: 320px;
+}
+
+.title {
+  width: 184px;
+  height: 83px;
+  flex-shrink: 0;
+  color: var(--primary-500, #379BEC);
+  text-align: center;
+  font-family: Barlow;
+  font-size: 90px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 52.83px;
+  /* 58.7% */
+  letter-spacing: -2.7px;
+}
+
+.subtitle {
+  height: 80px;
+  width: 303px;
+  text-align: center;
+  color: var(--secundarios-600, #000);
+  text-align: center;
+  width: auto;
+  height: auto;
+  /* Heading/Large2 */
+  font-family: Barlow;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 40px;
+  /* 100% */
+  letter-spacing: -1.2px;
+}
+
+
+
+
+
+.subtitle2 {
+
+  height: 109px;
+  flex-shrink: 0;
+  color: #000;
+  text-align: center;
+
+  /* Text/Large/Regular */
+  font-family: Barlow;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+</style>
   
