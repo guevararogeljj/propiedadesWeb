@@ -1,35 +1,34 @@
 <template>
     <v-container fluid>
-        <v-row style="align-items: center">
-            <v-col cols="12" sm="8" offset-sm="2" md="6" offset-md="3">
-                <v-card>
+        <v-row class="form">
+            <v-col cols="12" sm="8" offset-sm="2" md="6" offset-md="3" align="center">
+                <v-card flat>
                     <v-card-title>
                         <p class="title">Inicia sesión</p>
                         <br />
                     </v-card-title>
                     <v-card-text>
-                        <v-form>
-                            <v-text-field density="compact" variant="outlined"
-                                label="Ingresa con correo electrónico o número telefónico" v-model="data.Email"
-                                type="number" :error-messages="v$.data.Email.$errors.map((e) => e.$message)
-                                    " @input="v$.data.Email.$touch" @blur="v$.data.Email.$touch"
-                                autocomplete="off"></v-text-field>
-                            <v-text-field density="compact" variant="outlined" label="Contraseña" v-model="data.Password"
-                                :append-icon="value ? 'mdi-eye' : 'mdi-eye-off-outline'"
-                                @click:append="() => (value = !value)" :type="value ? 'password' : 'text'" :error-messages="v$.data.Password.$errors.map((e) => e.$message)
-                                    " @input="v$.data.Password.$touch" @blur="v$.data.Password.$touch"
-                                autocomplete="off"></v-text-field>
+                        <v-text-field density="compact" variant="outlined" class="form-input"
+                            label="Ingresa con correo electrónico o número telefónico" v-model="data.Email" type="number"
+                            :error-messages="v$.data.Email.$errors.map((e) => e.$message)
+                                " @input="v$.data.Email.$touch" @blur="v$.data.Email.$touch"
+                            autocomplete="off"></v-text-field>
+                        <v-text-field density="compact" variant="outlined" label="Contraseña" class="form-input"
+                            v-model="data.Password" :append-icon="value ? 'mdi-eye' : 'mdi-eye-off-outline'"
+                            @click:append="() => (value = !value)" :type="value ? 'password' : 'text'" :error-messages="v$.data.Password.$errors.map((e) => e.$message)
+                                " @input="v$.data.Password.$touch" @blur="v$.data.Password.$touch"
+                            autocomplete="off"></v-text-field>
 
-                            <v-btn color="primary2" dark block :IsDisabled="this.v$.$invalid"
-                                @click="onClickNextButton">Ingresar</v-btn>
+                        <v-btn color="primary2" class="btnLogin" :IsDisabled="this.v$.$invalid"
+                            @click="onClickNextButton">Ingresar</v-btn>
+                        <br />
+                        <div style="text-align: center">
+                            <span class="leyenda">¿Aún no tienes cuenta? </span>
+                            <span class="termino" @click="natigateRegister()">Regístrate aquí </span>
                             <br />
-                            <div style="text-align: center">
-                                <span class="leyenda">¿Aún no tienes cuenta? </span>
-                                <span class="termino">Regístrate aquí </span>
-                                <br />
-                                <span class="leyenda">Olvidé mi contraseña </span>
-                            </div>
-                        </v-form>
+                            <span class="leyenda" @click="navigateForgotPassword()">Olvidé mi contraseña </span>
+                        </div>
+
                     </v-card-text>
                 </v-card>
             </v-col>
@@ -102,6 +101,12 @@ export default {
     methods: {
         isError(value) {
             return (this.$store.state.isError = value);
+        },
+        natigateRegister() {
+            this.$router.push({ name: "register" });
+        },
+        navigateForgotPassword() {
+            this.$router.push({ name: "forgotpassword" });
         },
         async onClickNextButton() {
             this.state.isLoading = true;
@@ -179,6 +184,21 @@ export default {
       
   
 <style  lang="scss" scoped>
+.btnLogin {
+    display: flex;
+    width: 393px;
+    padding: 18px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-input {
+    max-width: 394px;
+    height: 75px;
+    flex-shrink: 0;
+}
+
 .title {
     color: var(--secundarios-600, #000);
     text-align: center;
@@ -190,19 +210,6 @@ export default {
     line-height: 40px;
     /* 100% */
     letter-spacing: -1.2px;
-}
-
-.subtitle {
-    color: var(--secundarios-600, #000);
-    text-align: center;
-    /* Text/Regular/Medium */
-    font-family: Barlow;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 20px;
-    /* 125% */
-    letter-spacing: -0.16px;
 }
 
 .leyenda {
@@ -226,18 +233,36 @@ export default {
     letter-spacing: -0.13px;
 }
 
-.center {
-    margin: auto;
-    padding: 10px;
-}
 
 .form {
-    width: 394px;
+    width: auto;
     margin: auto;
-    min-width: 320px;
+
 }
 
-.formcapital {
-    text-transform: capitalize;
+@media screen and (max-width: 767px) {
+    .title {
+        color: var(--secundarios-600, #000);
+        text-align: center;
+
+        /* Heading/Semibold 1 */
+        font-family: Barlow;
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 26px;
+        /* 104% */
+        letter-spacing: -0.5px;
+    }
+
+    .btnLogin {
+        display: flex;
+        width: 320px;
+        padding: 18px 16px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+    }
 }
 </style>

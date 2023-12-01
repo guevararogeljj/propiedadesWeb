@@ -16,12 +16,19 @@
     <v-row>
       <v-col cols="12">
         <div style="text-align: center;">
-          <video style="width: 929.875px; height: 525.99px; flex-shrink: 0;" controls>
+          <video class="video" controls>
             <source src="https://finastrategy.mx/wp-content/uploads/2023/09/Capsula%2001_Nosotros.mp4" type="video/mp4">
           </video>
         </div>
+        <div class="salto"></div>
+        <div class="merchant center" style="text-align: center;">
+          <br />
+          <span class="merchantText">Tenemos un profundo conocimiento del mercado y un extraordinario servicio al
+            cliente</span>
+        </div>
       </v-col>
     </v-row>
+
     <div class="containerus  center">
       <div class="left-div">
       </div>
@@ -31,10 +38,37 @@
         <label class="h1" style="width: 505px; height: 159px; justify-items: end;" color="primary">Tu oportunidad de
           encontrar tu lugar soñado está aquí </label>
         <br>
-        <ButtonSecondary color="primary5" class="btn" @click="ToCatalog()" Text="Ver propiedades" width="324px" />
+        <ButtonSecondary class="btnText"  @click="ToCatalog()" Text="Ver propiedades" width="324px" />
       </div>
     </div>
+
+
+    <v-col align="center">
+      <div class="mobile">
+        <div class="bannerHappy"></div>
+        <div class="contentHappy">
+          <p class="title center">
+            Invierte hoy en tu patrimonio
+          </p>
+          <p class="subtitle center">
+            Tu oportunidad de encontrar tu lugar soñado está aquí
+          </p>
+
+          <p>
+            <v-btn variant="flat" class="btnColor" >
+              <span class="btnText" @click="ToCatalog()">Ver Propiedades</span>
+            </v-btn>
+          </p>
+          <br/>
+        </div>
+
+
+
+      </div>
+    </v-col>
+
     <v-row>
+
       <Contact class="center" />
     </v-row>
   </div>
@@ -75,6 +109,54 @@ export default {
 };
 </script>
 <style scoped>
+.contentHappy {
+
+  width: 320px;
+
+  flex-shrink: 0;
+  border-radius: 26px;
+  background-color: var(--primary-500, #379BEC);
+}
+
+.salto {
+  width: 100%;
+  height: 100px;
+  flex-shrink: 0;
+}
+
+.merchant {
+  display: none;
+  width: 320px;
+  height: 156px;
+  flex-shrink: 0;
+  border-radius: 26px;
+  background: var(--primary-300, #E3F1FC);
+}
+
+.merchantText {
+  display: none;
+  width: 252px;
+  height: 107px;
+  flex-shrink: 0;
+  color: var(--primary-500, #379BEC);
+  text-align: center;
+  justify-content: center;
+  /* Heading/Medium 2 */
+  font-family: Barlow;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  /* 120% */
+  letter-spacing: -0.4px;
+}
+
+.video {
+  width: 929.875px;
+  height: 525.99px;
+  flex-shrink: 0;
+}
+
 .containerus {
   display: flex;
   width: 1242px;
@@ -122,14 +204,6 @@ export default {
   z-index: 1;
 }
 
-.bannerHappy {
-  background-image: url("@/assets/persona-feliz-compra.png");
-  width: 705px;
-  height: 471px;
-  background-position: right top;
-
-}
-
 .btn {
   display: flex;
   width: 394px;
@@ -137,55 +211,153 @@ export default {
   justify-content: center;
   align-items: center;
   gap: 10px;
+  border-radius: 12px;
+  background: var(--primary-300, #E3F1FC);
+
+
 }
-
-@media (max-width: 767px) {
-  .banner {
-    background-image: none;
-    display: none;
-  }
-
-  .bannerHappy {
-    background-image: none;
-    display: none;
-  }
-
-  .left-div {
-  display: none;
-    /* Agrega aquí otros estilos para el div de la izquierda */
-  }
-
-  .right-div {
-    display: flex;
-    flex: 1;
-    background-color: #379BEC;
-    color: white;
-    align-content: center;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding-left: 20px;
-    /* Agrega aquí otros estilos para el div de la derecha */
-  }
-
-  .containerus {
-    display: flex;
-    width: 600px;
-  }
+.btnColor {
+  color: var(--primary-500, #379BEC);
+/* Text/Regular/Medium */
+font-family: Barlow;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px; /* 125% */
+letter-spacing: -0.16px;
 }
-
+.btnText{
+  color: var(--primary-500, #379BEC);
+/* Text/Regular/Medium */
+font-family: Barlow;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px; /* 125% */
+letter-spacing: -0.16px;
+}
 .center {
   margin: auto;
   padding: 10px;
 }
 
-@media only screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 1) {
+.mobile {
+  display: none;
+}
+
+@media screen and (orientation: portrait) and (max-width: 767px) {
+
+  .mobile {
+    display: contents;
+    width: 320px;
+    height: 733px;
+    flex-shrink: 0;
+  }
+
+  .bannerHappy {
+    background-image: url("@/assets/persona-feliz-compra-mobile.png");
+    width: 320px;
+    height: 335.094px;
+    background-position: center;
+  }
+
+  .contentHappy {
+    margin-top: -1px;
+    justify-items: center;
+    flex-shrink: 0;
+    padding: -10px;
+    border-top-left-radius: 0%;
+    border-top-right-radius: 0%;
+    border-bottom-left-radius: 26px;
+    border-bottom-right-radius: 26px;
+    background-color: var(--primary-500, #379BEC);
+  }
+
+  .merchant {
+    display: flex;
+    width: 320px;
+    height: 156px;
+    flex-shrink: 0;
+    border-radius: 26px;
+    background: var(--primary-300, #E3F1FC);
+  }
+
+  .merchantText {
+    display: flex;
+    width: 252px;
+    height: 107px;
+    flex-shrink: 0;
+    color: var(--primary-500, #379BEC);
+    text-align: center;
+    justify-content: center;
+    /* Heading/Medium 2 */
+    font-family: Barlow;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    /* 120% */
+    letter-spacing: -0.4px;
+  }
+
+  .video {
+    width: 365px;
+    height: 207px;
+    flex-shrink: 0;
+  }
 
   .banner {
-    background-image: url("@/assets/nosotros-banner-finastrategy-0 5.png");
-    width: 800px;
-    height: 350px;
-    position: relative;
-    z-index: 1;
+    background-image: url("@/assets/nosotros-banner-mobile-550-2 1.png");
+    width: 360px;
+    height: 618px;
+    flex-shrink: 0;
+  }
+
+  .left-div {
+    display: none;
+    /* Agrega aquí otros estilos para el div de la izquierda */
+  }
+
+  .right-div {
+    display: none;
+    /* Agrega aquí otros estilos para el div de la derecha */
+  }
+
+  .title {
+    color: var(--primary-300, #E3F1FC);
+    /* Heading/Medium 3 Mb */
+    font-family: Barlow;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.44px;
+  }
+
+  .subtitle {
+    color: var(--secundarios-blanco, #FFF);
+    text-align: center;
+    font-family: Barlow;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 40px;
+    letter-spacing: -1.2px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .merchant {
+    display: none;
+
+  }
+
+  .merchantText {
+    display: none;
+
+  }
+  .containerus {
+    display: flex;
   }
 }
 </style>

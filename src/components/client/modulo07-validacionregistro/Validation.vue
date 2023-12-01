@@ -23,14 +23,14 @@
                 v-model="phoneCodeOne"
                 type="number"
                 @keypress="onKeyPress"
-
+                :loading="loading"
                 :length="4"
               ></v-otp-input>
               <v-btn color="primary2" block @click="onClickNextButton"
+              :disabled="this.phoneCodeOne.length < 4 || loading"
                 >Continuar</v-btn
               >
               <br />
-
               <div style="text-align: center">
                 <span class="leyenda">¿No has recibido el código?</span>
                 <span class="termino">
@@ -67,8 +67,6 @@ import {
   helpers,
 } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
-// import utils from '@/components/shared/commons/utils'
-// import ButtonSecondary from "../shared/components/ButtonSecondary.vue";
 export default {
   components: {
     // ButtonSecondary,
@@ -77,6 +75,7 @@ export default {
   name: "regristroComp",
   data() {
     return {
+      loading: false,
       phoneCodeOne: "",
       phoneCodeTwo: "",
       phoneCodeThree: "",

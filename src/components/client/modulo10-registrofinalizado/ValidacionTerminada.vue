@@ -57,7 +57,6 @@ export default {
     },
   },
   async mounted() {
-    debugger
     this.Name =  this.state.NameRegister
   },
 };

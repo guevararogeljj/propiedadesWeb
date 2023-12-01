@@ -77,6 +77,17 @@ const routes = [
         component: () => import('@/components/shared/LoginView.vue'),
         meta: { requiredlogin: false }
       },
+      {
+        path: '/forgotpassword',
+        name: 'forgotpassword',
+        component: () => import('@/components/shared/forgotpassword.vue'),
+      },
+      {
+        path: '/recuperacioncontrasena',
+        name: 'passwordrecovery',
+        component: () => import('@/components/shared/PasswordRecoveryView.vue'),
+        meta: { requiredlogin: false }
+      },
     ],
   },
 ]

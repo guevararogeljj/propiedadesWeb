@@ -6,7 +6,7 @@
         </v-btn>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-app-bar-nav-icon v-if="!drawer" @click="drawer = true" class="d-flex d-md-none"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon v-if="!drawer" color="primary3" @click="drawer = true" class="d-flex d-md-none"></v-app-bar-nav-icon>
       <v-btn v-else icon class="d-flex d-md-none" @click="closeMenu()">
         <v-icon>mdi-close</v-icon>
       </v-btn>
@@ -15,7 +15,8 @@
         <v-btn variant="text" class="lowercase-text" @click="navigateCatalogo">Catálogo</v-btn>
         <v-btn variant="text" class="lowercase-text" @click="navigateUs">Nosotros</v-btn>
         <v-btn variant="flat" class="lowercase-text btnColor" @click="navigateRegister">Registrarme</v-btn>
-        <v-btn color="primary3" class="lowercase-text" variant="flat" @click="navigateLogin" text>Iniciar</v-btn>
+        <v-btn color="primary3" class="lowercase-text" variant="flat" @click="navigateLogin" v-if="isLogin">Iniciar</v-btn>
+        <div v-if="!isLogin">{{ this.Name }} </div>
       </div>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute temporary color="primary3" permanent style="width: 100%;">
@@ -33,7 +34,7 @@
       <br />
       <v-btn variant="flat" class="lowercase-text btnRegister" @click="navigateLogin">Ingresar</v-btn>
       <v-list nav dense>
-        <v-list-item v-for="(item, index) in myItems" :key="item" :to="item.route">
+        <v-list-item v-for="(item) in rutas" :key="item" :to="item.route" @click="closeMenu()">
           <v-list-item-title @click="tab = index">{{ item.name }}</v-list-item-title>
         </v-list-item>
       </v-list>
@@ -52,12 +53,15 @@ export default {
   data() {
     return {
       drawer: false,
-      myItems: [
+      rutas: [
         { name: 'Home', route: '/' },
         { name: 'Catalogo', route: '/propiedades' },
         { name: 'Nosotros', route: '/us' },
         { name: 'Registro', route: '/register' }
       ],
+      Name: {
+        type: String,
+        default: "user name"}
     };
   },
   methods: {
@@ -79,7 +83,32 @@ export default {
     navigateLogin() {
       this.$router.push("/login");
     },
+  },
+  computed:{
+    isLogin() {
+      return this.state.isLogin;
+    },
+    letters() {
+      let letters = "";
+      if (this.state.username !== "" && this.state.username !== undefined) {
+        letters = Array.from(this.state.username)[0];
+      } else {
+        letters = Array.from(this.state.email)[0];
+      }
+
+      return letters;
+    },
+    state() {
+      return this.$store.state;
+    },
+  },
+  mounted() {
+    debugger;
+   this.Name = this.state.username
   }
+  // mounted:{
+  //   // this.state.NameRegister
+  // }
 };
 </script>
 <style scoped>

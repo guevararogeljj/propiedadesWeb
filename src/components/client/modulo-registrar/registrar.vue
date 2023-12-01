@@ -1,8 +1,8 @@
 <template>
     <v-container fluid>
         <v-row style="align-items: center">
-            <v-col cols="12" sm="8" offset-sm="2" md="6" offset-md="3">
-                <v-card>
+            <v-col cols="12" sm="8" offset-sm="2" md="6" offset-md="3" align="center">
+                <v-card flat>
                     <v-card-title>
                         <p class="title">Regístrate</p>
                         <br />
@@ -11,32 +11,31 @@
                         </p>
                     </v-card-title>
                     <v-card-text>
-                        <v-form>
-                            <v-text-field density="compact"  variant="outlined" label="Nombre" v-model="data.Name"
+                            <v-text-field density="compact"  variant="outlined" label="Nombre" v-model="data.Name" class="form-input"
                                 :error-messages="v$.data.Name.$errors.map((e) => e.$message)
                                     " @input="v$.data.Name.$touch" @blur="v$.data.Name.$touch"
                                 autocomplete="off"></v-text-field>
-                            <v-text-field density="compact" variant="outlined" label="Apellidos" v-model="data.Lastname"
+                            <v-text-field density="compact" variant="outlined" label="Apellidos" v-model="data.Lastname" class="form-input"
                                 :error-messages="v$.data.Lastname.$errors.map((e) => e.$message)
                                     " @input="v$.data.Lastname.$touch" @blur="v$.data.Lastname.$touch"
                                 autocomplete="off"></v-text-field>
-                            <v-text-field density="compact" variant="outlined" label="Correo Electrónico" type="email"
+                            <v-text-field density="compact" variant="outlined" label="Correo Electrónico" type="email" class="form-input"
                                 v-model="data.Email" :error-messages="v$.data.Email.$errors.map((e) => e.$message)"
                                 @input="v$.data.Email.$touch" @blur="v$.data.Email.$touch"
                                 autocomplete="off"></v-text-field>
-                            <v-text-field density="compact" variant="outlined" label="Teléfono" type="number"
+                            <v-text-field density="compact" variant="outlined" label="Teléfono" type="number" class="form-input"
                                 v-model="data.Cellphone" :error-messages="v$.data.Cellphone.$errors.map((e) => e.$message)
                                     " @input="v$.data.Cellphone.$touch" @blur="v$.data.Cellphone.$touch"
                                 autocomplete="off"></v-text-field>
-                            <v-text-field density="compact" variant="outlined" label="Contraseña" type="password"
+                            <v-text-field density="compact" variant="outlined" label="Contraseña" type="password" class="form-input"
                                 v-model="data.Password" :error-messages="v$.data.Password.$errors.map((e) => e.$message)
                                     " @input="v$.data.Password.$touch" @blur="v$.data.Password.$touch"
                                 autocomplete="off"></v-text-field>
-                            <v-text-field density="compact" variant="outlined" label="Confirmar Contraseña" type="password"
+                            <v-text-field density="compact" variant="outlined" label="Confirmar Contraseña" type="password" class="form-input"
                                 v-model="data.ConfirmPassword" :error-messages="v$.data.ConfirmPassword.$errors.map((e) => e.$message)
                                     " @input="v$.data.ConfirmPassword.$touch" @blur="v$.data.ConfirmPassword.$touch"
                                 autocomplete="off"></v-text-field>
-                            <v-btn color="primary2" dark block :IsDisabled="this.v$.$invalid"
+                            <v-btn color="primary2" class="btnLogin" :IsDisabled="this.v$.$invalid"
                                 @click="onClickNextButton">Continuar</v-btn>
                             <br />
                             <div style="text-align: center">
@@ -48,9 +47,8 @@
                             <br />
                             <div style="text-align: center">
                                 <span class="leyenda">¿Ya tienes una cuenta? </span>
-                                <span class="termino">Inicia sesión </span>
+                                <span class="termino" @click="navigateLogin()">Inicia sesión</span>
                             </div>
-                        </v-form>
                     </v-card-text>
                 </v-card>
             </v-col>
@@ -144,12 +142,12 @@ export default {
                         "La contraseña debe tener máximo 12 caracteres",
                         maxLength(12)
                     ),
-                    // regex: helpers.withMessage(
-                    //     "Las contraseñas no coinciden",
-                    //     helpers.withMessage("Las contraseñas no coinciden", (value) => {
-                    //         return value === this.data.password;
-                    //     })
-                    // ),
+                    regex: helpers.withMessage(
+                        "Las contraseñas no coinciden",
+                        helpers.withMessage("Las contraseñas no coinciden", (value) => {
+                            return value === this.data.Password;
+                        })
+                    ),
                     minLength: helpers.withMessage(
                         "La contraseña debe tener mínimo 8 caracteres",
                         minLength(8)
@@ -198,6 +196,9 @@ export default {
             }
             this.Loading(false);
         },
+        navigateLogin() {
+            this.$router.push({ name: "login" });
+        },
     },
     computed: {
     state() {
@@ -211,6 +212,14 @@ export default {
 };
 </script>
 <style scoped>
+.btnLogin {
+    display: flex;
+    width: 393px;
+    padding: 18px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
 .title {
     color: var(--secundarios-600, #000);
     text-align: center;
@@ -257,18 +266,12 @@ export default {
     line-height: normal;
     letter-spacing: -0.13px;
 }
-
-.center {
-    margin: auto;
-    padding: 10px;
+.form-input {
+    max-width: 394px;
+    height: 75px;
+    flex-shrink: 0;
 }
-
-.form {
-    width: 394px;
-    margin: auto;
-    min-width: 320px;
-}
-.formcapital {
-    text-transform: capitalize;
+@media screen and (max-width: 767px) {
+    
 }
 </style>
