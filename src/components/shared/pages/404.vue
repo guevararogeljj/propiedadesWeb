@@ -16,6 +16,7 @@
                 URL
                 correctamente
               </p>
+              <v-btn color="primary3" class="lowercase-text btn" @click="navigateLogin()">Inicio</v-btn>
             </v-form>
           </v-card-text>
         </v-card>
@@ -31,15 +32,38 @@ export default {
       notfound,
     };
   },
+  methods: {
+    navigateLogin() {
+      this.$router.push("/login");
+    },
+  },
 }
 </script>
 <style>
+.btn {
+  display: flex;
+  width: 236px;
+  padding: 18px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+  background: var(--primary-500, #379BEC);
+}
+
+.lowercase-text {
+  font-family: Barlow;
+  text-transform: capitalize;
+  margin-right: 10px;
+}
+
 .notfound {
   width: 235.755px;
-height: 199.23px;
-flex-shrink: 0;
+  height: 199.23px;
+  flex-shrink: 0;
 
 }
+
 .custom-card {
   height: 400px;
   /* Set the desired height */
