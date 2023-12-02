@@ -13,7 +13,7 @@ export default () => {
 
     return axios.create(
         {
-            baseURL: "https://192.168.100.36:7126/api" ,
+            baseURL: "https://apipropiedadesqa.finastrategy.mx/api" ,
         }
     );
 }

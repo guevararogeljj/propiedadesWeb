@@ -3,7 +3,7 @@ import api from "./apiconfig";
 export default {
 
     signup(data) {
-        return api().post("https://192.168.100.36:7126/api"  + '/signup', data).then(result => {
+        return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/signup', data).then(result => {
             if (result.status == 200) {
                 // console.log(result.data)
                 if (result.data.success) {
@@ -24,7 +24,7 @@ export default {
 
     codephone(data) {
         try {
-            return api().post("https://192.168.100.36:7126/api"  + '/signup/sendcodesms', data).then(result => {
+            return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/signup/sendcodesms', data).then(result => {
                 if (result.status == 200) {
                     if (result.data.success) {
                         return result.data;
@@ -48,7 +48,7 @@ export default {
     },
     validatecodephone(data) {
         try {
-            return api().post("https://192.168.100.36:7126/api"  + '/signup/validatecodesms', data).then(result => {
+            return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/signup/validatecodesms', data).then(result => {
                 if (result.status == 200) {
                     // console.log('api')
                     // console.log(result)
@@ -100,7 +100,7 @@ export default {
     },
     validatedata(data) {
         try {
-            return api().post("https://192.168.100.36:7126/api"  + '/signup/userinformation', data).then(result => {
+            return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/signup/userinformation', data).then(result => {
                 if (result.status == 200) {
                     if (result.data.success) {
                         return result.data;
@@ -125,7 +125,7 @@ export default {
 
     updatedata(data) {
         try {
-            return api().post("https://192.168.100.36:7126/api"  + '/signup/confirmuserinformation', data).then(result => {
+            return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/signup/confirmuserinformation', data).then(result => {
                 if (result.status == 200) {
                     if (result.data.success) {
                         return result.data;
@@ -149,7 +149,7 @@ export default {
     },
     emailvalidation(email, code) {
         try {
-            return api().get("https://192.168.100.36:7126/api"  + `/signup/emailvalidation?email=${email}&code=${code}`).then(result => {
+            return api().get("https://apipropiedadesqa.finastrategy.mx/api"  + `/signup/emailvalidation?email=${email}&code=${code}`).then(result => {
                 if (result.status == 200) {
                     if (result.data.success) {
                         return result.data;

@@ -15,7 +15,7 @@
         <v-btn variant="text" class="lowercase-text" @click="navigateCatalogo">Catálogo</v-btn>
         <v-btn variant="text" class="lowercase-text" @click="navigateUs">Nosotros</v-btn>
         <v-btn variant="flat" class="lowercase-text btnColor" @click="navigateRegister">Registrarme</v-btn>
-        <v-btn color="primary3" class="lowercase-text" variant="flat" @click="navigateLogin" v-if="isLogin">Iniciar</v-btn>
+        <v-btn color="primary3" class="lowercase-text" variant="flat" @click="navigateLogin" >Iniciar</v-btn>
         <div v-if="!isLogin">{{ this.Name }} </div>
       </div>
     </v-app-bar>
@@ -81,7 +81,7 @@ export default {
       this.drawer = !this.drawer;
     },
     navigateLogin() {
-      this.drawer = !this.drawer;
+
       this.$router.push("/login");
     },
   },
