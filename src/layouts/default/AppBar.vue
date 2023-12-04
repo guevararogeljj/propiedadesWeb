@@ -2,11 +2,11 @@
   <div class="content">
     <v-app-bar app :elevation="0">
       <v-toolbar-title>
-        <v-btn class="logoClass ms-5" @click="navigateInicio">
-        </v-btn>
+        <v-btn class="logoClass ms-5" @click="navigateInicio"> </v-btn>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-app-bar-nav-icon v-if="!drawer" color="primary3" @click="drawer = true" class="d-flex d-md-none"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon v-if="!drawer" color="primary3" @click="drawer = true"
+        class="d-flex d-md-none"></v-app-bar-nav-icon>
       <v-btn v-else icon class="d-flex d-md-none" @click="closeMenu()">
         <v-icon>mdi-close</v-icon>
       </v-btn>
@@ -15,14 +15,33 @@
         <v-btn variant="text" class="lowercase-text" @click="navigateCatalogo">Catálogo</v-btn>
         <v-btn variant="text" class="lowercase-text" @click="navigateUs">Nosotros</v-btn>
         <v-btn variant="flat" class="lowercase-text btnColor" @click="navigateRegister">Registrarme</v-btn>
-        <v-btn color="primary3" class="lowercase-text" variant="flat" @click="navigateLogin" >Iniciar</v-btn>
-        <div v-if="!isLogin">{{ this.Name }} </div>
+        <v-btn color="primary3" class="lowercase-text" variant="flat" @click="navigateLogin"
+          v-if="!isLogin">Iniciar</v-btn>
+        <v-menu v-else>
+          <template v-slot:activator="{ props }">
+            <v-btn class="loginName lowercase-text" variant="text" v-bind="props">
+              {{ this.state.username }}
+              <v-icon size="32" color="primary3">mdi-account-circle-outline</v-icon>
+              <v-icon color="primary3">mdi-chevron-down</v-icon>
+            </v-btn>
+          </template>
+          <v-list nav dense>
+            <v-list-item v-for="item in rutasLogin" :append-icon="item.icon" :key="item" :to="item.route">
+              <v-list-item-title @click="tab = index">{{
+                item.name
+              }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
       </div>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" absolute temporary color="primary3" permanent style="width: 100%;">
+    <v-navigation-drawer v-model="drawer" absolute temporary color="primary3" permanent style="width: 100%">
       <div class="center">
         <p class="titulo">Bienvenido</p>
-        <p class="subtitle">Ingresa y accede a miles de oportunidades de inversión para crecer tu patrimonio</p>
+        <p class="subtitle">
+          Ingresa y accede a miles de oportunidades de inversión para crecer tu
+          patrimonio
+        </p>
       </div>
       <br />
       <br />
@@ -34,14 +53,17 @@
       <br />
       <v-btn variant="flat" class="lowercase-text btnRegister" @click="navigateLogin">Ingresar</v-btn>
       <v-list nav dense>
-        <v-list-item v-for="(item) in rutas" :key="item" :to="item.route" @click="closeMenu()">
-          <v-list-item-title @click="tab = index">{{ item.name }}</v-list-item-title>
+        <v-list-item v-for="item in rutas" :key="item" :to="item.route" @click="closeMenu()">
+          <v-list-item-title @click="tab = index">{{
+            item.name
+          }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
   </div>
 </template>
 <script>
+import ButtonBack from "@/components/common/ButtonBack.vue";
 import ButtonPrimary from "@/components/common/ButtonPrimary.vue";
 import ButtonSecondary from "@/components/common/ButtonSecondary.vue";
 export default {
@@ -49,19 +71,29 @@ export default {
   components: {
     ButtonPrimary,
     ButtonSecondary,
+    ButtonBack,
   },
   data() {
     return {
       drawer: false,
       rutas: [
-        { name: 'Home', route: '/' },
-        { name: 'Catalogo', route: '/propiedades' },
-        { name: 'Nosotros', route: '/us' },
-        { name: 'Registro', route: '/register' }
+        { name: "Home", route: "/" },
+        { name: "Catalogo", route: "/propiedades" },
+        { name: "Nosotros", route: "/us" },
+        { name: "Registro", route: "/register" },
+      ],
+      rutasLogin: [
+        { name: "Mi perfil", route: "/profile", icon: "mdi-account-circle-outline" },
+        { name: "Favoritos", route: "/favorites", icon:"mdi-heart-outline" },
+        { name: "Obtener más beneficios", route: "/benefits", icon:"mdi-medal-outline" },
+        { name: "Verificación en 2 paso", route: "/verification", icon:"mdi-application-settings-outline" },
+        { name: "Cerrar sesión", route: "/logout", icon:"mdi-exit-to-app" },
+
       ],
       Name: {
         type: String,
-        default: "user name"}
+        default: "user name",
+      },
     };
   },
   methods: {
@@ -81,11 +113,10 @@ export default {
       this.drawer = !this.drawer;
     },
     navigateLogin() {
-
       this.$router.push("/login");
     },
   },
-  computed:{
+  computed: {
     isLogin() {
       return this.state.isLogin;
     },
@@ -105,25 +136,40 @@ export default {
   },
   mounted() {
     debugger;
-   this.Name = this.state.username
-  }
+    let data = this.$store.state.username;
+    this.Name = this.state.username;
+  },
   // mounted:{
   //   // this.state.NameRegister
   // }
 };
 </script>
 <style scoped>
-.inicio{
-  color: var(--primary-500, #379BEC);
-
-/* Text/Regular/Medium */
-font-family: Barlow;
-font-size: 16px;
-font-style: normal;
-font-weight: 500;
-line-height: 20px; /* 125% */
-letter-spacing: -0.16px;
+.loginName {
+  color: black;
+  /* Text/Regular/Medium */
+  font-family: Barlow;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  letter-spacing: -0.16px;
 }
+
+.inicio {
+  color: var(--primary-500, #379bec);
+
+  /* Text/Regular/Medium */
+  font-family: Barlow;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  letter-spacing: -0.16px;
+}
+
 .lowercase-text {
   font-family: Barlow;
   text-transform: capitalize;
@@ -150,9 +196,9 @@ letter-spacing: -0.16px;
   width: 106px;
   height: 40px;
   border-radius: 10px;
-  background: var(--primary-300, #E3F1FC);
+  background: var(--primary-300, #e3f1fc);
 
-  color: var(--primary-500, #379BEC);
+  color: var(--primary-500, #379bec);
   /* Text/Regular/Medium */
 
   font-size: 16px;
@@ -168,7 +214,7 @@ letter-spacing: -0.16px;
   position: absolute;
   left: 121px;
   top: 34px;
-  color: var(--secundarios-blanco, #FFF);
+  color: var(--secundarios-blanco, #fff);
   font-family: Barlow;
   font-size: 25px;
   font-style: normal;
@@ -182,7 +228,7 @@ letter-spacing: -0.16px;
   position: absolute;
   left: 30px;
   top: 75px;
-  color: var(--secundarios-blanco, #FFF);
+  color: var(--secundarios-blanco, #fff);
   text-align: center;
 
   /* Text/Small/Medium */
@@ -207,7 +253,7 @@ letter-spacing: -0.16px;
   left: 30px;
   top: 130px;
   border-radius: 14px;
-  background: var(--secundarios-blanco, #FFF);
+  background: var(--secundarios-blanco, #fff);
 }
 
 .center {
@@ -215,7 +261,6 @@ letter-spacing: -0.16px;
   justify-content: center;
   align-items: center;
   position: absolute;
-
 }
 
 @media (max-width: 767px) {
@@ -223,6 +268,7 @@ letter-spacing: -0.16px;
     /* Adjust styles for smaller screens */
     background-size: contain;
   }
+
   .logoClass {
     background-image: url("https://finastrategy.mx/wp-content/themes/finastrategy/assets/img/logo-finastrategy.png");
     background-size: 100px;
@@ -234,7 +280,7 @@ letter-spacing: -0.16px;
     /* Additional styles */
     margin: 0;
     padding: 0;
-}
+  }
 }
 
 /* Styles for desktop */
@@ -246,5 +292,4 @@ letter-spacing: -0.16px;
 @media (min-width: 768px) and (max-width: 1023px) {
   /* Add your iPad styles here */
 }
-
 </style>
