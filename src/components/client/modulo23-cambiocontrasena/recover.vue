@@ -180,6 +180,7 @@ export default {
 }
 
 .title {
+width: auto;
   color: var(--secundarios-600, #000);
   text-align: center;
   /* Heading/Large2 */

@@ -129,6 +129,7 @@ export default {
                     privatekey.publickey
                 ),
             };
+            debugger
             const result = await usersignin.signin(credentials);
             const data = result.result;
             //console.log(data);
@@ -160,7 +161,6 @@ export default {
                     title: "¡Error!",
                     text: "No se ha podido iniciar sesión " + result.message,
                 });
-                this.$store.state.messageErrors = result.message;
                 this.state.isLoading = false;
                 this.state.isError = true;
             }

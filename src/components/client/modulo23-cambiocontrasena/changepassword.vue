@@ -1,11 +1,11 @@
 <template>
     <v-container fluid>
+        {{ this.phoneCodeOne }}
         <v-row class="form" v-if="this.steps <= 1">
             <v-col cols="12" sm="8" offset-sm="2" md="6" offset-md="3" align="center">
-                <v-card flat>
+                <v-card flat >
                     <v-card-title>
                         <p class="title">Restablecer mi contraseña</p>
-                        <br />
                         <p class="subtitle">Verifica tu número telefónico</p>
                         <p class="subtitle2">
                             Por favor ingresa el código de 4 digitos que enviamos por SMS a tu
@@ -247,7 +247,7 @@ export default {
                     title: "Error",
                     text: result.message,
                 });
-                this.cleanCode()
+   
             }
             this.Loading(false);
         }
@@ -316,6 +316,7 @@ export default {
 }
 
 .title {
+    justify-content: center;
     color: var(--secundarios-600, #000);
     text-align: center;
     /* Heading/Large2 */
@@ -324,6 +325,7 @@ export default {
     font-style: normal;
     font-weight: 500;
     line-height: 40px;
+    width: auto;
     /* 100% */
     letter-spacing: -1.2px;
 }
@@ -365,11 +367,6 @@ export default {
 .center {
     margin: auto;
     padding: 10px;
-}
-
-.form {
-    margin: auto;
-    min-width: 320px;
 }
 
 .formcapital {

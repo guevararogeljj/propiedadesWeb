@@ -198,6 +198,7 @@ export default {
   margin-right: 10px;
 }
 .title {
+  width: auto;
   color: var(--secundarios-600, #000);
   text-align: center;
   /* Heading/Large2 */
