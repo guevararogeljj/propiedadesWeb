@@ -9,7 +9,7 @@
                     </v-card-title>
                     <v-card-text>
                         <v-text-field density="compact" variant="outlined" class="form-input"
-                            label="Ingresa con correo electrónico o número telefónico" v-model="data.Email" type="number"
+                            label="Ingresa con correo electrónico o número telefónico" v-model="data.Email" 
                             :error-messages="v$.data.Email.$errors.map((e) => e.$message)
                                 " @input="v$.data.Email.$touch" @blur="v$.data.Email.$touch"
                             autocomplete="off"></v-text-field>

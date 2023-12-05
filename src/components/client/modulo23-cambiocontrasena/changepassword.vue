@@ -1,6 +1,5 @@
 <template>
     <v-container fluid>
-        {{ this.phoneCodeOne }}
         <v-row class="form" v-if="this.steps <= 1">
             <v-col cols="12" sm="8" offset-sm="2" md="6" offset-md="3" align="center">
                 <v-card flat >
@@ -239,7 +238,7 @@ export default {
                     title: "Éxito",
                     text: "Contraseña cambiada correctamente",
                 });
-                this.store.commit("LOGOUT");
+                // this.store.commit("LOGOUT");
                 this.$router.push({ name: "recoverpasswordsuccess" });
             } else {
                 

@@ -13,7 +13,7 @@
           </v-card-title>
           <v-card-text>
             <v-text-field density="compact" variant="outlined" class="form-input"
-              label="Ingresa con correo electrónico o número telefónico" v-model="data.oldemail" type="number"
+              label="Ingresa con correo electrónico o número telefónico" v-model="data.oldemail"
               autocomplete="off"></v-text-field>
             <br />
             <v-btn color="primary2" class="btnLogin" @click="onClickNextButton()">Continuar</v-btn>
@@ -107,7 +107,10 @@ export default {
         });
       }
       else {
-        this.showModalErrorService = true;
+        dialogError({
+                    title: "¡Error!",
+                    text:"correo o número no encontrado " + result.message,
+                });
       }
     },
     onClickCalcelButton() { },
