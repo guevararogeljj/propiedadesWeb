@@ -1,13 +1,17 @@
 <template>
   <v-card color="primary3" class="card-style">
+    <br/>
     <v-card-title style="text-align: center;">
       <span class="title">Te apoyamos en tu proceso de compra</span>
     </v-card-title>
-    <v-tabs v-model="activeTab" align-tabs="start">
+    <v-card-item>
+      <br/>
+    <v-tabs v-model="activeTab">
       <v-tab v-for="tab in tabs" :key="tab.value" :value="tab.value" selected-class="v-tab--active">
         <p class="custom-tab"> {{ tab.title }}</p>
       </v-tab>
     </v-tabs>
+  </v-card-item>
     <v-card-text>
       <v-window v-model="activeTab" class="asesor-inmobiliario">
         <v-window-item class="card-text" v-for="tab in tabs" :key="tab.value" :value="tab.value">
@@ -36,6 +40,22 @@ export default {
 
 </script>
 <style scoped>
+.title {
+  width: 300px;
+  height: 106px;
+  flex-shrink: 0;
+  color: var(--secundarios-blanco, #FFF);
+
+  /* Heading/Large1 */
+  font-family: Barlow;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 52.83px;
+  /* 110.063% */
+  letter-spacing: -1.44px;
+}
+
 .v-tab--active .custom-tab {
   width: 228px;
   border-radius: 40px;
