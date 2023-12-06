@@ -13,11 +13,7 @@
           </v-card-title>
           <v-card-text>
             <v-text-field density="compact" variant="outlined" class="form-input"
-<<<<<<< HEAD
               label="Ingresa con correo electrónico o número telefónico" v-model="data.oldemail"
-=======
-              label="Ingresa con correo electrónico o número telefónico" v-model="data.oldemail" 
->>>>>>> e9f1487416950112b1c84829dd637fc048aa052e
               autocomplete="off"></v-text-field>
             <br />
             <v-btn color="primary2" class="btnLogin" @click="onClickNextButton()">Continuar</v-btn>

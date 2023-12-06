@@ -92,6 +92,11 @@ const routes = [
         path: '/recoverpasswordsuccess',
         name: 'recoverpasswordsuccess',
         component: () => import('@/components/shared/recoverpasswordsuccess.vue'),
+      },
+      {
+        path: '/profile',
+        name: 'profile',
+        component: () => import('@/components/shared/Profile.vue'),
       }
     ],
   },
