@@ -5,7 +5,7 @@
     <div class="row">
       <buscador
         MinorText=""
-        MainText="Ofertas más destacadas"
+        MainText="Catálogo"
         :OnClickBuscar="performSearch"
         :PorpertyType="outPropertyType"
         :State="outState"

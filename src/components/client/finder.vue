@@ -1,6 +1,7 @@
 <template>
   <v-container>
-  <div class="wrapper desktop-style">
+  <!-- <div class="wrapper desktop-style"> -->
+    <div  :class="`${isBackgroud ? 'wrapper desktop-style' : ''}`">
     <div class="row">
       <div class="col-12 maintext">{{ MainText }}</div>
       <div class="col-12 minortext mt-1">{{ MinorText }}</div>
@@ -33,8 +34,10 @@
           :OnClickButton="onClickButtonPlus" />
       </v-col>
       <v-col cols="12" sm="6" md="4" lg="3">
-        <custom-button-primary v-if="!changeBtn" Text="Buscar" class="btnCustom" Icon="mdi-magnify"
+        <customButtonSeconday color="primary3" v-if="!changeBtn" Text="Buscar" class="btnCustom" Icon="mdi-magnify"
           :OnClickButton="onClickButtonBuscar" />
+          <customButtonSeconday v-if="isClear" Text="Limpiar" Icon="mdi-filter-remove-outline"
+          :OnClickButton="onClickButtonLimpiar" />
       </v-col>
       <v-col cols="12" sm="6" md="4" lg="3">
         <customButtonSeconday v-if="isClear" Text="Limpiar" Icon="mdi-filter-remove-outline"
@@ -104,6 +107,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isBackgroud: {
+    type: Boolean,
+    default: false,
+  },
   },
   components: {
     customButtonPrimary,
