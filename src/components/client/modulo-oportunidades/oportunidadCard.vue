@@ -144,6 +144,7 @@ export default {
 }
 
 .center {
+  text-align: center;
   margin: auto;
   padding: 10px;
 }

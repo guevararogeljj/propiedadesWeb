@@ -59,6 +59,22 @@
           }}</v-list-item-title>
         </v-list-item>
       </v-list>
+      <v-menu v-if="isLogin">
+        <template v-slot:activator="{ props }">
+          <v-btn  class="loginNameMobile lowercase-text" variant="text" v-bind="props">
+            {{ this.state.username }}
+            <v-icon size="32" color="primary3">mdi-account-circle-outline</v-icon>
+            <v-icon color="primary3">mdi-chevron-down</v-icon>
+          </v-btn>
+        </template>
+        <v-list nav dense>
+          <v-list-item v-for="item in rutasLogin" :append-icon="item.icon" :key="item" :to="item.route">
+            <v-list-item-title @click="tab = index">{{
+              item.name
+            }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-navigation-drawer>
   </div>
 </template>
@@ -84,10 +100,10 @@ export default {
       ],
       rutasLogin: [
         { name: "Mi perfil", route: "/profile", icon: "mdi-account-circle-outline" },
-        { name: "Favoritos", route: "/favorites", icon:"mdi-heart-outline" },
-        { name: "Obtener más beneficios", route: "/benefits", icon:"mdi-medal-outline" },
-        { name: "Verificación en 2 paso", route: "/verification", icon:"mdi-application-settings-outline" },
-        { name: "Cerrar sesión", route: "/logout", icon:"mdi-exit-to-app" },
+        { name: "Favoritos", route: "/favorites", icon: "mdi-heart-outline" },
+        { name: "Obtener más beneficios", route: "/benefits", icon: "mdi-medal-outline" },
+        { name: "Verificación en 2 paso", route: "/verification", icon: "mdi-application-settings-outline" },
+        { name: "Cerrar sesión", route: "/logout", icon: "mdi-exit-to-app" },
 
       ],
       Name: {
@@ -145,6 +161,17 @@ export default {
 };
 </script>
 <style scoped>
+.loginNameMobile{
+  color: white;
+  /* Text/Regular/Medium */
+  font-family: Barlow;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  letter-spacing: -0.16px;
+}
 .loginName {
   color: black;
   /* Text/Regular/Medium */

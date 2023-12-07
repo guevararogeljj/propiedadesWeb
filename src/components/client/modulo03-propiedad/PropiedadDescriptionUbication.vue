@@ -3,28 +3,20 @@
     {{ PropertyDescription }}
   </p>
   <title-description Title="Ubicación:" :Description="UbicacionDescription" />
-<p class="title">Mapa</p>
-      <v-img
-        v-if="isLocation()"
-        class="map-banner"
-        alt="Ubicación"
-        :src="LocationBanner"
-        @click="onClickImageLocation"
-      />
 
-      <v-img
-        v-else
-        class="map-banner-no-found"
-        alt="Ubicación no encotrada"
-        :src="MissedBaner"
-      />
-
+  <p class="title">Mapa</p>
+  <v-row style="align-items: center">
+    <v-col cols="12" sm="8" offset-sm="2" md="6" offset-md="3" align="center">
+      <v-img v-if="isLocation()" class="map-banner" alt="Ubicación" :src="LocationBanner" @click="onClickImageLocation" />
+      <v-img v-else class="map-banner-no-found" alt="Ubicación no encotrada" :src="MissedBaner" />
+    </v-col>
+  </v-row>
 </template>
   
-  <script>
+<script>
 import TitleDescription from "@/components/shared/TitleDescription.vue";
 import LocationBanner from "@/assets/location_banner.svg";
-import MissedBaner from "@/assets/location_missed_banner.jpg";
+import MissedBaner from "@/assets/location_missed_banner.png";
 export default {
   components: { TitleDescription },
   props: {
@@ -71,32 +63,36 @@ export default {
 };
 </script>
   
-  <style scoped lang="scss">
-  .title {
-  /* Headline/H3 regular */
+<style scoped lang="scss">
+.title {
+  color: var(--secundarios-600, #000);
 
-  font-family: "Roboto";
+  /* Heading/Medium 1 */
+  font-family: Barlow;
+  font-size: 25px;
   font-style: normal;
-  font-weight: 400;
-  font-size: 48px;
-  line-height: 48px;
-  /* or 100% */
-
-  display: flex;
-  align-items: center;
-
-  /* Grayscale/Main_Text */
-
-  color: #63666a;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.5px;
 }
+
 .map-banner {
-  width: 100%;
-  height: 350px;
-  cursor: pointer;
+  margin: 0;
+  display: flex;
+  width: 712px;
+  height: 340px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
 }
+
 .map-banner-no-found {
-  width: 100%;
-  height: 350px;
-  cursor: pointer;
+  margin: 0;
+  display: flex;
+  width: 712px;
+  height: 340px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
 }
 </style>

@@ -1,51 +1,51 @@
 <template>
   <v-container>
-  <!-- <div class="wrapper desktop-style"> -->
-    <div  :class="`${isBackgroud ? 'wrapper desktop-style' : ''}`">
-    <div class="row">
-      <div class="col-12 maintext">{{ MainText }}</div>
-      <div class="col-12 minortext mt-1">{{ MinorText }}</div>
-    </div>
-    <v-row>
-      <v-col cols="12" sm="6" md="4" lg="3">
-        <customselect class="Inputs" v-if="isTipoInmueble" :ItemSource="catalogs.tipoInmuebles" ItemIdAttribute="id"
-          ItemNameAttribute="description" DefaultOption="Tipo de inmueble" v-model="params.propertytype"
-          :DefaultOptionActive="true" />
-      </v-col>
-      <v-col cols="12" sm="6" md="4" lg="3">
-        <customselect class="Inputs" v-if="isEstado" :ItemSource="catalogs.estados" ItemIdAttribute="id"
-          ItemNameAttribute="description" DefaultOption="Estado" v-model="params.state" :OnChangeSelect="onChangeEstado"
-          :DefaultOptionActive="true" />
-      </v-col>
-      <v-col cols="12" sm="6" md="4" lg="3">
-        <customselect class="Inputs" v-if="isMunicipio" :ItemSource="catalogs.municipios" ItemIdAttribute="id"
-          ItemNameAttribute="description" DefaultOption="Municipio" v-model="params.city" :DefaultOptionActive="true" />
-      </v-col>
-      <v-col cols="12" sm="6" md="4" lg="3">
-        <div style="display: flex; justify-content: center;">
-           <custom-button-primary v-if="changeBtn" Text="Buscar" class="btnCustom"  Icon="mdi-magnify"
-          :OnClickButton="onClickButtonBuscar" />
-        </div>
-        <customselect class="Inputs" v-if="isPrecio" :ItemSource="catalogs.rangoprecios" ItemIdAttribute="key"
-          ItemNameAttribute="description" DefaultOption="Precio" v-model="params.price" :DefaultOptionActive="true" />
-      </v-col>
-      <v-col cols="12" sm="6" md="4" lg="3">
-        <customButtonSeconday v-if="isRooms && isBatrooms" Text="Mas" Icon="mdi-plus"
-          :OnClickButton="onClickButtonPlus" />
-      </v-col>
-      <v-col cols="12" sm="6" md="4" lg="3">
-        <customButtonSeconday color="primary3" v-if="!changeBtn" Text="Buscar" class="btnCustom" Icon="mdi-magnify"
-          :OnClickButton="onClickButtonBuscar" />
+    <!-- <div class="wrapper desktop-style"> -->
+    <div :class="`${isBackgroud ? 'wrapper desktop-style' : ''}`">
+      <div class="row">
+        <div class="col-12 maintext">{{ MainText }}</div>
+        <div class="col-12 minortext mt-1">{{ MinorText }}</div>
+      </div>
+      <v-row>
+        <v-col cols="12" sm="6" md="4" lg="3">
+          <customselect class="Inputs" v-if="isTipoInmueble" :ItemSource="catalogs.tipoInmuebles" ItemIdAttribute="id"
+            ItemNameAttribute="description" DefaultOption="Tipo de inmueble" v-model="params.propertytype"
+            :DefaultOptionActive="true" />
+        </v-col>
+        <v-col cols="12" sm="6" md="4" lg="3">
+          <customselect class="Inputs" v-if="isEstado" :ItemSource="catalogs.estados" ItemIdAttribute="id"
+            ItemNameAttribute="description" DefaultOption="Estado" v-model="params.state" :OnChangeSelect="onChangeEstado"
+            :DefaultOptionActive="true" />
+        </v-col>
+        <v-col cols="12" sm="6" md="4" lg="3">
+          <customselect class="Inputs" v-if="isMunicipio" :ItemSource="catalogs.municipios" ItemIdAttribute="id"
+            ItemNameAttribute="description" DefaultOption="Municipio" v-model="params.city" :DefaultOptionActive="true" />
+        </v-col>
+        <v-col cols="12" sm="6" md="4" lg="3">
+          <div style="display: flex; justify-content: center;">
+            <custom-button-primary v-if="changeBtn" Text="Buscar" class="btnCustom" Icon="mdi-magnify"
+              :OnClickButton="onClickButtonBuscar" />
+          </div>
+          <customselect class="Inputs" v-if="isPrecio" :ItemSource="catalogs.rangoprecios" ItemIdAttribute="key"
+            ItemNameAttribute="description" DefaultOption="Precio" v-model="params.price" :DefaultOptionActive="true" />
+        </v-col>
+        <v-col cols="12" sm="6" md="4" lg="3">
+          <customButtonSeconday v-if="isRooms && isBatrooms" Text="Mas" Icon="mdi-plus"
+            :OnClickButton="onClickButtonPlus" />
+        </v-col>
+        <v-col cols="12" sm="6" md="4" lg="3">
+          <customButtonSeconday color="primary3" v-if="!changeBtn" Text="Buscar" class="btnCustom" Icon="mdi-magnify"
+            :OnClickButton="onClickButtonBuscar" />
           <customButtonSeconday v-if="isClear" Text="Limpiar" Icon="mdi-filter-remove-outline"
-          :OnClickButton="onClickButtonLimpiar" />
-      </v-col>
-      <v-col cols="12" sm="6" md="4" lg="3">
-        <customButtonSeconday v-if="isClear" Text="Limpiar" Icon="mdi-filter-remove-outline"
-          :OnClickButton="onClickButtonLimpiar" />
-      </v-col>
-    </v-row>
-  </div>
-</v-container>
+            :OnClickButton="onClickButtonLimpiar" />
+        </v-col>
+        <v-col cols="12" sm="6" md="4" lg="3">
+          <customButtonSeconday v-if="isClear" Text="Limpiar" Icon="mdi-filter-remove-outline"
+            :OnClickButton="onClickButtonLimpiar" />
+        </v-col>
+      </v-row>
+    </div>
+  </v-container>
 </template>
   
 <script>
@@ -108,9 +108,9 @@ export default {
       default: false,
     },
     isBackgroud: {
-    type: Boolean,
-    default: false,
-  },
+      type: Boolean,
+      default: false,
+    },
   },
   components: {
     customButtonPrimary,
@@ -263,11 +263,12 @@ export default {
 }
 
 .btnCustom {
-  width: 90%;
-  margin-left: -10;
-  margin-right: -10;
-  padding: 10px;
-  min-width: 90%;
+  display: flex;
+  width: 182px;
+  padding: 18px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .Inputs {
@@ -283,7 +284,7 @@ export default {
     background-size: cover;
     background-position: center;
     border-radius: 26px;
-    
+
 
   }
 }

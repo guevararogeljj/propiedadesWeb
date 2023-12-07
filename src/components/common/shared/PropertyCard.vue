@@ -16,7 +16,7 @@
       <div class="card-text card-text-state d-flex justify-content-end"></div>
     </div>
     <div class="tp-product-content-2 pt-15">
-      <div class="tp-product-tag-2">
+      <div class="tp-product-tag-2" style="text-indent: 40px;">
         <span class="tooltip-custom" :data-text="Title">
          {{ this.State }}
         </span>
@@ -28,7 +28,6 @@
         <div class="card-text card-text-state">
           <div class="row">
             <div class="d-inline col-10 d-flex justify-content-start">
-              {{ State }}
             </div>
             <div class="card-text card-text-city d-flex justify-content-start">
               <label v-if="(textTruncate.length > 1)">
@@ -45,15 +44,18 @@
                 {{ textTruncate[0] }}
               </label>
             </div>
-            <div class="mt-2">
+            <div class="mt-2" style="text-indent: 40px;">
               <span class="title" :data-text="Title">
                   {{ textTruncateTitle }}
                   <a v-if="this.Title.length > 30"> ... </a>
                 </span>
               <slot name="iconbar"></slot>
             </div>
-            <div class="d-inline col-12 d-flex justify-content-end">
+            <br/>
+            <div class="d-inline col-12 d-flex justify-content-center">
               <!-- <slot name="favoritebar"></slot> -->
+           
+              <ButtonSecondary class="btn" Text="Ver detalles" @click="onClickTitle()" />
             </div>
             <div class="card-text card-text-state d-flex justify-content-end"></div>
           </div>
@@ -71,8 +73,10 @@
   
 <script>
 import propsample from "@/assets/propsample.jpeg";
+import ButtonSecondary from "@/components/common/ButtonSecondary.vue";
 export default {
   components: {
+    ButtonSecondary
     // PropertyCardIconBar,
   },
   name: "propertyCardComp",
@@ -142,6 +146,28 @@ export default {
 </script>
   
 <style scoped lang="scss">
+.btn {
+  display: flex;
+  width: 347px;
+  padding: 17px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 14px;
+  background: var(--primary-300, #E3F1FC);
+  color: var(--primary-500, #379BEC);
+  /* Text/Large/Medium */
+  font-family: Barlow;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.18px;
+}
+.btn:hover {
+  background: var(--primary-500, #379BEC);
+  color: var(--primary-300, #E3F1FC);
+}
 .title {
   color: var(--secundarios-600, #000);
   /* Text/Small/Medium */
@@ -154,7 +180,7 @@ export default {
   letter-spacing: -0.14px;
 }
 .card-border {
-  text-indent: 40px;
+ 
   border-radius: 22px;
   border: 0.8px solid var(--secundarios-400, #E0E2E4);
   background: var(--secundarios-blanco, #FFF);
@@ -192,7 +218,7 @@ export default {
 
 .card-text-price {
   color: var(--secundarios-600, #000);
-
+  text-indent: 40px;
   /* Text/Large/Medium */
   font-family: Barlow;
   font-size: 18px;
@@ -204,7 +230,7 @@ export default {
 
 .card-text-city {
   color: var(--secundarios-600, #000);
-
+text-indent: 40px;
 /* Text/Small/Regular */
 font-family: Barlow;
 font-size: 14px;

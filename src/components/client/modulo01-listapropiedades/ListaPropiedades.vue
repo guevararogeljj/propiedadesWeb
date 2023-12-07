@@ -69,6 +69,7 @@
               :ParkingLots="item.parkingspaces"
               ConstructionSizeUnits="m²"
               LivinSizeUnits="m²"
+              :DetailsMode="true"
             ></PropertyCardIconBar>
           </template>
           <template v-slot:favoritebar>

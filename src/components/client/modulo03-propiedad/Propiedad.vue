@@ -4,48 +4,70 @@
       <br>
       <v-row>
         <v-col cols="12" md="7"> <!-- Columna izquierda -->
-          <v-label class="text-h5">{{ propertyInfo.title }}</v-label>
-          <div>
-            <ButtonSecondary v-if="propertyInfo.favorite" Icon="mdi-heart" variant="plain" />
+          <div class="back">
+            <v-icon @click="$router.go(-1)">mdi-arrow-left</v-icon>Regresar a Catálogo
+          </div>
+          <div class="title">{{ propertyInfo.state }}</div>
+          <br />
+          <div class="float-left">
+            <div class="price"> {{ priceFormated }} MXN</div>
+          </div>
+          <div class="float-right">
+            <ButtonSecondary v-if="propertyInfo.favorite" Icon="mdi-heart-outline" variant="plain" />
             <ButtonSecondary v-else Icon="mdi-heart-outline" variant="plain" />
-            <ButtonSecondary Icon="mdi-thumb-up-outline"  @click="onClickInfoButton" color="primary" Text="Me interesa" />
+            <v-btn @click="onClickInfoButton" class="btnInteresting">
+              <div class="textBtn">Me Interesa</div>
+            </v-btn>
           </div>
           <image-gallery :ItemSource="propertyInfo.photos" :ShowDescription="false">
           </image-gallery>
-          <div v-if="propertyInfo.sold" class="banner-sale">Vendida</div>
+          <!-- <div v-if="propertyInfo.sold" class="banner-sale">Vendida</div> -->
+          <div class="tp-product-badge" v-if="propertyInfo.sold">
+            <span  class="product-hot">vendido</span>
+          </div>
           <br>
+          <p class="detailsTitle">Detalles</p>
+          <div class="details">
+            <span>Tipo de Propiedad. {{ this.propertyInfo.type }}</span>
+            <br>
+            <span>Estado. {{ this.propertyInfo.state }} </span>
+            <br>
+            <span>Municipio. {{ this.propertyInfo.city }}</span>
+            <br>
+            <span>Colonia. {{ this.propertyInfo.settlement }}</span>
+            <br>
+          </div>
 
-          <p class="title">Detalles</p>
-          <propiedadInfo class="mt-2" :Title="propertyInfo.type" :Description="propertyInfo.description"
-            :StreetName="propertyInfo.address2" :Price="propertyInfo.price" :Favorite="propertyInfo.favorite"
-            :OnClickShare="onClickShareButton" :OnClickPropInfo="onClickPropInfoButton"
-            :OnClickFavorite="onClickFavoriteButton" :IsLogin="isLogin" />
           <property-card-icon-bar class="mt-5 me-1" :BathsQuantity="propertyInfo.bathrooms" BathsUnits="Baños"
             :LivingSize="propertyInfo.lotsize" LivinSizeUnits="m2" :BebsQuantity="propertyInfo.rooms"
             BedsUnits="Habitaciones" :ParkingLots="propertyInfo.parkingspaces" ParkingUnits="Espacios"
-            :ConstructionSize="propertyInfo.constructionsize" ConstructionSizeUnits="m2" :DetailsMode="true" />
+            :ConstructionSize="propertyInfo.constructionsize" ConstructionSizeUnits="m2" :DetailsMode="false" />
           <br>
-          <p class="title">Descripción</p>
+
         </v-col>
         <v-col cols="12" md="4"> <!-- Columna derecha -->
-          <Contact Titulo="Contacta a un asesor"/>
+          <Contact Titulo="Contacta a un asesor" />
         </v-col>
       </v-row>
       <v-row>
         <v-col>
-        <propiedad-description-ubication :PropertyDescription="propertyInfo.description"
-          :UbicacionDescription="description.ubicationDescription" :Latitude="this.propertyInfo.latitude"
-          :Longitude="this.propertyInfo.longitude" :IsLogin="isLogin" :NoLoginImage="onClickBannerButton" />
-          </v-col>
+          <propiedad-description-ubication :PropertyDescription="propertyInfo.description"
+            :UbicacionDescription="description.ubicationDescription" :Latitude="this.propertyInfo.latitude"
+            :Longitude="this.propertyInfo.longitude" :IsLogin="isLogin" :NoLoginImage="onClickBannerButton" />
+
+          <!-- <propiedadInfo  :Title="propertyInfo.type" :Description="propertyInfo.description"
+            :StreetName="propertyInfo.address2" :Price="propertyInfo.price" :Favorite="propertyInfo.favorite"
+            :OnClickShare="onClickShareButton" :OnClickPropInfo="onClickPropInfoButton"
+            :OnClickFavorite="onClickFavoriteButton" :IsLogin="isLogin" /> -->
+        </v-col>
       </v-row>
       <v-row>
         <v-col>
-          <oportunity title="Propiedades similares"/> 
+          <oportunity title="Propiedades similares" />
         </v-col>
       </v-row>
     </v-responsive>
   </v-container>
- 
 </template>
   
 <script>
@@ -264,6 +286,15 @@ export default {
     isLogin() {
       return this.$store.state.isLogin;
     },
+    priceFormated() {
+      let currencESLocale = Intl.NumberFormat("es-MX");
+      const price = currencESLocale.format(this.propertyInfo.price, {
+        style: "currency",
+        currency: "USD",
+
+      });
+      return `$${price}`;
+    },
   },
   watch: {
     async isLogin() {
@@ -281,43 +312,107 @@ export default {
 </script>
   
 <style scoped lang="scss">
-.title {
-  /* Headline/H3 regular */
+.detailsTitle {
+  color: var(--secundarios-600, #000);
 
-  font-family: "Roboto";
+  /* Heading/Medium 1 */
+  font-family: Barlow;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.5px;
+}
+
+.details {
+  width: 341px;
+  height: 113px;
+  flex-shrink: 0;
+  color: var(--secundarios-600, #000);
+
+  /* Text/Small/Medium */
+  font-family: Barlow;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 142.857% */
+  letter-spacing: -0.14px;
+}
+
+.textBtn {
+  text-transform: capitalize;
+  color: var(--primary-500, #379BEC);
+
+  /* Text/Regular/Medium */
+  font-family: Barlow;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  letter-spacing: -0.16px;
+}
+
+.btnInteresting {
+  display: flex;
+  width: 106px;
+  height: 40px;
+  padding: 18px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: var(--primary-300, #E3F1FC);
+}
+
+.back {
+  color: var(--secundarios-600, #000);
+  text-align: left;
+  font-family: Inter;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
+  line-height: normal;
+}
+
+.price {
+  color: var(--secundarios-600, #000);
+
+  /* Heading/Semibold 1 */
+  font-family: Barlow;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 25px;
+  /* 100% */
+  letter-spacing: -0.5px;
+}
+
+.title {
+  text-align: left;
+  color: var(--secundarios-600, #000);
+  width: auto;
+  /* Heading/Large1 */
+  font-family: Barlow;
   font-size: 48px;
-  line-height: 48px;
-  /* or 100% */
-
-  display: flex;
-  align-items: center;
-
-  /* Grayscale/Main_Text */
-
-  color: #63666a;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 52.83px;
+  /* 110.063% */
+  letter-spacing: -1.44px;
 }
 
 .banner-sale {
-  // position: absolute;
-  // margin-top: 0.7rem;
-  // right: 0rem;
-  // width: 116px;
-  // height: 28px;
-
   background: #0092bc;
   border-radius: 6px;
-
   font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
   line-height: 28px;
-
   letter-spacing: 0.15px;
-  //background-color: red;
-
   color: #f8f8f8;
 }
 
@@ -333,5 +428,4 @@ export default {
     display: flex;
     align-items: center;
   }
-}
-</style>
+}</style>
