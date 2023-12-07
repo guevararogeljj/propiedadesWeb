@@ -133,7 +133,7 @@ export default {
         etapaprocesal: [],
         bathrooms: [],
       },
-      hideFilters: true,
+      hideFilters: false,
       hideMobileFilters: true,
       hideMobileOrder: true,
       params: {

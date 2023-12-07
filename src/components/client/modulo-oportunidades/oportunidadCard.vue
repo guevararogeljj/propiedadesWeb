@@ -3,7 +3,7 @@
     <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img card-border">
       <img :src="Image" alt="property" height="250" />
       <div class="tp-product-content-1 pt-5">
-        <div class="tp-product-tag-2">
+        <div class="tp-product-tag-2" style="text-indent: 20px;">
           <span class="tooltip-custom" :data-text="Title">
             {{ this.State }}
           </span>
@@ -14,7 +14,7 @@
           </div>
           <div class="card-text card-text-state">
             <div class="row">
-              <div class="d-inline col-10 d-flex justify-content-start">
+              <div class="d-inline col-10 d-flex justify-content-start card-text-city">
                 {{ State }}
               </div>
               <div class="card-text card-text-city d-flex justify-content-start">
@@ -30,13 +30,16 @@
                   {{ textTruncate[0] }}
                 </label>
               </div>
-              <div class="mt-2">
+              <div style="text-indent: 20px;">
                 <span class="title" :data-text="Title">
                   {{ textTruncateTitle }}
                   <a v-if="this.Title.length > 30"> ... </a>
                 </span>
+              </div>
+              <div class="mt-2">
                 <slot name="iconbar"></slot>
                 <div class="tp-product-price-wrapper-2 center">
+                  
                   <ButtonSecondary class="btn" Text="Ver detalles" @click="onClickTitle()" />
                 </div>
               </div>
@@ -126,7 +129,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
 .title {
+
   color: var(--secundarios-600, #000);
   /* Text/Small/Medium */
   font-family: Barlow;
@@ -166,7 +171,7 @@ export default {
   color: var(--primary-300, #E3F1FC);
 }
 .card-border {
-  text-indent: 40px;
+  //text-indent: 40px;
   border-radius: 22px;
   border: 0.8px solid var(--secundarios-400, #E0E2E4);
   background: var(--secundarios-blanco, #FFF);
@@ -203,9 +208,8 @@ export default {
 }
 
 .card-text-price {
+  text-indent: 20px;
   color: var(--secundarios-600, #000);
-
-  /* Text/Large/Medium */
   font-family: Barlow;
   font-size: 18px;
   font-style: normal;
@@ -216,7 +220,7 @@ export default {
 
 .card-text-city {
   color: var(--secundarios-600, #000);
-
+  text-indent: 20px;
 /* Text/Small/Regular */
 font-family: Barlow;
 font-size: 14px;
@@ -228,7 +232,7 @@ letter-spacing: -0.14px;
 
 .card-text-state {
   color: var(--secundarios-600, #000);
-
+  // text-indent: 20px;
   /* Text/Small/Regular */
   font-family: Barlow;
   font-size: 14px;
@@ -263,6 +267,7 @@ letter-spacing: -0.14px;
 }
 
 .tooltip-custom {
+
   position: relative;
   color: var(--secundarios-600, #000);
 

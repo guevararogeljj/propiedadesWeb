@@ -54,7 +54,7 @@
                   :Price="item.price"
                   :Favorite="item.favorite"
                   :Id="item.creditnumber"
-                  :Image="item.thumbnail ?? require('@/assets/casa.jpeg')"
+                  :Image="item.thumbnail ?? this.casas"
                   :IsSold="item.sold"
                 >
                   <template v-slot:iconbar>
@@ -96,7 +96,7 @@
                   :Price="item.price"
                   :Favorite="item.favorite"
                   :Id="item.creditnumber"
-                  :Image="item.thumbnail ?? require('@/assets/propexample.svg')"
+                  :Image="item.thumbnail ?? this.casas"
                   :IsSold="item.sold"
                 >
                   <template v-slot:iconbar>
@@ -133,7 +133,7 @@
 <script type="ts">
 import ButtonSecondary from "../common/ButtonSecondary.vue";
 import propservice from "@/core/services/propservice";
-
+import casa from "@/assets/casa.jpeg";
 import {
   default as signinservice,
   default as usersignin,
@@ -172,7 +172,7 @@ export default {
     outProceduraStage: "",
     showModalLoginRequest: false,
     isLoading: false,
-
+    casas : casa
   }),
   methods: {
     onClickProperty(id) {
