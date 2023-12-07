@@ -1,14 +1,12 @@
 
 <template>
-  
-  <div class="row ms-1" v-if="!DetailsMode">
+  <!-- <div class="row ms-1" v-if="!DetailsMode">
     <div class="col-4 text-start">
       <IconNumber Icon="mdi-bathtub" AlterName="beds" :Text="BebsQuantity" :Text2="BedsUnits"></IconNumber>
     </div>
     <div class="col-4 text-start">
       <IconNumber Icon="mdi-bed" AlterName="baths" :Text="BathsQuantity" :Text2="BathsUnits"></IconNumber>
     </div>
-
     <div class="col-4 text-start">
       <IconNumber Icon="mdi-image-size-select-small" AlterName="living size" :Text="LivingSize" :Text2="LivinSizeUnits"></IconNumber>
     </div>
@@ -37,7 +35,43 @@
     <div class="col-6 text-start mt-3">
       <IconNumber Icon="mdi-car" AlterName="parkinglot" :Text="ParkingLots" :Text2="ParkingUnits"></IconNumber>
     </div>
-  </div>
+  </div> -->
+  <div class="row ms-1" v-if="!DetailsMode">
+    <div class="col-4 text-start">
+      <IconNumber Icon="mdi-crop-landscape" AlterName="Construction size" :Text="ConstructionSize" :Text2="ConstructionSizeUnits"></IconNumber>
+    </div>
+    <div class="col-4 text-start">
+      <IconNumber Icon="mdi-bed-king-outline" AlterName="beds" :Text="BebsQuantity" :Text2="BedsUnits"></IconNumber>
+    </div>
+      <div class="col-4 text-start">
+        <IconNumber Icon="mdi-shower-head" AlterName="baths" :Text="BathsQuantity" :Text2="BathsUnits"></IconNumber>
+      </div>
+      <div class="col-4 text-start">
+        <IconNumber Icon="mdi-car" AlterName="parkinglot" :Text="ParkingLots" :Text2="ParkingUnits"></IconNumber>
+      </div>
+      <div class="col-4 text-start">
+        <IconNumber Icon="mdi-image-size-select-small" AlterName="living size" :Text="LivingSize" :Text2="LivinSizeUnits"></IconNumber>
+      </div>
+    </div>
+    <div class="row ms-1" v-if="DetailsMode">
+      <div class="col-6 text-start mt-3">
+        <IconNumber Icon="mdi-crop-landscape" AlterName="Construction size" :Text="ConstructionSize" :Text2="ConstructionSizeUnits"></IconNumber>
+      </div>
+      <div class="col-6 text-start mt-3">
+        <IconNumber Icon="mdi-bed-king-outline" AlterName="beds" :Text="BebsQuantity" :Text2="BedsUnits"></IconNumber>
+      </div>
+
+      <div class="col-6 text-start mt-3">
+        <IconNumber Icon="mdi-shower-head" AlterName="baths" :Text="BathsQuantity" :Text2="BathsUnits"></IconNumber>
+      </div>
+      <div class="col-6 text-start mt-3">
+        <IconNumber Icon="mdi-car" AlterName="parkinglot" :Text="ParkingLots" :Text2="ParkingUnits"></IconNumber>
+      </div>
+      <div class="col-6 text-start mt-3">
+        <IconNumber Icon="mdi-image-size-select-small" AlterName="living size" :Text="LivingSize" :Text2="LivinSizeUnits"></IconNumber> 
+      </div>
+    </div>
+
 </template>
   
 <script>

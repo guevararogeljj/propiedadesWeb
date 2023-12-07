@@ -1,22 +1,15 @@
 <template>
   <div :class="`tp-product-item-2 ${spacing ? 'mb-40' : ''}`">
-    <div
-      class="tp-product-thumb-2 p-relative z-index-1 fix w-img card-border"
-      style="background-color: #f2f3f5"
-    >
+    <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img card-border">
       <img :src="Image" alt="property" height="250" />
-
       <div class="tp-product-content-1 pt-5">
         <div class="tp-product-tag-2">
           <span class="tooltip-custom" :data-text="Title">
-            {{ textTruncateTitle }}
-            <a v-if="this.Title.length > 30"> ... </a>
+            {{ this.State }}
           </span>
         </div>
         <div class="tp-product-title-2">
-          <div
-            class="card-text mt-3 card-text-price d-flex justify-content-start"
-          >
+          <div class="card-text mt-3 card-text-price d-flex justify-content-start">
             {{ priceFormated }} MXN
           </div>
           <div class="card-text card-text-state">
@@ -24,9 +17,7 @@
               <div class="d-inline col-10 d-flex justify-content-start">
                 {{ State }}
               </div>
-              <div
-                class="card-text card-text-city d-flex justify-content-start"
-              >
+              <div class="card-text card-text-city d-flex justify-content-start">
                 <label v-if="textTruncate.length > 1">
                   <label v-if="isExpanded" @click="isExpanded = false">
                     {{ textTruncate[0] + textTruncate[1] }}
@@ -40,22 +31,19 @@
                 </label>
               </div>
               <div class="mt-2">
+                <span class="title" :data-text="Title">
+                  {{ textTruncateTitle }}
+                  <a v-if="this.Title.length > 30"> ... </a>
+                </span>
                 <slot name="iconbar"></slot>
                 <div class="tp-product-price-wrapper-2 center">
-                  <ButtonSecondary
-                    color="primary3"
-                    class="btn"
-                    Text="Ver detalles"
-                    @click="onClickTitle"
-                  />
+                  <ButtonSecondary class="btn" Text="Ver detalles" @click="onClickTitle()" />
                 </div>
               </div>
               <div class="d-inline col-12 d-flex justify-content-end">
                 <!-- <slot name="favoritebar"></slot> -->
               </div>
-              <div
-                class="card-text card-text-state d-flex justify-content-end"
-              ></div>
+              <div class="card-text card-text-state d-flex justify-content-end"></div>
             </div>
           </div>
         </div>
@@ -138,16 +126,23 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.contenido {
-  max-height: 710;
-  min-height: 610;
-  height: 610;
-  background-color: #d60101;
+.title {
+  color: var(--secundarios-600, #000);
+  /* Text/Small/Medium */
+  font-family: Barlow;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 142.857% */
+  letter-spacing: -0.14px;
 }
+
 .center {
   margin: auto;
   padding: 10px;
 }
+
 .btn {
   display: flex;
   width: 347px;
@@ -155,20 +150,35 @@ export default {
   justify-content: center;
   align-items: center;
   gap: 10px;
+  border-radius: 14px;
+  background: var(--primary-300, #E3F1FC);
+  color: var(--primary-500, #379BEC);
+  /* Text/Large/Medium */
+  font-family: Barlow;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.18px;
+}
+.btn:hover {
+  background: var(--primary-500, #379BEC);
+  color: var(--primary-300, #E3F1FC);
+}
+.card-border {
+  text-indent: 40px;
+  border-radius: 22px;
+  border: 0.8px solid var(--secundarios-400, #E0E2E4);
+  background: var(--secundarios-blanco, #FFF);
 }
 
-.card-border {
-  border-radius: 22px;
-}
 .card {
   // max-width: 24em;
   // max-height: 30em;
 
   background: #ffffff;
 
-  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.14))
-    drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.12))
-    drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.14)) drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.12)) drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.2));
   border-radius: 8px;
 }
 
@@ -193,43 +203,40 @@ export default {
 }
 
 .card-text-price {
-  font-family: "Roboto";
-  font-style: normal;
-  /* Brand/Blue */
+  color: var(--secundarios-600, #000);
 
-  color: #0092bc;
+  /* Text/Large/Medium */
+  font-family: Barlow;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.18px;
 }
 
 .card-text-city {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  /* identical to box height, or 150% */
+  color: var(--secundarios-600, #000);
 
-  letter-spacing: 0.5px;
-
-  /* Grayscale/Main_Text */
-
-  color: #63666a;
+/* Text/Small/Regular */
+font-family: Barlow;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+letter-spacing: -0.14px;
 }
 
 .card-text-state {
-  /* Headline/H6 regular */
+  color: var(--secundarios-600, #000);
 
-  font-family: "Roboto";
+  /* Text/Small/Regular */
+  font-family: Barlow;
+  font-size: 14px;
   font-style: normal;
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 28px;
-  /* identical to box height, or 140% */
-
-  letter-spacing: 0.15px;
-
-  /* Grayscale/finastrategy_Dark_Gray */
-
-  color: #484343;
+  font-weight: 400;
+  line-height: 20px;
+  /* 142.857% */
+  letter-spacing: -0.14px;
 }
 
 .banner-sale {
@@ -257,6 +264,16 @@ export default {
 
 .tooltip-custom {
   position: relative;
+  color: var(--secundarios-600, #000);
+
+  /* Heading/Semibold 1 */
+  font-family: Barlow;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 25px;
+  /* 100% */
+  letter-spacing: -0.5px;
   // border-bottom:1px dashed #000;
 }
 

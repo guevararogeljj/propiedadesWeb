@@ -38,11 +38,13 @@
       class="mx-auto"
       type="image, table"
     ></v-skeleton-loader>
+
     <lista
       v-else
       :ItemSource="propiedades"
       ItemIdAttribute="creditnumber"
       :NoItemsMessage="!ShowProperties"
+      :Count="totalItems"
     >
       <template v-slot:item="{ item }">
         <property-card
@@ -112,7 +114,7 @@ import {
   default as signinservice,
   default as usersignin,
 } from "@/core/services/userservice";
-import buscador from "@/components/client/finder.vue";
+import buscador from "@/components/client/finderLight.vue";
 import customselect from "@/components/common/CustomSelect.vue";
 import lista from "@/components/common/shared/Lista.vue";
 // import modalacceptLogin from "@/components/shared/components/ModalAccept.vue";

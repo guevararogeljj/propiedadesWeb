@@ -256,7 +256,7 @@ export default {
   font-weight: 400;
   font-size: 20px;
   line-height: 28px;
-  color: #63666a;
+  color: black;
   align-items: center;
   text-align: center;
   letter-spacing: 0.15px;

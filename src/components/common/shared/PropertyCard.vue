@@ -1,6 +1,6 @@
 <template>
   <div :class="`tp-product-item-2 ${spacing ? 'mb-40' : ''}`">
-    <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img card-border" style="background-color: #f2f3f5">
+    <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img card-border">
       <img :src="Image" @click="onClickTitle" alt="property" height="300" />
       <!-- product badge -->
       <div class="tp-product-badge">
@@ -18,8 +18,7 @@
     <div class="tp-product-content-2 pt-15">
       <div class="tp-product-tag-2">
         <span class="tooltip-custom" :data-text="Title">
-          {{ textTruncateTitle }}
-          <a v-if="this.Title.length > 30"> ... </a>
+         {{ this.State }}
         </span>
       </div>
       <div class="tp-product-title-2">
@@ -47,6 +46,10 @@
               </label>
             </div>
             <div class="mt-2">
+              <span class="title" :data-text="Title">
+                  {{ textTruncateTitle }}
+                  <a v-if="this.Title.length > 30"> ... </a>
+                </span>
               <slot name="iconbar"></slot>
             </div>
             <div class="d-inline col-12 d-flex justify-content-end">
@@ -139,8 +142,22 @@ export default {
 </script>
   
 <style scoped lang="scss">
+.title {
+  color: var(--secundarios-600, #000);
+  /* Text/Small/Medium */
+  font-family: Barlow;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 142.857% */
+  letter-spacing: -0.14px;
+}
 .card-border {
+  text-indent: 40px;
   border-radius: 22px;
+  border: 0.8px solid var(--secundarios-400, #E0E2E4);
+  background: var(--secundarios-blanco, #FFF);
 }
 .card {
   // max-width: 24em;
@@ -174,43 +191,40 @@ export default {
 }
 
 .card-text-price {
-  font-family: "Roboto";
-  font-style: normal;
-  /* Brand/Blue */
+  color: var(--secundarios-600, #000);
 
-  color: #0092bc;
+  /* Text/Large/Medium */
+  font-family: Barlow;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.18px;
 }
 
 .card-text-city {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  /* identical to box height, or 150% */
+  color: var(--secundarios-600, #000);
 
-  letter-spacing: 0.5px;
-
-  /* Grayscale/Main_Text */
-
-  color: #63666a;
+/* Text/Small/Regular */
+font-family: Barlow;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+letter-spacing: -0.14px;
 }
 
 .card-text-state {
-  /* Headline/H6 regular */
+  color: var(--secundarios-600, #000);
 
-  font-family: "Roboto";
+  /* Text/Small/Regular */
+  font-family: Barlow;
+  font-size: 14px;
   font-style: normal;
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 28px;
-  /* identical to box height, or 140% */
-
-  letter-spacing: 0.15px;
-
-  /* Grayscale/finastrategy_Dark_Gray */
-
-  color: #484343;
+  font-weight: 400;
+  line-height: 20px;
+  /* 142.857% */
+  letter-spacing: -0.14px;
 }
 
 .banner-sale {
@@ -238,6 +252,16 @@ export default {
 
 .tooltip-custom {
   position: relative;
+  color: var(--secundarios-600, #000);
+  width: auto;
+  /* Heading/Semibold 1 */
+  font-family: Barlow;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 25px;
+  /* 100% */
+  letter-spacing: -0.5px;
   // border-bottom:1px dashed #000;
 }
 

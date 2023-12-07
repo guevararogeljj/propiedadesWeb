@@ -33,7 +33,7 @@
           :show-arrows="true"
           :show-indicators="false"
           :per-page="1"
-          color="primary3"
+          prev-icon="mdi-chevron-left" next-icon="mdi-chevron-right"
         >
           <v-carousel-item v-for="(group, index) in groupedData" :key="index">
             <v-row justify="center" align="center">
@@ -54,7 +54,7 @@
                   :Price="item.price"
                   :Favorite="item.favorite"
                   :Id="item.creditnumber"
-                  :Image="item.thumbnail ?? require('@/assets/propexample.svg')"
+                  :Image="item.thumbnail ?? require('@/assets/casa.jpeg')"
                   :IsSold="item.sold"
                 >
                   <template v-slot:iconbar>
@@ -131,8 +131,6 @@
 </template>
 
 <script type="ts">
-
-
 import ButtonSecondary from "../common/ButtonSecondary.vue";
 import propservice from "@/core/services/propservice";
 
@@ -341,6 +339,10 @@ export default {
 };
 </script>
 <style scoped>
+.v-window__controls {
+    pointer-events: auto;
+    background-color: red;
+}
 .carouselDesktop {
   display: flex;
 }
@@ -368,15 +370,16 @@ export default {
 }
 
 .color-black {
-  color: var(--primary-500, #379bec);
-  text-align: center;
-  /* Heading/Large1 */
-  font-family: Barlow;
-  font-size: 48px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 52.83px; /* 110.063% */
-  letter-spacing: -1.44px;
+  color: var(--secundarios-600, #000);
+text-align: center;
+
+/* Heading/Large1 */
+font-family: Barlow;
+font-size: 48px;
+font-style: normal;
+font-weight: 500;
+line-height: 52.83px; /* 110.063% */
+letter-spacing: -1.44px;
 }
 
 /* Desktop */
