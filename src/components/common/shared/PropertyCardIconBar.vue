@@ -26,7 +26,7 @@
         <IconNumber Icon="mdi-image-size-select-small" AlterName="living size" :Text="LivingSize" :Text2="LivinSizeUnits"></IconNumber> 
       </div>
     </div>
-
+<div class="salto"></div>
 </template>
   
 <script>
@@ -67,4 +67,10 @@ export default {
 };
 </script>
   
-<style></style>
+<style scoped>
+ .salto {
+   width: 100%;
+   height: 20px;
+   flex-shrink: 0;
+ }
+</style>

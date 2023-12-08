@@ -54,10 +54,12 @@
             <br/>
             <div class="d-inline col-12 d-flex justify-content-center">
               <!-- <slot name="favoritebar"></slot> -->
-           
-              <ButtonSecondary class="btn" Text="Ver detalles" @click="onClickTitle()" />
+              <ButtonSecondary flat  class="btn" Text="Ver detalles"
+              @click="onClickTitle()" />
             </div>
-            <div class="card-text card-text-state d-flex justify-content-end"></div>
+            <div class="card-text card-text-state salto d-flex justify-content-end">
+
+            </div>
           </div>
         </div>
       </div>
@@ -146,7 +148,14 @@ export default {
 </script>
   
 <style scoped lang="scss">
+ .salto {
+   width: 100%;
+   height: 20px;
+   flex-shrink: 0;
+ }
 .btn {
+  height: 56px;
+  text-transform: none;
   display: flex;
   width: 347px;
   padding: 17px 16px;

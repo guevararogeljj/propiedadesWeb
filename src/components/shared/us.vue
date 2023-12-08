@@ -3,10 +3,10 @@
     <br>
     <div class="banner center"></div>
     <br>
-    <label class="h1 textCenter">¿Que hacemos por ti?</label>
+    <label class="h1 textCenter salto">¿Que hacemos por ti?</label>
     <label class="textCenter">Nos especializamos en brindar valor diferenciado en nuestra cartera ya que compartimos tu
       compromiso de mantener las relaciones de negocios ágiles y profesionales.</label>
-    <br>
+ <div class="salto"></div>
     <FindOportunity />
     <br>
     <label class="textCenter">Nuestro enfoque es poner a tu disposición la información completa y actualizada de miles de
@@ -109,6 +109,11 @@ export default {
 };
 </script>
 <style scoped>
+ .salto {
+   width: 100%;
+   height: 100px;
+   flex-shrink: 0;
+ }
 .contentHappy {
 
   width: 320px;

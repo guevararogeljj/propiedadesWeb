@@ -242,14 +242,16 @@ export default {
 }
 
 .maintext {
-  font-weight: 500;
-  font-size: 48px;
-  line-height: 48px;
-  /* or 100% */
-  color: #ffffff;
-  align-items: left;
-  padding: 0.5em;
-  text-align: left;
+  width: 775.387px;
+  color: var(--secundarios-blanco, #FFF);
+
+/* Heading/ExtraLarge */
+font-family: Barlow;
+font-size: 62px;
+font-style: normal;
+font-weight: 500;
+line-height: 54px; /* 87.097% */
+letter-spacing: -2.48px;
 }
 
 .minortext {

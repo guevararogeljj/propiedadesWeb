@@ -10,7 +10,7 @@
     </v-row>
     <v-row align="center" justify="center">
       <v-col cols="auto">
-        <v-card class="card-cesion">
+        <v-card class="card-cesion" flat>
           <!-- Card content goes here -->
           <v-card-title></v-card-title>
           <v-card-text>
@@ -33,7 +33,7 @@
         </div>
       </v-col>
       <v-col cols="auto">
-        <v-card class="card-venta">
+        <v-card class="card-venta" flat>
           <!-- Card content goes here -->
           <v-card-title></v-card-title>
           <v-card-text>
@@ -64,6 +64,11 @@ export default {};
 </script>
 
 <style scoped>
+ .salto {
+   width: 100%;
+   height: 100px;
+   flex-shrink: 0;
+ }
 .card-cesion {
   background-image: url("@/assets/icono-cesion-de-derechos-clean.png");
   background-position: cover;
