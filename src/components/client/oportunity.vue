@@ -109,6 +109,7 @@
                       :ParkingLots="item.parkingspaces"
                       ConstructionSizeUnits="m²"
                       LivinSizeUnits="m²"
+                      :DetailsMode="false"
                     ></PropertyCardIconBar>
                   </template>
                 </oportunidadCard>

@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <v-app-bar app :elevation="0">
+    <v-app-bar app :elevation="0" style="width: 95%">
       <v-toolbar-title>
         <v-btn class="logoClass ms-5" @click="navigateInicio"> </v-btn>
       </v-toolbar-title>
@@ -217,7 +217,6 @@ export default {
 }
 
 .btnColor {
-  background-color: #f9b325;
   color: #fff;
   border-radius: 0px;
   width: 106px;

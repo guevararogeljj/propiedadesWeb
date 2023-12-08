@@ -47,6 +47,9 @@
         </v-col>
         <v-col cols="12" md="4"> <!-- Columna derecha -->
           <Contact Titulo="Contacta a un asesor" />
+          <br/>
+          <br/>
+          <invertir />
         </v-col>
       </v-row>
       <v-row>
@@ -87,6 +90,7 @@ import propiedadInfo from "@/components/client/modulo03-propiedad/PropertyInfo.v
 import Contact from "@/components/shared/Contact.vue"
 import ButtonSecondary from "@/components/common/ButtonSecondary.vue";
 import oportunity from "../oportunity.vue";
+import invertir from '../modulo-invertir/invertir.vue';
 export default {
   components: {
     propiedadInfo,
@@ -99,8 +103,8 @@ export default {
     Primarybutton,
     Contact,
     ButtonSecondary,
-    oportunity
-
+    oportunity,
+    invertir
   },
   name: "propiedadComp",
   data() {

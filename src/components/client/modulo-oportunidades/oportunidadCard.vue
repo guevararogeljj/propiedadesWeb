@@ -150,6 +150,7 @@ export default {
 }
 
 .btn {
+  margin: auto;
   display: flex;
   width: 347px;
   padding: 17px 16px;
