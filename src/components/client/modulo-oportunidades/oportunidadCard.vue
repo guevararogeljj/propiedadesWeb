@@ -40,7 +40,7 @@
                 <slot name="iconbar"></slot>
                 <div class="tp-product-price-wrapper-2 center">
                   
-                  <ButtonSecondary class="btn" Text="Ver detalles" @click="onClickTitle()" />
+                  <ButtonSecondary class="btn" flat Text="Ver detalles" @click="onClickTitle()" />
                 </div>
               </div>
               <div class="d-inline col-12 d-flex justify-content-end">
@@ -150,6 +150,7 @@ export default {
 }
 
 .btn {
+  text-transform: none;
   margin: auto;
   display: flex;
   width: 347px;

@@ -97,7 +97,13 @@ const routes = [
         path: '/profile',
         name: 'profile',
         component: () => import('@/components/shared/Profile.vue'),
-      }
+      },
+      {
+        path: '/nda',
+        name: 'nda',
+        component: () => import('@/components/shared/NDA.vue'),
+        meta: { requiredlogin: false }
+      },
     ],
   },
 ]

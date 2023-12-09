@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     navigateLogin() {
-      this.$router.push("/login");
+      this.$router.push("/");
     },
   },
 }

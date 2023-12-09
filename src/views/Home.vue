@@ -78,10 +78,12 @@ export default {
       }
     },
     onClickBuscar(params) {
+      debugger;
       if (params.estado != "" || params.tipoInmueble != "") {
         this.$router.push({
           name: "properties",
-          query: { state: params.estado, type: params.tipoInmueble },
+          // query: { state: params.estado, type: params.tipoInmueble },
+            query: { state: params.estado, type: params.tipoInmueble },
         });
       }
     },

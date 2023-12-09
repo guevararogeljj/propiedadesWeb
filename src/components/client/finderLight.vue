@@ -36,12 +36,12 @@
             DefaultOption="Baños" v-model="params.bathrooms" :DefaultOptionActive="true" />
         </v-col>
         <v-col cols="12" sm="6" md="4" lg="3" align="center">
-          <v-btn color="primary3" @click="onClickButtonBuscar()">Buscar</v-btn>
+          <v-btn color="primary3" class="btn" @click="onClickButtonBuscar()">Buscar</v-btn>
           &nbsp;
-          <customButtonSeconday Text="Limpiar" Icon="mdi-filter-remove-outline" :OnClickButton="onClickButtonLimpiar" />
+          <customButtonSeconday Text="Limpiar" Icon="mdi-filter-remove-outline" class="btn" :OnClickButton="onClickButtonLimpiar" />
         </v-col>
         <v-col cols="12" sm="6" md="4" lg="3" align="center">
-          <v-btn @click="onClickButtonPlus()">
+          <v-btn @click="onClickButtonPlus()" class="btn">
             <v-icon>mdi-filter-variant</v-icon>
             Más Filtros</v-btn>
           <!-- <customButtonSeconday  Text="Más Filtros" Icon="mdi-filter-variant"
@@ -242,15 +242,9 @@ export default {
 </script>
   
 <style lang="scss" scoped>
-.btnBuscar {
-  display: flex;
-  width: 115px;
-  padding: 18px 16px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 12px;
-  background: var(--primary-500, #379BEC);
+.btn{
+  
+  text-transform: none;
 }
 
 .maintext {

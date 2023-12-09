@@ -20,54 +20,21 @@
     <!-- <span class="h1 color-black center"> {{ title }}</span> -->
 
     <v-col cols="14">
-      <v-skeleton-loader
-        v-if="this.isLoading"
-        class="mx-auto"
-        type="image, table"
-      ></v-skeleton-loader>
+      <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
       <div v-else>
-        <v-carousel
-          class="carouselDesktop"
-          hide-delimiters
-          :cycle="false"
-          :show-arrows="true"
-          :show-indicators="false"
-          :per-page="1"
-          prev-icon="mdi-chevron-left" next-icon="mdi-chevron-right"
-        >
+        <v-carousel class="carouselDesktop" hide-delimiters :cycle="false" :show-arrows="true" :show-indicators="false"
+          :per-page="1" prev-icon="mdi-chevron-left" next-icon="mdi-chevron-right">
           <v-carousel-item v-for="(group, index) in groupedData" :key="index">
             <v-row justify="center" align="center">
-              <v-col
-                v-for="(item, itemIndex) in group"
-                :key="itemIndex"
-                cols="12"
-                sm="6"
-                md="4"
-                lg="3"
-              >
-                <oportunidadCard
-                  :Title="item.title"
-                  :OnClick="onClickProperty"
-                  :Settlement="item.settlement"
-                  :City="item.city"
-                  :State="item.state"
-                  :Price="item.price"
-                  :Favorite="item.favorite"
-                  :Id="item.creditnumber"
-                  :Image="item.thumbnail ?? this.casas"
-                  :IsSold="item.sold"
-                >
+              <v-col v-for="(item, itemIndex) in group" :key="itemIndex" cols="12" sm="6" md="4" lg="3">
+                <oportunidadCard :Title="item.title" :OnClick="onClickProperty" :Settlement="item.settlement"
+                  :City="item.city" :State="item.state" :Price="item.price" :Favorite="item.favorite"
+                  :Id="item.creditnumber" :Image="item.thumbnail ?? this.casas" :IsSold="item.sold">
                   <template v-slot:iconbar>
-                    <PropertyCardIconBar
-                      class="d-none d-sm-block"
-                      :LivingSize="item.constructionsize"
-                      :BathsQuantity="item.bathrooms"
-                      :BebsQuantity="item.rooms"
-                      :ConstructionSize="item.constructionsize"
-                      :ParkingLots="item.parkingspaces"
-                      ConstructionSizeUnits="m²"
-                      LivinSizeUnits="m²"
-                    ></PropertyCardIconBar>
+                    <PropertyCardIconBar class="d-none d-sm-block" :LivingSize="item.constructionsize"
+                      :BathsQuantity="item.bathrooms" :BebsQuantity="item.rooms" :ConstructionSize="item.constructionsize"
+                      :ParkingLots="item.parkingspaces" ConstructionSizeUnits="m²" LivinSizeUnits="m²">
+                    </PropertyCardIconBar>
                   </template>
                 </oportunidadCard>
               </v-col>
@@ -75,56 +42,28 @@
           </v-carousel-item>
         </v-carousel>
 
-        <v-carousel
-          hide-delimiters
-          :cycle="false"
-          :show-arrows="true"
-          :show-indicators="false"
-          :per-page="1"
-          color="primary3"
-          class="carouselResponsive"
-        >
+        <v-carousel hide-delimiters :cycle="false" :show-arrows="true" :show-indicators="false" :per-page="1"
+          color="primary3" class="carouselResponsive">
           <v-carousel-item v-for="(item, i) in this.propiedades" :key="i">
             <v-row justify="center" align="center">
               <v-col cols="10" sm="6" md="4" lg="3">
-                <oportunidadCard
-                  :Title="item.title"
-                  :OnClick="onClickProperty"
-                  :Settlement="item.settlement"
-                  :City="item.city"
-                  :State="item.state"
-                  :Price="item.price"
-                  :Favorite="item.favorite"
-                  :Id="item.creditnumber"
-                  :Image="item.thumbnail ?? this.casas"
-                  :IsSold="item.sold"
-                >
+                <oportunidadCard :Title="item.title" :OnClick="onClickProperty" :Settlement="item.settlement"
+                  :City="item.city" :State="item.state" :Price="item.price" :Favorite="item.favorite"
+                  :Id="item.creditnumber" :Image="item.thumbnail ?? this.casas" :IsSold="item.sold">
                   <template v-slot:iconbar>
-                    <PropertyCardIconBar
-                      class="d-none d-sm-block"
-                      :LivingSize="item.constructionsize"
-                      :BathsQuantity="item.bathrooms"
-                      :BebsQuantity="item.rooms"
-                      :ConstructionSize="item.constructionsize"
-                      :ParkingLots="item.parkingspaces"
-                      ConstructionSizeUnits="m²"
-                      LivinSizeUnits="m²"
-                      :DetailsMode="false"
-                    ></PropertyCardIconBar>
+                    <PropertyCardIconBar class="d-none d-sm-block" :LivingSize="item.constructionsize"
+                      :BathsQuantity="item.bathrooms" :BebsQuantity="item.rooms" :ConstructionSize="item.constructionsize"
+                      :ParkingLots="item.parkingspaces" ConstructionSizeUnits="m²" LivinSizeUnits="m²"
+                      :DetailsMode="false"></PropertyCardIconBar>
                   </template>
                 </oportunidadCard>
               </v-col>
             </v-row>
           </v-carousel-item>
         </v-carousel>
-
+        <div class="salto"></div>
         <div class="text-center mx-auto">
-          <button-secondary
-            Text="ver listado completo"
-            color="primary3"
-            class="btnCustom"
-            width="394px"
-          />
+          <button-secondary Text="ver listado completo" color="primary3" class="btnCustom" width="394px" />
         </div>
       </div>
     </v-col>
@@ -173,7 +112,7 @@ export default {
     outProceduraStage: "",
     showModalLoginRequest: false,
     isLoading: false,
-    casas : casa
+    casas: casa
   }),
   methods: {
     onClickProperty(id) {
@@ -267,7 +206,7 @@ export default {
       this.outBathrooms = this.state.filterSaved.bathrooms;
       this.outState = this.state.filterSaved.state;
       console.log(this.state);
-       await this.performSearch(this.getRequestsaved);
+      await this.performSearch(this.getRequestsaved);
     } else {
       this.isLoading = this.Loading(true);
       if (
@@ -340,16 +279,29 @@ export default {
 };
 </script>
 <style scoped>
-.v-window__controls {
-    pointer-events: auto;
-    background-color: red;
+.salto {
+  width: 100%;
+  height: 20px;
+  flex-shrink: 0;
 }
+
+.btnCustom {
+  text-transform: none;
+}
+
+.v-window__controls {
+  pointer-events: auto;
+  background-color: red;
+}
+
 .carouselDesktop {
   display: flex;
 }
+
 .carouselResponsive {
   display: none;
 }
+
 .counterText {
   color: var(--secundarios-600, #000);
   text-align: center;
@@ -358,9 +310,11 @@ export default {
   font-size: 25px;
   font-style: normal;
   font-weight: 600;
-  line-height: 26px; /* 104% */
+  line-height: 26px;
+  /* 104% */
   letter-spacing: -0.5px;
 }
+
 .counter {
   width: 206px;
   height: 40px;
@@ -372,15 +326,16 @@ export default {
 
 .color-black {
   color: var(--secundarios-600, #000);
-text-align: center;
+  text-align: center;
 
-/* Heading/Large1 */
-font-family: Barlow;
-font-size: 48px;
-font-style: normal;
-font-weight: 500;
-line-height: 52.83px; /* 110.063% */
-letter-spacing: -1.44px;
+  /* Heading/Large1 */
+  font-family: Barlow;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 52.83px;
+  /* 110.063% */
+  letter-spacing: -1.44px;
 }
 
 /* Desktop */
@@ -390,10 +345,12 @@ letter-spacing: -1.44px;
 
 /* iPad */
 @media (min-width: 768px) and (max-width: 1023px) {
+
   /* CSS styles for iPad */
   .carouselResponsive {
     display: flex;
   }
+
   .carouselDesktop {
     display: none;
   }
@@ -401,10 +358,12 @@ letter-spacing: -1.44px;
 
 /* Mobile */
 @media (max-width: 767px) {
+
   /* CSS styles for mobile */
   .carouselResponsive {
     display: flex;
   }
+
   .carouselDesktop {
     display: none;
   }

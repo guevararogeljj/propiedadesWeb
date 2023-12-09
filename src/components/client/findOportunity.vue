@@ -64,6 +64,7 @@ export default {};
 </script>
 
 <style scoped>
+
  .salto {
    width: 100%;
    height: 100px;

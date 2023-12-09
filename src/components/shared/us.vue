@@ -38,7 +38,7 @@
         <label class="h1" style="width: 505px; height: 159px; justify-items: end;" color="primary">Tu oportunidad de
           encontrar tu lugar soñado está aquí </label>
         <br>
-        <ButtonSecondary class="btnText"  @click="ToCatalog()" Text="Ver propiedades" width="324px" />
+        <ButtonSecondary class="btnText" flat @click="ToCatalog()" Text="Ver propiedades" width="324px" />
       </div>
     </div>
 
@@ -56,7 +56,7 @@
 
           <p>
             <v-btn variant="flat" class="btnColor" >
-              <span class="btnText" @click="ToCatalog()">Ver Propiedades</span>
+              <span class="btnText" flat @click="ToCatalog()">Ver propiedades</span>
             </v-btn>
           </p>
           <br/>
@@ -232,6 +232,7 @@ line-height: 20px; /* 125% */
 letter-spacing: -0.16px;
 }
 .btnText{
+  text-transform: none;
   color: var(--primary-500, #379BEC);
 /* Text/Regular/Medium */
 font-family: Barlow;

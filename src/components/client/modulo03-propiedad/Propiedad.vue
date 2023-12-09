@@ -15,7 +15,7 @@
           <div class="float-right">
             <ButtonSecondary v-if="propertyInfo.favorite" Icon="mdi-heart-outline" variant="plain" />
             <ButtonSecondary v-else Icon="mdi-heart-outline" variant="plain" />
-            <v-btn @click="onClickInfoButton" class="btnInteresting">
+            <v-btn @click="onClickInfoButton" class="btnInteresting" flat>
               <div class="textBtn">Me Interesa</div>
             </v-btn>
           </div>

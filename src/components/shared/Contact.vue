@@ -43,7 +43,7 @@
       <v-row>
         <v-col cols="12">
           <div class="text-center mx-auto">
-            <button-secondary :IsDisabled="this.v$.$invalid" Text="ENVIAR MENSAJE" Icon="mdi-send" color="primary3"
+            <button-secondary :IsDisabled="this.v$.$invalid" Text="Enviar mensaje" Icon="mdi-send" color="primary3"
               class="btnCustom" @click="onClickButtonSend" />
             <br />
             <label>Al enviar mensaje acepto los Términos y Condiciones y las Políticas de Privacidad</label>
@@ -188,6 +188,8 @@ export default {
 }
 
 .btnCustom {
+
+  text-transform: none;
   width: 394px;
   margin-left: -10;
   margin-right: -10;
@@ -204,6 +206,7 @@ export default {
   }
 
   .btnCustom {
+    text-transform: none;
     width: 288px;
     margin-left: -10;
     margin-right: -10;

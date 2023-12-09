@@ -13,7 +13,7 @@
             <v-card-actions style="justify-content: center;">
              
                 <v-btn variant="flat" v-if="!isLogin" @click="navigateLogin()" class="btnColor">Quiero invertir</v-btn>
-                <v-btn variant="flat" v-else class="btnColorLogin">Quiero invertirs</v-btn>
+                <v-btn variant="flat" v-else class="btnColorLogin">Quiero invertir</v-btn>
             </v-card-actions>
         </v-card-title>
     </v-card>
@@ -60,6 +60,7 @@ export default {
 }
 
 .btnColorLogin {
+    text-transform: none;
     margin: 0;
     display: flex;
     width: 169px;
@@ -81,6 +82,7 @@ export default {
 }
 
 .btnColor {
+    text-transform: none;
     margin: 0;
     display: flex;
     width: 169px;

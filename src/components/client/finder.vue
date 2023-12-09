@@ -244,7 +244,7 @@ export default {
 .maintext {
   width: 775.387px;
   color: var(--secundarios-blanco, #FFF);
-
+margin-right: 20px;
 /* Heading/ExtraLarge */
 font-family: Barlow;
 font-size: 62px;
