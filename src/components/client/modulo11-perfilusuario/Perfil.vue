@@ -299,7 +299,7 @@ export default {
 
 .card {
     margin: auto;
-    width: 537px;
+    max-width: 537px;
     min-height: 400px;
     height: auto;
     flex-shrink: 0;
@@ -310,7 +310,7 @@ export default {
 
 .cardSecundary {
     margin: auto;
-    width: 537px;
+    max-width: 537px;
     flex-shrink: 0;
     border-radius: 23px;
     border: 1px solid var(--secundarios-400, #E0E2E4);
@@ -339,4 +339,5 @@ export default {
     font-weight: 500;
     line-height: normal;
     letter-spacing: -0.5px;
-}</style>
+}
+</style>
