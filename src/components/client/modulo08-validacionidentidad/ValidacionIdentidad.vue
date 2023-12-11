@@ -25,9 +25,15 @@
             </div>
           </v-card-text>
           <v-card-actions class="d-flex justify-center">
-            <Buttonfile Text="Subir frente de INE  " :ImageIconRight="frontFileOk" FileType="Front"
+            <Buttonfile Text="Subir frente de INE" :ImageIconRight="frontFileOk" FileType="Front"
               :IsDisabled="frontsuccess" :OnChangeFile="onChangeFileFront" v-show="!this.isMobile" />
 
+            <v-btn class="btnFrontMobile"  @click="onClickFrontMobile" v-show="this.isMobile">
+             <v-icon v-if="this.frontsuccess">mdi-checkbox-marked-circle</v-icon>
+             <v-icon v-else>mdi-camera-outline</v-icon>
+              Tomar foto del frente de INE
+            </v-btn>
+              
           </v-card-actions>
         </v-card>
       </v-col>
@@ -47,6 +53,11 @@
           <v-card-actions class="d-flex justify-center">
             <Buttonfile Text="Reverso de INE" FileType="Back" :ImageIconRight="backFileOk" :IsDisabled="backsuccess"
               :OnChangeFile="onChangeFileBack" v-show="!this.isMobile" />
+                <v-btn class="btnFrontMobile"  @click="onClickReverseMobile" v-show="this.isMobile">
+                  <v-icon v-if="this.backsuccess">mdi-checkbox-marked-circle</v-icon>
+              <v-icon v-else>mdi-camera-outline</v-icon>
+              Tomar foto reverso de INE</v-btn>
+
           </v-card-actions>
         </v-card>
       </v-col>
@@ -253,6 +264,16 @@ export default {
       
   
 <style lang="scss" scoped>
+.btnFrontMobile {
+  text-transform: none;
+  width: 280px;
+  height: 58px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: var(--primary-500, #379BEC);
+ color:#ffffff;
+}
+
 .card {
   max-width: 288px;
   max-height: 330px;

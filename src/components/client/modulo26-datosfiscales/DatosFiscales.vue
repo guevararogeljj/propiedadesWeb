@@ -346,7 +346,7 @@ export default {
     },
     backFileOk() {
       if (this.constanciaSucess) {
-        return require("@/assets/checkcicle_icon.svg");
+        // return require("@/assets/checkcicle_icon.svg");
       }
       return null;
     },
