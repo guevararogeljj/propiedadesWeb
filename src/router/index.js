@@ -104,6 +104,27 @@ const routes = [
         component: () => import('@/components/shared/NDA.vue'),
         meta: { requiredlogin: false }
       },
+      {
+        path: '/validacion3',
+        name: 'data',
+        component: () => import('@/components/shared/ValidationDataView.vue'),
+        meta: { requiredlogin: true }
+      },
+      {
+        path: '/datosfiscales',
+        name: 'fiscaldata',
+        component: () => import('@/components/shared/FiscalDataView.vue'),
+        meta: { requiredlogin: true }
+      },
+      {
+        path: '/registrocompletoterminado',
+        name: 'completedregistrationended',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import('@/components/shared/CompletedRegistrationView.vue'),
+        meta: { requiredlogin: true }
+      },
     ],
   },
 ]
