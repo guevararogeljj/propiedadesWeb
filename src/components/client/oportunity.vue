@@ -232,16 +232,6 @@ export default {
         );
       }
 
-      if (this.state.isLogin) {
-        const propertiesandfavorites = await this.loadProperties(
-          properties.result.items
-        );
-
-        this.ItemSourcePagination = propertiesandfavorites;
-        this.isLoading = this.Loading(false);
-      } else {
-        this.ItemSourcePagination = properties.result.items;
-      }
       this.totalItems = properties.result.count;
       this.propiedades = properties.result.items;
 
