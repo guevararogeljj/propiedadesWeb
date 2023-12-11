@@ -101,7 +101,7 @@ export default {
       rutasLogin: [
         { name: "Mi perfil", route: "/profile", icon: "mdi-account-circle-outline" },
         { name: "Favoritos", route: "/favorites", icon: "mdi-heart-outline" },
-        { name: "Obtener más beneficios", route: "/benefits", icon: "mdi-medal-outline" },
+        { name: "Obtener más beneficios", route: "/nda", icon: "mdi-medal-outline" },
         { name: "Verificación en 2 paso", route: "/verification", icon: "mdi-application-settings-outline" },
         { name: "Cerrar sesión", route: "/logout", icon: "mdi-exit-to-app" },
 

@@ -336,13 +336,13 @@ export default {
 
 .salto {
   width: 100%;
-  height: 20px;
+  height: 40px;
   flex-shrink: 0;
 }
 
 .title {
   height: 40px;
-  width: 301px;
+  // min-width: 301px;
   color: var(--secundarios-600, #000);
   text-align: center;
 
