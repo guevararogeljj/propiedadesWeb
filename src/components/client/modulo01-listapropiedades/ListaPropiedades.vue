@@ -3,77 +3,40 @@
     <br>
     <v-divider class="d-sm-none"></v-divider>
     <div class="row">
-      <buscador
-        MinorText=""
-        MainText="Catálogo"
-        :OnClickBuscar="performSearch"
-        :PorpertyType="outPropertyType"
-        :State="outState"
-        :City="outCity"
-        :Price="outPrice"
-        :Rooms="outRooms"
-        :Bathrooms="outBathrooms"
-        :ProceduraStage="outProceduraStage"
-        :isTipoInmueble="true"
-        :isEstado="true"
-        :isMunicipio="true"
-        :isClear="true"
-      >
+      <buscador MinorText="" MainText="Catálogo" :OnClickBuscar="performSearch" :PorpertyType="outPropertyType"
+        :State="outState" :City="outCity" :Price="outPrice" :Rooms="outRooms" :Bathrooms="outBathrooms"
+        :ProceduraStage="outProceduraStage" :isTipoInmueble="true" :isEstado="true" :isMunicipio="true" :isClear="true">
         <template v-slot:customcontrol>
           <OrderBar class="orderbar">
             <template v-slot:order="{ items }">
-              <customselect
-                :ItemSource="items"
-                v-model="ordenProperties"
-                DefaultOption="Destacados"
-                :DefaultOptionActive="true"
-              />
+              <customselect :ItemSource="items" v-model="ordenProperties" DefaultOption="Destacados"
+                :DefaultOptionActive="true" />
             </template>
           </OrderBar>
         </template>
       </buscador>
     </div>
-    <v-skeleton-loader
-      v-if="this.isLoading"
-      class="mx-auto"
-      type="image, table"
-    ></v-skeleton-loader>
+    <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
 
-    <lista
-      v-else
-      :ItemSource="propiedades"
-      ItemIdAttribute="creditnumber"
-      :NoItemsMessage="!ShowProperties"
-      :Count="totalItems"
-    >
+    <lista v-else :ItemSource="propiedades" ItemIdAttribute="creditnumber" :NoItemsMessage="!ShowProperties"
+      :Count="totalItems">
       <template v-slot:item="{ item }">
-        <property-card
-          :Title="item.title"
-          :OnClick="onClickProperty"
-          :Settlement="item.settlement"
-          :City="item.city"
-          :State="item.state"
-          :Price="item.price"
-          :Favorite="item.favorite"
-          :Id="item.creditnumber"
-          :Image="item.thumbnail ?? require('@/assets/propexample.svg')"
-          :IsSold="item.sold"
-        >
+        <property-card :Title="item.title" :OnClick="onClickProperty" :Settlement="item.settlement" :City="item.city"
+          :State="item.state" :Price="item.price" :Favorite="item.favorite" :Id="item.creditnumber"
+          :Image="item.thumbnail ?? require('@/assets/propexample.svg')" :IsSold="item.sold">
           <template v-slot:iconbar>
-            <PropertyCardIconBar
-            class="d-none d-sm-block"
-              :LivingSize="item.constructionsize"
-              :BathsQuantity="item.bathrooms"
-              :BebsQuantity="item.rooms"
-              :ConstructionSize="item.constructionsize"
-              :ParkingLots="item.parkingspaces"
-              ConstructionSizeUnits="m²"
-              LivinSizeUnits="m²"
-              :DetailsMode="true"
-            ></PropertyCardIconBar>
+            <PropertyCardIconBar class="d-none d-sm-block" :LivingSize="item.constructionsize"
+              :BathsQuantity="item.bathrooms" :BebsQuantity="item.rooms" :ConstructionSize="item.constructionsize"
+              :ParkingLots="item.parkingspaces" ConstructionSizeUnits="m²" LivinSizeUnits="m²" :DetailsMode="true">
+            </PropertyCardIconBar>
           </template>
           <template v-slot:favoritebar>
             <div>
+              <!-- <span  class="product-trending">vendido</span> -->
+              <v-btn icon flat @click="onClickFavoriteButton(item.favorite, item.creditnumber)">
+                <v-icon v-if="item.favorite">mdi-heart</v-icon>
+                <v-icon v-else>mdi-heart-outline</v-icon>
+              </v-btn>
               <!-- <img v-if="item.favorite" src="@/assets/favorite2_icon.svg" alt="favorite" @click="
                 onClickFavoriteButton(item.favorite, item.creditnumber)
                 " />
@@ -87,18 +50,10 @@
     </lista>
     <div class="d-grid gap-2">
       <div class="row mt-3">
-        <pagination
-          class="mt-5"
-          :class="{ 'd-none': !ShowProperties }"
-          :propItemSource="ItemSourcePagination.length"
-          :propTotalItems="totalItems"
-          :propCurrentPage="currentPage"
-          :propPerPage="perPage"
-          @pagechanged="onPageChange"
-          @setCurrentPage="(value) => (currentPage = value)"
-          @setPerPage="(value) => (perPage = value)"
-          @setTotalItems="(value) => (totalItems = value)"
-        >
+        <pagination class="mt-5" :class="{ 'd-none': !ShowProperties }" :propItemSource="ItemSourcePagination.length"
+          :propTotalItems="totalItems" :propCurrentPage="currentPage" :propPerPage="perPage" @pagechanged="onPageChange"
+          @setCurrentPage="(value) => (currentPage = value)" @setPerPage="(value) => (perPage = value)"
+          @setTotalItems="(value) => (totalItems = value)">
         </pagination>
       </div>
     </div>
@@ -111,10 +66,8 @@
 
 <script>
 import propservice from "@/core/services/propservice";
-import {
-  default as signinservice,
-  default as usersignin,
-} from "@/core/services/userservice";
+import usersignin from "@/core/services/usersignin";
+import signinservice from "@/core/services/usersignin";
 import buscador from "@/components/client/finderLight.vue";
 import customselect from "@/components/common/CustomSelect.vue";
 import lista from "@/components/common/shared/Lista.vue";
@@ -158,6 +111,7 @@ export default {
   },
   methods: {
     async loadProperties(properties) {
+      debugger;
       // console.log('1. loadProperties.properties', properties);
       let favorites = await usersignin.favorites({
         cellphone: this.state.userdata.cellphone,
@@ -247,6 +201,7 @@ export default {
       this.searchProps(event.currentPage, event.perPage);
     },
     async onClickFavoriteButton(val, idprop) {
+      debugger;
       if (this.state.isLogin) {
         let result = this.propiedades.find((x) => x.creditnumber === idprop);
         result.favorite = !val;
@@ -258,7 +213,7 @@ export default {
           });
         } else {
           await signinservice.removefavorite({
-            email: this.state.userdata.email,
+            cellphone: this.state.userdata.cellphone,
             id: idprop,
           });
         }

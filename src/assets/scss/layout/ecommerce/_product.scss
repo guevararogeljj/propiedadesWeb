@@ -44,6 +44,39 @@
             font-size: 14px;
             line-height: 1;
             color: var(--tp-common-white);
+            background-color:#E0E2E4;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 4px 8px 2px;
+            text-transform: capitalize;
+            border-radius: 50%;
+            &.product-hot{
+                background-color: var(--tp-pink-2);
+            }
+            &.product-trending{
+                background-color: var(--tp-green-1);
+            }
+            &.product-offer{
+                background-color: var(--tp-orange-1);
+            }
+            &.product-sale{
+                background-color: var(--tp-blue-1);
+            }
+        }
+    }
+    &-badgeLeft{
+        position: absolute;
+        top: 16px;
+        left: 20px;
+        z-index: 1;
+        & span{
+            @extend %tp-ff-roboto;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 1;
+            color: var(--tp-common-white);
             background-color: var(--tp-theme-primary);
             border-radius: 4px;
             display: inline-block;

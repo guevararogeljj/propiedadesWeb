@@ -3,15 +3,19 @@
     <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img card-border">
       <img :src="Image" @click="onClickTitle" alt="property" height="300" />
       <!-- product badge -->
+      <div class="tp-product-badgeLeft">
+         <span v-if="IsSold" class="product-hot">vendido</span>
+    </div>
       <div class="tp-product-badge">
-        <span v-if="IsSold" class="product-hot">vendido</span>
+        <slot name="favoritebar"></slot>
+    
       </div>
       <!-- product action -->
       <div class="tp-product-action-2 tp-product-action-blackStyle">
       <div class="tp-product-action-item-2 d-flex flex-column">
         <div class="d-inline col-12 d-flex justify-content-end">
         </div>
-        <slot name="favoritebar"></slot>
+
       </div>
       <div class="card-text card-text-state d-flex justify-content-end"></div>
     </div>
