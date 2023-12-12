@@ -11,7 +11,7 @@
     </v-col>
     <v-col cols="12" sm="6" md="4" lg="3">
       <div class="counter" v-if="!this.isLoading">
-        <p class="counterText">{{ this.totalItems }} Disponibles</p>
+        <div class="counterText">{{ this.totalItems }} Disponibles</div>
       </div>
     </v-col>
   </v-row>
@@ -63,7 +63,7 @@
         </v-carousel>
         <div class="salto"></div>
         <div class="text-center mx-auto">
-          <button-secondary Text="ver listado completo" color="primary3" class="btnCustom" width="394px" />
+          <button-secondary Text="Ver listado completo" color="primary3" class="btnCustom" width="394px" />
         </div>
       </div>
     </v-col>
@@ -293,8 +293,8 @@ export default {
 }
 
 .counterText {
+  text-indent: 20px;
   color: var(--secundarios-600, #000);
-  text-align: center;
   /* Heading/Semibold 1 */
   font-family: Barlow;
   font-size: 25px;
@@ -312,7 +312,10 @@ export default {
   border-radius: 20px;
   background: var(--alertas-yellow, #ffc101);
   float: right;
+  display: flex;
+  align-items: center;
 }
+
 
 .color-black {
   color: var(--secundarios-600, #000);
