@@ -76,6 +76,7 @@ import OrderBar from "@/components/common/shared/OrderBar.vue";
 import pagination from "@/components/common/shared/Pagination.vue";
 import propertyCard from "@/components/common/shared/PropertyCard.vue";
 import PropertyCardIconBar from "@/components/common/shared/PropertyCardIconBar.vue";
+import { dialogError } from '@/core/utils/alerts';
 // import propexample from "@/assets/propexample.jpg";
 export default {
   components: {
@@ -201,7 +202,6 @@ export default {
       this.searchProps(event.currentPage, event.perPage);
     },
     async onClickFavoriteButton(val, idprop) {
-      debugger;
       if (this.state.isLogin) {
         let result = this.propiedades.find((x) => x.creditnumber === idprop);
         result.favorite = !val;
@@ -218,7 +218,12 @@ export default {
           });
         }
       } else {
-        this.showModalLoginRequest = true;
+        dialogError({
+          title: "¡Error!",
+          text: "¡Necesitas iniciar sesión!",
+        });
+
+        // this.showModalLoginRequest = true;
       }
     },
     onClickFavotiteListButton() {

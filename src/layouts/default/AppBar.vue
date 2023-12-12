@@ -26,10 +26,12 @@
             </v-btn>
           </template>
           <v-list nav dense>
-            <v-list-item v-for="item in rutasLogin" :append-icon="item.icon" :key="item" :to="item.route">
-              <v-list-item-title @click="tab = index">{{
-                item.name
-              }}</v-list-item-title>
+            <v-list-item v-for="item in rutasLogin" :append-icon="item.icon" :key="item" :to="item.name != 'Cerrar sesión' ? item.route : null">
+              <v-list-item-title>
+                <span v-if="item.name != 'Cerrar sesión'">{{item.name}}</span>
+              <!-- {{item.name}} -->
+              <span v-if="item.name == 'Cerrar sesión'" @click="onClickLogout"  variant="flat">Cerrar sesión</span>
+            </v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>
@@ -82,6 +84,7 @@
 import ButtonBack from "@/components/common/ButtonBack.vue";
 import ButtonPrimary from "@/components/common/ButtonPrimary.vue";
 import ButtonSecondary from "@/components/common/ButtonSecondary.vue";
+import profile from "@/core/services/usersignin";
 export default {
   name: "AppBar",
   components: {
@@ -131,6 +134,23 @@ export default {
     navigateLogin() {
       this.$router.push("/login");
     },
+    goToHome() {
+      this.$router.push({ name: "Home" });
+    },
+    async onClickLogout() {
+      debugger;
+      this.isLoading = true;
+      await profile.signout({ cellphone: this.state.cellphone });
+      this.state.isLogin = false;
+      this.state.dataTemp = {};
+      this.state.email = "";
+      this.state.cellphone = "";
+      this.state.username = "";
+      this.state.userdata = {};
+      this.state.token = "";
+      this.goToHome();
+      this.isLoading = false;
+    },
   },
   computed: {
     isLogin() {
@@ -151,7 +171,6 @@ export default {
     },
   },
   mounted() {
-    debugger;
     let data = this.$store.state.username;
     this.Name = this.state.username;
   },
