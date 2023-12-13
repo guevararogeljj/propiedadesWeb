@@ -5,7 +5,7 @@
                 <h1 class="text-center">
                     Mi perfil
                 </h1>
-                <v-img class="terminado" src="@/assets/terminado.svg" />
+                <v-img class="terminado" src="@/assets/account_circle.png" />
                 <br />
                 <v-card class="card">
                     <v-card-title>
@@ -48,7 +48,7 @@
                         </v-row>
                     </v-card-item>
                     <v-card-actions>
-                        <v-btn class="btnEditar" @click="onClickNextButton">Editar Datos</v-btn>
+                        <v-btn class="btnEditar" @click="onClickUserdataButton()">Editar Datos</v-btn>
                     </v-card-actions>
                 </v-card>
                 <br />
@@ -64,7 +64,10 @@
                                 Contraseña
                             </v-col>
                             <v-col cols="12" sm="8" md="6">
+                            <v-btn variant="text" class="btnUpadatePass" 
+                                flat @click="onClickPasswordButton()">  
                                 Actualizar contraseña
+                            </v-btn>
                             </v-col>
                         </v-row>
                         <v-row>
@@ -199,7 +202,7 @@ export default {
             this.$router.push({ name: "userdata" });
         },
         goToHome() {
-            this.$router.push({ name: "home" });
+            this.$router.push({ name: "Home" });
         },
         onClickBack() {
             this.goToHome();
@@ -255,6 +258,9 @@ export default {
 </script>
   
 <style scoped lang="scss" >
+.btnUpadatePass{
+    text-transform: none;
+}
 .btnEditar {
     margin: auto;
     color: #FFF;
