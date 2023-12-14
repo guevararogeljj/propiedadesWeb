@@ -156,16 +156,16 @@ export default {
 
       if (this.state.isLogin) {
         const propertiesandfavorites = await this.loadProperties(
-          properties.result.items
+          properties.data
         );
 
         this.ItemSourcePagination = propertiesandfavorites;
       } else {
-        this.ItemSourcePagination = properties.result.items;
+        this.ItemSourcePagination = properties.data;
       }
 
-      this.totalItems = properties.result.count;
-      this.propiedades = properties.result.items;
+      this.totalItems = properties.totalRecords;
+      this.propiedades = properties.data;
       this.isLoading = this.Loading(false);
     },
     async searchProps(currentPage, perPage) {
@@ -180,16 +180,16 @@ export default {
 
       if (this.state.isLogin) {
         const propertiesandfavorites = await this.loadProperties(
-          properties.result.items
+          properties.data
         );
 
         this.ItemSourcePagination = propertiesandfavorites;
       } else {
-        this.ItemSourcePagination = properties.result.items;
+        this.ItemSourcePagination = properties.data;
       }
 
-      this.totalItems = properties.result.count;
-      this.propiedades = properties.result.items;
+      this.totalItems = properties.totalRecords;
+      this.propiedades = properties.data;
       this.isLoading = this.Loading(false);
     },
     loadItemsToGrid(pageNumber, pageSize) {
@@ -275,16 +275,16 @@ export default {
 
       if (this.state.isLogin) {
         const propertiesandfavorites = await this.loadProperties(
-          properties.result.items
+          properties.data
         );
 
         this.ItemSourcePagination = propertiesandfavorites;
         this.isLoading = this.Loading(false);
       } else {
-        this.ItemSourcePagination = properties.result.items;
+        this.ItemSourcePagination = properties.data;
       }
-      this.totalItems = properties.result.count;
-      this.propiedades = properties.result.items;
+      this.totalItems = properties.totalRecords;
+      this.propiedades = properties.data;
 
       this.isLoading = this.Loading(false);
     }
