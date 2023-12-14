@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <v-row>
-      <v-col cols="10" class="countProperty">{{this.Count}} Propiedades</v-col>
+      <v-col cols="10" class="countProperty">{{this.Count}} {{ Title }}</v-col>
       <v-col cols="2" class="resent">Más recientes</v-col>
     </v-row>
 
@@ -36,6 +36,7 @@ export default {
     },
     NoItemsMessage: { type: Boolean, default: true },
     Count: { type: Number, default: 0 },
+    Title : {type: String, default: "Propiedades"},
   },
   methods: {
     clickitem() {

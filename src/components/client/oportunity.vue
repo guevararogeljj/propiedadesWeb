@@ -60,7 +60,7 @@
         </v-carousel>
         <div class="salto"></div>
         <div class="text-center mx-auto">
-          <button-secondary Text="Ver listado completo" color="primary3" class="btnCustom" width="394px" />
+          <button-secondary @click="navigateopportunities()" Text="Ver listado completo" color="primary3" class="btnCustom" width="394px" />
         </div>
       </div>
     </v-col>
@@ -165,6 +165,9 @@ export default {
 
       });
       return `$${price}`;
+    },
+    navigateopportunities() {
+      this.$router.push({ name: "opportunities" });
     },
   },
   async mounted() {

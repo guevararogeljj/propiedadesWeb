@@ -99,6 +99,12 @@ const routes = [
         component: () => import('@/components/shared/Profile.vue'),
       },
       {
+        path: '/datos',
+        name: 'userdata',
+        component: () => import('@/components/shared/UserDataView.vue'),
+        meta: { requiredlogin: true }
+      },
+      {
         path: '/nda',
         name: 'nda',
         component: () => import('@/components/shared/NDA.vue'),
@@ -119,11 +125,50 @@ const routes = [
       {
         path: '/registrocompletoterminado',
         name: 'completedregistrationended',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: () => import('@/components/shared/CompletedRegistrationView.vue'),
         meta: { requiredlogin: true }
+      },
+      {
+        path: '/scan/:side',
+        name: 'scandni',
+        component: () => import('@/components/shared/ScanView.vue'),
+        meta: { requiredlogin: true }
+      },
+      {
+        path: '/validacion2',
+        name: 'images',
+        component: () => import('@/components/shared/ImagesView.vue'),
+        meta: { requiredlogin: true }
+      },
+      {
+        path: '/cambiocontrasena',
+        name: 'passwordchange',
+        component: () => import('@/components/shared/PasswordView.vue'),
+        meta: { requiredlogin: true }
+      },
+      {
+        path: '/contrasenasuccess',
+        name: 'passwordchangesuccess',
+        component: () => import('@/components/shared/PasswordSuccessView.vue'),
+        meta: { requiredlogin: true }
+      },
+      {
+        path: '/contrasenaerror',
+        name: 'passwordchangeerror',
+        component: () => import('@/components/shared/PasswordErrorView.vue'),
+        meta: { requiredlogin: true }
+      },
+      {
+        path: '/favorites',
+        name: 'favorites',
+        component: () => import('@/components/client/modulo12-listafavoritos/ListaFavoritos.vue'),
+        meta: { requiredlogin: false }
+      },
+      {
+        path: '/oportunidades',
+        name: 'opportunities',
+        component: () => import('@/components/client/modulo-oportunidades/ListaOportunidades.vue'),
+        meta: { requiredlogin: false }
       },
     ],
   },
