@@ -138,7 +138,6 @@ export default {
       this.$router.push({ name: "Home" });
     },
     async onClickLogout() {
-      debugger;
       this.isLoading = true;
       await profile.signout({ cellphone: this.state.cellphone });
       this.state.isLogin = false;
@@ -150,6 +149,9 @@ export default {
       this.state.token = "";
       this.goToHome();
       this.isLoading = false;
+    },
+    onClickFavoritesButton() {
+      this.$router.push({ name: "favorites" });
     },
   },
   computed: {

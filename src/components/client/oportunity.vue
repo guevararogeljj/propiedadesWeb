@@ -16,9 +16,6 @@
     </v-col>
   </v-row>
   <v-row>
-    <!-- <h1 class="center">{{title}}</h1> -->
-    <!-- <span class="h1 color-black center"> {{ title }}</span> -->
-
     <v-col cols="14">
       <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
       <div v-else>
@@ -112,38 +109,23 @@ export default {
     outProceduraStage: "",
     showModalLoginRequest: false,
     isLoading: false,
-    casas: casa
+    casas: casa,
+    isCarrusel: true,
   }),
   methods: {
     onClickProperty(id) {
       this.$router.push({ name: "information", query: { id: id } });
     },
-    async loadProperties(properties) {
-      let favorites = await usersignin.favorites({
-        cellphone: this.state.userdata.cellphone,
-      });
 
-      for (var i in favorites) {
-        const item = properties.find(
-          (x) => x.creditnumber === favorites[i].creditnumber
-        );
-
-        if (item) {
-          const index = properties.indexOf(item);
-          properties[index].favorite = favorites[i].favorite;
-        }
-      }
-      this.isLoading = false;
-      // console.log('2. loadProperties.properties', properties);
-      return properties;
-    },
     Loading(value) {
       return (this.$store.state.isLoading = value);
     },
     async performSearch(params) {
       // console.log('params', params)
       this.isLoading = this.Loading(true);
+
       this.ParamsProperties = params;
+      this.ParamsProperties.isCarrusel = this.isCarrusel;
       //this.currentPage = 1;
       let properties = await propservice.PropertiesRange(
         this.currentPage,
@@ -152,19 +134,10 @@ export default {
       );
 
       this.$store.state.filterSaved = params;
+      this.ItemSourcePagination = properties.data;
 
-      if (this.state.isLogin) {
-        const propertiesandfavorites = await this.loadProperties(
-          properties.result.items
-        );
-
-        this.ItemSourcePagination = propertiesandfavorites;
-      } else {
-        this.ItemSourcePagination = properties.result.items;
-      }
-
-      this.totalItems = properties.result.count;
-      this.propiedades = properties.result.items;
+      this.totalItems = properties.totalRecords;
+      this.propiedades = properties.data;
       this.isLoading = this.Loading(false);
     },
     textTruncateTitle(title) {
@@ -205,7 +178,7 @@ export default {
       this.outRooms = this.state.filterSaved.rooms;
       this.outBathrooms = this.state.filterSaved.bathrooms;
       this.outState = this.state.filterSaved.state;
-      console.log(this.state);
+
       await this.performSearch(this.getRequestsaved);
     } else {
       this.isLoading = this.Loading(true);
@@ -228,16 +201,15 @@ export default {
         properties = await propservice.PropertiesRange(
           this.currentPage,
           this.perPage,
-          []
+          {"isCarrusel" : this.isCarrusel}
         );
       }
 
-      this.totalItems = properties.result.count;
-      this.propiedades = properties.result.items;
+      this.totalItems = properties.totalRecords;
+      this.propiedades = properties.data;
 
       this.isLoading = this.Loading(false);
     }
-    console.log("this.propiedades", this.propiedades);
   },
   computed: {
     ShowProperties() {
