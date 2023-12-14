@@ -87,10 +87,10 @@
                     <v-card-actions>
                         <v-row>
                             <v-col cols="12" sm="8" md="6">
-                                <v-btn class="btnSave" @click="UpdateDataUser">Guardar Cambios</v-btn>
+                                <v-btn class="btnSave" :disabled ="this.v$.$invalid" @click="UpdateDataUser">Guardar Cambios</v-btn>
                             </v-col>
                             <v-col cols="12" sm="8" md="6">
-                                <v-btn class="btnCancelar" @click="onClickUserdataButton()">Cancelar</v-btn>
+                                <v-btn class="btnCancelar" @click="onClickBack()">Cancelar</v-btn>
                             </v-col>
                         </v-row>
                     </v-card-actions>
@@ -146,8 +146,11 @@ export default {
                     maxLength: helpers.withMessage("El Teléfono debe tener 10 dígitos", maxLength(10)),
                     minLength: helpers.withMessage("El Teléfono debe tener 10 dígitos", minLength(10))
                 },
-                emailSecondary: { email: helpers.withMessage("El correo no es válido", email) },
+                emailSecondary: { 
+                    required: helpers.withMessage("El correo es requerido", required),
+                    email: helpers.withMessage("El correo no es válido", email) },
                 cellphoneSecondary: {
+                    required: helpers.withMessage("El Teléfono es requerido", required),
                     maxLength: helpers.withMessage("El Teléfono debe tener 10 dígitos", maxLength(10)),
                     minLength: helpers.withMessage("El Teléfono debe tener 10 dígitos", minLength(10))
                 },
@@ -184,7 +187,13 @@ export default {
             this.isLoading = false;
         },
         async UpdateDataUser(){
-            debugger;
+            if (this.v$.$invalid) {
+                dialogError({
+                    title: "Error",
+                    text: "Favor de llenar los campos requeridos",
+                });
+                return;
+            }
             this.isLoading = true;
             var lastname = "";
             if (this.data.lastname.length >= 2){

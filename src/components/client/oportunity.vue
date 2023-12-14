@@ -269,6 +269,15 @@ export default {
 };
 </script>
 <style scoped>
+.loading {
+  margin: auto;
+  /* 70 × 139 */
+  width: 70px;
+  height: 139px;
+
+  transform: translate(-50%, -50%);
+}
+
 .salto {
   width: 100%;
   height: 20px;

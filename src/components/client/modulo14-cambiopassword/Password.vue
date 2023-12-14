@@ -223,18 +223,10 @@ export default {
                 };
                 const result = await usersignin.changepassword(data);
                 if (result.success) {
-                    dialogSuccess({
-                        title: "¡Éxito!",
-                        text: "Se ha cambiado la contraseña correctamente!",
-                    });
                     this.store.commit("LOGOUT");
-                    this.$router.push({ name: "login" });
+                    this.$router.push({ name: "passwordchangesuccess" });
                 } else {
-                    dialogError({
-                        title: "Intento fallido",
-                        text: "No se logro cambiar tu contraseña, intentalo nuevamente." + result.message,
-                    });
-
+                    this.$router.push({ name: "passwordchangeerror" });
                 }
             } else {
                 this.samepassword = true;

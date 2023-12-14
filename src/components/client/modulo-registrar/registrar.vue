@@ -35,7 +35,7 @@
                                 v-model="data.ConfirmPassword" :error-messages="v$.data.ConfirmPassword.$errors.map((e) => e.$message)
                                     " @input="v$.data.ConfirmPassword.$touch" @blur="v$.data.ConfirmPassword.$touch"
                                 autocomplete="off"></v-text-field>
-                            <v-btn color="primary2" class="btnLogin" :IsDisabled="this.v$.$invalid"
+                            <v-btn color="primary2" class="btnLogin" :disabled="this.v$.$invalid"
                                 @click="onClickNextButton">Continuar</v-btn>
                             <br />
                             <div style="text-align: center">
@@ -207,6 +207,7 @@ export default {
 </script>
 <style scoped>
 .btnLogin {
+    text-transform: none;
     display: flex;
     width: 393px;
     padding: 18px 16px;
