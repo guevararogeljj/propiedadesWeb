@@ -209,7 +209,7 @@ background: var(--Secundarios-Blanco, #FFF);
   width: 500px;
   height: 75px;
   flex-shrink: 0;
-  border-radius: 24px 24px 0px 0px;
+  border-radius: 18px 18px 0px 0px;
   background: var(--Primary-500, #379BEC);
 
   color: var(--Secundarios-Blanco, #FFF);
