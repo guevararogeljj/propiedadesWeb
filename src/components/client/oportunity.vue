@@ -60,7 +60,7 @@
         </v-carousel>
         <div class="salto"></div>
         <div class="text-center mx-auto">
-          <button-secondary @click="navigateopportunities()" Text="Ver listado completo" color="primary3" class="btnCustom" width="394px" />
+          <button-secondary Text="Ver listado completo" color="primary3" @click="navigateToopportunities()" class="btnCustom" width="394px" />
         </div>
       </div>
     </v-col>
@@ -113,6 +113,9 @@ export default {
     isCarrusel: true,
   }),
   methods: {
+    navigateToopportunities() {
+      this.$router.push({ name: "opportunities" });
+    },
     onClickProperty(id) {
       this.$router.push({ name: "information", query: { id: id } });
     },
@@ -165,9 +168,6 @@ export default {
 
       });
       return `$${price}`;
-    },
-    navigateopportunities() {
-      this.$router.push({ name: "opportunities" });
     },
   },
   async mounted() {

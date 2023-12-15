@@ -83,6 +83,7 @@ export default {
     OrderBar,
     customselect,
     pagination,
+    propertyCard,
     // modalacceptLogin,
   },
   data() {
@@ -108,7 +109,6 @@ export default {
   },
   methods: {
     async loadProperties(properties) {
-      // console.log('1. loadProperties.properties', properties);
       let favorites = await usersignin.favorites({
         cellphone: this.state.userdata.cellphone,
       });
@@ -124,7 +124,6 @@ export default {
         }
       }
       this.isLoading = false;
-      // console.log('2. loadProperties.properties', properties);
       return properties;
     },
     onClickAcceptModalButton() {
@@ -147,41 +146,22 @@ export default {
       );
 
       this.$store.state.filterSaved = params;
+      this.ItemSourcePagination = properties.data;
 
-      if (this.state.isLogin) {
-        const propertiesandfavorites = await this.loadProperties(
-          properties.data
-        );
-
-        this.ItemSourcePagination = propertiesandfavorites;
-      } else {
-        this.ItemSourcePagination = properties.data;
-      }
 
       this.totalItems = properties.totalRecords;
       this.propiedades = properties.data;
       this.isLoading = this.Loading(false);
     },
     async searchProps(currentPage, perPage) {
-      // console.log('params', this.ParamsProperties)
       this.isLoading = this.Loading(true);
-      //this.currentPage = 1;
+      this.ParamsProperties.oportunity = true;
       let properties = await propservice.PropertiesRange(
         currentPage,
         perPage,
         this.ParamsProperties
       );
-
-      if (this.state.isLogin) {
-        const propertiesandfavorites = await this.loadProperties(
-          properties.data
-        );
-
-        this.ItemSourcePagination = propertiesandfavorites;
-      } else {
-        this.ItemSourcePagination = properties.data;
-      }
-
+      this.ItemSourcePagination = properties.data;
       this.totalItems = properties.totalRecords;
       this.propiedades = properties.data;
       this.isLoading = this.Loading(false);
@@ -228,9 +208,9 @@ export default {
     },
   },
   async mounted() {
-    let properties = [];
-    console.log(this.getRequestsaved);
+    debugger;
 
+    let properties = [];
     if (this.getRequestsaved) {
       this.outBathrooms = this.state.filterSaved.bathrooms;
       this.outCity = this.state.filterSaved.city;
@@ -251,35 +231,26 @@ export default {
       ) {
         this.outState = this.$route.query.state;
         this.outPropertyType = this.$route.query.type;
-        properties = await propservice.PropertiesRange(
+        properties = await propservice.favorites(
           this.currentPage,
           this.perPage,
           {
             propertytype: this.$route.query.type,
             state: this.$route.query.state,
+            oportunity: true,
           }
         );
       } else {
         properties = await propservice.PropertiesRange(
           this.currentPage,
           this.perPage,
-          []
+          {"oportunity" : true}
         );
       }
 
-      if (this.state.isLogin) {
-        const propertiesandfavorites = await this.loadProperties(
-          properties.data
-        );
-
-        this.ItemSourcePagination = propertiesandfavorites;
-        this.isLoading = this.Loading(false);
-      } else {
-        this.ItemSourcePagination = properties.data;
-      }
-      this.totalItems = properties.totalItems;
+      this.ItemSourcePagination = properties.data;
+      this.totalItems = properties.totalRecords;
       this.propiedades = properties.data;
-
       this.isLoading = this.Loading(false);
     }
   },

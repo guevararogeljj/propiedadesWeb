@@ -1,9 +1,10 @@
 <template>
     <v-container>
         <div class="content">
+            <button-back></button-back>
             <br>
             <v-row>
-                <h1 class="center">Aviso de privacidad</h1>
+                <h1 class="titulo">Aviso de privacidad</h1>
                 <v-col cols="12">
                 <div class=WordSection1>
 
@@ -215,6 +216,7 @@
     </v-container>
 </template>
 <script>
+import ButtonBack from '../common/ButtonBack.vue';
 export default {
     data() {
         return {
@@ -224,6 +226,9 @@ export default {
             ],
             htmlContent: ''
         }
+    },
+    components: {
+        ButtonBack
     },
     mounted() {
         this.scrollToTop();
@@ -238,11 +243,45 @@ export default {
 }
 </script>
 <style scoped>
+.titulo {
+  color: var(--Secundarios-600, #000);
+
+  /* Heading/Large1 */
+  font-family: Barlow;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 52.83px;
+  /* 110.063% */
+  letter-spacing: -1.44px;
+}
 .center {
     margin: auto;
     padding: 10px;
 }
 .WordSection1 {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}</style>
+  width: 1136px;
+  height: auto;
+  flex-shrink: 0;
+  color: var(--Secundarios-600, #000);
+
+  /* Text/Small/Medium */
+  font-family: Barlow;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 142.857% */
+  letter-spacing: -0.14px;
+  color: var(--Secundarios-600, #000);
+
+  /* Text Wireframes (Ignorar)/Body 1 */
+  font-family: Barlow;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.14px;
+}
+</style>
     

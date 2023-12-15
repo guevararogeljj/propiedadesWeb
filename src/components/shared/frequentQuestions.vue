@@ -1,8 +1,10 @@
 <template>
+      <v-container>
   <div class="content">
+    <button-back></button-back>
     <br>
     <v-row>
-      <span class="h1 color-black center"> Preguntas Frecuentes</span>&nbsp;
+      <h1 class="titulo"> Preguntas Frecuentes</h1>
       <!-- <h1 class="center">Preguntas Frecuentes</h1> -->
     </v-row>
     <br>
@@ -15,8 +17,10 @@
       </div>
     </v-col>
   </div>
+</v-container>
 </template>
 <script>
+import ButtonBack from '@/components/common/ButtonBack.vue'
 import json from '@/assets/json/preguntas_frecuentes.json'
 export default {
   data() {
@@ -27,6 +31,9 @@ export default {
       ],
       preguntasRespuestas: [],
     }
+  },
+  components: {
+    ButtonBack,
   },
   mounted() {
     this.scrollToTop();
@@ -46,6 +53,19 @@ export default {
 }
 </script>
 <style scoped>
+
+.titulo {
+  color: var(--Secundarios-600, #000);
+
+  /* Heading/Large1 */
+  font-family: Barlow;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 52.83px;
+  /* 110.063% */
+  letter-spacing: -1.44px;
+}
 .center {
   margin: auto;
   padding: 10px;

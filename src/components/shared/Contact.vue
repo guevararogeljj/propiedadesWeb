@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content" style="border-radius: 26px; background: var(--Secundarios-300, #F5F6F6);">
     <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
     <v-form v-else>
       <v-row>
@@ -185,6 +185,7 @@ export default {
   width: 394px;
   margin: auto;
   min-width: 320px;
+  background-color: white;
 }
 
 .btnCustom {

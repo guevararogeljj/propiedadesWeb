@@ -2,12 +2,13 @@
     <v-container>
         <v-row justify="center" v-if="isLogin">
             <v-col cols="12" sm="8" md="6">
-                <h1 class="text-center">
+                <div class="text-center tituloMiperfil">
                     Mi perfil
-                </h1>
+                </div>
                 <v-img class="terminado" src="@/assets/account_circle.png" />
                 <br />
-                <v-card class="card">
+                <v-card class="card" flat>
+                    <div class="salto"></div>
                     <v-card-title>
                         <h3 class="text-center subtitle">
                             Datos personales
@@ -48,11 +49,12 @@
                         </v-row>
                     </v-card-item>
                     <v-card-actions>
-                        <v-btn class="btnEditar" @click="onClickUserdataButton()">Editar Datos</v-btn>
                     </v-card-actions>
+                    <v-btn class="btnEditar" flat @click="onClickUserdataButton()">Editar datos</v-btn>
+                    <div class="salto"></div>
                 </v-card>
                 <br />
-                <v-card class="cardSecundary">
+                <v-card class="cardSecundary" flat>
                     <v-card-title>
                         <h3 class="text-center subtitle">
                             Seguridad y privacidad
@@ -64,10 +66,9 @@
                                 Contraseña
                             </v-col>
                             <v-col cols="12" sm="8" md="6">
-                            <v-btn variant="text" class="btnUpadatePass" 
-                                flat @click="onClickPasswordButton()">  
-                                Actualizar contraseña
-                            </v-btn>
+                                <v-btn variant="text" class="btnUpadatePass" flat @click="onClickPasswordButton()">
+                                    Actualizar contraseña
+                                </v-btn>
                             </v-col>
                         </v-row>
                         <v-row>
@@ -86,76 +87,6 @@
             </v-col>
         </v-row>
     </v-container>
-    <!-- <div>
-      <div class="mt-5 container custom-container">
-        <div class="row background">
-          <div class="col-2"></div>
-          <div class="col-8">
-            <div class="title d-flex justify-content-center pt-4 frecuente">
-              <div class="d-flex align-items-center login-wrapper" v-if="isLogin">
-                <div class="numberCircle">{{ letters }}</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-2"></div>
-        </div>
-  
-        <div class="main-container">
-          <div class="container wrapper-container pt-3 pb-4 mt-3">
-            <div class="row mb-2">
-              <div class="col-12 title-name justify-content-center">
-                {{ username }}
-              </div>
-              <div class="col-12 subtitle mt-1">
-                {{ email }}
-              </div>
-            </div>
-  
-            <div>
-              <div class="row justify-content-center mt-5">
-                <div class="col-12 d-flex justify-content-center w-95">
-                  <ButtonSecundaty class="custom-button" Text="DATOS PERSONALES" :OnClickButton="onClickUserdataButton">
-                  </ButtonSecundaty>
-                </div>
-  
-                <div class="col-12 d-flex justify-content-center w-95 mt-5">
-                  <ButtonSecundaty class="custom-button" Text="MIS FAVORITOS" :OnClickButton="onClickFavoritesButton">
-                  </ButtonSecundaty>
-                </div>
-  
-                <div class="col-12 d-flex justify-content-center w-95 mt-5">
-                  <ButtonSecundaty class="custom-button custom-button2" Text="VERIFICACIÓN EN 2 PASOS"
-                    :OnClickButton="onClickTfaButton">
-                  </ButtonSecundaty>
-                </div>
-                <div class="col-12 w-95 mt-5">
-                  <div class="divider"></div>
-                </div>
-  
-                <div class="col-12 d-flex justify-content-center">
-                  <div class="col-12 d-flex justify-content-center w-95 mb-5">
-                    <ButtonPrimary class="custom-primary-button" Text="CERRAR SESION" :OnClickButton="onClickLogout" />
-                  </div>
-                </div>
-                <div class="col-12 w-95">
-                  <div class="divider"></div>
-                </div>
-  
-                <p class="custom-text">
-                  <a href="https://www.finastrategy.mx/wp-content/themes/finastrategy/assets/aviso-de-privacidad.pdf"
-                    target="_blank" class="custom-text">Política de privacidad </a>•<a
-                    href="https://www.finastrategy.mx/wp-content/themes/finastrategy/assets/terminos-condiciones.pdf"
-                    target="_blank" class="custom-text">
-                    Términos y condiciones</a>
-                </p>
-              </div>
-  
-           
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
 </template>
   
 <script>
@@ -258,22 +189,53 @@ export default {
 </script>
   
 <style scoped lang="scss" >
-.btnUpadatePass{
+.saltoDos {
+    padding: 30px;
+}
+.tituloMiperfil{
+    margin: auto;
+    color: var(--Secundarios-600, #000);
+text-align: center;
+
+/* Heading/Large2 */
+font-family: Barlow;
+font-size: 40px;
+font-style: normal;
+font-weight: 500;
+line-height: 40px; /* 100% */
+letter-spacing: -1.2px;
+}
+.salto {
+    height: 46px;
+}
+
+.btnUpadatePass {
     text-transform: none;
 }
+
 .btnEditar {
+    text-transform: none;
     margin: auto;
-    color: #FFF;
     display: flex;
     width: 336.467px;
-    height: 54.83px;
+    height: 56px;
     padding: 18px 16px;
     justify-content: center;
     align-items: center;
     gap: 10px;
     flex-shrink: 0;
     border-radius: 12px;
-    background: var(--primary-500, #379BEC);
+    background: var(--Primary-500, #379BEC);
+    color: var(--Secundarios-Blanco, #FFF);
+
+    /* Text/Regular/Medium */
+    font-family: Barlow;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    /* 125% */
+    letter-spacing: -0.16px;
 }
 
 .labels {

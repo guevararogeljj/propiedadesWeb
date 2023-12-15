@@ -1,8 +1,7 @@
 <template>
   <router-link to="/" class="center">
-        <v-btn color="primary" dark>
+        <v-btn flat dark>
             <v-icon>mdi-arrow-left</v-icon>
-            Regresar
         </v-btn>
       </router-link>
 </template>

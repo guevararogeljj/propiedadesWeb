@@ -1,7 +1,7 @@
 <template>
   <v-footer>
-    <v-container>
-      <v-row style="align-items: center">
+    <!-- <v-container style="background: var(--Secundarios-300, #F5F6F6);"> -->
+      <v-row style="align-items: center; background: var(--Secundarios-300, #F5F6F6);">
         <v-col cols="12" sm="6" md="3">
           <div class="logoClass"></div>
         </v-col>
@@ -27,16 +27,20 @@
           <p class="fooderMenu">55 99 90 88 00</p>
           <p class="fooderMenu">81 21 88 88 00</p>
         </v-col>
+        <v-divider></v-divider>
+        <div class="center">        {{ new Date().getFullYear() }} Finastrategy. Todos los derechos
+      reservados.</div>
+
       </v-row>
-    </v-container>
+    <!-- </v-container> -->
   </v-footer>
-  <v-divider></v-divider>
-  <v-row class="center">
+
+  <!-- <v-row class="center">
     <v-col cols="12">
       &copy; {{ new Date().getFullYear() }} Finastrategy. Todos los derechos
       reservados.
     </v-col>
-  </v-row>
+  </v-row> -->
 </template>
 <script>
 export default {

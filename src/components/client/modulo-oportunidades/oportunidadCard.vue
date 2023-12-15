@@ -37,16 +37,18 @@
                 </span>
               </div>
               <div class="mt-2">
-                <slot name="iconbar"></slot>
+              
                 <div class="tp-product-price-wrapper-2 center">
-                  
-                  <ButtonSecondary class="btn" flat Text="Ver detalles" @click="onClickTitle()" />
+                  <slot name="iconbar"></slot>
+                 
                 </div>
               </div>
               <div class="d-inline col-12 d-flex justify-content-end">
                 <!-- <slot name="favoritebar"></slot> -->
               </div>
-              <div class="card-text card-text-state d-flex justify-content-end"></div>
+              <div class="card-text card-text-state d-flex justify-content-end">
+                <ButtonSecondary class="btn" flat Text="Ver detalles" @click="onClickTitle()" />
+              </div>
             </div>
           </div>
         </div>
