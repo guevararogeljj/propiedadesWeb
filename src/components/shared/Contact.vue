@@ -183,7 +183,7 @@ export default {
 
 <style scoped>
 .banner {
-  position: fixed;
+  position: relative;
 
   text-align: center;
   z-index: 9999;
