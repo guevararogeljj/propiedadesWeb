@@ -56,9 +56,10 @@
                 <br />
                 <v-card class="cardSecundary" flat>
                     <v-card-title>
-                        <h3 class="text-center subtitle">
+                        <div class="salto"></div>
+                        <div class="text-center subtitle">
                             Seguridad y privacidad
-                        </h3>
+                        </div>
                     </v-card-title>
                     <v-card-item>
                         <v-row>

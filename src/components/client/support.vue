@@ -2,15 +2,17 @@
   <v-card color="primary3" class="card-style">
     <br/>
     <v-card-title style="text-align: center;">
-      <span class="title">Te apoyamos en tu proceso de compra</span>
+      <span class="title">Te asesoramos en tu proceso de compra</span>
     </v-card-title>
     <v-card-item>
       <br/>
-    <v-tabs v-model="activeTab">
-      <v-tab v-for="tab in tabs" :key="tab.value" :value="tab.value" selected-class="v-tab--active">
-        <p class="custom-tab"> {{ tab.title }}</p>
-      </v-tab>
-    </v-tabs>
+      <div class="subtitle">¿Cómo comienzo?</div>
+      <br/>
+      <div class="subtitle">Contactanos y un asesor se comunicará contigo a la brevedad</div>
+      <br/>
+      <br/>
+      <br/>
+      <v-btn flat class="btnContactar" @click="scrollbutton()">Contactar</v-btn>
   </v-card-item>
     <v-card-text>
       <v-window v-model="activeTab" class="asesor-inmobiliario">
@@ -32,6 +34,14 @@ export default {
       tabs: [],
     };
   },
+  methods: {
+    scrollbutton() {
+      window.scrollTo({
+        top: 2500,
+        behavior: "smooth",
+      });
+    },
+  },
   mounted() {
     this.tabs = jsonSupport.tabs;
   },
@@ -40,6 +50,39 @@ export default {
 
 </script>
 <style scoped>
+.btnContactar {
+  height: 56px;
+  display: flex;
+  width: 285px;
+  padding: 18px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+  background: var(--Primary-300, #E3F1FC);
+  color: var(--Primary-500, #379BEC);
+  /* Text/Regular/Medium */
+  font-family: Barlow;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 125% */
+  letter-spacing: -0.16px;
+  margin-left: 80px;
+}
+
+.subtitle{
+  color: #FFF;
+text-indent: 50px;
+/* Heading/Semibold 1 */
+font-family: Barlow;
+font-size: 25px;
+font-style: normal;
+font-weight: 600;
+line-height: 25px; /* 100% */
+letter-spacing: -0.5px;
+text-align: left;
+}
 .title {
   width: 300px;
   height: 106px;

@@ -40,14 +40,14 @@
               
                 <div class="tp-product-price-wrapper-2 center">
                   <slot name="iconbar"></slot>
-                 
+                  <ButtonSecondary class="btn" flat Text="Ver detalles" @click="onClickTitle()" />
                 </div>
               </div>
               <div class="d-inline col-12 d-flex justify-content-end">
                 <!-- <slot name="favoritebar"></slot> -->
               </div>
               <div class="card-text card-text-state d-flex justify-content-end">
-                <ButtonSecondary class="btn" flat Text="Ver detalles" @click="onClickTitle()" />
+             
               </div>
             </div>
           </div>
@@ -152,6 +152,7 @@ export default {
 }
 
 .btn {
+
   text-transform: none;
   margin: auto;
   display: flex;
@@ -177,6 +178,7 @@ export default {
 }
 .card-border {
   //text-indent: 40px;
+  height: 500px;
   border-radius: 22px;
   border: 0.8px solid var(--secundarios-400, #E0E2E4);
   background: var(--secundarios-blanco, #FFF);
