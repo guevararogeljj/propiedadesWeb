@@ -15,11 +15,12 @@
       <v-btn flat class="btnContactar" @click="scrollbutton()">Contactar</v-btn>
   </v-card-item>
     <v-card-text>
-      <v-window v-model="activeTab" class="asesor-inmobiliario">
+      <div class="asesor-inmobiliario"></div>
+      <!-- <v-window v-model="activeTab" class="asesor-inmobiliario">
         <v-window-item class="card-text" v-for="tab in tabs" :key="tab.value" :value="tab.value">
           {{ tab.text }}
         </v-window-item>
-      </v-window>
+      </v-window> -->
     </v-card-text>
   </v-card>
 </template>
