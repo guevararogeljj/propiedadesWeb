@@ -2,9 +2,14 @@
   <v-container>
     <!-- <div class="wrapper desktop-style"> -->
     <div :class="`${isBackgroud ? 'wrapper desktop-style' : ''}`">
+
       <div class="row">
-        <div class="col-12 maintext">{{ MainText }}</div>
-        <div class="col-12 minortext mt-1">{{ MinorText }}</div>
+        <div class="cols-12 maintext">{{ MainText }}</div>
+      </div>
+      <div class="row">
+        <div class="cols-12 minortext">{{ MinorText }}</div>
+      </div>
+      <div class="salto">
       </div>
       <v-row>
         <v-col cols="12" sm="6" md="4" lg="3">
@@ -23,8 +28,7 @@
         </v-col>
         <v-col cols="12" sm="6" md="4" lg="3">
           <div style="display: flex; justify-content: center;">
-            <custom-button-primary v-if="changeBtn" Text="Buscar" class="btnCustom" Icon="mdi-magnify"
-              :OnClickButton="onClickButtonBuscar" />
+            <v-btn v-if="changeBtn" class="btnCustom" flat @click="onClickButtonBuscar">Buscar</v-btn>
           </div>
           <customselect class="Inputs" v-if="isPrecio" :ItemSource="catalogs.rangoprecios" ItemIdAttribute="key"
             ItemNameAttribute="description" DefaultOption="Precio" v-model="params.price" :DefaultOptionActive="true" />
@@ -234,6 +238,9 @@ export default {
 </script>
   
 <style lang="scss" scoped>
+.salto{
+  height: 30px;
+}
 .wrapper {
   background: rgba(0, 146, 188, 0.05);
   border-radius: 4px;
@@ -242,35 +249,56 @@ export default {
 }
 
 .maintext {
+  text-indent: 30px;
+  white-space: pre-line;
   width: 775.387px;
-  color: var(--secundarios-blanco, #FFF);
-margin-right: 20px;
-/* Heading/ExtraLarge */
-font-family: Barlow;
-font-size: 62px;
-font-style: normal;
-font-weight: 500;
-line-height: 54px; /* 87.097% */
-letter-spacing: -2.48px;
+  color: var(--Secundarios-Blanco, #FFF);
+
+  /* Heading/ExtraLarge */
+  font-family: Barlow;
+  font-size: 62px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 54px; /* 87.097% */
+  letter-spacing: -2.48px;  
 }
 
 .minortext {
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 28px;
-  color: black;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.15px;
+  text-indent: 30px;
+  white-space: pre-line;
+  width: 775.387px;
+  color: var(--Secundarios-Blanco, #FFF);
+
+  /* Heading/ExtraLarge */
+  font-family: Barlow;
+  font-size: 62px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 54px; /* 87.097% */
+  letter-spacing: -2.48px;  
 }
 
 .btnCustom {
+  height: 56px;
+  text-transform: none;
   display: flex;
   width: 182px;
   padding: 18px 16px;
   justify-content: center;
   align-items: center;
   gap: 10px;
+  border-radius: 12px;
+  background: var(--Primary-500, #379BEC);
+  color: var(--Secundarios-Blanco, #FFF);
+
+  /* Text/Regular/Medium */
+  font-family: Barlow;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  letter-spacing: -0.16px;
 }
 
 .Inputs {
@@ -278,6 +306,7 @@ letter-spacing: -2.48px;
   margin: auto;
   padding: 10px;
   min-width: 90%;
+  height: 56px;
 }
 
 @media only screen and (max-width: 767px) {

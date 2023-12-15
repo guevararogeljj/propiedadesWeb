@@ -36,12 +36,13 @@
             DefaultOption="Baños" v-model="params.bathrooms" :DefaultOptionActive="true" />
         </v-col>
         <v-col cols="12" sm="6" md="4" lg="3" align="center">
-          <v-btn color="primary3" class="btn" @click="onClickButtonBuscar()">Buscar</v-btn>
+          <v-btn flat class="btn" @click="onClickButtonBuscar()">Buscar</v-btn>
           &nbsp;
-          <customButtonSeconday Text="Limpiar" Icon="mdi-filter-remove-outline" class="btn" :OnClickButton="onClickButtonLimpiar" />
+          <customButtonSeconday flat Text="Limpiar" Icon="mdi-filter-remove-outline" class="btnLimpiar"
+            :OnClickButton="onClickButtonLimpiar" />
         </v-col>
         <v-col cols="12" sm="6" md="4" lg="3" align="center">
-          <v-btn @click="onClickButtonPlus()" class="btn">
+          <v-btn flat @click="onClickButtonPlus()" class="btnFiltros">
             <v-icon>mdi-filter-variant</v-icon>
             Más Filtros</v-btn>
           <!-- <customButtonSeconday  Text="Más Filtros" Icon="mdi-filter-variant"
@@ -242,9 +243,74 @@ export default {
 </script>
   
 <style lang="scss" scoped>
-.btn{
-  
+.btnLimpiar {
+  height: 56px;
   text-transform: none;
+  display: flex;
+  width: 115px;
+  padding: 18px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+  background: var(--Primary-300, #E3F1FC);
+  color: var(--Primary-500, #379BEC);
+
+  /* Text/Regular/Medium */
+  font-family: Barlow;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  letter-spacing: -0.16px;
+}
+
+.btnFiltros {
+  height: 56px;
+  text-transform: none;
+  display: flex;
+  width: 157px;
+  padding: 18px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: var(--Primary-500, #379BEC);
+  text-align: center;
+  border-radius: 12px;
+  border: 1px solid var(--Primary-500, #379BEC);
+
+  /* Text/Regular/Medium */
+  font-family: Barlow;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  letter-spacing: -0.16px;
+}
+
+.btn {
+  height: 56px;
+  text-transform: none;
+  display: flex;
+  width: 115px;
+  padding: 18px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+  background: var(--Primary-500, #379BEC);
+  color: var(--Secundarios-Blanco, #FFF);
+
+  /* Text/Regular/Medium */
+  font-family: Barlow;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  letter-spacing: -0.16px;
 }
 
 .maintext {
@@ -269,6 +335,7 @@ export default {
 }
 
 .Inputs {
+  height: 56px;
   width: 90%;
   margin: auto;
   padding: 10px;
