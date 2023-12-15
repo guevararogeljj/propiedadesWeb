@@ -167,8 +167,9 @@ export default {
         pageNumber * pageSize
       );
     },
-    onPageChange(event) {
-      this.searchProps(event.currentPage, event.perPage);
+    async onPageChange(event) {
+      //this.searchProps(event.currentPage, event.perPage);
+      await this.performSearch();
     },
     async onClickFavoriteButton(val, idprop) {
 
@@ -243,6 +244,7 @@ export default {
         this.totalItems = properties;
         this.propiedades = properties;
       } else {
+        this.isLoading = this.Loading(true);
         properties = await usersignin.favorites(
           {
             "cellphone": this.state.userdata.cellphone,
