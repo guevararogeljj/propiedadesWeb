@@ -3,7 +3,7 @@ import api from "./apiconfig";
 export default {
 
     send(data) {
-        return api().post("https://192.168.100.39:7126/api"  + '/contact', data).then(result => {
+        return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/contact', data).then(result => {
             if (result.status == 200) {
                 if (result.data.success) {
                     return result.data;
@@ -21,7 +21,7 @@ export default {
 
     },
     share(email,creditnumber) {
-        return api().get("https://192.168.100.39:7126/api"  + `/contact/shareproperty?email=${email}&creditnumber=${creditnumber}`).then(result => {
+        return api().get("https://apipropiedadesqa.finastrategy.mx/api"  + `/contact/shareproperty?email=${email}&creditnumber=${creditnumber}`).then(result => {
             if (result.status == 200) {
                 if (result.data.success) {
                     return result.data;

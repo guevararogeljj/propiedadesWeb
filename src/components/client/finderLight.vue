@@ -189,7 +189,7 @@ export default {
       el.style.height = "";
     },
     showFilters() {
-      debugger;
+      
       this.hideFilters = !this.hideFilters;
     },
   },

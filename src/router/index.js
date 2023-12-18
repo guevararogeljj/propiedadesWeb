@@ -169,7 +169,31 @@ const routes = [
         name: 'opportunities',
         component: () => import('@/components/client/modulo-oportunidades/ListaOportunidades.vue'),
         meta: { requiredlogin: false }
+      },      
+      {
+        path: '/doblefactor',
+        name: 'doblefactor',
+        component: () => import('@/components/shared/PageDobleFactor.vue'),
+        meta: { requiredlogin: false }
+      }, 
+      {
+        path: '/codigodoblefactor',
+        name: 'codigodoblefactor',
+        component: () => import('@/components/shared/PageCodigoDobleFactor.vue'),
+        meta: { requiredlogin: false }
       },
+      {
+        path: '/verificacionexitoso',
+        name: 'verificacionexitoso',
+        component: () => import('@/components/shared/PageDobleFactorExitoso.vue'),
+        meta: { requiredlogin: true }
+      },
+      {
+        path: '/AutenticadorLogin',
+        name: 'AutenticadorLogin',
+        component: () => import('@/components/shared/PageAutenticadorLogin.vue'),
+        meta: { requiredlogin: true }
+      }
     ],
   },
 ]

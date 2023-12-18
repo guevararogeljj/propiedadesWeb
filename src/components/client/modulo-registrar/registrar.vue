@@ -161,7 +161,7 @@ export default {
             this.$store.state.isLoading = value;
         },
         async onClickNextButton() {
-            debugger;
+            
             if (this.v$.$invalid) {
                 dialogError({
                     title: "Error",

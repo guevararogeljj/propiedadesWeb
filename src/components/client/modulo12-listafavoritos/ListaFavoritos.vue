@@ -211,8 +211,7 @@ export default {
       this.$router.push({ name: "information", query: { id: id } });
     },
   },
-  async mounted() {
-    debugger;
+  async mounted() {  
 
     let properties = [];
     if (this.getRequestsaved) {

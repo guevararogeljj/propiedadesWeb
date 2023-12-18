@@ -224,7 +224,7 @@ export default {
         },
     },
     async mounted() {
-        debugger;
+       
         this.state.isLoading = true;
         const userinfo = await profile.profile({ cellphone: this.state.cellphone });
         this.data = userinfo.result;

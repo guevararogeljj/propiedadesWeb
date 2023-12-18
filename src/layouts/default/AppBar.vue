@@ -105,7 +105,7 @@ export default {
         { name: "Mi perfil", route: "/profile", icon: "mdi-account-circle-outline" },
         { name: "Favoritos", route: "/favorites", icon: "mdi-heart-outline" },
         { name: "NDA en línea", route: "/nda", icon: "mdi-medal-outline" },
-        { name: "Verificación en 2 pasos", route: "/verification", icon: "mdi-application-settings-outline" },
+        { name: "Verificación en 2 pasos", route: "/doblefactor", icon: "mdi-application-settings-outline" },
         { name: "Cerrar sesión", route: "/logout", icon: "mdi-exit-to-app" },
 
       ],

@@ -112,7 +112,7 @@ export default {
   },
   methods: {
     async loadProperties(properties) {
-      debugger;
+      
       // console.log('1. loadProperties.properties', properties);
       let favorites = await usersignin.favorites({
         cellphone: this.state.userdata.cellphone,

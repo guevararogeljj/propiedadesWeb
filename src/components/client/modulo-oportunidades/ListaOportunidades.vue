@@ -103,7 +103,7 @@ export default {
   },
   methods: {
     async loadProperties(properties) {
-      debugger;
+      
       // console.log('1. loadProperties.properties', properties);
       let favorites = await usersignin.favorites({
         cellphone: this.state.userdata.cellphone,
@@ -205,7 +205,7 @@ export default {
     },
   },
   async mounted() {
-    debugger;
+    
     let properties = [];
     if (this.getRequestsaved) {
       this.outBathrooms = this.state.filterSaved.bathrooms;

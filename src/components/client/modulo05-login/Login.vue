@@ -129,14 +129,14 @@ export default {
                     privatekey.publickey
                 ),
             };
-            debugger
+            
             const result = await usersignin.signin(credentials);
             const data = result.result;
             //console.log(data);
             if (result.success) {
                 if (data.requiredcode) {
                     this.state.dataTemp = data;
-                    this.$router.push({ name: "tfacode" });
+                    this.$router.push({ name: "AutenticadorLogin" });
                 } else {
                     this.state.isLoading = false;
                     this.state.userdata = data;
