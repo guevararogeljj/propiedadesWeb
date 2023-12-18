@@ -178,23 +178,24 @@ export default {
             }
         },
         async onClickNextButton() {
-            
+            debugger
             this.Loading(true);
             const value = { code: this.getcode(), cellphone: this.store().Cellphone };
-            const result = await userservice.validatecodephone(value);
-            if (result.success == true) {
-                dialogSuccess({
-                    title: "Éxito",
-                    text: "Código validado correctamente",
-                });
-                this.steps = 2;
-            } else {
-                dialogError({
-                    title: "Error",
-                    text: result.message,
-                });
-                this.cleanCode();
-            }
+            this.steps = 2;
+            //const result = await userservice.validatecodephone(value);
+            // if (result.success == true) {
+            //     dialogSuccess({
+            //         title: "Éxito",
+            //         text: "Código validado correctamente",
+            //     });
+            //     this.steps = 2;
+            // } else {
+            //     dialogError({
+            //         title: "Error",
+            //         text: result.message,
+            //     });
+            //     this.cleanCode();
+            // }
             this.Loading(false);
         },
         async onClickResendButton() {
