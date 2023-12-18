@@ -185,6 +185,7 @@ export default {
   
 <style  lang="scss" scoped>
 .btnLogin {
+    text-transform: none;
     display: flex;
     width: 393px;
     padding: 18px 16px;

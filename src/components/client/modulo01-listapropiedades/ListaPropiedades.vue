@@ -144,6 +144,7 @@ export default {
     async performSearch(params) {
       // console.log('params', params)
       this.isLoading = this.Loading(true);
+      params.price = params.price.replace(/,/g, "");
       this.ParamsProperties = params;
       //this.currentPage = 1;
       let properties = await propservice.PropertiesRange(
@@ -234,9 +235,8 @@ export default {
     },
   },
   async mounted() {
+    debugger;
     let properties = [];
-    console.log(this.getRequestsaved);
-
     if (this.getRequestsaved) {
       this.outBathrooms = this.state.filterSaved.bathrooms;
       this.outCity = this.state.filterSaved.city;
@@ -253,10 +253,12 @@ export default {
       if (
         (this.$route.query.state != "" &&
           this.$route.query.state != undefined) ||
-        (this.$route.query.type != "" && this.$route.query.type != undefined)
+        (this.$route.query.type != "" && this.$route.query.type != undefined) ||
+        (this.$route.query.city != "" && this.$route.query.city != undefined)
       ) {
         this.outState = this.$route.query.state;
         this.outPropertyType = this.$route.query.type;
+        this.outCity = this.$route.query.city;
         properties = await propservice.PropertiesRange(
           this.currentPage,
           this.perPage,

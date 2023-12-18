@@ -16,7 +16,7 @@
           <p><router-link to="/propiedades" class="fooderMenu">Catálogo</router-link></p>
           <p><router-link to="/us" class="fooderMenu">Nosotros</router-link></p>
           <p><router-link to="/frequentQuestions" class="fooderMenu">Preguntas Frecuentes</router-link></p>
-          <p variant="text" flat @click="!isLogin ? navigateInicio() : navigateNda()" class="fooderMenu">NDA en línea</p>
+          <v-btn variant="text" flat @click="!isLogin ? navigateInicio() : navigateNda()" class="fooderMenu">NDA en línea</v-btn>
         </v-col>
         <v-col cols="12" sm="6" md="3" align="center">
           <!-- <v-label> <strong>Contacto</strong></v-label> -->
@@ -55,17 +55,21 @@ export default {
   },
   methods: {
     navigateInicio() {
+      window.scrollTo(0, 0);
       this.$router.push("/login");
     },
    
     navigateNda() {
+      window.scrollTo(0, 0);
       this.$router.push("/nda");
     },
   },
 };
 </script>
 <style scoped>
+
 .fooderMenu{
+  text-transform: none;
   color: var(--secundarios-600, #000);
 
 /* Text Wireframes (Ignorar)/Body 1 */

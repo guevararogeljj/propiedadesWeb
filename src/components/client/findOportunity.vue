@@ -23,16 +23,18 @@
             <strong class="textCenter">Cesión de derechos</strong>
           </p>
         </strong>
-          <p class="textCardItems">
+          <div class="textCardItemsUno" style="margin: 0;">
             Es un contrato por el cual la parte cedente enajena su derecho
             legalmente cedible en favor de otra persona denominada cesionario,
             para que éste lo ejerza en su propio nombre. La cesión es siempre un
             acto jurídico inter-vivos, por lo que para perfeccionarse se
             requiere que sea a través de escritura pública.
-          </p>
+          </div>
         </div>
       </v-col>
-      <v-col cols="auto">
+      <v-col cols="auto"></v-col>
+      <v-col cols="auto"></v-col>
+      <v-col  cols="auto">
         <v-card class="card-venta" flat>
           <!-- Card content goes here -->
           <v-card-title></v-card-title>
@@ -46,13 +48,13 @@
               <strong class="textCenter">Venta de inmuebles</strong>
             </p>
           </strong>
-          <p class="textCardItems">
+          <div class="textCardItemsDos">
             Es un contrato por el cual la parte cedente enajena su derecho
             legalmente cedible en favor de otra persona denominada cesionario,
             para que éste lo ejerza en su propio nombre. La cesión es siempre un
             acto jurídico inter-vivos, por lo que para perfeccionarse se
             requiere que sea a través de escritura pública.
-          </p>
+          </div>
         </div>
       </v-col>
     </v-row>
@@ -86,14 +88,23 @@ export default {};
   width: 260.7px;
   background-color: transparent;
   border-color: transparent;
+  background-position: center;
 }
-
-.textCardItems {
+.textCardItemsUno {
   width: 300px;
   max-width: max-content;
-  text-align: justify;
+  text-align: start;
   margin: 0 auto;
   min-width: none;
+  text-align: center;
+}
+.textCardItemsDos {
+  width: 300px;
+  max-width: max-content;
+  text-align: end;
+  margin: 0 auto;
+  min-width: none;
+  text-align: center;
 }
 
 .textCenter {

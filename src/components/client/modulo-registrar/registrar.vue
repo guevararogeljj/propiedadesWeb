@@ -161,7 +161,6 @@ export default {
             this.$store.state.isLoading = value;
         },
         async onClickNextButton() {
-            
             if (this.v$.$invalid) {
                 dialogError({
                     title: "Error",
@@ -170,10 +169,17 @@ export default {
                 return;
             }
             var lastname = "";
-            if (this.data.Lastname.length >= 2){
+            if (this.data.Lastname.split(" ").length >= 2){
                 lastname = this.data.Lastname.split(" ")[0];
                 this.data.Lastname2  = this.data.Lastname.split(" ")[1];
                 this.data.Lastname = lastname;
+            }
+            else{
+                dialogError({
+                    title: "Error",
+                    text: "Favor de llenar Apellido Paterno y Apellido Materno",
+                });
+                return;
             }
             this.Loading(true);
             const dataregister = utils.cloneObject(this.data);

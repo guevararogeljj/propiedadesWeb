@@ -1,19 +1,20 @@
 <template>
   <v-card color="primary3" class="card-style">
-    <br/>
+    <br />
     <v-card-title style="text-align: center;">
-      <span class="title">Te asesoramos en tu proceso de compra</span>
     </v-card-title>
     <v-card-item>
-      <br/>
+      <v-col cols="12">
       <div class="subtitle">¿Cómo comienzo?</div>
-      <br/>
-      <div class="subtitle">Contactanos y un asesor se comunicará contigo a la brevedad</div>
-      <br/>
-      <br/>
-      <br/>
-      <v-btn flat class="btnContactar" @click="scrollbutton()">Contactar</v-btn>
-  </v-card-item>
+      <br />
+      <div class="title">Te asesoramos en tu proceso de compra</div>
+      <br />
+      <div class="subtitle2">Contactanos y un asesor se comunicará contigo a la brevedad</div>
+
+      <br />
+      <v-btn flat class="btnContactar" @click="scrollbutton()">Comenzar ahora</v-btn>
+      </v-col>
+    </v-card-item>
     <v-card-text>
       <div class="asesor-inmobiliario"></div>
       <!-- <v-window v-model="activeTab" class="asesor-inmobiliario">
@@ -51,7 +52,23 @@ export default {
 
 </script>
 <style scoped>
+.subtitle2 {
+  width: 576px;
+  height: 33px;
+  flex-shrink: 0;
+  color: var(--Secundarios-Blanco, #FFF);
+
+  /* Text/Large/Medium */
+  font-family: Barlow;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.18px;
+}
+
 .btnContactar {
+  text-transform: none;
   height: 56px;
   display: flex;
   width: 285px;
@@ -67,29 +84,34 @@ export default {
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  line-height: 20px; /* 125% */
+  line-height: 20px;
+  /* 125% */
   letter-spacing: -0.16px;
   margin-left: 80px;
 }
 
-.subtitle{
+.subtitle {
   color: #FFF;
-text-indent: 50px;
-/* Heading/Semibold 1 */
-font-family: Barlow;
-font-size: 25px;
-font-style: normal;
-font-weight: 600;
-line-height: 25px; /* 100% */
-letter-spacing: -0.5px;
-text-align: left;
+  text-indent: 50px;
+  /* Heading/Semibold 1 */
+  font-family: Barlow;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 25px;
+  /* 100% */
+  letter-spacing: -0.5px;
+  text-align: left;
 }
+
 .title {
-  width: 300px;
+  text-indent: 40px;
+  width: 810px;
   height: 106px;
   flex-shrink: 0;
-  color: var(--secundarios-blanco, #FFF);
+  color: var(--Secundarios-Blanco, #FFF);
 
+  white-space: pre-wrap;
   /* Heading/Large1 */
   font-family: Barlow;
   font-size: 48px;
@@ -100,37 +122,6 @@ text-align: left;
   letter-spacing: -1.44px;
 }
 
-.v-tab--active .custom-tab {
-  width: 228px;
-  border-radius: 40px;
-  background: var(--secundarios-blanco, #FFF);
-  color: var(--primary-500, #379BEC);
-
-}
-
-.v-tab {
-  /* color: rgba(255, 255, 255, 0.50); */
-  font-family: Barlow;
-  font-size: 20px;
-  /* 130% */
-  letter-spacing: -0.4px;
-}
-
-.v-tab:hover {
-  color: rgba(255, 255, 255, 0.50);
-  font-family: Barlow;
-  letter-spacing: -0.4px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 24px;
-  letter-spacing: -0.4px;
-  border-radius: 10px;
-}
-
-.card-text {
-  text-align: justify;
-  width: 70%;
-}
 
 .card-style {
   border-radius: 30px;
@@ -139,7 +130,7 @@ text-align: left;
 .asesor-inmobiliario {
   background-image: url("@/assets/asesor-inmobiliario.png");
   height: 586px;
-  background-position: right center;
+  background-position: right top;
   background-repeat: no-repeat;
   background-color: transparent;
   border-color: transparent;
@@ -160,11 +151,55 @@ text-align: left;
     border-radius: 0px;
   }
 
-  .card-text {
-    text-align: center justify;
-    width: 100%;
-
+  .subtitle2 {
+    width: 272px;
+    height: 79px;
+    flex-shrink: 0;
+    color: var(--Secundarios-Blanco, #FFF);
+    /* Text/Large/Medium */
+    font-family: Barlow;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.18px;
   }
+
+  .btnContactar {
+    text-transform: none;
+    display: flex;
+    width: 236px;
+    padding: 18px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .subtitle {
+    text-justify: center;
+    color: var(--Primary-300, #E3F1FC);
+
+    /* Heading/Semibold 1 */
+    font-family: Barlow;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 25px;
+    /* 100% */
+    letter-spacing: -0.5px;
+  }
+
+  .title {
+    width: 298px;
+    color: var(--Secundarios-Blanco, #FFF);
+    font-family: Barlow;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 40px;
+    letter-spacing: -1.2px;
+  }
+
 }
 
 .custom-tab {
