@@ -18,7 +18,7 @@
       <div class="salto"></div>
       <oportunity />
       <div class="salto"></div>
-      <Contact />
+      <Contact :IsInversion="false"/>
       <div class="salto"></div>
     </div>
   </v-container>

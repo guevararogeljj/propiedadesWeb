@@ -1,16 +1,16 @@
 <template>
   <div class="content" style="border-radius: 26px; background: var(--Secundarios-300, #F5F6F6);">
     <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
-    <v-form v-else>
+    <v-form v-else :class="IsInversion ? 'banner' : ''">
       <v-row>
         <v-col cols="12">
-        <!-- <div class="center h2">{{ Titulo }}</div> -->
-        <div class="center w-auto h1">{{ Titulo }}</div>
+          <!-- <div :class="{  'center w-auto  header': isLogin }">{{ Titulo }}</div> -->
+          <div :class="IsInversion ? 'center w-auto  header' : 'center w-auto headerTwo'">{{ Titulo }}</div>
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="12">
-        <div class="center w-auto">{{ Subtitulo }}</div>
+          <div class="center w-auto subtitle">{{ Subtitulo }}</div>
         </v-col>
       </v-row>
       <v-row justify="center">
@@ -35,7 +35,7 @@
       </v-row>
       <v-row>
         <v-col cols="12">
-          <v-textarea class="contactFom" density="compact"  variant="outlined" label="Mensaje" type="text"
+          <v-textarea class="contactFom" density="compact" variant="outlined" label="Mensaje" type="text"
             v-model="data.message" :error-messages="v$.data.message.$errors.map(e => e.$message)"
             @input="v$.data.message.$touch" @blur="v$.data.message.$touch"></v-textarea>
         </v-col>
@@ -43,8 +43,7 @@
       <v-row>
         <v-col cols="12">
           <div class="text-center mx-auto">
-            <button-secondary :IsDisabled="this.v$.$invalid" Text="Enviar mensaje" Icon="mdi-send" color="primary3"
-              class="btnCustom" @click="onClickButtonSend" />
+            <v-btn :disabled="this.v$.$invalid" class="btnCustom center" @click="onClickButtonSend">Contactar</v-btn>
             <br />
             <label>Al enviar mensaje acepto los Términos y Condiciones y las Políticas de Privacidad</label>
           </div>
@@ -83,9 +82,9 @@ export default {
   validations() {
     return {
       data: {
-        fullname: { 
+        fullname: {
           required: helpers.withMessage("El nombre es requerido", required)
-         },
+        },
         email: { required: helpers.withMessage("El correo es requerido", required), email: helpers.withMessage("El correo no es válido", email) },
         cellphone: {
           required: helpers.withMessage("El Teléfono es requerido", required),
@@ -115,6 +114,10 @@ export default {
     Subtitulo: {
       type: String,
       default: "Déjanos un mensaje y uno de nuestros agentes se pondrá en contacto contigo en muy poco tiempo."
+    },
+    IsInversion: {
+      type: Boolean,
+      default: false
     },
   },
   methods: {
@@ -171,31 +174,105 @@ export default {
 
       return active;
     },
+    isLogin() {
+      return this.$store.state.isLogin;
+    },
   },
 };
 </script>
 
-<style scoped >
+<style scoped>
+.banner {
+  position: relative;
+
+  text-align: center;
+  z-index: 9999;
+
+  border-radius: 24px;
+border: 3px solid var(--Primary-500, #379BEC);
+background: var(--Secundarios-Blanco, #FFF);
+}
+.subtitle {
+  width: 414px;
+  color: var(--Secundarios-600, #000);
+
+  /* Text/Large/Medium */
+  font-family: Barlow;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.18px;
+}
+
+.header {
+  width: 500px;
+  height: 75px;
+  flex-shrink: 0;
+  border-radius: 18px 18px 0px 0px;
+  background: var(--Primary-500, #379BEC);
+
+  color: var(--Secundarios-Blanco, #FFF);
+
+  /* Heading/Medium 1 */
+  font-family: Barlow;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.5px;
+  float: center;
+  align-items: center;
+
+  align-items: center;  
+}
+.headerTwo{
+  width: 296px;
+height: 46px;
+flex-shrink: 0;
+color: var(--Secundarios-600, #000);
+text-align: center;
+
+/* Heading/Large1 */
+font-family: Barlow;
+font-size: 48px;
+font-style: normal;
+font-weight: 500;
+line-height: 52.83px; /* 110.063% */
+letter-spacing: -1.44px;
+}
 .center {
   margin: auto;
   padding: 10px;
   text-align: center;
 }
+
 .contactFom {
-  width: 394px;
+  max-width: 394px;
   margin: auto;
-  min-width: 320px;
+  min-width: 20px;
   background-color: white;
 }
 
 .btnCustom {
-
+  height: 56px;
   text-transform: none;
-  width: 394px;
-  margin-left: -10;
-  margin-right: -10;
-  padding: 10px;
-  min-width: 394px;
+  display: flex;
+  width: 440px;
+  padding: 18px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: var(--Primary-500, #379BEC);
+
+  /* Text/Regular/Medium */
+  font-family: Barlow;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  letter-spacing: -0.16px;
 }
 
 
@@ -207,12 +284,24 @@ export default {
   }
 
   .btnCustom {
+    height: 56px;
     text-transform: none;
-    width: 288px;
-    margin-left: -10;
-    margin-right: -10;
-    padding: 10px;
-    min-width: 288px;
+    display: flex;
+    width: 440px;
+    padding: 18px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: var(--Primary-500, #379BEC);
+
+    /* Text/Regular/Medium */
+    font-family: Barlow;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    /* 125% */
+    letter-spacing: -0.16px;
   }
 }
 </style>

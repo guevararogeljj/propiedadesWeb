@@ -8,6 +8,7 @@
                 <v-img class="terminado" src="@/assets/account_circle.png" />
                 <br />
                 <v-card class="card" flat>
+                    <div class="salto"></div>
                     <v-card-title>
                         <div class="text-center subtitle">
                             Datos personales
@@ -56,6 +57,7 @@
                 <br />
                 <v-card class="cardSecundary" flat>
                     <v-card-title>
+                        <div class="salto"></div>
                         <div class="text-center subtitle">
                             Datos Adicionales
                         </div>

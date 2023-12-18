@@ -5,7 +5,7 @@
         <div class="col-12 maintext">{{ MainText }}</div>
         <div class="col-12 minortext mt-1">{{ MinorText }}</div>
       </div>
-      <v-row>
+      <v-row v-if="isShowFilters">
         <v-col cols="12" sm="6" md="4" lg="3">
           <customselect class="Inputs" v-if="isTipoInmueble" :ItemSource="catalogs.tipoInmuebles" ItemIdAttribute="id"
             ItemNameAttribute="description" DefaultOption="Tipo de inmueble" v-model="params.propertytype"
@@ -25,7 +25,7 @@
             ItemNameAttribute="description" DefaultOption="Precio" v-model="params.price" :DefaultOptionActive="true" />
         </v-col>
       </v-row>
-      <v-row>
+      <v-row v-if="isShowFilters">
         <v-col cols="12" sm="6" md="4" lg="3" v-if="hideFilters">
           <customselect class="Inputs" :ItemSource="catalogs.habitaciones" ItemIdAttribute="key"
             ItemNameAttribute="description" DefaultOption="Habitaciones" v-model="params.rooms"
@@ -115,6 +115,10 @@ export default {
     isBackgroud: {
       type: Boolean,
       default: false,
+    },
+    isShowFilters: {
+      type: Boolean,
+      default: true,
     },
   },
   components: {

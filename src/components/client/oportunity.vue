@@ -20,7 +20,7 @@
       <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
       <div v-else>
         <v-carousel class="carouselDesktop" hide-delimiters :cycle="false" :show-arrows="true" :show-indicators="false"
-          :per-page="1" prev-icon="mdi-chevron-left" next-icon="mdi-chevron-right">
+          :per-page="1" height="500">
           <v-carousel-item v-for="(group, index) in groupedData" :key="index">
             <v-row justify="center" align="center">
               <v-col v-for="(item, itemIndex) in group" :key="itemIndex" cols="12" sm="6" md="4" lg="3">

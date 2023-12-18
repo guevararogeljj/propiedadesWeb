@@ -4,8 +4,9 @@
       <br>
       <v-row>
         <v-col cols="12" md="7"> <!-- Columna izquierda -->
-          <div class="back">
-            <v-icon @click="$router.go(-1)">mdi-arrow-left</v-icon>Regresar a Catálogo
+          <div>
+            <v-icon @click="$router.go(-1)">mdi-arrow-left</v-icon>
+            <span class="back">Regresar a Catálogo</span>
           </div>
           <div class="title">{{ propertyInfo.state }}</div>
           <br />
@@ -13,17 +14,41 @@
             <div class="price"> {{ priceFormated }} MXN</div>
           </div>
           <div class="float-right">
-            <ButtonSecondary v-if="propertyInfo.favorite" Icon="mdi-heart-outline" variant="plain" />
-            <ButtonSecondary v-else Icon="mdi-heart-outline" variant="plain" />
-            <v-btn @click="onClickInfoButton" class="btnInteresting" flat>
-              <div class="textBtn">Me Interesa</div>
-            </v-btn>
+            <ButtonSecondary v-if="propertyInfo.favorite" :OnClickButton="onClickFavoriteButton" Icon="mdi-heart-outline"
+              variant="plain" />
+            <ButtonSecondary v-else Icon="mdi-heart-outline" :OnClickButton="onClickFavoriteButton" variant="plain" />
+            <v-dialog class="w-auto">
+              <template v-slot:activator="{ props }">
+                <v-btn v-bind="props" class="btnInteresting" flat>
+                  Me Interesa
+                </v-btn>
+              </template>
+              <template v-slot:default="{ isActive }">
+                <v-card class="card" flat>
+                  <v-card-text>
+                    <div class="titulocard">Gracias por tu interés</div>
+                    <br />
+                    <div class="subtituloCard">Si deseas más información acerca de ésta propiedad un asesor personalizado
+                      puede apoyarte</div>
+                    <v-btn class="btnConfirm" @click="onClickPropInfoButton" flat>Si, deseo que me contacten</v-btn>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn text="cerrar" @click="isActive.value = false"></v-btn>
+                  </v-card-actions>
+                </v-card>
+              </template>
+            </v-dialog>
+
+            <!-- <v-btn @click="onClickPropInfoButton" class="btnInteresting" flat>
+              Me Interesa
+            </v-btn> -->
           </div>
           <image-gallery :ItemSource="propertyInfo.photos" :ShowDescription="false">
           </image-gallery>
           <!-- <div v-if="propertyInfo.sold" class="banner-sale">Vendida</div> -->
           <div class="tp-product-badge" v-if="propertyInfo.sold">
-            <span  class="product-hot">vendido</span>
+            <span class="product-hot">vendido</span>
           </div>
           <br>
           <p class="detailsTitle">Detalles</p>
@@ -46,10 +71,11 @@
 
         </v-col>
         <v-col cols="12" md="4"> <!-- Columna derecha -->
-          <Contact Titulo="Contacta a un asesor" />
-          <br/>
-          <br/>
-          <invertir />
+
+          <Contact v-if="isLogin" Titulo="¿Deseas invertir?" :IsInversion="true" />
+          <Contact v-else Titulo="Contacta a un asesor" />
+          <br />
+          <br />
         </v-col>
       </v-row>
       <v-row>
@@ -91,6 +117,7 @@ import Contact from "@/components/shared/Contact.vue"
 import ButtonSecondary from "@/components/common/ButtonSecondary.vue";
 import oportunity from "../oportunity.vue";
 import invertir from '../modulo-invertir/invertir.vue';
+import { dialogSuccess,dialogError } from '@/core/utils/alerts';
 export default {
   components: {
     propiedadInfo,
@@ -144,9 +171,29 @@ export default {
     onClickBannerButton() {
       this.showModalLoginRequest = true;
     },
-    onClickInfoButton() {
-      if (this.OnClickPropInfo != null) {
-        this.OnClickPropInfo();
+    async onClickPropInfoButton() {
+      if (this.state.isLogin == true) {
+        this.showPropInfo = true;
+       const result = await contactservice.requestinfo(
+          this.state.userdata.cellphone,
+          this.propertyInfo.creditnumber
+        );
+        if (result == true) {
+          dialogSuccess({
+            title: "¡Bien!",
+            text: "Listo, en breve atenderemos tu solicitud",
+          });
+        } else {
+          dialogError({
+            title: "¡Error!",
+            text: "¡No se ha podido enviar tu solicitud!",
+          });
+        }
+      } else {
+        dialogError({
+          title: "¡Error!",
+          text: "¡Necesitas iniciar sesión!",
+        });
       }
     },
     onClickAcceptModalButton() {
@@ -205,28 +252,20 @@ export default {
         this.propertyInfo.favorite = !val;
         if (this.propertyInfo.favorite) {
           await signinservice.addfavorite({
-            email: this.state.userdata.email,
+            cellphone: this.state.userdata.cellphone,
             id: this.propertyInfo.creditnumber,
           });
         } else {
           await signinservice.removefavorite({
-            email: this.state.userdata.email,
+            cellphone: this.state.userdata.cellphone,
             id: this.propertyInfo.creditnumber,
           });
         }
       } else {
-        this.showModalLoginRequest = true;
-      }
-    },
-    async onClickPropInfoButton() {
-      if (this.state.isLogin == true) {
-        this.showPropInfo = true;
-        await contactservice.requestinfo(
-          this.state.userdata.cellphone,
-          this.propertyInfo.creditnumber
-        );
-      } else {
-        this.showModalLoginRequest = true;
+        dialogError({
+          title: "¡Error!",
+          text: "¡Necesitas iniciar sesión!",
+        });
       }
     },
     onClickShareButton() {
@@ -316,6 +355,86 @@ export default {
 </script>
   
 <style scoped lang="scss">
+.btnConfirm {
+  margin: auto;
+  height: 56px;
+  display: flex;
+  width: 255px;
+  padding: 18px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  text-transform: none;
+  color: var(--Secundarios-Blanco, #FFF);
+  border-radius: 12px;
+  background: var(--Primary-500, #379BEC);
+  /* Text/Regular/Medium */
+  font-family: Barlow;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  letter-spacing: -0.16px;
+}
+
+.card {
+  margin: auto;
+  max-width: 606px;
+  max-height: 300px;
+  flex-shrink: 0;
+  border-radius: 26px;
+  background: var(--Secundarios-Blanco, #FFF);
+
+  /* Shadows/Estandar100 */
+  box-shadow: 5px 5px 30px 0px rgba(55, 155, 236, 0.30);
+}
+
+.titulocard {
+  margin: auto;
+  width: 366px;
+  height: 34px;
+  flex-shrink: 0;
+  color: var(--Secundarios-600, #000);
+  text-align: center;
+
+  /* Heading/Medium 1 */
+  font-family: Barlow;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.5px;
+}
+
+.subtituloCard {
+  margin: auto;
+  width: 375px;
+  height: 63px;
+  flex-shrink: 0;
+  color: var(--Secundarios-600, #000);
+  text-align: center;
+
+  /* Text/Regular/Regular */
+  font-family: Barlow;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  /* 125% */
+  letter-spacing: -0.16px;
+}
+
+.back {
+  color: var(--Secundarios-600, #000);
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
 .detailsTitle {
   color: var(--secundarios-600, #000);
 
@@ -359,6 +478,7 @@ export default {
 }
 
 .btnInteresting {
+  text-transform: none;
   display: flex;
   width: 106px;
   height: 40px;
@@ -368,7 +488,17 @@ export default {
   gap: 10px;
   flex-shrink: 0;
   border-radius: 12px;
-  background: var(--primary-300, #E3F1FC);
+  background: var(--Primary-300, #E3F1FC);
+  color: var(--Primary-500, #379BEC);
+
+  /* Text/Regular/Medium */
+  font-family: Barlow;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  letter-spacing: -0.16px;
 }
 
 .back {
@@ -421,6 +551,52 @@ export default {
 }
 
 @media only screen and (max-width: 900px) {
+
+  .titulocard {
+  margin: auto;
+  width: auto;
+  height: auto;
+  flex-shrink: 0;
+  color: var(--Secundarios-600, #000);
+  text-align: center;
+
+  /* Heading/Medium 1 */
+  font-family: Barlow;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.5px;
+}
+
+.subtituloCard {
+  margin: auto;
+  width: auto;
+  height: auto;
+  flex-shrink: 0;
+  color: var(--Secundarios-600, #000);
+  text-align: center;
+
+  /* Text/Regular/Regular */
+  font-family: Barlow;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  /* 125% */
+  letter-spacing: -0.16px;
+}
+  .card {
+  margin: auto;
+  max-width: auto;
+  max-height: auto;
+  flex-shrink: 0;
+  border-radius: 26px;
+  background: var(--Secundarios-Blanco, #FFF);
+
+  /* Shadows/Estandar100 */
+  box-shadow: 5px 5px 30px 0px rgba(55, 155, 236, 0.30);
+}
   .title-mobile {
     font-family: "Roboto";
     font-style: normal;

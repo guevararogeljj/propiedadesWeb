@@ -5,7 +5,7 @@
     <div class="row">
       <buscador MinorText="" MainText="Favoritos" :OnClickBuscar="performSearch" :PorpertyType="outPropertyType"
         :State="outState" :City="outCity" :Price="outPrice" :Rooms="outRooms" :Bathrooms="outBathrooms"
-        :ProceduraStage="outProceduraStage" :isTipoInmueble="true" :isEstado="true" :isMunicipio="true" :isClear="true">
+        :ProceduraStage="outProceduraStage" :is-show-filters="false">
         <template v-slot:customcontrol>
           <OrderBar class="orderbar">
             <template v-slot:order="{ items }">
@@ -19,7 +19,7 @@
     <v-skeleton-loader v-if="this.isLoading" class="mx-auto" type="image, table"></v-skeleton-loader>
 
     <lista v-else :ItemSource="propiedades" ItemIdAttribute="creditnumber" :NoItemsMessage="!ShowProperties"
-      :Count="totalItems">
+      :Count="totalItems.length">
       <template v-slot:item="{ item }">
         <property-card :Title="item.title" :OnClick="onClickProperty" :Settlement="item.settlement" :City="item.city"
           :State="item.state" :Price="item.price" :Favorite="item.favorite" :Id="item.creditnumber"
@@ -51,9 +51,9 @@
     <div class="d-grid gap-2">
       <div class="row mt-3">
         <pagination class="mt-5" :class="{ 'd-none': !ShowProperties }" :propItemSource="ItemSourcePagination.length"
-          :propTotalItems="totalItems" :propCurrentPage="currentPage" :propPerPage="perPage" @pagechanged="onPageChange"
-          @setCurrentPage="(value) => (currentPage = value)" @setPerPage="(value) => (perPage = value)"
-          @setTotalItems="(value) => (totalItems = value)">
+          :propTotalItems="totalItems.length" :propCurrentPage="currentPage" :propPerPage="perPage"
+          @pagechanged="onPageChange" @setCurrentPage="(value) => (currentPage = value)"
+          @setPerPage="(value) => (perPage = value)" @setTotalItems="(value) => (totalItems = value)">
         </pagination>
       </div>
     </div>
@@ -136,21 +136,16 @@ export default {
       return (this.$store.state.isLoading = value);
     },
     async performSearch(params) {
+      let properties = [];
       this.isLoading = this.Loading(true);
-      this.ParamsProperties = params;
-      this.ParamsProperties.oportunity = true;
-      let properties = await propservice.PropertiesRange(
-        this.currentPage,
-        this.perPage,
-        this.ParamsProperties
+      properties = await usersignin.favorites(
+        {
+          "cellphone": this.state.userdata.cellphone,
+        }
       );
-
-      this.$store.state.filterSaved = params;
-      this.ItemSourcePagination = properties.data;
-
-
-      this.totalItems = properties.totalRecords;
-      this.propiedades = properties.data;
+      this.ItemSourcePagination = properties;
+      this.totalItems = properties;
+      this.propiedades = properties;
       this.isLoading = this.Loading(false);
     },
     async searchProps(currentPage, perPage) {
@@ -172,33 +167,42 @@ export default {
         pageNumber * pageSize
       );
     },
-    onPageChange(event) {
-      this.searchProps(event.currentPage, event.perPage);
+    async onPageChange(event) {
+      //this.searchProps(event.currentPage, event.perPage);
+      await this.performSearch();
     },
     async onClickFavoriteButton(val, idprop) {
-      if (this.state.isLogin) {
-        let result = this.propiedades.find((x) => x.creditnumber === idprop);
-        result.favorite = !val;
 
-        if (result.favorite) {
-          await signinservice.addfavorite({
-            cellphone: this.state.userdata.cellphone,
-            id: idprop,
-          });
+      try {
+        if (this.state.isLogin) {
+          let result = this.propiedades.find((x) => x.creditnumber === idprop);
+          result.favorite = !val;
+
+          if (result.favorite) {
+            await signinservice.addfavorite({
+              cellphone: this.state.userdata.cellphone,
+              id: idprop,
+            });
+          } else {
+            await signinservice.removefavorite({
+              cellphone: this.state.userdata.cellphone,
+              id: idprop,
+            });
+          }
         } else {
-          await signinservice.removefavorite({
-            cellphone: this.state.userdata.cellphone,
-            id: idprop,
+          dialogError({
+            title: "¡Error!",
+            text: "¡Necesitas iniciar sesión!",
           });
         }
-      } else {
-        dialogError({
-          title: "¡Error!",
-          text: "¡Necesitas iniciar sesión!",
-        });
-
-        // this.showModalLoginRequest = true;
       }
+      catch (e) {
+        console.log(e);
+      }
+      finally {
+        await this.performSearch();
+      }
+
     },
     onClickFavotiteListButton() {
       //alert("favorites");
@@ -230,26 +234,26 @@ export default {
       ) {
         this.outState = this.$route.query.state;
         this.outPropertyType = this.$route.query.type;
-        properties = await propservice.favorites(
-          this.currentPage,
-          this.perPage,
+        properties = await usersignin.favorites(
           {
-            propertytype: this.$route.query.type,
-            state: this.$route.query.state,
-            oportunity: true,
+            "cellphone": this.state.userdata.cellphone,
           }
         );
+        this.ItemSourcePagination = properties;
+        this.totalItems = properties;
+        this.propiedades = properties;
       } else {
-        properties = await propservice.PropertiesRange(
-          this.currentPage,
-          this.perPage,
-          {"oportunity" : true}
+        this.isLoading = this.Loading(true);
+        properties = await usersignin.favorites(
+          {
+            "cellphone": this.state.userdata.cellphone,
+          }
         );
       }
 
-      this.ItemSourcePagination = properties.data;
-      this.totalItems = properties.totalRecords;
-      this.propiedades = properties.data;
+      this.ItemSourcePagination = properties;
+      this.totalItems = properties;
+      this.propiedades = properties;
       this.isLoading = this.Loading(false);
     }
   },

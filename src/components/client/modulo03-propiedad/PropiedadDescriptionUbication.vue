@@ -79,20 +79,20 @@ export default {
 .map-banner {
   margin: 0;
   display: flex;
-  width: 712px;
-  height: 340px;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
+  width: 1242px;
+height: 340px;
+flex-shrink: 0;
+border-radius: 26px;
+
 }
 
 .map-banner-no-found {
   margin: 0;
   display: flex;
-  width: 712px;
-  height: 340px;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
+  width: 1242px;
+height: 340px;
+flex-shrink: 0;
+border-radius: 26px;
+background: url(<path-to-image>), lightgray 50% / cover no-repeat;
 }
 </style>
