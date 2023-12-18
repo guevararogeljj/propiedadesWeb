@@ -78,7 +78,7 @@ export default {
       }
     },
     onClickBuscar(params) {
-      debugger;
+      
       if (params.estado != "" || params.tipoInmueble != "") {
         this.$router.push({
           name: "properties",

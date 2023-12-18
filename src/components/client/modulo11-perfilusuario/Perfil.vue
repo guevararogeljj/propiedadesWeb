@@ -73,7 +73,9 @@
                         </v-row>
                         <v-row>
                             <v-col cols="12" sm="8" md="6">
-                                Actividar verificación en 2 pasos
+                                <v-btn variant="text" class="btnUpadatePass" flat @click="onClickdobleFactorButton()">
+                                    Activiar verificación en 2 pasos
+                                </v-btn>                                
                             </v-col>
                             <v-col cols="12" sm="8" md="6">
 
@@ -137,6 +139,9 @@ export default {
         },
         onClickBack() {
             this.goToHome();
+        },
+        onClickdobleFactorButton() {
+            this.$router.push({ name: "doblefactor" });
         },
         async onClickLogout() {
             this.isLoading = true;

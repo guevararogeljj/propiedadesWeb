@@ -178,7 +178,7 @@ export default {
             }
         },
         async onClickNextButton() {
-            debugger;
+            
             this.Loading(true);
             const value = { code: this.getcode(), cellphone: this.store().Cellphone };
             const result = await userservice.validatecodephone(value);

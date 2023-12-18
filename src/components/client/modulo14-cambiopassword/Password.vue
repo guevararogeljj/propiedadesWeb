@@ -236,7 +236,7 @@ export default {
         onClickCalcelButton() { },
         async sendUserData() { },
         async sendCodePhone() {
-            debugger;
+            
             if (this.state.cellphone) {
                 const value = { Cellphone: this.state.cellphone };
                 await userservice.codephone(value);

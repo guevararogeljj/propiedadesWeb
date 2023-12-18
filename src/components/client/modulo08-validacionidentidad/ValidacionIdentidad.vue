@@ -157,7 +157,7 @@ export default {
       this.$store.state.isLoading = value;
     },
     async onClickNextButton() {
-      debugger;
+      
       this.DELETE_FOTO_CAMERA()
       this.Loading(true)
       // console.log('onClickNextButton.this.data', this.data);

@@ -119,7 +119,7 @@ export default {
     },
 
     async onClickNextButton() {
-      debugger;
+      
       this.Loading(true);
       const value = { code: this.getcode(), cellphone: this.store().Cellphone };
       const result = await userservice.validatecodephone(value);
@@ -179,7 +179,7 @@ export default {
     },
   },
   async mounted() {
-    debugger;
+    
     this.Loading(true);
     this.phone = this.state.Cellphone;
     this.sendCodePhone();
