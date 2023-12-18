@@ -212,7 +212,7 @@ export default {
 
         dialogError({
                     title: "¡Error!",
-                    text: "No se ha podido iniciar sesión " + result.message,
+                    text:  result.message,
                 });
       }
     }

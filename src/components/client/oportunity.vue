@@ -111,6 +111,7 @@ export default {
     isLoading: false,
     casas: casa,
     isCarrusel: true,
+    isOportunidad : true
   }),
   methods: {
     navigateToopportunities() {
@@ -129,6 +130,7 @@ export default {
 
       this.ParamsProperties = params;
       this.ParamsProperties.isCarrusel = this.isCarrusel;
+      this.ParamsProperties.oportunity = this.isOportunidad;
       //this.currentPage = 1;
       let properties = await propservice.PropertiesRange(
         this.currentPage,
@@ -204,7 +206,10 @@ export default {
         properties = await propservice.PropertiesRange(
           this.currentPage,
           this.perPage,
-          {"isCarrusel" : this.isCarrusel}
+          {
+            "isCarrusel" : this.isCarrusel,
+            "oportunity" : this.isOportunidad
+          }
         );
       }
 
