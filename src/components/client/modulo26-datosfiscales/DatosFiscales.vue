@@ -299,7 +299,7 @@ export default {
 }
 
 .salto {
-  margin-top: 22px;
+height: 10px;
 }
 
 .dropdown {
