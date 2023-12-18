@@ -15,27 +15,27 @@
       </v-row>
       <v-row justify="center">
         <v-col cols="12">
-          <v-text-field class="contactFom" density="compact" variant="outlined" type="text" label="Nombre completo"
+          <v-text-field class="contactFom" density="compact" variant="outlined" type="text" label="Nombre completo" bg-color="white"
             v-model="data.fullname" :error-messages="v$.data.fullname.$errors.map(e => e.$message)"
             @input="v$.data.fullname.$touch" @blur="v$.data.fullname.$touch"></v-text-field>
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="12">
-          <v-text-field class="contactFom" density="compact" variant="outlined" label="Teléfono" type="number"
+          <v-text-field class="contactFom" density="compact" variant="outlined" label="Teléfono" type="number" bg-color="white"
             v-model="data.cellphone" :error-messages="v$.data.cellphone.$errors.map(e => e.$message)"
             @input="v$.data.cellphone.$touch" @blur="v$.data.cellphone.$touch"></v-text-field> </v-col>
       </v-row>
       <v-row>
         <v-col cols="12">
-          <v-text-field class="contactFom" density="compact" variant="outlined" type="email" label="correo electrónico"
+          <v-text-field class="contactFom" density="compact" variant="outlined" type="email" label="Correo electrónico" bg-color="white"
             v-model="data.email" :error-messages="v$.data.email.$errors.map(e => e.$message)"
             @input="v$.data.email.$touch" @blur="v$.data.email.$touch"></v-text-field>
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="12">
-          <v-textarea class="contactFom" density="compact" variant="outlined" label="Mensaje" type="text"
+          <v-textarea class="contactFom" density="compact" variant="outlined" label="Mensaje" type="text" bg-color="white"
             v-model="data.message" :error-messages="v$.data.message.$errors.map(e => e.$message)"
             @input="v$.data.message.$touch" @blur="v$.data.message.$touch"></v-textarea>
         </v-col>
@@ -251,7 +251,8 @@ letter-spacing: -1.44px;
   max-width: 394px;
   margin: auto;
   min-width: 20px;
-  background-color: white;
+
+  
 }
 
 .btnCustom {
