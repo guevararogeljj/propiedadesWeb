@@ -8,16 +8,38 @@
                         <br />
                     </v-card-title>
                     <v-card-text>
-                        <v-text-field density="compact" variant="outlined" class="form-input"
-                            label="Ingresa con correo electrónico o número telefónico" v-model="data.Email" 
+                        <v-text-field density="compact" variant="outlined" class="form-input v-input__control"
+                            label="Ingrese correo electrónico o número telefónico" v-model="data.Email" 
                             :error-messages="v$.data.Email.$errors.map((e) => e.$message)
                                 " @input="v$.data.Email.$touch" @blur="v$.data.Email.$touch"
-                            autocomplete="off"></v-text-field>
-                        <v-text-field density="compact" variant="outlined" label="Contraseña" class="form-input"
-                            v-model="data.Password" :append-icon="value ? 'mdi-eye' : 'mdi-eye-off-outline'"
-                            @click:append="() => (value = !value)" :type="value ? 'password' : 'text'" :error-messages="v$.data.Password.$errors.map((e) => e.$message)
-                                " @input="v$.data.Password.$touch" @blur="v$.data.Password.$touch"
-                            autocomplete="off"></v-text-field>
+                            autocomplete="off">
+                        
+                            <template #append>
+                                <div>                                    
+                                </div>                                
+                            </template>
+                        </v-text-field>
+                        <v-text-field 
+                            density="compact" 
+                            variant="outlined" 
+                            label="Contraseña" 
+                            class="form-input v-input__control"
+                            v-model="data.Password" 
+                            :append-icon="null"
+                            @click:append="() => (value = !value)" 
+                            :type="this.showPassword ? 'password' : 'text'" 
+                            :error-messages="v$.data.Password.$errors.map((e) => e.$message)
+                            " @input="v$.data.Password.$touch" @blur="v$.data.Password.$touch"
+                            autocomplete="off"                                              
+                            >
+                            <template #append>
+                                <div class="custom-icon-container" @click="togglePasswordVisibility()">
+                                    <v-icon >
+                                        {{ this.showPassword ? 'mdi-eye' : 'mdi-eye-off-outline' }}
+                                    </v-icon>
+                                </div>                                
+                            </template>
+                        </v-text-field>
 
                         <v-btn color="primary2" class="btnLogin" :IsDisabled="this.v$.$invalid"
                             @click="onClickNextButton">Ingresar</v-btn>
@@ -93,12 +115,16 @@ export default {
             goback: false,
             correoValido: false,
             value: String,
+            showPassword: false
         };
     },
     props: {
         EnableNextButton: { type: Boolean, default: true },
     },
     methods: {
+        togglePasswordVisibility() {
+            this.showPassword = !this.showPassword;
+        },
         isError(value) {
             return (this.$store.state.isError = value);
         },
@@ -184,10 +210,28 @@ export default {
       
   
 <style  lang="scss" scoped>
+
+
+.v-input__control {
+  display:grid;  
+  width: 400px;
+}
+
+.custom-icon-container {
+  position: absolute;
+  right: 285px;
+  top: 61%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.custom-icon {
+  font-size: 24px; /* Ajusta el tamaño del ícono según sea necesario */
+}
 .btnLogin {
     text-transform: none;
     display: flex;
-    width: 393px;
+    width: 360px;
     padding: 18px 16px;
     justify-content: center;
     align-items: center;
@@ -241,6 +285,31 @@ export default {
 
 }
 
+@media screen and (max-width: 1492px) {
+    .custom-icon-container {
+  position: absolute;
+  right: 180px;
+  top: 61%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
+}
+
+@media screen and (max-width: 1340px) {
+    .custom-icon-container {
+  position: absolute;
+  right: 160px;
+  top: 61%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
+}
+
+
 @media screen and (max-width: 767px) {
     .title {
         color: var(--secundarios-600, #000);
@@ -265,5 +334,22 @@ export default {
         gap: 10px;
 
     }
+
+    .custom-icon-container {
+         position: absolute;
+         right: 65px;
+        top: 61%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }  
+    
+    .form-input {
+    max-width: 300px;
+    height: 75px;
+    flex-shrink: 0;
+    }
+    
+
+
 }
 </style>
