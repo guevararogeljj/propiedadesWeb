@@ -1,32 +1,42 @@
 
 <template>
-  
-  <div class="d-flex" v-if="!DetailsMode">
-      <IconNumber Icon="mdi-crop-landscape" AlterName="Construction size" :Text="ConstructionSize" :Text2="ConstructionSizeUnits"></IconNumber>&nbsp;&nbsp;&nbsp;&nbsp;
-      <IconNumber Icon="mdi-bed-king-outline" AlterName="beds" :Text="BebsQuantity" :Text2="BedsUnits"></IconNumber>&nbsp;&nbsp;&nbsp;&nbsp;
-      <IconNumber Icon="mdi-shower-head" AlterName="baths" :Text="BathsQuantity" :Text2="BathsUnits"></IconNumber>&nbsp;&nbsp;&nbsp;&nbsp;
-      <IconNumber Icon="mdi-car" AlterName="parkinglot" :Text="ParkingLots" :Text2="ParkingUnits"></IconNumber>&nbsp;&nbsp;&nbsp;&nbsp;
-      <IconNumber Icon="mdi-image-size-select-small" AlterName="living size" :Text="LivingSize" :Text2="LivinSizeUnits"></IconNumber>
-    </div>
-    <div class="row ms-1" v-if="DetailsMode">
-      <div class="col-6 text-start mt-3">
-        <IconNumber Icon="mdi-crop-landscape" AlterName="Construction size" :Text="ConstructionSize" :Text2="ConstructionSizeUnits"></IconNumber>
-      </div>
-      <div class="col-6 text-start mt-3">
-        <IconNumber Icon="mdi-bed-king-outline" AlterName="beds" :Text="BebsQuantity" :Text2="BedsUnits"></IconNumber>
-      </div>
+  <v-row class="d-flex" v-if="!DetailsMode" style="text-indent: 20px;">
+    <IconNumber Icon="mdi-crop-landscape" AlterName="Construction size" :Text="ConstructionSize"
+      :Text2="ConstructionSizeUnits"></IconNumber>&nbsp;&nbsp;&nbsp;&nbsp;
+    <IconNumber Icon="mdi-bed-king-outline" AlterName="beds" :Text="BebsQuantity" :Text2="BedsUnits"></IconNumber>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <IconNumber Icon="mdi-shower-head" AlterName="baths" :Text="BathsQuantity" :Text2="BathsUnits"></IconNumber>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+  </v-row>
+  <v-row class="d-flex" v-if="!DetailsMode" style="text-indent: 20px;">
 
-      <div class="col-6 text-start mt-3">
-        <IconNumber Icon="mdi-shower-head" AlterName="baths" :Text="BathsQuantity" :Text2="BathsUnits"></IconNumber>
-      </div>
-      <div class="col-6 text-start mt-3">
-        <IconNumber Icon="mdi-car" AlterName="parkinglot" :Text="ParkingLots" :Text2="ParkingUnits"></IconNumber>
-      </div>
-      <div class="col-6 text-start mt-3">
-        <IconNumber Icon="mdi-image-size-select-small" AlterName="living size" :Text="LivingSize" :Text2="LivinSizeUnits"></IconNumber> 
-      </div>
+    <IconNumber Icon="mdi-car" AlterName="parkinglot" :Text="ParkingLots" :Text2="ParkingUnits"></IconNumber>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <IconNumber Icon="mdi-image-size-select-small" AlterName="living size" :Text="LivingSize" :Text2="LivinSizeUnits">
+    </IconNumber>
+
+  </v-row>
+  <div class="row ms-1" v-if="DetailsMode">
+    <div class="col-6 text-start mt-3">
+      <IconNumber Icon="mdi-crop-landscape" AlterName="Construction size" :Text="ConstructionSize"
+        :Text2="ConstructionSizeUnits"></IconNumber>
     </div>
-<div class="salto"></div>
+    <div class="col-6 text-start mt-3">
+      <IconNumber Icon="mdi-bed-king-outline" AlterName="beds" :Text="BebsQuantity" :Text2="BedsUnits"></IconNumber>
+    </div>
+
+    <div class="col-6 text-start mt-3">
+      <IconNumber Icon="mdi-shower-head" AlterName="baths" :Text="BathsQuantity" :Text2="BathsUnits"></IconNumber>
+    </div>
+    <div class="col-6 text-start mt-3">
+      <IconNumber Icon="mdi-car" AlterName="parkinglot" :Text="ParkingLots" :Text2="ParkingUnits"></IconNumber>
+    </div>
+    <div class="col-6 text-start mt-3">
+      <IconNumber Icon="mdi-image-size-select-small" AlterName="living size" :Text="LivingSize" :Text2="LivinSizeUnits">
+      </IconNumber>
+    </div>
+  </div>
+  <div class="salto"></div>
 </template>
   
 <script>
@@ -68,9 +78,9 @@ export default {
 </script>
   
 <style scoped>
- .salto {
-   width: 100%;
-   height: 20px;
-   flex-shrink: 0;
- }
+.salto {
+  width: 100%;
+  height: 20px;
+  flex-shrink: 0;
+}
 </style>
