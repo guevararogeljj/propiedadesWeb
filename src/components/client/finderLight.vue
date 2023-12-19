@@ -216,6 +216,9 @@ export default {
 
     this.catalogs.banios = await catservice.Banios();
   },
+  unmounted() {
+    this.onClickButtonLimpiar();
+  },
   watch: {
     async State(val) {
       this.params.state = val;

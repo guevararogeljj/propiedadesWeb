@@ -5,7 +5,7 @@
       <v-row>
         <v-col cols="12" md="7"> <!-- Columna izquierda -->
           <div>
-            <v-icon @click="$router.go(-1)">mdi-arrow-left</v-icon>
+            <v-icon @click="navigateToBack()">mdi-arrow-left</v-icon>
             <span class="back">Regresar a Catálogo</span>
           </div>
           <div class="title">{{ propertyInfo.state }}</div>
@@ -170,6 +170,10 @@ export default {
     ...mapMutations(['SET_OPEN_DIALOG_LOGIN', 'DELETE_FOTO_CAMERA']),
     onClickBannerButton() {
       this.showModalLoginRequest = true;
+    },
+    navigateToBack() {
+      this.$store.state.filterSaved = null;
+      this.$router.go(-1);
     },
     async onClickPropInfoButton() {
       if (this.state.isLogin == true) {

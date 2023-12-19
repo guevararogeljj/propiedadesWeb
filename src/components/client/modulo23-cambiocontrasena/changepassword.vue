@@ -178,7 +178,6 @@ export default {
             }
         },
         async onClickNextButton() {
-            debugger
             this.Loading(true);
             const value = { code: this.getcode(), cellphone: this.store().Cellphone };
             this.steps = 2;

@@ -235,7 +235,6 @@ export default {
     },
   },
   async mounted() {
-    debugger;
     let properties = [];
     if (this.getRequestsaved) {
       this.outBathrooms = this.state.filterSaved.bathrooms;
@@ -265,6 +264,7 @@ export default {
           {
             propertytype: this.$route.query.type,
             state: this.$route.query.state,
+            city: this.$route.query.city,
           }
         );
       } else {
