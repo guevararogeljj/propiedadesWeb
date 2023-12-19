@@ -335,5 +335,21 @@ export default {
 
     }
 
+    .custom-icon-container {
+         position: absolute;
+         right: 65px;
+        top: 61%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }  
+    
+    .form-input {
+    max-width: 300px;
+    height: 75px;
+    flex-shrink: 0;
+    }
+    
+
+
 }
 </style>
