@@ -40,14 +40,14 @@
                             <br />
                             <div style="text-align: center">
                                 <span class="leyenda">Al registrarme acepto </span>
-                                <span class="termino">Términos y Condiciones </span>
+                                <v-btn flat class="termino" @click="navigateTerms()">Términos y Condiciones </v-btn>
                                 <span class="leyenda">Y las </span>
-                                <span class="termino">Políticas de privacidad </span>
+                                <v-btn flat class="termino" @click="navigatePrivacyPolicy()">Políticas de privacidad </v-btn>
                             </div>
                             <br />
                             <div style="text-align: center">
                                 <span class="leyenda">¿Ya tienes una cuenta? </span>
-                                <span class="termino" @click="navigateLogin()">Inicia sesión</span>
+                                <v-btn flat class="termino" @click="navigateLogin()">Inicia sesión</v-btn>
                             </div>
                     </v-card-text>
                 </v-card>
@@ -199,6 +199,12 @@ export default {
         navigateLogin() {
             this.$router.push({ name: "login" });
         },
+        navigateTerms() {
+            this.$router.push({ name: "TermsAndConditions" });
+        },
+        navigatePrivacyPolicy() {
+            this.$router.push({ name: "privacyPolicy" });
+        },
     },
     computed: {
     state() {
@@ -259,6 +265,7 @@ export default {
 }
 
 .termino {
+    text-transform: none;
     color: var(--primary-500, #379bec);
     font-family: Barlow;
     font-size: 13px;

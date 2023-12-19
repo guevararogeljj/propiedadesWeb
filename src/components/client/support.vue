@@ -2,7 +2,7 @@
   <v-card color="primary3" class="card-style">
     <v-card-text>
       <v-row>
-        <v-col cols="12" md="7">
+        <v-col cols="12" md="6">
           <div class="subtitle">¿Cómo comienzo?</div>
           <br />
           <div class="title">Te asesoramos en tu proceso de compra</div>
@@ -11,7 +11,7 @@
           <br />
           <v-btn flat class="btnContactar" @click="scrollbutton()">Comenzar ahora</v-btn>
         </v-col>
-        <v-col cols="12" md="5">
+        <v-col cols="12" md="6">
           <div class="asesor-inmobiliario"></div>
         </v-col>
       </v-row>
@@ -154,6 +154,7 @@ export default {
     border-radius: 30px;
     background: var(red);
   }
+
   .asesor-inmobiliario {
     background-image: url("@/assets/asesor-inmobiliario-2 1.png");
     /* height: 459px; */
@@ -184,10 +185,12 @@ export default {
 
 
   .subtitle2 {
-    width: 272px;
+    min-width: 272px;
     height: 79px;
     flex-shrink: 0;
     color: var(--Secundarios-Blanco, #FFF);
+    text-align: center;
+
     /* Text/Large/Medium */
     font-family: Barlow;
     font-size: 18px;
@@ -199,8 +202,8 @@ export default {
 
   .btnContactar {
     text-transform: none;
-    display: flex;
-    width: 236px;
+
+    min-width: 236px;
     padding: 18px 16px;
     justify-content: center;
     align-items: center;
@@ -208,8 +211,8 @@ export default {
   }
 
   .subtitle {
-    text-justify: center;
     color: var(--Primary-300, #E3F1FC);
+    text-align: center;
 
     /* Heading/Semibold 1 */
     font-family: Barlow;
@@ -222,13 +225,17 @@ export default {
   }
 
   .title {
-    width: 298px;
+    min-width: 298px;
     color: var(--Secundarios-Blanco, #FFF);
+    text-align: center;
+
+    /* Heading/Large2 */
     font-family: Barlow;
     font-size: 40px;
     font-style: normal;
     font-weight: 500;
     line-height: 40px;
+    /* 100% */
     letter-spacing: -1.2px;
   }
 
@@ -247,5 +254,4 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-</style>
+}</style>

@@ -16,7 +16,9 @@
           <p><router-link to="/propiedades" class="fooderMenu">Catálogo</router-link></p>
           <p><router-link to="/us" class="fooderMenu">Nosotros</router-link></p>
           <p><router-link to="/frequentQuestions" class="fooderMenu">Preguntas Frecuentes</router-link></p>
-          <v-btn variant="text" flat @click="!isLogin ? navigateInicio() : navigateNda()" class="fooderMenu">NDA en línea</v-btn>
+          <!-- <v-btn variant="text" flat @click="!isLogin ? navigateInicio() : navigateNda()" class="fooderMenu">NDA en línea</v-btn> -->
+          <p v-if="!isLogin"><router-link to="/login" class="fooderMenu">NDA en línea</router-link></p>
+          <p v-else><router-link to="/nda" class="fooderMenu">NDA en línea</router-link></p>
         </v-col>
         <v-col cols="12" sm="6" md="3" align="center">
           <!-- <v-label> <strong>Contacto</strong></v-label> -->

@@ -24,11 +24,7 @@
           </p>
         </strong>
           <div class="textCardItemsUno" style="margin: 0;">
-            Es un contrato por el cual la parte cedente enajena su derecho
-            legalmente cedible en favor de otra persona denominada cesionario,
-            para que éste lo ejerza en su propio nombre. La cesión es siempre un
-            acto jurídico inter-vivos, por lo que para perfeccionarse se
-            requiere que sea a través de escritura pública.
+            La cesión de derechos de un crédito hipotecario es un acto jurídico mediante el cual un acreedor denominado "Cedente" transmite / transfiere a otra persona llamado "Cesionario" los derechos, créditos y obligaciones que tiene contra su deudor a través de un contrato.
           </div>
         </div>
       </v-col>
@@ -49,11 +45,7 @@
             </p>
           </strong>
           <div class="textCardItemsDos">
-            Es un contrato por el cual la parte cedente enajena su derecho
-            legalmente cedible en favor de otra persona denominada cesionario,
-            para que éste lo ejerza en su propio nombre. La cesión es siempre un
-            acto jurídico inter-vivos, por lo que para perfeccionarse se
-            requiere que sea a través de escritura pública.
+            Es la compraventa de un bien inmueble en donde se transfieren todos los derechos y obligaciones del mismo a cambio de una contraprestación.
           </div>
         </div>
       </v-col>

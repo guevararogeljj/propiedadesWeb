@@ -238,9 +238,10 @@ export default {
 </script>
   
 <style lang="scss" scoped>
-.salto{
+.salto {
   height: 30px;
 }
+
 .wrapper {
   background: rgba(0, 146, 188, 0.05);
   border-radius: 4px;
@@ -259,8 +260,9 @@ export default {
   font-size: 62px;
   font-style: normal;
   font-weight: 500;
-  line-height: 54px; /* 87.097% */
-  letter-spacing: -2.48px;  
+  line-height: 54px;
+  /* 87.097% */
+  letter-spacing: -2.48px;
 }
 
 .minortext {
@@ -274,8 +276,9 @@ export default {
   font-size: 62px;
   font-style: normal;
   font-weight: 500;
-  line-height: 54px; /* 87.097% */
-  letter-spacing: -2.48px;  
+  line-height: 54px;
+  /* 87.097% */
+  letter-spacing: -2.48px;
 }
 
 .btnCustom {
@@ -315,8 +318,36 @@ export default {
     background-size: cover;
     background-position: center;
     border-radius: 26px;
+  }
 
+  .maintext {
+    width: auto;
+    color: #FFF;
+    text-align: center;
 
+    /* Heading/Large2 */
+    font-family: Barlow;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 40px;
+    /* 100% */
+    letter-spacing: -1.2px;
+  }
+
+  .minortext {
+    width: auto;
+    color: #FFF;
+    text-align: center;
+
+    /* Heading/Large2 */
+    font-family: Barlow;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 40px;
+    /* 100% */
+    letter-spacing: -1.2px;
   }
 }
 
@@ -351,5 +382,4 @@ export default {
     background-position: center;
     border-radius: 26px;
   }
-}
-</style>
+}</style>

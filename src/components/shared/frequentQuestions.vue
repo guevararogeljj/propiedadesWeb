@@ -176,10 +176,74 @@
                 ¿Qué tengo que hacer si estoy interesado en adquirir un inmueble mediante Cesión?
               </v-expansion-panel-title>
               <v-expansion-panel-text class="textopanel">
-                <v-list>
+                <!-- <v-list>
                   <v-list-item>
                     <v-list-item-content>
                       A través de nuestra página podrás encontrar el espacio de Contacto, donde podrás dejarnos tus datos y un ejecutivo se pondrá en contacto contigo.
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list> -->
+                <v-list-item>
+                    <v-list-item-icon>
+                      <v-icon>mdi-circle-small</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                      Compra de Cesión de Derechos (Cobro, Crédito y Litigiosos)
+                    </v-list-item-content>
+                  </v-list-item>
+              </v-expansion-panel-text>
+            </v-expansion-panel>
+          </v-expansion-panels>
+          <v-expansion-panels>
+            <v-expansion-panel>
+              <v-expansion-panel-title class="titulopanel">
+                ¿Qué debo hacer si quiero pertenecer a su equipo de brokers o corredores inmobiliarios?
+              </v-expansion-panel-title>
+              <v-expansion-panel-text class="textopanel">
+                <v-list>
+                  <v-list-item>
+                    <v-list-item-content>
+                      A través de nuestra página podrás encontrar el espacio de CONTACTO, donde podrás dejarnos tus datos y un ejecutivo se pondrá en contacto contigo.
+                    </v-list-item-content>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-icon>
+                      <v-icon>mdi-circle-small</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                      Somos una Administradora Líder a nivel Nacional.
+                    </v-list-item-content>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-icon>
+                      <v-icon>mdi-circle-small</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                      Contamos con inmuebles en toda la República Méxicana.
+                    </v-list-item-content>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-icon>
+                      <v-icon>mdi-circle-small</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                      Precios muy competitivos.
+                    </v-list-item-content>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-icon>
+                      <v-icon>mdi-circle-small</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                      Agilidad y seguridad en la instrumentación de sus operaciones.
+                    </v-list-item-content>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-icon>
+                      <v-icon>mdi-circle-small</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                      Pago de comisiones muy competitivas.
                     </v-list-item-content>
                   </v-list-item>
                 </v-list>
