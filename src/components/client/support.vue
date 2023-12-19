@@ -4,19 +4,24 @@
     <v-card-title style="text-align: center;">
     </v-card-title>
     <v-card-item>
-      <v-col cols="12">
-      <div class="subtitle">¿Cómo comienzo?</div>
-      <br />
-      <div class="title">Te asesoramos en tu proceso de compra</div>
-      <br />
-      <div class="subtitle2">Contactanos y un asesor se comunicará contigo a la brevedad</div>
 
-      <br />
-      <v-btn flat class="btnContactar" @click="scrollbutton()">Comenzar ahora</v-btn>
-      </v-col>
     </v-card-item>
     <v-card-text>
-      <div class="asesor-inmobiliario"></div>
+      <v-row>
+        <v-col cols="12" md="6">
+          <div class="subtitle">¿Cómo comienzo?</div>
+          <br />
+          <div class="title">Te asesoramos en tu proceso de compra</div>
+          <br />
+          <div class="subtitle2">Contactanos y un asesor se comunicará contigo a la brevedad</div>
+          <br />
+          <v-btn flat class="btnContactar" @click="scrollbutton()">Comenzar ahora</v-btn>
+        </v-col>
+        <v-col cols="12" md="6">
+          <div class="asesor-inmobiliario"></div>
+        </v-col>
+      </v-row>
+
       <!-- <v-window v-model="activeTab" class="asesor-inmobiliario">
         <v-window-item class="card-text" v-for="tab in tabs" :key="tab.value" :value="tab.value">
           {{ tab.text }}
@@ -105,7 +110,7 @@ export default {
 }
 
 .title {
-  text-indent: 40px;
+  text-indent: 20px;
   width: 810px;
   height: 106px;
   flex-shrink: 0;
@@ -124,6 +129,8 @@ export default {
 
 
 .card-style {
+  height: 470px;
+  flex-shrink: 0;
   border-radius: 30px;
 }
 
@@ -140,16 +147,18 @@ export default {
   .asesor-inmobiliario {
     background-image: url("@/assets/asesor-inmobiliario-2 1.png");
     /* height: 459px; */
-    background-position: bottom;
+    background-position: center;
     background-repeat: no-repeat;
     background-color: transparent;
     border-color: transparent;
     width: auto;
   }
-
   .card-style {
-    border-radius: 0px;
-  }
+  height: 770px;
+  flex-shrink: 0;
+  border-radius: 30px;
+}
+
 
   .subtitle2 {
     width: 272px;
