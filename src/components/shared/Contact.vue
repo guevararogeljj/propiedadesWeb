@@ -15,21 +15,21 @@
       </v-row>
       <v-row justify="center">
         <v-col cols="12">
-          <v-text-field class="contactFom" density="compact" variant="outlined" type="text" label="Nombre completo" bg-color="white"
-            v-model="data.fullname" :error-messages="v$.data.fullname.$errors.map(e => e.$message)"
+          <v-text-field class="contactFom" density="compact" variant="outlined" type="text" label="Nombre completo"
+            bg-color="white" v-model="data.fullname" :error-messages="v$.data.fullname.$errors.map(e => e.$message)"
             @input="v$.data.fullname.$touch" @blur="v$.data.fullname.$touch"></v-text-field>
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="12">
-          <v-text-field class="contactFom" density="compact" variant="outlined" label="Teléfono" type="number" bg-color="white"
-            v-model="data.cellphone" :error-messages="v$.data.cellphone.$errors.map(e => e.$message)"
+          <v-text-field class="contactFom" density="compact" variant="outlined" label="Teléfono" type="number"
+            bg-color="white" v-model="data.cellphone" :error-messages="v$.data.cellphone.$errors.map(e => e.$message)"
             @input="v$.data.cellphone.$touch" @blur="v$.data.cellphone.$touch"></v-text-field> </v-col>
       </v-row>
       <v-row>
         <v-col cols="12">
-          <v-text-field class="contactFom" density="compact" variant="outlined" type="email" label="Correo electrónico" bg-color="white"
-            v-model="data.email" :error-messages="v$.data.email.$errors.map(e => e.$message)"
+          <v-text-field class="contactFom" density="compact" variant="outlined" type="email" label="Correo electrónico"
+            bg-color="white" v-model="data.email" :error-messages="v$.data.email.$errors.map(e => e.$message)"
             @input="v$.data.email.$touch" @blur="v$.data.email.$touch"></v-text-field>
         </v-col>
       </v-row>
@@ -77,6 +77,7 @@ export default {
       },
       v$: useVuelidate(),
       isLoading: false,
+      regexPattern: /^[a-zA-Z\s]+$/
     };
   },
   validations() {
@@ -92,9 +93,14 @@ export default {
           minLength: helpers.withMessage("El Teléfono debe tener 10 dígitos", minLength(10))
         },
         message: {
-          required: helpers.withMessage("El Mensaje es requerido", required),
+          required: helpers.withMessage("El Mensaje es requerido o caracte", required),
           maxLength: helpers.withMessage("El Mensaje debe tener máximo 500 caracteres", maxLength(500)),
-          minLength: helpers.withMessage("El Mensaje debe tener mínimo 10 caracteres", minLength(10))
+
+          regex: helpers.withMessage("El Mensaje no debe contener caracteres especiales", value => {
+            return this.regexPattern.test(value)
+          }),
+          minLength: helpers.withMessage("El Mensaje debe tener mínimo 10 caracteres", minLength(10)),
+
         },
         terms: { required: helpers.withMessage("Debe aceptar los términos y condiciones", required) },
       },
@@ -189,9 +195,10 @@ export default {
   z-index: 9999;
 
   border-radius: 24px;
-border: 3px solid var(--Primary-500, #379BEC);
-background: var(--Secundarios-Blanco, #FFF);
+  border: 3px solid var(--Primary-500, #379BEC);
+  background: var(--Secundarios-Blanco, #FFF);
 }
+
 .subtitle {
   width: 414px;
   color: var(--Secundarios-600, #000);
@@ -224,23 +231,26 @@ background: var(--Secundarios-Blanco, #FFF);
   float: center;
   align-items: center;
 
-  align-items: center;  
+  align-items: center;
 }
-.headerTwo{
-  width: 296px;
-height: 46px;
-flex-shrink: 0;
-color: var(--Secundarios-600, #000);
-text-align: center;
 
-/* Heading/Large1 */
-font-family: Barlow;
-font-size: 48px;
-font-style: normal;
-font-weight: 500;
-line-height: 52.83px; /* 110.063% */
-letter-spacing: -1.44px;
+.headerTwo {
+  width: 296px;
+  height: 46px;
+  flex-shrink: 0;
+  color: var(--Secundarios-600, #000);
+  text-align: center;
+
+  /* Heading/Large1 */
+  font-family: Barlow;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 52.83px;
+  /* 110.063% */
+  letter-spacing: -1.44px;
 }
+
 .center {
   margin: auto;
   padding: 10px;
@@ -252,7 +262,7 @@ letter-spacing: -1.44px;
   margin: auto;
   min-width: 20px;
 
-  
+
 }
 
 .btnCustom {
