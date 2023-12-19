@@ -1,14 +1,8 @@
 <template>
   <v-card color="primary3" class="card-style">
-    <br />
-    <v-card-title style="text-align: center;">
-    </v-card-title>
-    <v-card-item>
-
-    </v-card-item>
     <v-card-text>
       <v-row>
-        <v-col cols="12" md="6">
+        <v-col cols="12" md="7">
           <div class="subtitle">¿Cómo comienzo?</div>
           <br />
           <div class="title">Te asesoramos en tu proceso de compra</div>
@@ -17,7 +11,7 @@
           <br />
           <v-btn flat class="btnContactar" @click="scrollbutton()">Comenzar ahora</v-btn>
         </v-col>
-        <v-col cols="12" md="6">
+        <v-col cols="12" md="5">
           <div class="asesor-inmobiliario"></div>
         </v-col>
       </v-row>
@@ -58,7 +52,8 @@ export default {
 </script>
 <style scoped>
 .subtitle2 {
-  width: 576px;
+  width: auto;
+  max-width: 576px;
   height: 33px;
   flex-shrink: 0;
   color: var(--Secundarios-Blanco, #FFF);
@@ -111,7 +106,8 @@ export default {
 
 .title {
   text-indent: 20px;
-  width: 810px;
+  width: auto;
+  max-width: 810px;
   height: 106px;
   flex-shrink: 0;
   color: var(--Secundarios-Blanco, #FFF);
@@ -129,18 +125,44 @@ export default {
 
 
 .card-style {
-  height: 470px;
+  justify-content: center;
+  height: auto;
+  min-height: 470px;
   flex-shrink: 0;
   border-radius: 30px;
+  background: var(--Primary-500, #379BEC);
 }
 
 .asesor-inmobiliario {
   background-image: url("@/assets/asesor-inmobiliario.png");
-  height: 586px;
+  max-width: 619px;
+  height: 461px;
+  flex-shrink: 0;
   background-position: right top;
   background-repeat: no-repeat;
   background-color: transparent;
   border-color: transparent;
+
+}
+
+@media only screen and (orientation: landscape) and (min-device-width: 320px) and (max-device-width: 480px) {
+  .card-style {
+    justify-content: center;
+
+    height: 470px;
+    flex-shrink: 0;
+    border-radius: 30px;
+    background: var(red);
+  }
+  .asesor-inmobiliario {
+    background-image: url("@/assets/asesor-inmobiliario-2 1.png");
+    /* height: 459px; */
+
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border-color: transparent;
+    width: auto;
+  }
 }
 
 @media (max-width: 767px) {
@@ -153,11 +175,12 @@ export default {
     border-color: transparent;
     width: auto;
   }
+
   .card-style {
-  height: 770px;
-  flex-shrink: 0;
-  border-radius: 30px;
-}
+    height: 770px;
+    flex-shrink: 0;
+    border-radius: 30px;
+  }
 
 
   .subtitle2 {
