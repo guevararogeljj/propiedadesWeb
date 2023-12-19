@@ -59,8 +59,10 @@
           </v-carousel-item>
         </v-carousel>
         <div class="salto"></div>
+        <div class="salto"></div>
+        <div class="salto"></div>
         <div class="text-center mx-auto">
-          <button-secondary Text="Ver listado completo" color="primary3" @click="navigateToopportunities()" class="btnCustom" width="394px" />
+          <button-secondary flat Text="Ver listado completo" color="primary3" @click="navigateToopportunities()" class="btnCustom" width="394px" />
         </div>
       </div>
     </v-col>

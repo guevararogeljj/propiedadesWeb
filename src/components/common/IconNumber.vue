@@ -7,7 +7,7 @@
       min-height="10"
       min-width="20"
     /> -->
-    <v-icon :icon="Icon" :alt="AlterName">
+    <v-icon :icon="Icon" :alt="AlterName" color="grey darken-2">
     </v-icon>
     <!-- <v-img :src="ImageUrl" class="d-inline-block align-top"></v-img> -->
     <p class="d-inline font-property">{{ Text }} {{ Text2 }}</p>
