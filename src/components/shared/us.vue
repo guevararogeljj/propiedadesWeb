@@ -173,8 +173,8 @@ export default {
   width: 705px;
   height: 471px;
   background-position: right;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 26px;
+  border-bottom-left-radius: 26px;
   /* Agrega aquí otros estilos para el div de la izquierda */
 }
 
@@ -183,8 +183,8 @@ export default {
   background-color: #379BEC;
   color: white;
   align-content: center;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-right-radius: 26px;
+  border-bottom-right-radius: 26px;
   padding-left: 20px;
   /* Agrega aquí otros estilos para el div de la derecha */
 }
