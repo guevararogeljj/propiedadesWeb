@@ -114,6 +114,17 @@ export default {
 };
 </script>
 <style scoped>
+.oportunidad{
+  color: var(--Secundarios-Blanco, #FFF);
+
+/* Heading/Large1 */
+font-family: Barlow;
+font-size: 48px;
+font-style: normal;
+font-weight: 500;
+line-height: 52.83px; /* 110.063% */
+letter-spacing: -1.44px;
+}
 .enfoque{
   margin:auto;
   max-width: 1030px;
