@@ -27,7 +27,7 @@
                             v-model="data.Password" 
                             :append-icon="null"
                             @click:append="() => (value = !value)" 
-                            :type="this.showPassword ? 'password' : 'text'" 
+                            :type="!this.showPassword ? 'password' : 'text'" 
                             :error-messages="v$.data.Password.$errors.map((e) => e.$message)
                             " @input="v$.data.Password.$touch" @blur="v$.data.Password.$touch"
                             autocomplete="off"                                              
@@ -35,7 +35,7 @@
                             <template #append>
                                 <div class="custom-icon-container" @click="togglePasswordVisibility()">
                                     <v-icon >
-                                        {{ this.showPassword ? 'mdi-eye' : 'mdi-eye-off-outline' }}
+                                        {{ !this.showPassword ? 'mdi-eye' : 'mdi-eye-off-outline' }}
                                     </v-icon>
                                 </div>                                
                             </template>
@@ -136,6 +136,7 @@ export default {
         },
         async onClickNextButton() {
             this.state.isLoading = true;
+            this.state.isLogin = true;
             // const regex = /^\w+([.\-_]{0,3}?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
             // const regex = /^\d{10}$/;
             // const isCorreoValido = regex.test(this.data.Email);
@@ -159,9 +160,10 @@ export default {
             const result = await usersignin.signin(credentials);
             const data = result.result;
             //console.log(data);
+            debugger;
             if (result.success) {
                 if (data.requiredcode) {
-                    this.state.dataTemp = data;
+                    this.state.dataTemp = data;                    
                     this.$router.push({ name: "AutenticadorLogin" });
                 } else {
                     this.state.isLoading = false;
