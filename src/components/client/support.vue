@@ -7,7 +7,7 @@
           <br />
           <div class="title">Te asesoramos en tu proceso de compra</div>
           <br />
-          <div class="subtitle2">Contactanos y un asesor se comunicará contigo a la brevedad</div>
+          <div class="subtitle2">Contáctanos y un asesor se comunicará contigo a la brevedad</div>
           <br />
           <v-btn flat class="btnContactar" @click="scrollbutton()">Comenzar ahora</v-btn>
         </v-col>

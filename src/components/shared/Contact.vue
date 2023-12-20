@@ -45,7 +45,10 @@
           <div class="text-center mx-auto">
             <v-btn :disabled="this.v$.$invalid" class="btnCustom center" @click="onClickButtonSend">Contactar</v-btn>
             <br />
-            <label>Al enviar mensaje acepto los Términos y Condiciones y las Políticas de Privacidad</label>
+            <span>Al enviar mensaje acepto los </span>
+            <span><router-link to="/termsAndConditions" class="h7"> Términos y condiciones</router-link></span>
+            <span> y el </span>
+            <span><router-link to="/privacyPolicy" class="h7"> Aviso privacidad</router-link></span>
           </div>
         </v-col>
       </v-row>
