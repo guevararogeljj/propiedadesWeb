@@ -93,7 +93,7 @@ export default {
           minLength: helpers.withMessage("El Teléfono debe tener 10 dígitos", minLength(10))
         },
         message: {
-          required: helpers.withMessage("El Mensaje es requerido o caracte", required),
+          required: helpers.withMessage("El Mensaje es requerido", required),
           maxLength: helpers.withMessage("El Mensaje debe tener máximo 500 caracteres", maxLength(500)),
 
           regex: helpers.withMessage("El Mensaje no debe contener caracteres especiales", value => {

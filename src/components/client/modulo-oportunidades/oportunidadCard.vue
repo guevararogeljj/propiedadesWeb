@@ -1,7 +1,7 @@
 <template>
   <div :class="`tp-product-item-2 ${spacing ? 'mb-40' : ''}`">
     <div class="tp-product-thumb-2 p-relative z-index-1 fix w-img card-border">
-      <img :src="Image" alt="property" height="250" />
+      <img :src="Image" alt="property" height="210" />
       <div class="tp-product-content-1 pt-5">
         <div class="tp-product-tag-2" style="text-indent: 20px;">
           <span class="tooltip-custom" :data-text="Title">
@@ -152,7 +152,7 @@ export default {
 }
 
 .btn {
-
+height: 56px;
   text-transform: none;
   margin: auto;
   display: flex;

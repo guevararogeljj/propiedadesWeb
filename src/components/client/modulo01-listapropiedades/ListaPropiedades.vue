@@ -142,9 +142,12 @@ export default {
       return (this.$store.state.isLoading = value);
     },
     async performSearch(params) {
-      // console.log('params', params)
+      debugger;
+      console.log('params', params)
       this.isLoading = this.Loading(true);
       params.price = params.price.replace(/,/g, "");
+     if (params.city != "" || params != undefined)
+          params.municipality = params.city
       this.ParamsProperties = params;
       //this.currentPage = 1;
       let properties = await propservice.PropertiesRange(
@@ -264,7 +267,7 @@ export default {
           {
             propertytype: this.$route.query.type,
             state: this.$route.query.state,
-            city: this.$route.query.city,
+            municipality: this.$route.query.city,
           }
         );
       } else {

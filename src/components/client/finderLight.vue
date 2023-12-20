@@ -22,12 +22,12 @@
         </v-col>
         <v-col cols="12" sm="6" md="4" lg="3" v-if="hideFilters">
           <customselect class="Inputs" :ItemSource="catalogs.rangoprecios" ItemIdAttribute="key"
-            ItemNameAttribute="description" DefaultOption="Precio" v-model="params.price" :DefaultOptionActive="true" />
+            ItemNameAttribute="description" DefaultOption="Precio igual o mayor" v-model="params.price" :DefaultOptionActive="true" />
         </v-col>
       </v-row>
       <v-row v-if="isShowFilters">
         <v-col cols="12" sm="6" md="4" lg="3" v-if="hideFilters">
-          <customselect class="Inputs" :ItemSource="catalogs.habitaciones" ItemIdAttribute="key"
+          <customselect class="Inputs" :ItemSource="catalogs.habitaciones" ItemIdAttribute="id"
             ItemNameAttribute="description" DefaultOption="Habitaciones" v-model="params.rooms"
             :DefaultOptionActive="true" />
         </v-col>
