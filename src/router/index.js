@@ -1,5 +1,5 @@
 // Composables
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import NotFound from '@/components/shared/pages/404.vue'
 const routes = [
   {
@@ -199,8 +199,21 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
+  // history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(),
+  routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(route => route.meta.requiredlogin)) {
+    if (store.state.isLogin) {
+      next();
+    } else {
+      next('login')
+    }
+  } else {
+    next()
+  }
 })
 
 export default router
