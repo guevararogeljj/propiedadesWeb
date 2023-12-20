@@ -142,8 +142,7 @@ export default {
       return (this.$store.state.isLoading = value);
     },
     async performSearch(params) {
-      debugger;
-      console.log('params', params)
+      ///console.log('params', params)
       this.isLoading = this.Loading(true);
       params.price = params.price.replace(/,/g, "");
      if (params.city != "" || params != undefined)
