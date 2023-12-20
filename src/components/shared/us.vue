@@ -6,12 +6,12 @@
     <label class="h1 textCenter salto">¿Qué hacemos por ti?</label>
     <label class="textCenter">Nos especializamos en brindar valor diferenciado en nuestra cartera ya que compartimos tu
       compromiso de mantener las relaciones de negocios ágiles y profesionales.</label>
- <div class="salto"></div>
+    <div class="salto"></div>
     <FindOportunity />
     <br>
-    <label class="enfoque">Nuestro enfoque es poner a tu disposición la información completa y actualizada de miles de
+    <span class="enfoque">Nuestro enfoque es poner a tu disposición la información completa y actualizada de miles de
       propiedades en México,
-      en un solo click. Tenemos un profundo conocimiento del mercado y un extraordinario servicio al cliente</label>
+      en un solo click. Tenemos un profundo conocimiento del mercado y un extraordinario servicio al cliente</span> 
     <br>
     <v-row>
       <v-col cols="12">
@@ -33,10 +33,15 @@
       <div class="left-div">
       </div>
       <div class="right-div">
-        <label class="h4" color="primary">Invierte hoy en tu patrimonio</label>
         <br>
-        <label class="h1" style="width: 505px; height: 159px; justify-items: end;" color="primary">Tu oportunidad de
+        <br>
+        <br>
+        <label class="invierte">Invierte hoy en tu patrimonio</label>
+        <br>
+        <br>
+        <label class="oportunidad">Tu oportunidad de
           encontrar tu lugar soñado está aquí </label>
+        <br>
         <br>
         <ButtonSecondary class="btnText" flat @click="ToCatalog()" Text="Ver propiedades" width="324px" />
       </div>
@@ -55,11 +60,11 @@
           </p>
 
           <p>
-            <v-btn variant="flat" class="btnColor" >
+            <v-btn variant="flat" class="btnColor">
               <span class="btnText" flat @click="ToCatalog()">Ver propiedades</span>
             </v-btn>
           </p>
-          <br/>
+          <br />
         </div>
 
 
@@ -210,6 +215,16 @@ letter-spacing: -0.18px;
   padding: 0;
   display: flex;
   justify-content: center;
+  color: var(--Secundarios-600, #000);
+text-align: center;
+
+/* Text/Large/Medium */
+font-family: Barlow;
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -0.18px;
 }
 
 .center {
@@ -237,27 +252,32 @@ letter-spacing: -0.18px;
 
 
 }
+
 .btnColor {
   color: var(--primary-500, #379BEC);
-/* Text/Regular/Medium */
-font-family: Barlow;
-font-size: 16px;
-font-style: normal;
-font-weight: 500;
-line-height: 20px; /* 125% */
-letter-spacing: -0.16px;
+  /* Text/Regular/Medium */
+  font-family: Barlow;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  letter-spacing: -0.16px;
 }
-.btnText{
+
+.btnText {
   text-transform: none;
   color: var(--primary-500, #379BEC);
-/* Text/Regular/Medium */
-font-family: Barlow;
-font-size: 16px;
-font-style: normal;
-font-weight: 500;
-line-height: 20px; /* 125% */
-letter-spacing: -0.16px;
+  /* Text/Regular/Medium */
+  font-family: Barlow;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  letter-spacing: -0.16px;
 }
+
 .center {
   margin: auto;
   padding: 10px;
@@ -378,9 +398,9 @@ letter-spacing: -0.16px;
     display: none;
 
   }
+
   .containerus {
     display: flex;
   }
-}
-</style>
+}</style>
     

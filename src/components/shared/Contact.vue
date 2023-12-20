@@ -22,7 +22,7 @@
       </v-row>
       <v-row>
         <v-col cols="12">
-          <v-text-field class="contactFom" density="compact" variant="outlined" label="Teléfono" type="number"
+          <v-text-field class="contactFom" density="compact" variant="outlined" label="Teléfono" type="text"
             bg-color="white" v-model="data.cellphone" :error-messages="v$.data.cellphone.$errors.map(e => e.$message)"
             @input="v$.data.cellphone.$touch" @blur="v$.data.cellphone.$touch"></v-text-field> </v-col>
       </v-row>
@@ -45,7 +45,10 @@
           <div class="text-center mx-auto">
             <v-btn :disabled="this.v$.$invalid" class="btnCustom center" @click="onClickButtonSend">Contactar</v-btn>
             <br />
-            <label>Al enviar mensaje acepto los Términos y Condiciones y las Políticas de Privacidad</label>
+            <span>Al enviar mensaje acepto los </span>
+            <span><router-link to="/termsAndConditions" class="h7"> Términos y condiciones</router-link></span>
+            <span> y el </span>
+            <span><router-link to="/privacyPolicy" class="h7"> Aviso privacidad</router-link></span>
           </div>
         </v-col>
       </v-row>
@@ -77,7 +80,8 @@ export default {
       },
       v$: useVuelidate(),
       isLoading: false,
-      regexPattern: /^[a-zA-Z\s]+$/
+      regexPattern: /^[a-zA-Z\s]+$/,
+      regexNum : /^(0|[1-9][0-9]*)$/
     };
   },
   validations() {
@@ -90,7 +94,11 @@ export default {
         cellphone: {
           required: helpers.withMessage("El Teléfono es requerido", required),
           maxLength: helpers.withMessage("El Teléfono debe tener 10 dígitos", maxLength(10)),
-          minLength: helpers.withMessage("El Teléfono debe tener 10 dígitos", minLength(10))
+          
+          regex: helpers.withMessage("Se requiere solo números", value => {
+            return this.regexNum.test(value)
+          }),
+          minLength: helpers.withMessage("El Teléfono debe tener 10 dígitos", minLength(10)),
         },
         message: {
           required: helpers.withMessage("El Mensaje es requerido", required),
@@ -115,7 +123,7 @@ export default {
     },
     Titulo: {
       type: String,
-      default: "Contáctenos"
+      default: "Contáctanos"
     },
     Subtitulo: {
       type: String,
