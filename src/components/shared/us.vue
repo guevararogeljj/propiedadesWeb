@@ -9,9 +9,13 @@
     <div class="salto"></div>
     <FindOportunity />
     <br>
+    <v-row>
+      <v-col align="center">
     <span class="enfoque">Nuestro enfoque es poner a tu disposición la información completa y actualizada de miles de
       propiedades en México,
       en un solo click. Tenemos un profundo conocimiento del mercado y un extraordinario servicio al cliente</span> 
+    </v-col>
+    </v-row>
     <br>
     <v-row>
       <v-col cols="12">
