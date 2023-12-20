@@ -163,7 +163,8 @@ export default {
             debugger;
             if (result.success) {
                 if (data.requiredcode) {
-                    this.state.dataTemp = data;                    
+                    this.state.dataTemp = data;
+                    this.state.isLogin 
                     this.$router.push({ name: "AutenticadorLogin" });
                 } else {
                     this.state.isLoading = false;
