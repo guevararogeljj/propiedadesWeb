@@ -153,7 +153,7 @@ export default {
       }
       this.isLoading = this.Loading(false);
       this.v$.data.$reset();
-      utils.setAllPropsObject(this.data);
+      // utils.setAllPropsObject(this.data);
     },
     Loading(value) {
       return (this.$store.state.isLoading = value);
