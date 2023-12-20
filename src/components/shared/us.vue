@@ -6,12 +6,14 @@
     <label class="h1 textCenter salto">¿Que hacemos por ti?</label>
     <label class="textCenter">Nos especializamos en brindar valor diferenciado en nuestra cartera ya que compartimos tu
       compromiso de mantener las relaciones de negocios ágiles y profesionales.</label>
- <div class="salto"></div>
+    <div class="salto"></div>
     <FindOportunity />
     <br>
-    <label class="textCenter">Nuestro enfoque es poner a tu disposición la información completa y actualizada de miles de
+    <span class="enfoque">Nuestro enfoque es poner a tu disposición la información completa y actualizada de miles de propiedades en México, en un solo click.</span>
+    <span class="enfoque">Tenemos un profundo conocimiento del mercado y un extraordinario servicio al cliente</span>
+    <!-- <span class="enfoque">Nuestro enfoque es poner a tu disposición la información completa y actualizada de miles de
       propiedades en México,
-      en un solo click. Tenemos un profundo conocimiento del mercado y un extraordinario servicio al cliente</label>
+      en un solo click. Tenemos un profundo conocimiento del mercado y un extraordinario servicio al cliente</span> -->
     <br>
     <v-row>
       <v-col cols="12">
@@ -33,10 +35,15 @@
       <div class="left-div">
       </div>
       <div class="right-div">
-        <label class="h4" color="primary">Invierte hoy en tu patrimonio</label>
         <br>
-        <label class="h1" style="width: 505px; height: 159px; justify-items: end;" color="primary">Tu oportunidad de
+        <br>
+        <br>
+        <label class="invierte">Invierte hoy en tu patrimonio</label>
+        <br>
+        <br>
+        <label class="oportunidad">Tu oportunidad de
           encontrar tu lugar soñado está aquí </label>
+        <br>
         <br>
         <ButtonSecondary class="btnText" flat @click="ToCatalog()" Text="Ver propiedades" width="324px" />
       </div>
@@ -55,11 +62,11 @@
           </p>
 
           <p>
-            <v-btn variant="flat" class="btnColor" >
+            <v-btn variant="flat" class="btnColor">
               <span class="btnText" flat @click="ToCatalog()">Ver propiedades</span>
             </v-btn>
           </p>
-          <br/>
+          <br />
         </div>
 
 
@@ -109,11 +116,54 @@ export default {
 };
 </script>
 <style scoped>
- .salto {
-   width: 100%;
-   height: 100px;
-   flex-shrink: 0;
- }
+.enfoque{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  color: var(--Secundarios-600, #000);
+text-align: center;
+
+/* Text/Large/Medium */
+font-family: Barlow;
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -0.18px;
+}
+.invierte {
+  color: var(--Primary-350, #A8CEF9);
+
+  /* Heading/Medium 1 */
+  font-family: Barlow;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.5px;
+}
+
+.oportunidad {
+  width: 505px;
+  color: var(--Secundarios-Blanco, #FFF);
+
+  /* Heading/Large1 */
+  font-family: Barlow;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 52.83px;
+  /* 110.063% */
+  letter-spacing: -1.44px;
+}
+
+.salto {
+  width: 100%;
+  height: 100px;
+  flex-shrink: 0;
+}
+
 .contentHappy {
 
   width: 320px;
@@ -194,6 +244,16 @@ export default {
   padding: 0;
   display: flex;
   justify-content: center;
+  color: var(--Secundarios-600, #000);
+text-align: center;
+
+/* Text/Large/Medium */
+font-family: Barlow;
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -0.18px;
 }
 
 .center {
@@ -221,27 +281,32 @@ export default {
 
 
 }
+
 .btnColor {
   color: var(--primary-500, #379BEC);
-/* Text/Regular/Medium */
-font-family: Barlow;
-font-size: 16px;
-font-style: normal;
-font-weight: 500;
-line-height: 20px; /* 125% */
-letter-spacing: -0.16px;
+  /* Text/Regular/Medium */
+  font-family: Barlow;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  letter-spacing: -0.16px;
 }
-.btnText{
+
+.btnText {
   text-transform: none;
   color: var(--primary-500, #379BEC);
-/* Text/Regular/Medium */
-font-family: Barlow;
-font-size: 16px;
-font-style: normal;
-font-weight: 500;
-line-height: 20px; /* 125% */
-letter-spacing: -0.16px;
+  /* Text/Regular/Medium */
+  font-family: Barlow;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  letter-spacing: -0.16px;
 }
+
 .center {
   margin: auto;
   padding: 10px;
@@ -362,9 +427,9 @@ letter-spacing: -0.16px;
     display: none;
 
   }
+
   .containerus {
     display: flex;
   }
-}
-</style>
+}</style>
     
