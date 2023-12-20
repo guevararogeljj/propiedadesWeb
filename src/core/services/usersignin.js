@@ -3,7 +3,7 @@ import api from "./apiconfig";
 export default {
 
     signin(data) {
-        return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/login', data).then(result => {
+        return api().post(import.meta.env.VITE_APP_ROOT_API  + '/login', data).then(result => {
            // console.log('LOGIN1')
            // console.log(result)
             if (result.status == 200) {
@@ -25,7 +25,7 @@ export default {
     },
     signout(data) {
         try {
-            return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/login/logout', data).then(result => {
+            return api().post(import.meta.env.VITE_APP_ROOT_API  + '/login/logout', data).then(result => {
                 if (result.status == 200) {
                     if (result.data.success) {
                         return result.data;
@@ -49,7 +49,7 @@ export default {
     },
     profile(data) {
         try {
-            return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/login/profile', data).then(result => {
+            return api().post(import.meta.env.VITE_APP_ROOT_API  + '/login/profile', data).then(result => {
                 if (result.status == 200) {
                     if (result.data.success) {
                         return result.data;
@@ -73,7 +73,7 @@ export default {
     },
     favorites(data) {
         try {
-            return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/login/favorites', data).then(result => {
+            return api().post(import.meta.env.VITE_APP_ROOT_API  + '/login/favorites', data).then(result => {
                 if (result.status == 200) {
                     // console.log(result)
                     if (result.data.success) {
@@ -97,7 +97,7 @@ export default {
     },
     addfavorite(data) {
         try {
-            return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/login/addfavorite', data).then(result => {
+            return api().post(import.meta.env.VITE_APP_ROOT_API  + '/login/addfavorite', data).then(result => {
                 if (result.status == 200) {
                     if (result.data.success) {
                         return result.data;
@@ -120,7 +120,7 @@ export default {
     },
     removefavorite(data) {
         try {
-            return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/login/removefavorite', data).then(result => {
+            return api().post(import.meta.env.VITE_APP_ROOT_API  + '/login/removefavorite', data).then(result => {
                 if (result.status == 200) {
                     if (result.data.success) {
                         return result.data;
@@ -142,7 +142,7 @@ export default {
         }
     },
     changepassword(data) {
-        return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/login/changepassword', data).then(result => {
+        return api().post(import.meta.env.VITE_APP_ROOT_API  + '/login/changepassword', data).then(result => {
             if (result.status == 200) {
                 // console.log(result.data)
                 if (result.data.success) {
@@ -161,7 +161,7 @@ export default {
 
     },
     removeallfavorites(data) {
-        return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/login/removeallfavorites', data).then(result => {
+        return api().post(import.meta.env.VITE_APP_ROOT_API  + '/login/removeallfavorites', data).then(result => {
             if (result.status == 200) {
                 // console.log(result.data)
                 if (result.data.success) {
@@ -180,7 +180,7 @@ export default {
 
     },
     changeemail(data) {
-        return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/login/changeemail', data).then(result => {
+        return api().post(import.meta.env.VITE_APP_ROOT_API  + '/login/changeemail', data).then(result => {
             if (result.status == 200) {
                 // console.log(result.data)
                 if (result.data.success) {
@@ -198,7 +198,7 @@ export default {
         });
 
     }, uptfaapp(data) {
-        return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/login/updoubleauth', data).then(result => {
+        return api().post(import.meta.env.VITE_APP_ROOT_API  + '/login/updoubleauth', data).then(result => {
             if (result.status == 200) {
                 // console.log(result.data)
                 if (result.data.success) {
@@ -236,7 +236,7 @@ export default {
 
     },
     uptfaappstatus(data) {
-        return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/login/updoubleauthstatus', data).then(result => {
+        return api().post(import.meta.env.VITE_APP_ROOT_API  + '/login/updoubleauthstatus', data).then(result => {
             if (result.status == 200) {
                 if (result.data.success) {
                     return result.data;
@@ -253,7 +253,7 @@ export default {
         });
     },
     downtfaappstatus(data) {
-        return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/login/downdoubleauthstatus', data).then(result => {
+        return api().post(import.meta.env.VITE_APP_ROOT_API  + '/login/downdoubleauthstatus', data).then(result => {
             if (result.status == 200) {
                 if (result.data.success) {
                     return result.data;
@@ -272,7 +272,7 @@ export default {
     
     codephonechange(data) {
         try {
-            return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/login/changecellphonesmscode', data).then(result => {
+            return api().post(import.meta.env.VITE_APP_ROOT_API  + '/login/changecellphonesmscode', data).then(result => {
                 if (result.status == 200) {
                     if (result.data.success) {
                         return result.data;
@@ -297,7 +297,7 @@ export default {
 
     phonenumberchange(data) {
         try {
-            return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/login/changecellphone', data).then(result => {
+            return api().post(import.meta.env.VITE_APP_ROOT_API  + '/login/changecellphone', data).then(result => {
                 if (result.status == 200) {
                     if (result.data.success) {
                         return result.data;
@@ -321,7 +321,7 @@ export default {
     },
     validatedcodephonechange(data) {
         try {
-            return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/login/validatechangecellphonesmscode', data).then(result => {
+            return api().post(import.meta.env.VITE_APP_ROOT_API  + '/login/validatechangecellphonesmscode', data).then(result => {
                 if (result.status == 200) {
                     if (result.data.success) {
                         return result.data;
@@ -345,7 +345,7 @@ export default {
     },
     sendpasswordrecovery(data) {
         try {
-            return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/signup/sendpasswordrecovery', data).then(result => {
+            return api().post(import.meta.env.VITE_APP_ROOT_API  + '/signup/sendpasswordrecovery', data).then(result => {
                 if (result.status == 200) {
                     if (result.data.success) {
                         return result.data;
@@ -370,7 +370,7 @@ export default {
 
     passwordrecovery(data) {
         try {
-            return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/signup/passwordrecovery', data).then(result => {
+            return api().post(import.meta.env.VITE_APP_ROOT_API  + '/signup/passwordrecovery', data).then(result => {
                 if (result.status == 200) {
                     if (result.data.success) {
                         return result.data;
@@ -395,7 +395,7 @@ export default {
 
     addcontractdata(data) {
         try {
-            return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/login/addcontractdata', data).then(result => {
+            return api().post(import.meta.env.VITE_APP_ROOT_API  + '/login/addcontractdata', data).then(result => {
                 if (result.status == 200) {
                     if (result.data.success) {
                         return result.data;
@@ -420,7 +420,7 @@ export default {
 
     ndastatus(data) {
         try {
-            return api().post("https://apipropiedadesqa.finastrategy.mx/api"  + '/login/ndastatus', data).then(result => {
+            return api().post(import.meta.env.VITE_APP_ROOT_API  + '/login/ndastatus', data).then(result => {
                 if (result.status == 200) {
                     if (result.data.success) {
                         return result.data;

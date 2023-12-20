@@ -3,7 +3,7 @@ import api from "./apiconfig";
 export default {
 
     Propiedades() {
-        return  api().get("https://apipropiedadesqa.finastrategy.mx/api"  + '/properties').then(result => {
+        return  api().get(import.meta.env.VITE_APP_ROOT_API  + '/properties').then(result => {
             if(result.status == 200)
             {
                 // console.log(result)
@@ -19,7 +19,7 @@ export default {
       try {
         let propertyType = params.propertytype;
         let state = params.state;
-        let municipality = params.municipality;
+        let municipality = params.city;
         let price = params.price;
         let rooms = params.rooms;
         let bathrooms = params.bathrooms;
@@ -42,7 +42,7 @@ export default {
         };
   
         return api()
-          .post("https://apipropiedadesqa.finastrategy.mx/api" + `/properties/range`, data)
+          .post(import.meta.env.VITE_APP_ROOT_API + `/properties/range`, data)
           .then((result) => {
             if (result.status == 200) {
               if (result.data.success) {
@@ -60,7 +60,7 @@ export default {
     },  
     PropertyDetails(id)
     {
-        return  api().get("https://apipropiedadesqa.finastrategy.mx/api"  + `/properties/details?id=${id}`).then(result => {
+        return  api().get(import.meta.env.VITE_APP_ROOT_API  + `/properties/details?id=${id}`).then(result => {
             if(result.status == 200)
             {
                 // console.log(result)
@@ -73,7 +73,7 @@ export default {
     },
     legaldata(id)
     {
-        return  api().post("https://apipropiedadesqa.finastrategy.mx/api"  + `/properties/legaldetails`,id).then(result => {
+        return  api().post(import.meta.env.VITE_APP_ROOT_API  + `/properties/legaldetails`,id).then(result => {
             if(result.status == 200)
             {
                 return result.data.result;
@@ -83,7 +83,7 @@ export default {
         });
   },
   // PropertiesRange(page, items, params,order) {
-  //     let url = "https://apipropiedadesqa.finastrategy.mx/api"  + `/properties/range?index=${page}&items=${items}`;
+  //     let url = import.meta.env.VITE_APP_ROOT_API  + `/properties/range?index=${page}&items=${items}`;
   //     // console.log(order)
   //     if (order) {
   //         url = url + `&order=${order}`;
@@ -108,7 +108,7 @@ export default {
   // },
   PropertyDetails(id) {
     return api()
-      .get("https://apipropiedadesqa.finastrategy.mx/api" + `/properties/details?id=${id}`)
+      .get(import.meta.env.VITE_APP_ROOT_API + `/properties/details?id=${id}`)
       .then((result) => {
         if (result.status == 200) {
           // console.log(result)
@@ -121,7 +121,7 @@ export default {
   },
   legaldata(id) {
     return api()
-      .post("https://apipropiedadesqa.finastrategy.mx/api" + `/properties/legaldetails`, id)
+      .post(import.meta.env.VITE_APP_ROOT_API + `/properties/legaldetails`, id)
       .then((result) => {
         if (result.status == 200) {
           return result.data.result;

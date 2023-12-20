@@ -208,7 +208,8 @@ export default {
 }
 
 .subtitle {
-  width: 414px;
+  width: auto;
+  max-width: 414px;
   color: var(--Secundarios-600, #000);
 
   /* Text/Large/Medium */
@@ -221,8 +222,10 @@ export default {
 }
 
 .header {
-  width: 500px;
-  height: 75px;
+  width: auto;
+  height: auto;
+  max-width: 500px;
+  min-height: 75px;
   flex-shrink: 0;
   border-radius: 18px 18px 0px 0px;
   background: var(--Primary-500, #379BEC);
@@ -296,6 +299,22 @@ export default {
 
 
 @media only screen and (max-width: 767px) {
+  .headerTwo {
+  width: auto;
+  height: auto;
+  flex-shrink: 0;
+  color: var(--Secundarios-600, #000);
+  text-align: center;
+
+  /* Heading/Large1 */
+  font-family: Barlow;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 52.83px;
+  /* 110.063% */
+  letter-spacing: -1.44px;
+}
   .contactFom {
     width: 288px;
     margin: auto;
