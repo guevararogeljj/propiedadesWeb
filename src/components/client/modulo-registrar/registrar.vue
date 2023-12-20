@@ -184,7 +184,7 @@ export default {
             this.Loading(true);
             const dataregister = utils.cloneObject(this.data);
             dataregister.Password = encrypt.encryptstring(this.data.Password, encrypt.publickey);
-      
+            dataregister.ConfirmPassword = encrypt.encryptstring(this.data.ConfirmPassword, encrypt.publickey);
             const result = await userservice.signup(dataregister);
             if (result.success) {
                 this.$store.state.Cellphone = this.data.Cellphone;
