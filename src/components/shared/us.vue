@@ -3,13 +3,13 @@
     <br>
     <div class="banner center"></div>
     <br>
-    <label class="h1 textCenter salto">¿Que hacemos por ti?</label>
+    <label class="h1 textCenter salto">¿Qué hacemos por ti?</label>
     <label class="textCenter">Nos especializamos en brindar valor diferenciado en nuestra cartera ya que compartimos tu
       compromiso de mantener las relaciones de negocios ágiles y profesionales.</label>
  <div class="salto"></div>
     <FindOportunity />
     <br>
-    <label class="textCenter">Nuestro enfoque es poner a tu disposición la información completa y actualizada de miles de
+    <label class="enfoque">Nuestro enfoque es poner a tu disposición la información completa y actualizada de miles de
       propiedades en México,
       en un solo click. Tenemos un profundo conocimiento del mercado y un extraordinario servicio al cliente</label>
     <br>
@@ -109,6 +109,22 @@ export default {
 };
 </script>
 <style scoped>
+.enfoque{
+  margin:auto;
+  max-width: 1030px;
+height: 59px;
+flex-shrink: 0;
+color: var(--Secundarios-600, #000);
+text-align: center;
+
+/* Text/Large/Medium */
+font-family: Barlow;
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -0.18px;
+}
  .salto {
    width: 100%;
    height: 100px;
