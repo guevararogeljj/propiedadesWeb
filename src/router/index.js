@@ -1,6 +1,7 @@
 // Composables
 import { createRouter, createWebHashHistory } from 'vue-router'
 import NotFound from '@/components/shared/pages/404.vue'
+import store from '@/store/index';
 const routes = [
   {
     path: '/',
