@@ -179,7 +179,6 @@ export default {
     },
   },
   async mounted() {
-    
     this.Loading(true);
     this.phone = this.state.Cellphone;
     this.sendCodePhone();
@@ -187,6 +186,9 @@ export default {
     this.Loading(false);
     const aft = await antiforgery.get();
     this.state.requesttoken = aft;
+    if(this.phone == null || this.phone == undefined || this.phone == ""){
+      this.$router.push({ name: "Home" });
+    }
   },
 };
 </script>

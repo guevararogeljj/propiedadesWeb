@@ -443,10 +443,11 @@ export default {
 
     },
 
-    UpdateDataUser(data) {
+    updateDatauser(data) {  
         try {
-            return api().put(import.meta.env.VITE_APP_ROOT_API  + '/login/UpdateDataUser', data).then(result => {
+            return api().put(import.meta.env.VITE_APP_ROOT_API  + '/login/updateDatauser', data).then(result => {
                 if (result.status == 200) {
+                    // console.log(result.data)
                     if (result.data.success) {
                         return result.data;
                     } else {
@@ -454,9 +455,9 @@ export default {
                     }
                 }
                 else {
+                    // console.log(result.data)
                     return null;
                 }
-
             }).catch(error => {
                 return error;
             });
@@ -465,7 +466,7 @@ export default {
             console.log(ex)
             return null
         }
-
     },
+    
 
 }

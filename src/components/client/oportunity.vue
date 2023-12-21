@@ -62,7 +62,7 @@
         <div class="salto"></div>
         <div class="salto"></div>
         <div class="text-center mx-auto">
-          <button-secondary flat Text="Ver listado completo" color="primary3" @click="navigateToopportunities()" class="btnCustom" width="394px" />
+          <button-secondary flat Text="Ver listado completo" class="btnListado" @click="navigateToopportunities()" />
         </div>
       </div>
     </v-col>
@@ -113,7 +113,7 @@ export default {
     isLoading: false,
     casas: casa,
     isCarrusel: true,
-    isOportunidad : true
+    isOportunidad: true
   }),
   methods: {
     navigateToopportunities() {
@@ -209,8 +209,8 @@ export default {
           this.currentPage,
           this.perPage,
           {
-            "isCarrusel" : this.isCarrusel,
-            "oportunity" : this.isOportunidad
+            "isCarrusel": this.isCarrusel,
+            "oportunity": this.isOportunidad
           }
         );
       }
@@ -251,6 +251,31 @@ export default {
 };
 </script>
 <style scoped>
+.btnListado {
+  text-transform: none;
+  margin: auto;
+  height: 56px;
+  display: flex;
+  width: 394px;
+  padding: 18px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+  background: var(--Primary-500, #379BEC);
+
+  color: var(--Secundarios-Blanco, #FFF);
+
+  /* Text/Regular/Medium */
+  font-family: Barlow;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  letter-spacing: -0.16px;
+}
+
 .loading {
   margin: auto;
   /* 70 × 139 */
