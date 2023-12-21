@@ -135,6 +135,7 @@ export default {
 }
 
 .price {
+text-indent: 50px;
   font-weight: bold;
   font-size: 16px;
   line-height: 24px;

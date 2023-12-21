@@ -5,7 +5,7 @@
       <v-row>
         <v-col cols="12">
           <!-- <div :class="{  'center w-auto  header': isLogin }">{{ Titulo }}</div> -->
-          <div :class="IsInversion ? 'center w-auto  header' : 'center w-auto headerTwo'">{{ Titulo }}</div>
+          <div :class="IsInversion ? ' w-auto  header' : 'headerTwo'">{{ Titulo }}</div>
         </v-col>
       </v-row>
       <v-row>
@@ -246,8 +246,10 @@ export default {
 }
 
 .headerTwo {
-  width: 296px;
-  height: 46px;
+  width: auto;
+  height: auto;
+  min-width: 296px;
+  min-height: 46px;
   flex-shrink: 0;
   color: var(--Secundarios-600, #000);
   text-align: center;

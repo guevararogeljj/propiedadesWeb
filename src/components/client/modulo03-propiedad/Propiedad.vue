@@ -1,78 +1,118 @@
 <template>
   <v-container class="content">
     <v-responsive>
-      <br>
+      <br />
       <v-row>
-        <v-col cols="12" md="7"> <!-- Columna izquierda -->
+        <v-col cols="12" md="7">
+          <!-- Columna izquierda -->
           <div>
             <v-icon @click="navigateToBack()">mdi-arrow-left</v-icon>
             <span class="back">Regresar a Catálogo</span>
           </div>
           <div class="title">{{ propertyInfo.state }}</div>
           <br />
-          <div class="float-left">
-            <div class="price"> {{ priceFormated }} MXN</div>
-          </div>
-          <div class="float-right">
-            <ButtonSecondary v-if="propertyInfo.favorite" :OnClickButton="onClickFavoriteButton" Icon="mdi-heart-outline"
-              variant="plain" />
-            <ButtonSecondary v-else Icon="mdi-heart-outline" :OnClickButton="onClickFavoriteButton" variant="plain" />
-            <v-dialog class="w-auto">
-              <template v-slot:activator="{ props }">
-                <v-btn v-bind="props" class="btnInteresting" flat>
-                  Me Interesa
-                </v-btn>
-              </template>
-              <template v-slot:default="{ isActive }">
-                <v-card class="card" flat>
-                  <v-card-text>
-                    <div class="titulocard">Gracias por tu interés</div>
-                    <br />
-                    <div class="subtituloCard">Si deseas más información acerca de ésta propiedad un asesor personalizado
-                      puede apoyarte</div>
-                    <v-btn class="btnConfirm" @click="onClickPropInfoButton" flat>Si, deseo que me contacten</v-btn>
-                  </v-card-text>
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn text="cerrar" @click="isActive.value = false"></v-btn>
-                  </v-card-actions>
-                </v-card>
-              </template>
-            </v-dialog>
-
-            <!-- <v-btn @click="onClickPropInfoButton" class="btnInteresting" flat>
-              Me Interesa
-            </v-btn> -->
-          </div>
-          <image-gallery :ItemSource="propertyInfo.photos" :ShowDescription="false">
-          </image-gallery>
+          <v-row>
+            <v-col cols="12" md="6" align="center">
+              <div class="price">{{ priceFormated }} MXN</div>
+            </v-col>
+            <v-col cols="12" md="6" align="center">
+              <ButtonSecondary
+                v-if="propertyInfo.favorite"
+                :OnClickButton="onClickFavoriteButton"
+                Icon="mdi-heart-outline"
+                variant="plain"
+              />
+              <ButtonSecondary
+                v-else
+                Icon="mdi-heart-outline"
+                :OnClickButton="onClickFavoriteButton"
+                variant="plain"
+              />
+              <v-dialog class="w-auto">
+                <template v-slot:activator="{ props }">
+                  <v-btn v-bind="props" class="btnInteresting" flat>
+                    Me Interesa
+                  </v-btn>
+                </template>
+                <template v-slot:default="{ isActive }">
+                  <v-card class="card" flat>
+                    <v-card-text>
+                      <div class="titulocard">Gracias por tu interés</div>
+                      <br />
+                      <div class="subtituloCard">
+                        Si deseas más información acerca de ésta propiedad un
+                        asesor personalizado puede apoyarte
+                      </div>
+                      <v-btn
+                        class="btnConfirm"
+                        @click="onClickPropInfoButton"
+                        flat
+                        >Si, deseo que me contacten</v-btn
+                      >
+                    </v-card-text>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        text="cerrar"
+                        @click="isActive.value = false"
+                      ></v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </template>
+              </v-dialog>
+            </v-col>
+          </v-row>
+          <v-row>
+            <image-gallery
+              :ItemSource="propertyInfo.photos"
+              :ShowDescription="false"
+            >
+            </image-gallery>
+          </v-row>
           <!-- <div v-if="propertyInfo.sold" class="banner-sale">Vendida</div> -->
-          <div class="tp-product-badge" v-if="propertyInfo.sold">
-            <span class="product-hot">vendido</span>
-          </div>
-          <br>
-          <p class="detailsTitle">Detalles</p>
-          <div class="details">
-            <span>Tipo de Propiedad. {{ this.propertyInfo.type }}</span>
-            <br>
-            <span>Estado. {{ this.propertyInfo.state }} </span>
-            <br>
-            <span>Municipio. {{ this.propertyInfo.city }}</span>
-            <br>
-            <span>Colonia. {{ this.propertyInfo.settlement }}</span>
-            <br>
-          </div>
+          <v-row>
+            <v-col cols="12" md="6">
+              <div class="tp-product-badge" v-if="propertyInfo.sold">
+                <span class="product-hot">vendido</span>
+              </div>
+              <br />
+              <div class="detailsTitle">Detalles</div>
 
-          <property-card-icon-bar class="mt-5 me-1" :BathsQuantity="propertyInfo.bathrooms" BathsUnits="Baños"
-            :LivingSize="propertyInfo.lotsize" LivinSizeUnits="m2" :BebsQuantity="propertyInfo.rooms"
-            BedsUnits="Habitaciones" :ParkingLots="propertyInfo.parkingspaces" ParkingUnits="Espacios"
-            :ConstructionSize="propertyInfo.constructionsize" ConstructionSizeUnits="m2" :DetailsMode="false" />
-          <br>
+              <span>Tipo de Propiedad. {{ this.propertyInfo.type }}</span>
+              <br />
+              <span>Estado. {{ this.propertyInfo.state }} </span>
+              <br />
+              <span>Municipio. {{ this.propertyInfo.city }}</span>
+              <br />
+              <span>Colonia. {{ this.propertyInfo.settlement }}</span>
+              <br />
+            </v-col>
+            <v-col cols="12" md="6" align="center"> </v-col>
+          </v-row>
 
+          <property-card-icon-bar
+            class="mt-5 me-1"
+            :BathsQuantity="propertyInfo.bathrooms"
+            BathsUnits="Baños"
+            :LivingSize="propertyInfo.lotsize"
+            LivinSizeUnits="m2"
+            :BebsQuantity="propertyInfo.rooms"
+            BedsUnits="Habitaciones"
+            :ParkingLots="propertyInfo.parkingspaces"
+            ParkingUnits="Espacios"
+            :ConstructionSize="propertyInfo.constructionsize"
+            ConstructionSizeUnits="m2"
+            :DetailsMode="false"
+          />
+          <br />
         </v-col>
-        <v-col cols="12" md="4"> <!-- Columna derecha -->
-
-          <Contact v-if="isLogin" Titulo="¿Deseas invertir?" :IsInversion="true" />
+        <v-col cols="12" md="4">
+          <!-- Columna derecha -->
+          <Contact
+            v-if="isLogin"
+            Titulo="¿Deseas invertir?"
+            :IsInversion="true"
+          />
           <Contact v-else Titulo="Contacta a un asesor" />
           <br />
           <br />
@@ -80,9 +120,14 @@
       </v-row>
       <v-row>
         <v-col>
-          <propiedad-description-ubication :PropertyDescription="propertyInfo.description"
-            :UbicacionDescription="description.ubicationDescription" :Latitude="this.propertyInfo.latitude"
-            :Longitude="this.propertyInfo.longitude" :IsLogin="isLogin" :NoLoginImage="onClickBannerButton" />
+          <propiedad-description-ubication
+            :PropertyDescription="propertyInfo.description"
+            :UbicacionDescription="description.ubicationDescription"
+            :Latitude="this.propertyInfo.latitude"
+            :Longitude="this.propertyInfo.longitude"
+            :IsLogin="isLogin"
+            :NoLoginImage="onClickBannerButton"
+          />
 
           <!-- <propiedadInfo  :Title="propertyInfo.type" :Description="propertyInfo.description"
             :StreetName="propertyInfo.address2" :Price="propertyInfo.price" :Favorite="propertyInfo.favorite"
@@ -98,26 +143,32 @@
     </v-responsive>
   </v-container>
 </template>
-  
+
 <script>
 import InformacionLegal from "@/components/client/modulo03-propiedad/InformacionLegal.vue";
 import antiforgery from "@/core/services/antiforgery";
-import { default as contactservice, default as shareservice } from "@/core/services/contservice";
+import {
+  default as contactservice,
+  default as shareservice,
+} from "@/core/services/contservice";
 import propservice from "@/core/services/propservice";
 import signinservice from "@/core/services/usersignin";
 import Primarybutton from "@/components/common/ButtonPrimary.vue";
 import ImageGallery from "@/components/common/ImageGallery.vue";
-import { default as Modal, default as ModalShare } from "@/components/common/Modal2.vue";
+import {
+  default as Modal,
+  default as ModalShare,
+} from "@/components/common/Modal2.vue";
 
 import { mapMutations } from "vuex";
 import PropertyCardIconBar from "@/components/common/shared/PropertyCardIconBar.vue";
 import PropiedadDescriptionUbication from "./PropiedadDescriptionUbication.vue";
 import propiedadInfo from "@/components/client/modulo03-propiedad/PropertyInfo.vue";
-import Contact from "@/components/shared/Contact.vue"
+import Contact from "@/components/shared/Contact.vue";
 import ButtonSecondary from "@/components/common/ButtonSecondary.vue";
 import oportunity from "../oportunity.vue";
-import invertir from '../modulo-invertir/invertir.vue';
-import { dialogSuccess,dialogError } from '@/core/utils/alerts';
+import invertir from "../modulo-invertir/invertir.vue";
+import { dialogSuccess, dialogError } from "@/core/utils/alerts";
 export default {
   components: {
     propiedadInfo,
@@ -131,7 +182,7 @@ export default {
     Contact,
     ButtonSecondary,
     oportunity,
-    invertir
+    invertir,
   },
   name: "propiedadComp",
   data() {
@@ -163,11 +214,11 @@ export default {
         ubicationDescription: ``,
       },
       showPropInfo: false,
-      showPropGetInfo: false
+      showPropGetInfo: false,
     };
   },
   methods: {
-    ...mapMutations(['SET_OPEN_DIALOG_LOGIN', 'DELETE_FOTO_CAMERA']),
+    ...mapMutations(["SET_OPEN_DIALOG_LOGIN", "DELETE_FOTO_CAMERA"]),
     onClickBannerButton() {
       this.showModalLoginRequest = true;
     },
@@ -178,7 +229,7 @@ export default {
     async onClickPropInfoButton() {
       if (this.state.isLogin == true) {
         this.showPropInfo = true;
-       const result = await contactservice.requestinfo(
+        const result = await contactservice.requestinfo(
           this.state.userdata.cellphone,
           this.propertyInfo.creditnumber
         );
@@ -202,12 +253,11 @@ export default {
     },
     onClickAcceptModalButton() {
       // funcion del login aqui
-      this.SET_OPEN_DIALOG_LOGIN(true)
+      this.SET_OPEN_DIALOG_LOGIN(true);
       this.showModalLoginRequest = false;
       // this.$router.push({ name: "login" });
     },
     onClickCloseModalButton() {
-
       this.showModalLoginRequest = false;
       this.showPropGetInfo = false;
     },
@@ -285,12 +335,10 @@ export default {
     },
     onClickAcceptModalButtonGetInfo() {
       //  funcion de eliminar store de credencial
-      this.DELETE_FOTO_CAMERA()
+      this.DELETE_FOTO_CAMERA();
       this.$router.push({ name: "images" }); //INE
-      //this.$router.push({ name: "data" }); //RFC 
+      //this.$router.push({ name: "data" }); //RFC
       //this.$router.push({ name: "fiscaldata" }); //Fiscal Data
-
-
     },
     async legalGetInfo() {
       if (this.$route.query.id != "" && this.$route.query.id != undefined) {
@@ -308,11 +356,10 @@ export default {
             email: this.state.userdata.email,
           });
 
-
-          const result = await signinservice.ndastatus({ Cellphone: this.state.cellphone })
-          this.ndaprocess = result.result
-
-
+          const result = await signinservice.ndastatus({
+            Cellphone: this.state.cellphone,
+          });
+          this.ndaprocess = result.result;
 
           for (var i in favorites) {
             if (favorites[i].creditnumber == data.creditnumber) {
@@ -324,7 +371,7 @@ export default {
       }
       const aft = await antiforgery.get();
       this.state.requesttoken = aft;
-    }
+    },
   },
   computed: {
     state() {
@@ -338,7 +385,6 @@ export default {
       const price = currencESLocale.format(this.propertyInfo.price, {
         style: "currency",
         currency: "USD",
-
       });
       return `$${price}`;
     },
@@ -346,18 +392,18 @@ export default {
   watch: {
     async isLogin() {
       this.Loading(true);
-      await this.legalGetInfo()
+      await this.legalGetInfo();
       this.Loading(false);
-    }
+    },
   },
   async mounted() {
     this.Loading(true);
-    await this.legalGetInfo()
+    await this.legalGetInfo();
     this.Loading(false);
   },
 };
 </script>
-  
+
 <style scoped lang="scss">
 .btnConfirm {
   margin: auto;
@@ -369,9 +415,9 @@ export default {
   align-items: center;
   gap: 10px;
   text-transform: none;
-  color: var(--Secundarios-Blanco, #FFF);
+  color: var(--Secundarios-Blanco, #fff);
   border-radius: 12px;
-  background: var(--Primary-500, #379BEC);
+  background: var(--Primary-500, #379bec);
   /* Text/Regular/Medium */
   font-family: Barlow;
   font-size: 16px;
@@ -388,10 +434,10 @@ export default {
   max-height: 300px;
   flex-shrink: 0;
   border-radius: 26px;
-  background: var(--Secundarios-Blanco, #FFF);
+  background: var(--Secundarios-Blanco, #fff);
 
   /* Shadows/Estandar100 */
-  box-shadow: 5px 5px 30px 0px rgba(55, 155, 236, 0.30);
+  box-shadow: 5px 5px 30px 0px rgba(55, 155, 236, 0.3);
 }
 
 .titulocard {
@@ -469,7 +515,7 @@ export default {
 
 .textBtn {
   text-transform: capitalize;
-  color: var(--primary-500, #379BEC);
+  color: var(--primary-500, #379bec);
 
   /* Text/Regular/Medium */
   font-family: Barlow;
@@ -492,8 +538,8 @@ export default {
   gap: 10px;
   flex-shrink: 0;
   border-radius: 12px;
-  background: var(--Primary-300, #E3F1FC);
-  color: var(--Primary-500, #379BEC);
+  background: var(--Primary-300, #e3f1fc);
+  color: var(--Primary-500, #379bec);
 
   /* Text/Regular/Medium */
   font-family: Barlow;
@@ -555,52 +601,51 @@ export default {
 }
 
 @media only screen and (max-width: 900px) {
-
   .titulocard {
-  margin: auto;
-  width: auto;
-  height: auto;
-  flex-shrink: 0;
-  color: var(--Secundarios-600, #000);
-  text-align: center;
+    margin: auto;
+    width: auto;
+    height: auto;
+    flex-shrink: 0;
+    color: var(--Secundarios-600, #000);
+    text-align: center;
 
-  /* Heading/Medium 1 */
-  font-family: Barlow;
-  font-size: 25px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: -0.5px;
-}
+    /* Heading/Medium 1 */
+    font-family: Barlow;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.5px;
+  }
 
-.subtituloCard {
-  margin: auto;
-  width: auto;
-  height: auto;
-  flex-shrink: 0;
-  color: var(--Secundarios-600, #000);
-  text-align: center;
+  .subtituloCard {
+    margin: auto;
+    width: auto;
+    height: auto;
+    flex-shrink: 0;
+    color: var(--Secundarios-600, #000);
+    text-align: center;
 
-  /* Text/Regular/Regular */
-  font-family: Barlow;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px;
-  /* 125% */
-  letter-spacing: -0.16px;
-}
+    /* Text/Regular/Regular */
+    font-family: Barlow;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    /* 125% */
+    letter-spacing: -0.16px;
+  }
   .card {
-  margin: auto;
-  max-width: auto;
-  max-height: auto;
-  flex-shrink: 0;
-  border-radius: 26px;
-  background: var(--Secundarios-Blanco, #FFF);
+    margin: auto;
+    max-width: auto;
+    max-height: auto;
+    flex-shrink: 0;
+    border-radius: 26px;
+    background: var(--Secundarios-Blanco, #fff);
 
-  /* Shadows/Estandar100 */
-  box-shadow: 5px 5px 30px 0px rgba(55, 155, 236, 0.30);
-}
+    /* Shadows/Estandar100 */
+    box-shadow: 5px 5px 30px 0px rgba(55, 155, 236, 0.3);
+  }
   .title-mobile {
     font-family: "Roboto";
     font-style: normal;
@@ -612,4 +657,5 @@ export default {
     display: flex;
     align-items: center;
   }
-}</style>
+}
+</style>
