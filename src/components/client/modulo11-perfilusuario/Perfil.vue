@@ -75,7 +75,7 @@
                         <v-row>
                             <v-col cols="12" sm="8" md="6">
                                 <v-btn variant="text" class="btnUpadatePass" flat @click="onClickdobleFactorButton()">
-                                    Activiar verificación en 2 pasos
+                                    Activar verificación en 2 pasos
                                 </v-btn>                                
                             </v-col>
                             <v-col cols="12" sm="8" md="6">

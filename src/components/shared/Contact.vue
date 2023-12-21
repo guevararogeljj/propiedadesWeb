@@ -269,18 +269,18 @@ export default {
 }
 
 .contactFom {
+  width: 80%;
   max-width: 394px;
   margin: auto;
   min-width: 20px;
-
-
 }
 
 .btnCustom {
+  width: 80%;
   height: 56px;
   text-transform: none;
   display: flex;
-  width: 440px;
+  max-width: 440px;
   padding: 18px 16px;
   justify-content: center;
   align-items: center;
