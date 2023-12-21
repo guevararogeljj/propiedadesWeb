@@ -17,17 +17,21 @@
           <p><router-link to="/us" class="fooderMenu">Nosotros</router-link></p>
           <p><router-link to="/frequentQuestions" class="fooderMenu">Preguntas Frecuentes</router-link></p>
           <!-- <v-btn variant="text" flat @click="!isLogin ? navigateInicio() : navigateNda()" class="fooderMenu">NDA en línea</v-btn> -->
-          <p v-if="!isLogin"><router-link to="/login" class="fooderMenu">NDA en línea</router-link></p>
-          <p v-else><router-link to="/nda" class="fooderMenu">NDA en línea</router-link></p>
+         
         </v-col>
         <v-col cols="12" sm="6" md="3" align="center">
+          <p v-if="!isLogin"><router-link to="/login" class="fooderMenu">NDA en línea</router-link></p>
+          <p v-else><router-link to="/nda" class="fooderMenu">NDA en línea</router-link></p>
           <!-- <v-label> <strong>Contacto</strong></v-label> -->
           <p class="fooderMenu">Escríbenos</p>
-          <p class="fooderMenu">Inmuebles@finastrategy.mx</p>
+          <!-- <p class="fooderMenu">Inmuebles@finastrategy.mx</p> -->
+          <a v-bind:href="'mailto:' + data.email">{{ data.email }}</a>
+
           <p class="fooderMenu"></p>
-          <p class="fooderMenu">Llámanos</p>
+
+          <!-- <p class="fooderMenu">Llámanos</p>
           <p class="fooderMenu">55 99 90 88 00</p>
-          <p class="fooderMenu">81 21 88 88 00</p>
+          <p class="fooderMenu">81 21 88 88 00</p> -->
         </v-col>
         <v-divider></v-divider>
         <div class="center">        {{ new Date().getFullYear() }} Finastrategy. Todos los derechos
@@ -47,6 +51,13 @@
 <script>
 export default {
   name: "Footer",
+  data() {
+        return {
+            data: {
+                email: "Inmuebles@finastrategy.mx",
+            },
+        };
+    },
   computed: {
     state() {
       return this.$store.state;
