@@ -30,7 +30,8 @@ código del Autenticador
 <script>
 import { useVuelidate } from "@vuelidate/core";
 import { required, minLength, maxLength, helpers } from "@vuelidate/validators";
-import usersignin from "@/core/services/usersignin" 
+import usersignin from "@/core/services/usersignin"
+import { dialogError } from "@/core/utils/alerts";
 export default {
     setup() {
         return { v$: useVuelidate() };
@@ -72,7 +73,8 @@ export default {
         this.$router.push({ name: "Home" });
 
       } else {
-        alert("Favor de validar los campos")
+        // alert("Favor de validar los campos")
+   dialogError({title: "Error!", text:"Favor de validar los campos"});
       }
       this.state.isLoading = false;
     }
