@@ -194,6 +194,11 @@ const routes = [
         name: 'AutenticadorLogin',
         component: () => import('@/components/shared/PageAutenticadorLogin.vue'),
         meta: { requiredlogin: true }
+      },
+      {
+        path: '/error505',
+        name: 'error505',
+        component: () => import('@/components/shared/pages/505.vue'),
       }
     ],
   },

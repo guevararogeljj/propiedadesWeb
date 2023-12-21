@@ -2,10 +2,9 @@
   <v-app>
 
     <div class="content">
-      <router-view />
-
+      <router-view v-if="show" />
     </div>
-    <footerComponent />
+    <footerComponent v-if="show"/>
   </v-app>
 </template>
 
@@ -13,10 +12,22 @@
 import footerComponent from './components/shared/footer.vue';
 export default {
   name: 'App',
+  data(){
+    return {
+      show: true
+    }
+  },  
   components: {
     footerComponent
+  },
+  created() {
+    if (window.top === window.self) {
+      return;
+    } else {
+      this.show = false;
+      return;
+    }
   }
-
 };
 //
 </script>
