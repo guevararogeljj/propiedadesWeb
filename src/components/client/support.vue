@@ -92,7 +92,6 @@ export default {
 
 .subtitle {
   color: #FFF;
-  text-indent: 50px;
   /* Heading/Semibold 1 */
   font-family: Barlow;
   font-size: 25px;
@@ -202,7 +201,7 @@ export default {
 
   .btnContactar {
     text-transform: none;
-
+    margin: auto;
     min-width: 236px;
     padding: 18px 16px;
     justify-content: center;
@@ -213,7 +212,6 @@ export default {
   .subtitle {
     color: var(--Primary-300, #E3F1FC);
     text-align: center;
-
     /* Heading/Semibold 1 */
     font-family: Barlow;
     font-size: 25px;
