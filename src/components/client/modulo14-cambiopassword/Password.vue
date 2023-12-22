@@ -11,24 +11,27 @@
                         </p>
                     </v-card-title>
                     <v-card-text>
-                        <v-text-field density="compact" variant="outlined" label="Contraseña actual"  :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off-outline'"
-                                @click:append="() => (value1 = !value1)" :type="value1 ? 'password' : 'text'"
+                        <v-text-field density="compact" variant="outlined" label="Contraseña actual"
+                            :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off-outline'"
+                            @click:append="() => (value1 = !value1)" :type="value1 ? 'password' : 'text'"
                             v-model="data.oldpassword" class="form-input" :error-messages="v$.data.oldpassword.$errors.map((e) => e.$message)
                                 " @input="v$.data.oldpassword.$touch" @blur="v$.data.oldpassword.$touch"
                             autocomplete="off"></v-text-field>
-                        <v-text-field density="compact" variant="outlined" label="Nueva contraseña"  :append-icon="value2 ? 'mdi-eye' : 'mdi-eye-off-outline'"
-                                @click:append="() => (value2 = !value2)" :type="value2 ? 'password' : 'text'"
+                        <v-text-field density="compact" variant="outlined" label="Nueva contraseña"
+                            :append-icon="value2 ? 'mdi-eye' : 'mdi-eye-off-outline'"
+                            @click:append="() => (value2 = !value2)" :type="value2 ? 'password' : 'text'"
                             v-model="data.newpassword" class="form-input" :error-messages="v$.data.newpassword.$errors.map((e) => e.$message)
                                 " @input="v$.data.newpassword.$touch" @blur="v$.data.newpassword.$touch"
                             autocomplete="off"></v-text-field>
-                        <v-text-field density="compact" variant="outlined" label="Confirmar contraseña"  :append-icon="value3 ? 'mdi-eye' : 'mdi-eye-off-outline'"
-                                @click:append="() => (value3 = !value3)" :type="value3 ? 'password' : 'text'"
+                        <v-text-field density="compact" variant="outlined" label="Confirmar contraseña"
+                            :append-icon="value3 ? 'mdi-eye' : 'mdi-eye-off-outline'"
+                            @click:append="() => (value3 = !value3)" :type="value3 ? 'password' : 'text'"
                             v-model="data.newpassword2" class="form-input" :error-messages="v$.data.newpassword2.$errors.map((e) => e.$message)
                                 " @input="v$.data.newpassword2.$touch" @blur="v$.data.newpassword2.$touch"
                             autocomplete="off"></v-text-field>
 
-                        <v-otp-input ref="phoneCodeOne" min="0" max="9" v-model="phoneCodeOne"  :error-messages="v$.data.phoneCodeOne.$errors.map((e) => e.$message)
-                                " @input="v$.data.phoneCodeOne.$touch" @blur="v$.data.phoneCodeOne.$touch"
+                        <v-otp-input ref="phoneCodeOne" min="0" max="9" v-model="phoneCodeOne" :error-messages="v$.data.phoneCodeOne.$errors.map((e) => e.$message)
+                            " @input="v$.data.phoneCodeOne.$touch" @blur="v$.data.phoneCodeOne.$touch"
                             type="number" @keypress="onKeyPress" :loading="loading" :length="4"></v-otp-input>
                         <br />
                         <div style="text-align: center">
@@ -57,7 +60,6 @@
             </v-col>
         </v-row>
     </v-container>
-   
 </template>
   
 <script>
@@ -236,10 +238,21 @@ export default {
         onClickCalcelButton() { },
         async sendUserData() { },
         async sendCodePhone() {
-            
+
             if (this.state.cellphone) {
                 const value = { Cellphone: this.state.cellphone };
-                await userservice.codephone(value);
+                const response = await userservice.codephone(value);
+                if (response.success) {
+                    dialogSuccess({
+                        title: "Éxito",
+                        text: "Código enviado correctamente",
+                    });
+                } else {
+                    dialogError({
+                        title: "Error",
+                        text: response.message,
+                    });
+                }
             }
         },
 

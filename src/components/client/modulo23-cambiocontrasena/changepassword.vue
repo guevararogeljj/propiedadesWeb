@@ -210,7 +210,18 @@ export default {
         async sendCodePhone() {
             if (this.store().Cellphone) {
                 const value = { Cellphone: this.store().Cellphone };
-                await userservice.codephone(value);
+                const response = await userservice.codephone(value);
+                if (response.success) {
+                    dialogSuccess({
+                        title: "Éxito",
+                        text: "Código enviado correctamente",
+                    });
+                } else {
+                    dialogError({
+                        title: "Error",
+                        text: response.message,
+                    });
+                }
             }
         },
         getcode() {
