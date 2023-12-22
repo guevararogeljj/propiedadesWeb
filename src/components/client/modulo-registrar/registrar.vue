@@ -132,8 +132,8 @@ export default {
                         minLength(8)
                     ),
                     regex: helpers.withMessage(
-                        "La contraseña debe contener al menos una mayúscula, una minúscula y un número",
-                        value => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/.test(value)
+                        "La contraseña debe contener al menos una mayúscula, una minúsculas, un número y un caracter especial",
+                        value => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).+$/.test(value)
                     ),
                 },
                 ConfirmPassword: {
