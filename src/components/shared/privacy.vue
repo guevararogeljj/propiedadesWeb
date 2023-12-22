@@ -260,7 +260,8 @@ export default {
     padding: 10px;
 }
 .WordSection1 {
-  width: 1136px;
+    width: auto;
+  max-width: 1136px;
   height: auto;
   flex-shrink: 0;
   color: var(--Secundarios-600, #000);
