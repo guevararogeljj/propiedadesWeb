@@ -8,28 +8,29 @@
   </v-app>
 </template>
 
-<script>
+<script setup>
+import { ref, onMounted } from 'vue';
 import footerComponent from './components/shared/footer.vue';
-export default {
-  name: 'App',
-  data(){
-    return {
-      show: true
-    }
-  },  
-  components: {
-    footerComponent
-  },
-  created() {
-    if (window.top === window.self) {
+const show = true;
+const analitics = import.meta.env.VITE_APP_G_ANALYTICS;
+onMounted(() => {
+  if (window.top === window.self) {
+    // Call the function with the provided ID
+      setupGoogleTagManager(analitics);
       return;
     } else {
-      this.show = false;
+      show = false;
       return;
     }
-  }
+});
+
+const setupGoogleTagManager = (id) => {
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtm.js?id=${id}`;
+  document.head.appendChild(script);
 };
-//
+
 </script>
 <style>
 .content {
