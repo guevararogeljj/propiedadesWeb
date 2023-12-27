@@ -159,8 +159,7 @@ export default {
             
             const result = await usersignin.signin(credentials);
             const data = result.result;
-            //console.log(data);
-            debugger;
+            console.log(data);
             if (result.success) {
                 if (data.requiredcode) {
                     this.state.dataTemp = data;
@@ -188,7 +187,7 @@ export default {
             } else {
                 dialogError({
                     title: "¡Error!",
-                    text: "No se ha podido iniciar sesión " + result.message,
+                    text: "No se ha podido iniciar sesión " + result.response.data.message,
                 });
                 this.state.isLoading = false;
                 this.state.isError = true;

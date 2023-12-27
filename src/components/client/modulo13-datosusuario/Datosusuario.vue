@@ -207,7 +207,7 @@ export default {
             if (result.success) {
                 dialogSuccess({ title: '¡Listo!', text: result.message });
                 this.isLoading = false;
-                await onClickLogout();
+                await this.onClickLogout();
             } else {
                 dialogError({ title: '¡Error!', text: result.message });
                 this.isLoading = false;
