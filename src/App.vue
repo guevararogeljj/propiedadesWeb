@@ -19,7 +19,7 @@ onMounted(() => {
       setupGoogleTagManager(analitics);
       return;
     } else {
-      show = false;
+      show.value = false;
       return;
     }
 });
